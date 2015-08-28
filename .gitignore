@@ -1,0 +1,7 @@
+node_modules/
+tmp/
+build/
+coverage/
+*.sublime-*
+*.log
+.DS_Store
