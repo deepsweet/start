@@ -120,12 +120,7 @@ test('array of tasks + error', assert => {
 
         assert.true(
             testSpy2.notCalled,
-            'task 2 must be called once'
-        );
-
-        assert.true(
-            testSpy1.calledBefore(testSpy2),
-            'tasks must be called in sequence'
+            'task 2 must not be called'
         );
 
         assert.end();
