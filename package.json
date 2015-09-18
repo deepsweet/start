@@ -16,7 +16,7 @@
     "babel-runtime": "5.8.x"
   },
   "devDependencies": {
-    "husky": "0.9.x",
+    "husky": "0.10.x",
     "rimraf": "2.4.x",
 
     "tape": "4.2.x",
@@ -25,7 +25,7 @@
     "babel-istanbul": "0.3.x",
     "coveralls": "2.11.x",
 
-    "eslint": "1.2.x",
+    "eslint": "1.4.x",
     "babel-eslint": "4.1.x",
     "eslint-plugin-babel": "2.1.x",
     "babel": "5.8.x",
