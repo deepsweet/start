@@ -1,5 +1,5 @@
 import test from 'tape';
-import sinon, { spy } from 'sinon';
+import { spy } from 'sinon';
 
 import start from '../../lib/index';
 
