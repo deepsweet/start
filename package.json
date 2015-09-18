@@ -22,7 +22,7 @@
     "tape": "4.2.x",
     "tap-spec": "4.1.x",
     "sinon": "1.16.x",
-    "isparta": "3.0.x",
+    "babel-istanbul": "0.3.x",
     "coveralls": "2.11.x",
 
     "eslint": "1.2.x",
@@ -41,7 +41,7 @@
     "test": "babel-node test/lib/*.js | tap-spec",
 
     "precoverage": "rimraf coverage/",
-    "coverage": "babel-node ./node_modules/.bin/isparta cover test/lib/*.js | tap-spec",
+    "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover test/lib/*.js | tap-spec",
     "precoveralls": "npm run coverage",
     "coveralls": "coveralls < coverage/lcov.info",
 
