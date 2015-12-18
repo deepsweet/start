@@ -15,13 +15,13 @@ npm i -S start
 
 ```
 tasks/
-├── foo.js
-├── bar.js
+├── beep.js
+├── boop.js
 └── index.js
 ```
 
 ```js
-// tasks/foo.js
+// tasks/beep.js
 export function beep() {
     return new Promise((resolve, reject) => {
         resolve(':)');
@@ -30,7 +30,7 @@ export function beep() {
 ```
 
 ```js
-// tasks/bar.js
+// tasks/boop.js
 export function boop() {
     return new Promise((resolve, reject) => {
         reject(':(');
@@ -40,8 +40,8 @@ export function boop() {
 
 ```js
 // tasks/index.js
-export { beep } from './foo';
-export { boop } from './bar';
+export { beep } from './beep';
+export { boop } from './boop';
 
 export const beepBoop = [
     exports.beep,
