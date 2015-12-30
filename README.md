@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/start.svg?style=flat-square)](https://www.npmjs.com/package/start)
 [![travis](http://img.shields.io/travis/deepsweet/start.svg?style=flat-square)](https://travis-ci.org/deepsweet/start)
 [![coverage](http://img.shields.io/coveralls/deepsweet/start/master.svg?style=flat-square)](https://coveralls.io/r/deepsweet/start)
-[![deps](http://img.shields.io/david/deepsweet/start.svg?style=flat-square)](https://david-dm.org/deepsweet/start)
+[![dev deps](http://img.shields.io/david/dev/deepsweet/start.svg?style=flat-square)](https://david-dm.org/deepsweet/start#info=devDependencies)
 
 Dead simple tasks runner.
 
