@@ -12,24 +12,24 @@
   ],
   "bin": "build/cli.js",
   "main": "build/index.js",
-  "dependencies": {
-    "babel-runtime": "5.8.x"
-  },
   "devDependencies": {
     "husky": "0.10.x",
-    "rimraf": "2.4.x",
+    "rimraf": "2.5.x",
 
-    "tape": "4.2.x",
+    "babel-core": "6.3.x",
+    "babel-cli": "6.3.x",
+    "babel-preset-es2015": "6.3.x",
+    "babel-preset-stage-0": "6.3.x",
+
+    "eslint": "1.10.x",
+    "babel-eslint": ">5.0.0-beta1",
+    "eslint-plugin-babel": "3.0.x",
+
+    "tape": "4.4.x",
     "tap-spec": "4.1.x",
-    "sinon": "1.16.x",
-    "babel-istanbul": "0.3.x",
-    "coveralls": "2.11.x",
-
-    "eslint": "1.4.x",
-    "babel-eslint": "4.1.x",
-    "eslint-plugin-babel": "2.1.x",
-    "babel": "5.8.x",
-    "babel-core": "5.8.x"
+    "sinon": "1.17.x",
+    "babel-istanbul": "0.5.x",
+    "coveralls": "2.11.x"
   },
   "scripts": {
     "prebuild": "rimraf build/",
