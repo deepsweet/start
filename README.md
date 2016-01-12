@@ -49,8 +49,12 @@ export const beepBoop = [
 ];
 ```
 
-```
-babel-node ./node_modules/.bin/start tasks/ beep
-babel-node ./node_modules/.bin/start tasks/ boop
-babel-node ./node_modules/.bin/start tasks/ beepBoop
+```js
+// package.json
+"scripts": {
+  "task": "babel-node node_modules/.bin/start tasks/",
+  "beep": "npm run task beep",
+  "boop": "npm run task boop",
+  "beep-boop": "npm run task beepBoop"
+}
 ```
