@@ -1,9 +1,0 @@
-verbose: false
-instrumentation:
-    root: .
-reporting:
-    print: none
-    reports:
-        - lcovonly
-        - html
-    dir: ./coverage
