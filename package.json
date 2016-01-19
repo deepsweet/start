@@ -28,6 +28,7 @@
     "eslint": "1.10.x",
     "babel-eslint": ">5.0.0-beta1",
     "eslint-plugin-babel": "3.0.x",
+    "eslint-config-rebem": "0.2.x",
 
     "tape": "4.4.x",
     "tap-spec": "4.1.x",
