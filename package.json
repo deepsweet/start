@@ -6,10 +6,7 @@
   "homepage": "https://github.com/deepsweet/start",
   "repository": "deepsweet/start",
   "author": "Kir Belevich <kir@soulshine.in>",
-  "files": [
-    "build/",
-    "LICENSE"
-  ],
+  "files": [ "build/" ],
   "bin": "build/cli.js",
   "main": "build/index.js",
   "dependencies": {
