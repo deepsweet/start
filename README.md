@@ -1,7 +1,7 @@
 [![npm](https://img.shields.io/npm/v/start.svg?style=flat-square)](https://www.npmjs.com/package/start)
-[![travis](http://img.shields.io/travis/deepsweet/start.svg?style=flat-square)](https://travis-ci.org/deepsweet/start)
-[![coverage](http://img.shields.io/coveralls/deepsweet/start/master.svg?style=flat-square)](https://coveralls.io/r/deepsweet/start)
-[![dev deps](http://img.shields.io/david/dev/deepsweet/start.svg?style=flat-square)](https://david-dm.org/deepsweet/start#info=devDependencies)
+[![travis](http://img.shields.io/travis/start-runner/start.svg?style=flat-square)](https://travis-ci.org/start-runner/start)
+[![coverage](https://img.shields.io/codecov/c/github/start-runner/start.svg?style=flat-square)](https://codecov.io/github/start-runner/start)
+[![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
 
 Dead simple tasks runner.
 
@@ -12,6 +12,8 @@ npm i -S start
 ```
 
 ## Usage
+
+Each task is Promise. That's all.
 
 ```
 tasks/
