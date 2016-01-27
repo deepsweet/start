@@ -25,7 +25,8 @@ tasks/
 ```js
 // tasks/beep.js
 export default function(options) {
-    return function beep(resolve, reject) {
+    return function beep(resolve, reject, log) {
+        log('pew!');
         resolve(':)');
     }
 }
@@ -34,8 +35,9 @@ export default function(options) {
 ```js
 // tasks/boop.js
 export default function(options) {
-    return function boop(resolve, reject) {
-        resolve(':(');
+    return function boop(resolve, reject, log) {
+        log('pew pew!');
+        reject(':(');
     }
 }
 ```
@@ -61,4 +63,21 @@ export function beepBoop() {
   "task": "babel-node node_modules/.bin/start tasks/",
   "beep-boop": "npm run task beepBoop"
 }
+```
+
+```
+$ npm run beep-boop
+
+[beep]: start
+[beep]: pew!
+[beep]: :)
+[beep]: done
+[boop]: start
+[boop]: pew pew!
+[boop]: :(
+[boop]: error
+
+$ echo $?
+
+1
 ```
