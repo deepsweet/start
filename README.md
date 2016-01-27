@@ -13,9 +13,9 @@ npm i -S start
 
 ## Usage
 
-`start([logger])(task, [...task])`
+`start(logger)(task, ...task)`
 
-* `logger` – browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger) `console.log.bind(console)` by default
+* `logger` – browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger), `console.log.bind(console)` by default
 * `task` – browse [available tasks](https://www.npmjs.com/browse/keyword/start-task)
 
 ## Overview
