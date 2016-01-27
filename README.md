@@ -25,8 +25,7 @@ tasks/
 ```js
 // tasks/beep.js
 export default function(options) {
-    return function beep(resolve, reject, log) {
-        log('pew!');
+    return function beep(resolve, reject) {
         resolve(':)');
     }
 }
@@ -35,8 +34,7 @@ export default function(options) {
 ```js
 // tasks/boop.js
 export default function(options) {
-    return function boop(resolve, reject, log) {
-        log('pew pew!');
+    return function boop(resolve, reject) {
         reject(':(');
     }
 }
@@ -69,11 +67,9 @@ export function beepBoop() {
 $ npm run beep-boop
 
 [beep]: start
-[beep]: pew!
 [beep]: :)
 [beep]: done
 [boop]: start
-[boop]: pew pew!
 [boop]: :(
 [boop]: error
 
