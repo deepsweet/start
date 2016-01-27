@@ -1,16 +1,16 @@
-// import test from 'tape';
+import test from 'tape';
 // import { spy } from 'sinon';
-//
-// import start from '../../lib/index';
-//
-// test('export', assert => {
-//     assert.true(
-//         typeof start === 'function',
-//         'must be a function'
-//     );
-//
-//     assert.end();
-// });
+
+import start from '../../lib/index';
+
+test('export', assert => {
+    assert.true(
+        typeof start === 'function',
+        'must be a function'
+    );
+
+    assert.end();
+});
 //
 // test('single task + success', assert => {
 //     const testSpy = spy();
