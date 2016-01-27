@@ -3,7 +3,7 @@
 [![coverage](https://img.shields.io/codecov/c/github/start-runner/start.svg?style=flat-square)](https://codecov.io/github/start-runner/start)
 [![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
 
-Dead simple tasks runner. Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task).
+Dead simple tasks runner.
 
 ## Install
 
@@ -12,6 +12,13 @@ npm i -S start
 ```
 
 ## Usage
+
+`start([logger])(task, [...task])`
+
+* `logger` – browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger) `console.log.bind(console)` by default
+* `task` – browse [available tasks](https://www.npmjs.com/browse/keyword/start-task)
+
+## Overview
 
 Everything is functions. That's all.
 
