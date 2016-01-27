@@ -3,7 +3,7 @@
 [![coverage](https://img.shields.io/codecov/c/github/start-runner/start.svg?style=flat-square)](https://codecov.io/github/start-runner/start)
 [![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
 
-Dead simple tasks runner.
+Dead simple tasks runner. Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task).
 
 ## Install
 
@@ -13,7 +13,7 @@ npm i -S start
 
 ## Usage
 
-Each task is Promise. That's all.
+Everything is functions. That's all.
 
 ```
 tasks/
@@ -24,39 +24,41 @@ tasks/
 
 ```js
 // tasks/beep.js
-export function beep() {
-    return new Promise((resolve, reject) => {
+export default function(options) {
+    return function beep(resolve, reject) {
         resolve(':)');
-    });
+    }
 }
 ```
 
 ```js
 // tasks/boop.js
-export function boop() {
-    return new Promise((resolve, reject) => {
-        reject(':(');
-    });
+export default function(options) {
+    return function boop(resolve, reject) {
+        resolve(':(');
+    }
 }
 ```
 
 ```js
 // tasks/index.js
-export { beep } from './beep';
-export { boop } from './boop';
+import start from 'start';
 
-export const beepBoop = [
-    exports.beep,
-    exports.boop
-];
+import beep from './beep';
+import boop from './boop';
+
+export function beepBoop() {
+    return start(
+        beep(),
+        boop()
+    );
+}
 ```
 
 ```js
 // package.json
 "scripts": {
   "task": "babel-node node_modules/.bin/start tasks/",
-  "beep": "npm run task beep",
-  "boop": "npm run task boop",
   "beep-boop": "npm run task beepBoop"
 }
 ```
