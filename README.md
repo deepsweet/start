@@ -48,7 +48,7 @@ import beep from './beep';
 import boop from './boop';
 
 export function beepBoop() {
-    return start(
+    return start()(
         beep(),
         boop()
     );
