@@ -107,16 +107,18 @@ Browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger).
 Task is a function which will be wrapped in ES6 Promise:
 
 ```js
+export default function boop(resolve, reject) {
+    reject(':(');
+}
+```
+
+You are free to wrap your task in another function(s), for example to get an options:
+
+```js
 export default function(options) {
     return function beep(resolve) {
         resolve(':)');
     }
-}
-```
-
-```js
-export default function boop(resolve, reject) {
-    reject(':(');
 }
 ```
 
