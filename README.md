@@ -13,7 +13,7 @@ npm i -S start
 
 ## Overview
 
-Everything is functions. That's all.
+Everything is functions. Each task must return a Promise. That's all.
 
 ```
 tasks/
@@ -24,19 +24,19 @@ tasks/
 
 ```js
 // tasks/beep.js
-export default function(options) {
-    return function beep(resolve, reject) {
-        resolve(':)');
-    }
+export default function beep() {
+    return new Promise(function(resolve) {
+        resolve(':)');  
+    });
 }
 ```
 
 ```js
 // tasks/boop.js
-export default function(options) {
-    return function boop(resolve, reject) {
-        reject(':(');
-    }
+export default function boop() {
+    return new Promise(function(resolve, reject) {
+        reject(':(');  
+    });
 }
 ```
 
@@ -50,8 +50,8 @@ import boop from './boop';
 
 export function beepBoop() {
     return start(logger)(
-        beep(),
-        boop()
+        beep,
+        boop
     );
 }
 ```
@@ -104,11 +104,13 @@ Browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger).
 
 ### Tasks
 
-Task is a function which will be wrapped in ES6 Promise:
+Each task must return a Promise:
 
 ```js
-export default function boop(resolve, reject) {
-    reject(':(');
+export default function boop() {
+    return new Promise(function(resolve, reject) {
+        reject(':(');  
+    });
 }
 ```
 
@@ -116,16 +118,20 @@ You are free to wrap your task in another function(s), for example to get an opt
 
 ```js
 export default function(options) {
-    return function beep(resolve) {
-        resolve(':)');
-    }
+  return function boop() {
+      return new Promise(function(resolve) {
+          console.log(options);
+          resolve(':)');  
+      });
+  };
 }
 ```
 
-* you can only do two things: resolve or reject it
+* you can only do two things: resolve or reject
 * message can be undefined, single string or array of strings
 * function name will be used as task name
 * useful common helpers:
   * [globby](https://github.com/sindresorhus/globby)
+  * [pify](https://github.com/sindresorhus/pify)
 
 Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task)
