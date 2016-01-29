@@ -185,14 +185,14 @@ test('logger + single task + resolve', function(assert) {
 
         assert.true(
             loggerSpy.getCall(1).calledWithMatch(
-                { name: 'testTask', messages: undefined, type: 'task-start' }
+                { name: 'testTask', message: undefined, type: 'task-start' }
             ),
             '2nd call must be with type = task-start'
         );
 
         assert.true(
             loggerSpy.getCall(2).calledWithMatch(
-                { name: 'testTask', messages: 'resolve', type: 'task-resolve' }
+                { name: 'testTask', message: 'resolve', type: 'task-resolve' }
             ),
             '3rd call must be with type = task-resolve'
         );
@@ -233,14 +233,14 @@ test('logger + single task + reject', function(assert) {
 
         assert.true(
             loggerSpy.getCall(1).calledWithMatch(
-                { name: 'testTask', messages: undefined, type: 'task-start' }
+                { name: 'testTask', message: undefined, type: 'task-start' }
             ),
             '2nd call must be with type = task-start'
         );
 
         assert.true(
             loggerSpy.getCall(2).calledWithMatch(
-                { name: 'testTask', messages: 'reject', type: 'task-reject' }
+                { name: 'testTask', message: 'reject', type: 'task-reject' }
             ),
             '3rd call must be with type = task-reject'
         );

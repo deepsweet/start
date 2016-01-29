@@ -89,12 +89,12 @@ Logger is a function which can be called many times with different argument:
 
 * `{ type: 'global-start' }`
 * `{ name: 'beep', type: 'task-start' }`
-* `{ name: 'beep', type: 'task-resolve', messages: undefined }`
-* `{ name: 'beep', type: 'task-resolve', messages: 'ok' }`
-* `{ name: 'beep', type: 'task-resolve', messages: [ 'ok', 'yeah' ] }`
-* `{ name: 'beep', type: 'task-reject', messages: undefined }`
-* `{ name: 'beep', type: 'task-reject', messages: 'no' }`
-* `{ name: 'beep', type: 'task-reject', messages: [ 'oh', 'no' ] }`
+* `{ name: 'beep', type: 'task-resolve', message: undefined }`
+* `{ name: 'beep', type: 'task-resolve', message: 'ok' }`
+* `{ name: 'beep', type: 'task-resolve', message: [ 'ok', 'yeah' ] }`
+* `{ name: 'beep', type: 'task-reject', message: undefined }`
+* `{ name: 'beep', type: 'task-reject', message: 'no' }`
+* `{ name: 'beep', type: 'task-reject', message: [ 'oh', 'no' ] }`
 * `{ type: 'global-resolve' }`
 * `{ type: 'global-reject' }`
 
