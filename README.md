@@ -24,19 +24,23 @@ tasks/
 
 ```js
 // tasks/beep.js
-export default function beep() {
-    return new Promise(function(resolve) {
-        resolve(':)');  
-    });
+export default function(options) {
+    return function beep() {
+        return new Promise(function(resolve) {
+            resolve(':)');  
+        });
+    };
 }
 ```
 
 ```js
 // tasks/boop.js
-export default function boop() {
-    return new Promise(function(resolve, reject) {
-        reject(':(');  
-    });
+export default function(options) {
+    return function boop() {
+        return new Promise(function(resolve, reject) {
+            reject(':(');  
+        });
+    };
 }
 ```
 
@@ -50,8 +54,8 @@ import boop from './boop';
 
 export function beepBoop() {
     return start(logger)(
-        beep,
-        boop
+        beep(),
+        boop()
     );
 }
 ```
@@ -104,34 +108,13 @@ Browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger).
 
 ### Tasks
 
-Each task must return a Promise:
-
-```js
-export default function boop() {
-    return new Promise(function(resolve, reject) {
-        reject(':(');  
-    });
-}
-```
-
-You are free to wrap your task in another function(s), for example to get an options:
-
-```js
-export default function(options) {
-  return function boop() {
-      return new Promise(function(resolve) {
-          console.log(options);
-          resolve(':)');  
-      });
-  };
-}
-```
-
-* you can only do two things: resolve or reject
+* task must be a function
+* function's name will be used as task name
+* function must return a Promise
+* you can resolve or reject it with an optional message
 * message can be undefined, single string or array of strings
-* function name will be used as task name
 * useful common helpers:
-  * [globby](https://github.com/sindresorhus/globby)
   * [pify](https://github.com/sindresorhus/pify)
+  * [globby](https://github.com/sindresorhus/globby)
 
-Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task)
+Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task).
