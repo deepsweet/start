@@ -42,7 +42,7 @@ export function build() {
 }
 
 export function dev() {
-    return watch('lib/**/*.js')(function(file) {
+    return watch('lib/**/*.js')(file => {
         return start(
             files(file),
             read(),
