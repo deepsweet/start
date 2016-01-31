@@ -92,14 +92,45 @@ export function coverage() {
 
 ## Usage
 
-`start(logger)(task, ...task)`
+`start(logger)(task, task, ...)`
+
+Browse available [tasks](https://www.npmjs.com/browse/keyword/start-tasks) and [loggers](https://www.npmjs.com/browse/keyword/start-logger).
 
 ### Loggers
 
 TODO
 
-Browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger).
-
 ### Tasks
 
-TODO
+The simplest dummy task can be represented as following:
+
+```js
+export default (params) => (input) => {
+    return function taskName(log) {
+        return Promise.resolve(input);
+    };
+};
+```
+
+#### `params`
+
+First function call made by user. It can be options object, multiple arguments or whatever your task needs to be configured.
+
+
+#### `input`
+
+Second function call made by Start with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
+
+There is some agreement: [start-files](https://github.com/start-runner/files) provides an array of found files paths as output data. [start-read](https://github.com/start-runner/read) provides an array of `{ path, data }` objects, which is further respected by [start-babel](https://github.com/start-runner/babel), [start-write](https://github.com/start-runner/write) and other tasks working with files data.
+
+#### `taskName`
+
+Third function call made by Start. `taskName` will be used as task name for logging.
+
+#### `log`
+
+`log` is a function that "bound" to `logger({ name, type: 'info' })`, so all you need is to call it with message (or array of messages) like `log('beep')`.
+
+#### `return`
+
+And finally, your task must return an ES6 Promise. It can be resolved with data which will be passed to the next Promise in chain, or rejected with some message (or array of messages).
