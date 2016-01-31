@@ -160,7 +160,7 @@ Third function call made by Start. `taskName` will be used as task name for logg
 
 #### `require`
 
-It's a good idea to "lazyload" your dependencies inside a task scope instead of requiring them at the very top. [Execution time can be a problem](https://github.com/gulpjs/gulp/issues/632), and you don't want to require the whole Babel package while cleaning a single directory (for example).
+It's a good idea to "lazyload" your dependencies inside a task scope instead of requiring them at the very top. [Execution time can be a problem](https://github.com/gulpjs/gulp/issues/632), and there is no need to require all the fat dependencies while cleaning a single directory (for example).
 
 #### `return`
 
