@@ -135,6 +135,10 @@ The simplest dummy task can be represented as following:
 ```js
 export default (params) => (input) => {
     return function taskName(log) {
+        const cats = require('cats-names');
+        
+        log(cats.random());
+    
         return Promise.resolve(input);
     };
 };
@@ -153,6 +157,10 @@ There is some agreement: [start-files](https://github.com/start-runner/files) pr
 #### `taskName(log)`
 
 Third function call made by Start. `taskName` will be used as task name for logging, and `log` is a function that "bound" to `logger({ name, type: 'info' })`, so all you need is to call it with message (or array of messages) like `log('beep')`.
+
+#### `require`
+
+It's a good idea to "lazyload" your dependencies inside a task scope instead of requiring them at the very top. [Execution time can be a problem](https://github.com/gulpjs/gulp/issues/632), and you don't want to require the whole Babel package while cleaning a single directory (for example).
 
 #### `return`
 
