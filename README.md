@@ -92,13 +92,41 @@ export function coverage() {
 
 ## Usage
 
-`start(logger)(task, task, ...)`
+`start(logger())(task(), task(), ...)`
 
-Browse available [tasks](https://www.npmjs.com/browse/keyword/start-tasks) and [loggers](https://www.npmjs.com/browse/keyword/start-logger).
+Browse available [loggers](https://www.npmjs.com/browse/keyword/start-logger) and [tasks](https://www.npmjs.com/browse/keyword/start-tasks).
 
 ### Loggers
 
-TODO
+The simplest dummy logger can be represented as following:
+
+```js
+export default (params) => (data) => {
+    console.log(data);
+};
+```
+
+#### `params`
+
+`params` can be options object, multiple arguments or whatever your logger needs to be configured and initialized.
+
+#### `data`
+
+`data` can be one of the following structures:
+
+```js
+{ type: 'global-start' }
+{ name: 'beep', type: 'task-start' }
+{ name: 'beep', type: 'info', message: undefined }
+{ name: 'beep', type: 'info', message: 'ok' }
+{ name: 'beep', type: 'info', message: [ 'ok', 'yeah' ] }
+{ name: 'beep', type: 'task-resolve' }
+{ name: 'beep', type: 'task-reject' }
+{ type: 'global-resolve' }
+{ type: 'global-reject' }
+```
+
+You are free to format and print it in a way you want to.
 
 ### Tasks
 
@@ -114,8 +142,7 @@ export default (params) => (input) => {
 
 #### `params`
 
-First function call made by user. It can be options object, multiple arguments or whatever your task needs to be configured.
-
+First function call made by user. It can be options object, multiple arguments or whatever your task needs to be configured and initialized.
 
 #### `input`
 
