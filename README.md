@@ -13,49 +13,67 @@ npm i -S start
 
 ## Overview
 
-Everything is functions. Each task must return a Promise. That's all.
-
-```
-tasks/
-├── beep.js
-├── boop.js
-└── index.js
-```
+Start is all about functions, composition and chaining Promises.
 
 ```js
-// tasks/beep.js
-export default function(options) {
-    return function beep() {
-        return new Promise(function(resolve) {
-            resolve(':)');  
-        });
-    };
-}
-```
-
-```js
-// tasks/boop.js
-export default function(options) {
-    return function boop() {
-        return new Promise(function(resolve, reject) {
-            reject(':(');  
-        });
-    };
-}
-```
-
-```js
-// tasks/index.js
-import start from 'start';
+// tasks.js
+import Start from 'start';
 import logger from 'start-simple-logger';
+import clean from 'start-clean';
+import watch from 'start-watch';
+import files from 'start-files';
+import read from 'start-read';
+import babel from 'start-babel';
+import write from 'start-write';
+import eslint from 'start-eslint';
+import mocha from 'start-mocha';
+import { coverageInstrument, coverageReport } from 'start-coverage';
 
-import beep from './beep';
-import boop from './boop';
+const start = Start(logger());
 
-export function beepBoop() {
-    return start(logger)(
-        beep(),
-        boop()
+export function build() {
+    return start(
+        clean('build/'),
+        files('lib/**/*.js'),
+        read(),
+        babel(),
+        write('build/')
+    );
+}
+
+export function dev() {
+    return watch('lib/**/*.js')(function(file) {
+        return start(
+            files(file),
+            read(),
+            babel(),
+            write('build/')
+        );
+    });
+}
+
+export function lint() {
+    return start(
+        eslint()
+    );
+}
+
+export function test() {
+    return start(
+        eslint(),
+        files('test/**/*.js'),
+        mocha()
+    );
+}
+
+export function coverage() {
+    return start(
+        clean('coverage/'),
+        files('lib/**/*.js'),
+        coverageInstrument(),
+        files('test/**/*.js')
+        mocha(),
+        coverageReport([ 'html', 'text-summary' ])
     );
 }
 ```
@@ -63,24 +81,13 @@ export function beepBoop() {
 ```js
 // package.json
 "scripts": {
-  "task": "babel-node node_modules/.bin/start tasks/",
-  "beep-boop": "npm run task beepBoop"
+  "task": "babel-node node_modules/.bin/start tasks.js",
+  "build": "npm run task build",
+  "dev": "npm run task dev",
+  "lint": "npm run task lint",
+  "test": "npm run task test"
+  "coverage": "npm run task coverage"
 }
-```
-
-```
-$ npm run beep-boop
-
-[beep]: start
-[beep]: :)
-[beep]: done
-[boop]: start
-[boop]: :(
-[boop]: error
-
-$ echo $?
-
-1
 ```
 
 ## Usage
@@ -89,32 +96,10 @@ $ echo $?
 
 ### Loggers
 
-Logger is a function which can be called many times with different argument:
-
-* `{ type: 'global-start' }`
-* `{ name: 'beep', type: 'task-start' }`
-* `{ name: 'beep', type: 'task-resolve', message: undefined }`
-* `{ name: 'beep', type: 'task-resolve', message: 'ok' }`
-* `{ name: 'beep', type: 'task-resolve', message: [ 'ok', 'yeah' ] }`
-* `{ name: 'beep', type: 'task-reject', message: undefined }`
-* `{ name: 'beep', type: 'task-reject', message: 'no' }`
-* `{ name: 'beep', type: 'task-reject', message: [ 'oh', 'no' ] }`
-* `{ type: 'global-resolve' }`
-* `{ type: 'global-reject' }`
-
-You are free to do what you want with this data.
+TODO
 
 Browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger).
 
 ### Tasks
 
-* task must be a function
-* function's name will be used as task name
-* function must return a Promise
-* you can resolve or reject it with an optional message
-* message can be undefined, single string or array of strings
-* useful common helpers:
-  * [pify](https://github.com/sindresorhus/pify)
-  * [globby](https://github.com/sindresorhus/globby)
-
-Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task).
+TODO
