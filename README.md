@@ -122,7 +122,9 @@ Second function calls made by tasks. `data` can be one of the following structur
 { name: 'beep', type: 'info', message: 'ok' }
 { name: 'beep', type: 'info', message: [ 'ok', 'yeah' ] }
 { name: 'beep', type: 'task-resolve' }
-{ name: 'beep', type: 'task-reject' }
+{ name: 'beep', type: 'task-reject', message: undefined }
+{ name: 'beep', type: 'task-reject', message: 'oops' }
+{ name: 'beep', type: 'task-reject', message: [ 'oh', 'no' ] }
 { type: 'global-resolve' }
 { type: 'global-reject' }
 ```
