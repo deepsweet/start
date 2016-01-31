@@ -106,13 +106,13 @@ export default (params) => (data) => {
 };
 ```
 
-#### `params`
+#### `(params)`
 
-`params` can be options object, multiple arguments or whatever your logger needs to be configured and initialized.
+First function call made by user. `params` can be options object, multiple arguments or whatever your logger needs to be configured and initialized.
 
-#### `data`
+#### `(data)`
 
-`data` can be one of the following structures:
+Second function calls made by tasks. `data` can be one of the following structures:
 
 ```js
 { type: 'global-start' }
@@ -140,23 +140,19 @@ export default (params) => (input) => {
 };
 ```
 
-#### `params`
+#### `(params)`
 
-First function call made by user. It can be options object, multiple arguments or whatever your task needs to be configured and initialized.
+First function call made by user. `params` can be options object, multiple arguments or whatever your task needs to be configured and initialized.
 
-#### `input`
+#### `(input)`
 
 Second function call made by Start with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
 There is some agreement: [start-files](https://github.com/start-runner/files) provides an array of found files paths as output data. [start-read](https://github.com/start-runner/read) provides an array of `{ path, data }` objects, which is further respected by [start-babel](https://github.com/start-runner/babel), [start-write](https://github.com/start-runner/write) and other tasks working with files data.
 
-#### `taskName`
+#### `taskName(log)`
 
-Third function call made by Start. `taskName` will be used as task name for logging.
-
-#### `log`
-
-`log` is a function that "bound" to `logger({ name, type: 'info' })`, so all you need is to call it with message (or array of messages) like `log('beep')`.
+Third function call made by Start. `taskName` will be used as task name for logging, and `log` is a function that "bound" to `logger({ name, type: 'info' })`, so all you need is to call it with message (or array of messages) like `log('beep')`.
 
 #### `return`
 
