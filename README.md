@@ -55,14 +55,14 @@ export function dev() {
 
 export function lint() {
     return start(
+        files('.'),
         eslint()
     );
 }
 
 export function test() {
     return start(
-        files('.'),
-        eslint(),
+        lint(),
         files('test/**/*.js'),
         mocha()
     );
@@ -70,8 +70,7 @@ export function test() {
 
 export function coverage() {
     return start(
-        files('.'),
-        eslint(),
+        lint(),
         files('coverage/'),
         clean(),
         files('lib/**/*.js'),

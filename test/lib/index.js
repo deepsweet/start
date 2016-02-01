@@ -102,7 +102,7 @@ test('sequence of tasks + resolve', function(assert) {
     });
 });
 
-test('array of tasks + reject', function(assert) {
+test('sequence of tasks + reject', function(assert) {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
@@ -139,7 +139,7 @@ test('array of tasks + reject', function(assert) {
     });
 });
 
-test('array of tasks + hard error', function(assert) {
+test('sequence of tasks + hard error', function(assert) {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
@@ -170,6 +170,53 @@ test('array of tasks + hard error', function(assert) {
             testSpy2.callCount,
             0,
             'task 2 must not been called'
+        );
+
+        assert.end();
+    });
+});
+
+test('nested', function(assert) {
+    const testSpy1 = spy();
+    const testSpy2 = spy();
+
+    function sub() {
+        return start()(
+            function() {
+                return function testTask1() {
+                    return new Promise(function(resolve) {
+                        testSpy1();
+                        resolve();
+                    });
+                };
+            }
+        );
+    }
+
+    start()(
+        sub(),
+        function() {
+            return function testTask2() {
+                return new Promise(function(resolve) {
+                    testSpy2();
+                    resolve();
+                });
+            };
+        }
+    ).then(function() {
+        assert.true(
+            testSpy1.calledOnce,
+            'task 1 must be called once'
+        );
+
+        assert.true(
+            testSpy2.calledOnce,
+            'task 2 must be called once'
+        );
+
+        assert.true(
+            testSpy1.calledBefore(testSpy2),
+            'tasks must be called in sequence'
         );
 
         assert.end();
