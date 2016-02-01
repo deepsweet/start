@@ -22,34 +22,35 @@ import logger from 'start-simple-logger';
 import clean from 'start-clean';
 import watch from 'start-watch';
 import files from 'start-files';
-import read from 'start-read';
 import babel from 'start-babel';
 import write from 'start-write';
 import eslint from 'start-eslint';
 import mocha from 'start-mocha';
-import { coverageInstrument, coverageReport } from 'start-coverage';
+import * as coverage from 'start-coverage';
 
 const start = Start(logger());
 
 export function build() {
     return start(
-        clean('build/'),
+        files('build/'),
+        clean(),
         files('lib/**/*.js'),
-        read(),
         babel(),
         write('build/')
     );
 }
 
 export function dev() {
-    return watch('lib/**/*.js')(file => {
-        return start(
+    return start(
+        files('build/'),
+        clean(),
+        files('lib/**/*.js'),
+        watch(file => start(
             files(file),
-            read(),
             babel(),
             write('build/')
-        );
-    });
+        ))
+    );
 }
 
 export function lint() {
@@ -60,6 +61,7 @@ export function lint() {
 
 export function test() {
     return start(
+        files('.'),
         eslint(),
         files('test/**/*.js'),
         mocha()
@@ -68,13 +70,15 @@ export function test() {
 
 export function coverage() {
     return start(
+        files('.'),
         eslint(),
-        clean('coverage/'),
+        files('coverage/'),
+        clean(),
         files('lib/**/*.js'),
-        coverageInstrument(),
-        files('test/**/*.js')
+        coverage.instrument(),
+        files('test/**/*.js'),
         mocha(),
-        coverageReport([ 'html', 'text-summary' ])
+        coverage.report([ 'html', 'text-summary' ])
     );
 }
 ```
@@ -138,9 +142,9 @@ The simplest dummy task can be represented as following:
 export default (params) => (input) => {
     return function taskName(log) {
         const cats = require('cats-names');
-        
+
         log(cats.random());
-    
+
         return Promise.resolve(input);
     };
 };
