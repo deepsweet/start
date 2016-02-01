@@ -13,45 +13,71 @@ npm i -S start
 
 ## Overview
 
-Everything is functions. That's all.
-
-```
-tasks/
-├── beep.js
-├── boop.js
-└── index.js
-```
+Start is all about functions, composition and chaining Promises.
 
 ```js
-// tasks/beep.js
-export default function(options) {
-    return function beep(resolve, reject) {
-        resolve(':)');
-    }
-}
-```
-
-```js
-// tasks/boop.js
-export default function(options) {
-    return function boop(resolve, reject) {
-        reject(':(');
-    }
-}
-```
-
-```js
-// tasks/index.js
-import start from 'start';
+// tasks.js
+import Start from 'start';
 import logger from 'start-simple-logger';
+import clean from 'start-clean';
+import watch from 'start-watch';
+import files from 'start-files';
+import babel from 'start-babel';
+import write from 'start-write';
+import eslint from 'start-eslint';
+import mocha from 'start-mocha';
+import * as coverage from 'start-coverage';
 
-import beep from './beep';
-import boop from './boop';
+const start = Start(logger());
 
-export function beepBoop() {
-    return start(logger)(
-        beep(),
-        boop()
+export function build() {
+    return start(
+        files('build/'),
+        clean(),
+        files('lib/**/*.js'),
+        babel(),
+        write('build/')
+    );
+}
+
+export function dev() {
+    return start(
+        files('build/'),
+        clean(),
+        files('lib/**/*.js'),
+        watch(file => start(
+            files(file),
+            babel(),
+            write('build/')
+        ))
+    );
+}
+
+export function lint() {
+    return start(
+        files('.'),
+        eslint()
+    );
+}
+
+export function test() {
+    return start(
+        lint(),
+        files('test/**/*.js'),
+        mocha()
+    );
+}
+
+export function coverage() {
+    return start(
+        lint(),
+        files('coverage/'),
+        clean(),
+        files('lib/**/*.js'),
+        coverage.instrument(),
+        files('test/**/*.js'),
+        mocha(),
+        coverage.report([ 'html', 'text-summary' ])
     );
 }
 ```
@@ -59,73 +85,81 @@ export function beepBoop() {
 ```js
 // package.json
 "scripts": {
-  "task": "babel-node node_modules/.bin/start tasks/",
-  "beep-boop": "npm run task beepBoop"
+  "task": "babel-node node_modules/.bin/start tasks.js",
+  "build": "npm run task build",
+  "dev": "npm run task dev",
+  "lint": "npm run task lint",
+  "test": "npm run task test"
+  "coverage": "npm run task coverage"
 }
-```
-
-```
-$ npm run beep-boop
-
-[beep]: start
-[beep]: :)
-[beep]: done
-[boop]: start
-[boop]: :(
-[boop]: error
-
-$ echo $?
-
-1
 ```
 
 ## Usage
 
-`start(logger)(task, ...task)`
+`start(logger())(task(), task(), ...)`
+
+Browse available [loggers](https://www.npmjs.com/browse/keyword/start-logger) and [tasks](https://www.npmjs.com/browse/keyword/start-tasks).
 
 ### Loggers
 
-Logger is a function which can be called many times with different argument:
+The simplest dummy logger can be represented as following:
 
-* `{ type: 'global-start' }`
-* `{ name: 'beep', type: 'task-start' }`
-* `{ name: 'beep', type: 'task-resolve', messages: undefined }`
-* `{ name: 'beep', type: 'task-resolve', messages: 'ok' }`
-* `{ name: 'beep', type: 'task-resolve', messages: [ 'ok', 'yeah' ] }`
-* `{ name: 'beep', type: 'task-reject', messages: undefined }`
-* `{ name: 'beep', type: 'task-reject', messages: 'no' }`
-* `{ name: 'beep', type: 'task-reject', messages: [ 'oh', 'no' ] }`
-* `{ type: 'global-resolve' }`
-* `{ type: 'global-reject' }`
+```js
+export default (params) => (name, type, message) => {
+    console.log(data);
+};
+```
 
-You are free to do what you want with this data.
+#### `(params)`
 
-Browse [available loggers](https://www.npmjs.com/browse/keyword/start-logger).
+First function call made by user. `params` can be options object, multiple arguments or whatever your logger needs to be configured and initialized.
+
+#### `(name, type, message)`
+
+Second function calls made by tasks.
+
+* `name` – task name
+* `type` – log type:
+  * `start`
+  * `info` – must come with `message`
+  * `resolve`
+  * `error` – may come with `message`
+* `message` – may be undefined, string or array of strings
 
 ### Tasks
 
-Task is a function which will be wrapped in ES6 Promise:
+The simplest dummy task can be represented as following:
 
 ```js
-export default function boop(resolve, reject) {
-    reject(':(');
-}
+export default (params) => (input) => {
+    return function taskName(log) {
+        const cats = require('cats-names');
+
+        log(cats.random());
+
+        return Promise.resolve(input);
+    };
+};
 ```
 
-You are free to wrap your task in another function(s), for example to get an options:
+#### `(params)`
 
-```js
-export default function(options) {
-    return function beep(resolve) {
-        resolve(':)');
-    }
-}
-```
+First function call made by user. `params` can be options object, multiple arguments or whatever your task needs to be configured and initialized.
 
-* you can only do two things: resolve or reject it
-* message can be undefined, single string or array of strings
-* function name will be used as task name
-* useful common helpers:
-  * [globby](https://github.com/sindresorhus/globby)
+#### `(input)`
 
-Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task)
+Second function call made by Start with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
+
+There is some agreement: [start-files](https://github.com/start-runner/files) provides an array of found files paths as output data. [start-read](https://github.com/start-runner/read) provides an array of `{ path, data }` objects, which is further respected by [start-babel](https://github.com/start-runner/babel), [start-write](https://github.com/start-runner/write) and other tasks working with files data.
+
+#### `taskName(log)`
+
+Third function call made by Start. `taskName` will be used as task name for logging, and `log` is a function that bound to `logger(name, 'info')`, so all you need is to call it with message (or array of messages) like `log('beep')`.
+
+#### `require`
+
+It's a good idea to "lazyload" your dependencies inside a task scope instead of requiring them at the very top. [Execution time can be a problem](https://github.com/gulpjs/gulp/issues/632), and there is no need to require all the heavy dependencies while cleaning a single directory (for example).
+
+#### `return`
+
+And finally, your task must return an ES6 Promise. It can be resolved with data which will be passed to the next Promise in chain, or rejected with some message (or array of messages).
