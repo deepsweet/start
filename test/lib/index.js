@@ -195,17 +195,13 @@ test('logger + single task + resolve', function(assert) {
         );
 
         assert.true(
-            loggerSpy.getCall(0).calledWithMatch(
-                { name: 'testTask', type: 'start' }
-            ),
-            '1st call must be with type = start'
+            loggerSpy.getCall(0).calledWith('testTask', 'start'),
+            '1st: start'
         );
 
         assert.true(
-            loggerSpy.getCall(1).calledWithMatch(
-                { name: 'testTask', type: 'resolve' }
-            ),
-            '2nd call must be with type = resolve'
+            loggerSpy.getCall(1).calledWith('testTask', 'resolve'),
+            '2nd: resolve'
         );
 
         assert.end();
@@ -219,7 +215,7 @@ test('logger + single task + reject', function(assert) {
         function() {
             return function testTask() {
                 return new Promise(function(resolve, reject) {
-                    reject('reject');
+                    reject('error');
                 });
             };
         }
@@ -231,17 +227,13 @@ test('logger + single task + reject', function(assert) {
         );
 
         assert.true(
-            loggerSpy.getCall(0).calledWithMatch(
-                { name: 'testTask', type: 'start' }
-            ),
-            '1st call must be with type = start'
+            loggerSpy.getCall(0).calledWith('testTask', 'start'),
+            '1st: start'
         );
 
         assert.true(
-            loggerSpy.getCall(1).calledWithMatch(
-                { name: 'testTask', message: 'reject', type: 'reject' }
-            ),
-            '2nd call must be with type = reject'
+            loggerSpy.getCall(1).calledWith('testTask', 'reject', 'error'),
+            '2nd: reject'
         );
 
         assert.end();
@@ -269,24 +261,18 @@ test('logger + single task + log', function(assert) {
         );
 
         assert.true(
-            loggerSpy.getCall(0).calledWithMatch(
-                { name: 'testTask', type: 'start' }
-            ),
-            '1st call must be with type = start'
+            loggerSpy.getCall(0).calledWith('testTask', 'start'),
+            '1st: start'
         );
 
         assert.true(
-            loggerSpy.getCall(1).calledWithMatch(
-                { name: 'testTask', message: 'test', type: 'info' }
-            ),
-            '2nd call must be with type = info'
+            loggerSpy.getCall(1).calledWith('testTask', 'info', 'test'),
+            '2nd: info'
         );
 
         assert.true(
-            loggerSpy.getCall(2).calledWithMatch(
-                { name: 'testTask', type: 'resolve' }
-            ),
-            '3rd call must be with type = resolve'
+            loggerSpy.getCall(2).calledWith('testTask', 'resolve'),
+            '3rd: resolve'
         );
 
         assert.end();
