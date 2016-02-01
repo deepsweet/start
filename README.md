@@ -106,7 +106,7 @@ Browse available [loggers](https://www.npmjs.com/browse/keyword/start-logger) an
 The simplest dummy logger can be represented as following:
 
 ```js
-export default (params) => (data) => {
+export default (params) => (name, type, message) => {
     console.log(data);
 };
 ```
@@ -115,24 +115,17 @@ export default (params) => (data) => {
 
 First function call made by user. `params` can be options object, multiple arguments or whatever your logger needs to be configured and initialized.
 
-#### `(data)`
+#### `(name, type, message)`
 
-Second function calls made by tasks. `data` can be one of the following structures:
+Second function calls made by tasks.
 
-```js
-{ type: 'global-start' }
-{ name: 'beep', type: 'task-start' }
-{ name: 'beep', type: 'info', message: 'ok' }
-{ name: 'beep', type: 'info', message: [ 'ok', 'yeah' ] }
-{ name: 'beep', type: 'task-resolve' }
-{ name: 'beep', type: 'task-reject' }
-{ name: 'beep', type: 'task-reject', message: 'oops' }
-{ name: 'beep', type: 'task-reject', message: [ 'oh', 'no' ] }
-{ type: 'global-resolve' }
-{ type: 'global-reject' }
-```
-
-You are free to format and print it in a way you want to.
+* `name` – task name
+* `type` – log type:
+  * `start`
+  * `info` – must come with `message`
+  * `resolve`
+  * `error` – may come with `message`
+* `message` – may be undefined, string or array of strings
 
 ### Tasks
 
@@ -162,7 +155,7 @@ There is some agreement: [start-files](https://github.com/start-runner/files) pr
 
 #### `taskName(log)`
 
-Third function call made by Start. `taskName` will be used as task name for logging, and `log` is a function that "bound" to `logger({ name, type: 'info' })`, so all you need is to call it with message (or array of messages) like `log('beep')`.
+Third function call made by Start. `taskName` will be used as task name for logging, and `log` is a function that bound to `logger(name, 'info')`, so all you need is to call it with message (or array of messages) like `log('beep')`.
 
 #### `require`
 
