@@ -27,8 +27,14 @@ import write from 'start-write';
 import eslint from 'start-eslint';
 import mocha from 'start-mocha';
 import * as coverage from 'start-coverage';
+import codecov from 'start-codecov';
+import istanbul from 'babel-istanbul';
 
-const start = Start(logger());
+const start = Start(
+    logger({
+        mute: [ 'files', 'coverageInstrument' ]
+    })
+);
 
 export function build() {
     return start(
@@ -55,7 +61,7 @@ export function dev() {
 
 export function lint() {
     return start(
-        files('.'),
+        files('**/*.js'),
         eslint()
     );
 }
@@ -68,16 +74,33 @@ export function test() {
     );
 }
 
-export function coverage() {
+export function tdd() {
+    return start(
+        files([ 'lib/**/*.js', 'test/**/*.js']),
+        watch(() => start(
+            files('test/**/*.js'),
+            mocha()
+        ))
+    );
+}
+
+export function cover() {
     return start(
         lint(),
         files('coverage/'),
         clean(),
         files('lib/**/*.js'),
-        coverage.instrument(),
+        coverage.instrument(istanbul),
         files('test/**/*.js'),
         mocha(),
-        coverage.report([ 'html', 'text-summary' ])
+        coverage.report()
+    );
+}
+
+export function travis() {
+    return start(
+        cover(),
+        codecov()
     );
 }
 ```
@@ -85,12 +108,14 @@ export function coverage() {
 ```js
 // package.json
 "scripts": {
-  "task": "babel-node node_modules/.bin/start tasks.js",
+  "task": "babel-node node_modules/.bin/start tasks",
   "build": "npm run task build",
   "dev": "npm run task dev",
   "lint": "npm run task lint",
-  "test": "npm run task test"
-  "coverage": "npm run task coverage"
+  "test": "npm run task test",
+  "tdd": "npm run task tdd",
+  "cover": "npm run task cover",
+  "travis": "npm run task travis"
 }
 ```
 
