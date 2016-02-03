@@ -1,14 +1,11 @@
 {
   "name": "start",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Dead simple tasks runner",
   "keywords": [ "tasks", "runner", "start" ],
   "homepage": "https://github.com/start-runner/start",
   "repository": "start-runner/start",
-  "contributors": [
-    "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
-    "Denis Koltsov <iam@mistadikay.com> (https://github.com/mistadikay)"
-  ],
+  "author": "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
   "files": [ "build/" ],
   "bin": "build/cli.js",
   "main": "build/index.js",
