@@ -131,7 +131,7 @@ The simplest dummy logger can be represented as following:
 
 ```js
 export default (params) => (name, type, message) => {
-    console.log(data);
+    console.log(name, type, message);
 };
 ```
 
@@ -175,7 +175,7 @@ First function call made by user. `params` can be options object, multiple argum
 
 Second function call made by Start with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
-There is some agreement: [start-files](https://github.com/start-runner/files) provides an array of found files paths as output data. [start-read](https://github.com/start-runner/read) provides an array of `{ path, data }` objects, which is further respected by [start-babel](https://github.com/start-runner/babel), [start-write](https://github.com/start-runner/write) and other tasks working with files data.
+There is some agreement: [start-files](https://github.com/start-runner/files) provides an array of found files paths as output data. [start-babel](https://github.com/start-runner/babel) provides an array of `{ path, data }` objects, which is further respected by [start-write](https://github.com/start-runner/write) and other tasks working with files data.
 
 #### `taskName(log)`
 
