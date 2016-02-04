@@ -10,6 +10,7 @@
   "bin": "build/cli.js",
   "main": "build/index.js",
   "dependencies": {
+    "req-cwd": "1.0.x",
     "babel-runtime": "6.3.x"
   },
   "devDependencies": {
@@ -43,7 +44,7 @@
     "husky": "0.10.x"
   },
   "scripts": {
-    "task": "babel-node node_modules/.bin/start tasks",
+    "task": "babel-node node_modules/.bin/start ./tasks",
 
     "build": "npm run task build",
     "dev": "npm run task dev",

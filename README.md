@@ -97,10 +97,21 @@ export function travis() {
 }
 ```
 
+## CLI
+
+```
+start <tasks file/moduleID> <task name>
+```
+
+* `tasks file/moduleID` – relative path to tasks file or its moduleID
+* `task name` – specific task name exported from your tasks
+
+With NPM scripts it might look like this (for example above):
+
 ```js
 // package.json
 "scripts": {
-  "task": "babel-node node_modules/.bin/start tasks",
+  "task": "babel-node node_modules/.bin/start ./tasks",
   "build": "npm run task build",
   "dev": "npm run task dev",
   "lint": "npm run task lint",
@@ -111,7 +122,7 @@ export function travis() {
 }
 ```
 
-## Usage
+## How-To
 
 `start(logger())(task(), task(), ...)`
 
