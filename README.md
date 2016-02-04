@@ -100,11 +100,8 @@ export function travis() {
 ## CLI
 
 ```
-start <tasks file/moduleID> <task name>
+start <tasks file or moduleID to require> <task name to run>
 ```
-
-* `tasks file/moduleID` – relative path to tasks file or its moduleID
-* `task name` – specific task name exported from your tasks
 
 With NPM scripts it might look like this (for example above):
 
