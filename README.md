@@ -151,6 +151,8 @@ Second function calls made by tasks.
   * `error` – may come with `message`
 * `message` – may be undefined, string or array of strings
 
+See [start-simple-logger](https://github.com/start-runner/simple-logger) as an example.
+
 ### Tasks
 
 The simplest dummy task can be represented as following:
@@ -175,7 +177,31 @@ First function call made by user. `params` can be options object, multiple argum
 
 Second function call made by Start with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
-There is some agreement: [start-files](https://github.com/start-runner/files) provides an array of found files paths as output data. [start-babel](https://github.com/start-runner/babel) provides an array of `{ path, data }` objects, which is further respected by [start-write](https://github.com/start-runner/write) and other tasks working with files data.
+[start-files](https://github.com/start-runner/files) provides an array of found files paths as output:
+
+```js
+[
+    '/absolute/path/file1.js',
+    '/absolute/path/file2.js'
+]
+```
+
+[start-write](https://github.com/start-runner/write) is rely on array of `{ path, data }` objects as input:
+
+```js
+[
+    {
+      path: '/absolute/path/file1.js',
+      data: '…'
+    },
+    {
+      path: '/absolute/path/file2.js',
+      data: '…'
+    }
+]
+```
+
+So every task between them should rely on the first structure and provide the second one.
 
 #### `taskName(log)`
 
