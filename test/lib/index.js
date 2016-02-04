@@ -3,6 +3,8 @@ import { spy } from 'sinon';
 
 import start from '../../lib/index';
 
+const noopLogger = () => {};
+
 test('export', function(assert) {
     assert.equal(
         typeof start,
@@ -16,7 +18,7 @@ test('export', function(assert) {
 test('single task + resolve', function(assert) {
     const testSpy = spy();
 
-    start()(
+    start(noopLogger)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve) {
@@ -38,7 +40,7 @@ test('single task + resolve', function(assert) {
 test('single task + reject', function(assert) {
     const testSpy = spy();
 
-    start()(
+    start(noopLogger)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve, reject) {
@@ -61,7 +63,7 @@ test('sequence of tasks + resolve', function(assert) {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
-    start()(
+    start(noopLogger)(
         function() {
             return function testTask1() {
                 return new Promise(function(resolve) {
@@ -106,7 +108,7 @@ test('sequence of tasks + reject', function(assert) {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
-    start()(
+    start(noopLogger)(
         function() {
             return function testTask1() {
                 return new Promise(function(resolve, reject) {
@@ -143,7 +145,7 @@ test('sequence of tasks + hard error', function(assert) {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
-    start()(
+    start(noopLogger)(
         function() {
             return function testTask1() {
                 return new Promise(function() {
@@ -181,7 +183,7 @@ test('nested', function(assert) {
     const testSpy2 = spy();
 
     function sub() {
-        return start()(
+        return start(noopLogger)(
             function() {
                 return function testTask1() {
                     return new Promise(function(resolve) {
@@ -193,7 +195,7 @@ test('nested', function(assert) {
         );
     }
 
-    start()(
+    start(noopLogger)(
         sub,
         function() {
             return function testTask2() {
@@ -224,9 +226,9 @@ test('nested', function(assert) {
 });
 
 test('logger + single task + resolve', function(assert) {
-    const loggerSpy = spy();
+    const spyLogger = spy();
 
-    start(loggerSpy)(
+    start(spyLogger)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve) {
@@ -236,18 +238,18 @@ test('logger + single task + resolve', function(assert) {
         }
     ).then(function() {
         assert.equal(
-            loggerSpy.callCount,
+            spyLogger.callCount,
             2,
             'logger must be called 2 times'
         );
 
         assert.true(
-            loggerSpy.getCall(0).calledWith('testTask', 'start'),
+            spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         assert.true(
-            loggerSpy.getCall(1).calledWith('testTask', 'resolve'),
+            spyLogger.getCall(1).calledWith('testTask', 'resolve'),
             '2nd: resolve'
         );
 
@@ -256,9 +258,9 @@ test('logger + single task + resolve', function(assert) {
 });
 
 test('logger + single task + reject', function(assert) {
-    const loggerSpy = spy();
+    const spyLogger = spy();
 
-    start(loggerSpy)(
+    start(spyLogger)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve, reject) {
@@ -268,18 +270,50 @@ test('logger + single task + reject', function(assert) {
         }
     ).catch(function() {
         assert.equal(
-            loggerSpy.callCount,
+            spyLogger.callCount,
             2,
             'logger must be called 2 times'
         );
 
         assert.true(
-            loggerSpy.getCall(0).calledWith('testTask', 'start'),
+            spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         assert.true(
-            loggerSpy.getCall(1).calledWith('testTask', 'reject', 'error'),
+            spyLogger.getCall(1).calledWith('testTask', 'reject', 'error'),
+            '2nd: reject'
+        );
+
+        assert.end();
+    });
+});
+
+test('logger + single task + hard error', function(assert) {
+    const spyLogger = spy();
+
+    start(spyLogger)(
+        function() {
+            return function testTask() {
+                return new Promise(function(resolve, reject) {
+                    throw new Error('oops');
+                });
+            };
+        }
+    ).catch(function() {
+        assert.equal(
+            spyLogger.callCount,
+            2,
+            'logger must be called 2 times'
+        );
+
+        assert.true(
+            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            '1st: start'
+        );
+
+        assert.true(
+            spyLogger.getCall(1).calledWith('testTask', 'reject', new Error()),
             '2nd: reject'
         );
 
@@ -288,9 +322,9 @@ test('logger + single task + reject', function(assert) {
 });
 
 test('logger + single task + log', function(assert) {
-    const loggerSpy = spy();
+    const spyLogger = spy();
 
-    start(loggerSpy)(
+    start(spyLogger)(
         function() {
             return function testTask(log) {
                 return new Promise(function(resolve, reject) {
@@ -302,24 +336,61 @@ test('logger + single task + log', function(assert) {
         }
     ).then(function() {
         assert.equal(
-            loggerSpy.callCount,
+            spyLogger.callCount,
             3,
             'logger must be called 3 times'
         );
 
         assert.true(
-            loggerSpy.getCall(0).calledWith('testTask', 'start'),
+            spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         assert.true(
-            loggerSpy.getCall(1).calledWith('testTask', 'info', 'test'),
+            spyLogger.getCall(1).calledWith('testTask', 'info', 'test'),
             '2nd: info'
         );
 
         assert.true(
-            loggerSpy.getCall(2).calledWith('testTask', 'resolve'),
+            spyLogger.getCall(2).calledWith('testTask', 'resolve'),
             '3rd: resolve'
+        );
+
+        assert.end();
+    });
+});
+
+test('default logger', function(assert) {
+    const origConsoleLog = console.log;
+    const spyLogger = spy();
+
+    console.log = spyLogger;
+
+    start()(
+        function() {
+            return function testTask(log) {
+                return new Promise(function(resolve, reject) {
+                    resolve();
+                });
+            };
+        }
+    ).then(function() {
+        console.log = origConsoleLog;
+
+        assert.equal(
+            spyLogger.callCount,
+            2,
+            'logger must be called 2 times'
+        );
+
+        assert.true(
+            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            '1st: start'
+        );
+
+        assert.true(
+            spyLogger.getCall(1).calledWith('testTask', 'resolve'),
+            '2nd: resolve'
         );
 
         assert.end();

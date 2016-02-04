@@ -66,7 +66,7 @@ export function cover() {
         files('lib/**/*.js'),
         coverage.instrument(istanbul),
         test,
-        coverage.report()
+        coverage.report([ 'lcovonly', 'html', 'text-summary' ])
     );
 }
 

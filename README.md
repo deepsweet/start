@@ -141,7 +141,7 @@ Second function calls made by tasks.
   * `info` – must come with `message`
   * `resolve`
   * `error` – may come with `message`
-* `message` – may be undefined, string or array of strings
+* `message` – may be undefined, string, array of strings or instance of Error
 
 See [start-simple-logger](https://github.com/start-runner/simple-logger) as an example.
 
