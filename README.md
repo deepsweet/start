@@ -16,25 +16,21 @@ npm i -S start
 Start is all about functions, composition and chaining Promises.
 
 ```js
-// tasks.js
 import Start from 'start';
 import logger from 'start-simple-logger';
-import clean from 'start-clean';
-import watch from 'start-watch';
 import files from 'start-files';
+import watch from 'start-watch';
+import clean from 'start-clean';
 import babel from 'start-babel';
 import write from 'start-write';
 import eslint from 'start-eslint';
 import mocha from 'start-mocha';
 import * as coverage from 'start-coverage';
 import codecov from 'start-codecov';
+
 import istanbul from 'babel-istanbul';
 
-const start = Start(
-    logger({
-        mute: [ 'files', 'coverageInstrument' ]
-    })
-);
+const start = Start(logger());
 
 export function build() {
     return start(
@@ -68,7 +64,6 @@ export function lint() {
 
 export function test() {
     return start(
-        lint,
         files('test/**/*.js'),
         mocha()
     );
@@ -76,29 +71,25 @@ export function test() {
 
 export function tdd() {
     return start(
-        files([ 'lib/**/*.js', 'test/**/*.js']),
-        watch(() => start(
-            files('test/**/*.js'),
-            mocha()
-        ))
+        files([ 'lib/**/*.js', 'test/**/*.js' ]),
+        watch(test)
     );
 }
 
 export function cover() {
     return start(
-        lint,
         files('coverage/'),
         clean(),
         files('lib/**/*.js'),
         coverage.instrument(istanbul),
-        files('test/**/*.js'),
-        mocha(),
+        test,
         coverage.report()
     );
 }
 
 export function travis() {
     return start(
+        lint,
         cover,
         codecov()
     );
