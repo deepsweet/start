@@ -14,17 +14,7 @@
     "babel-runtime": "6.3.x"
   },
   "devDependencies": {
-    "start": "3.1.x",
-    "start-simple-logger": "1.1.x",
-    "start-files": "0.2.x",
-    "start-watch": "1.0.x",
-    "start-clean": "1.0.x",
-    "start-babel": "1.0.x",
-    "start-write": "0.1.x",
-    "start-eslint": "1.0.x",
-    "start-tape": "0.1.x",
-    "start-coverage": "1.0.x",
-    "start-codecov": "0.1.x",
+    "start-start-pack": "0.1.x",
 
     "babel-cli": "6.4.x",
     "babel-core": "6.4.x",
@@ -37,14 +27,12 @@
     "eslint-config-rebem": "0.2.x",
 
     "tape": "4.4.x",
-    "tap-spec": "4.1.x",
     "sinon": "1.17.x",
-    "babel-istanbul": "0.6.x",
 
     "husky": "0.10.x"
   },
   "scripts": {
-    "task": "babel-node node_modules/.bin/start ./tasks",
+    "task": "babel-node node_modules/.bin/start start-start-pack",
 
     "build": "npm run task build",
     "dev": "npm run task dev",
