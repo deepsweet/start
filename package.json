@@ -13,8 +13,17 @@
     "babel-runtime": "6.3.x"
   },
   "devDependencies": {
-    "husky": "0.10.x",
-    "rimraf": "2.5.x",
+    "start": "3.0.x",
+    "start-simple-logger": "1.0.x",
+    "start-files": "0.2.x",
+    "start-watch": "1.0.x",
+    "start-clean": "1.0.x",
+    "start-babel": "1.0.x",
+    "start-write": "0.1.x",
+    "start-eslint": "1.0.x",
+    "start-tape": "0.1.x",
+    "start-coverage": "1.0.x",
+    "start-codecov": "0.1.x",
 
     "babel-cli": "6.4.x",
     "babel-core": "6.4.x",
@@ -22,7 +31,6 @@
     "babel-plugin-transform-runtime": "6.4.x",
     "babel-plugin-add-module-exports": "0.1.x",
 
-    "eslint": "1.10.x",
     "babel-eslint": ">5.0.0-beta1",
     "eslint-plugin-babel": "3.0.x",
     "eslint-config-rebem": "0.2.x",
@@ -31,25 +39,22 @@
     "tap-spec": "4.1.x",
     "sinon": "1.17.x",
     "babel-istanbul": "0.6.x",
-    "codecov": "1.0.x"
+
+    "husky": "0.10.x"
   },
   "scripts": {
-    "prebuild": "rimraf build/",
-    "build": "babel lib/ -d build/",
-    "dev": "npm run build -- -w",
+    "task": "babel-node node_modules/.bin/start tasks",
 
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "babel-node test/lib/*.js | tap-spec",
-    "precoverage": "rimraf coverage/",
-    "coverage": "babel-node ./node_modules/.bin/babel-istanbul cover test/lib/*.js | tap-spec",
+    "build": "npm run task build",
+    "dev": "npm run task dev",
 
-    "precodecov": "npm run coverage",
-    "codecov": "codecov --file=coverage/lcov.info --disable=search,gcov",
-    "pretravis": "npm run lint",
-    "travis": "npm run codecov",
+    "lint": "npm run task lint",
+    "test": "npm run task test",
+    "tdd": "npm run task tdd",
+    "cover": "npm run task cover",
+    "travis": "npm run task travis",
 
-    "prepush": "npm test",
+    "prepush": "npm run task prepush",
     "prepublish": "npm run build"
   },
   "engines": {
