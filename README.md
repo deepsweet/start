@@ -16,6 +16,7 @@ npm i -S start
 Start is all about functions, composition and chaining Promises.
 
 ```js
+// tasks.js
 import Start from 'start';
 import logger from 'start-simple-logger';
 import files from 'start-files';
