@@ -194,7 +194,7 @@ test('nested', function(assert) {
     }
 
     start()(
-        sub(),
+        sub,
         function() {
             return function testTask2() {
                 return new Promise(function(resolve) {

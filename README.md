@@ -68,7 +68,7 @@ export function lint() {
 
 export function test() {
     return start(
-        lint(),
+        lint,
         files('test/**/*.js'),
         mocha()
     );
@@ -86,7 +86,7 @@ export function tdd() {
 
 export function cover() {
     return start(
-        lint(),
+        lint,
         files('coverage/'),
         clean(),
         files('lib/**/*.js'),
@@ -99,7 +99,7 @@ export function cover() {
 
 export function travis() {
     return start(
-        cover(),
+        cover,
         codecov()
     );
 }
