@@ -121,6 +121,10 @@ start <tasks file or moduleID to require> <tasks runner name>
 }
 ```
 
+### Pack
+
+`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like `my-es6-start-pack` for a bunch of your projects. See [start-start-pack](https://github.com/start-runner/start-pack) as an example.
+
 ## API
 
 ```js
