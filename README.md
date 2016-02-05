@@ -121,7 +121,7 @@ start <tasks file or moduleID to require> <tasks runner name>
 }
 ```
 
-## Start
+## API
 
 ```js
 start(logger())(
