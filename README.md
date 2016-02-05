@@ -108,7 +108,7 @@ With NPM scripts it might look like this (for example above):
 ```js
 // package.json
 "scripts": {
-  "task": "babel-node node_modules/.bin/start ./tasks",
+  "task": "babel-node node_modules/.bin/start tasks",
   "build": "npm run task build",
   "dev": "npm run task dev",
   "lint": "npm run task lint",
