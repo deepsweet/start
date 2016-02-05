@@ -3,7 +3,7 @@
 [![coverage](https://img.shields.io/codecov/c/github/start-runner/start.svg?style=flat-square)](https://codecov.io/github/start-runner/start)
 [![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
 
-Dead simple tasks runner. "Start" is all about functions, composition and chaining Promises.
+Dead simple tasks runner. `start` is all about functions, composition and chaining Promises.
 
 ## Install
 
@@ -11,7 +11,7 @@ Dead simple tasks runner. "Start" is all about functions, composition and chaini
 npm i -S start
 ```
 
-## Tasks file
+## Tasks
 
 ```js
 // tasks.js
@@ -121,7 +121,17 @@ start <tasks file or moduleID to require> <tasks runner name>
 }
 ```
 
-## Logger
+## Start
+
+```js
+start(logger())(
+    task1(),
+    task2(),
+    ...
+);
+```
+
+### Logger
 
 Logger is an external function that print the results of running tasks.
 
@@ -133,11 +143,11 @@ export default (params) => (name, type, message) => {
 };
 ```
 
-### `(params)`
+#### `(params)`
 
 First function call made by user. `params` can be options object, multiple arguments or whatever your logger needs to be configured and initialized.
 
-### `(name, type, message)`
+#### `(name, type, message)`
 
 Second function calls made by Start and tasks:
 
@@ -151,7 +161,7 @@ Second function calls made by Start and tasks:
 
 See [start-simple-logger](https://github.com/start-runner/simple-logger) as an example or browse available [loggers](https://www.npmjs.com/browse/keyword/start-logger).
 
-## Task
+### Task
 
 The simplest dummy task can be represented as following:
 
@@ -167,11 +177,11 @@ export default (params) => (input) => {
 };
 ```
 
-### `(params)`
+#### `(params)`
 
 First function call made by user. `params` can be options object, multiple arguments or whatever your task needs to be configured and initialized.
 
-### `(input)`
+#### `(input)`
 
 Second function call made by Start with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
@@ -201,15 +211,15 @@ Second function call made by Start with the result of previous task in chain. It
 
 So every task between them should rely on the first structure and provide the second one.
 
-### `taskName(log)`
+#### `taskName(log)`
 
 Third function call made by Start. `taskName` will be used as task name for logging, and `log` is a function that bound to `logger(name, 'info')`, so all you need is to call it with message (or array of messages) like `log('beep')`.
 
-### `require`
+#### `require`
 
 It's a good idea to "lazyload" your dependencies inside a task scope instead of requiring them at the very top. [Execution time can be a problem](https://github.com/gulpjs/gulp/issues/632), and there is no need to require all the heavy dependencies while cleaning a single directory (for example).
 
-### `return`
+#### `return`
 
 And finally, your task must return an ES6 Promise. It can be resolved with data which will be passed to the next Promise in chain, or rejected with some message (or array of messages).
 
