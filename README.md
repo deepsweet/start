@@ -123,9 +123,9 @@ start <tasks file or moduleID to require> <tasks runner name>
 }
 ```
 
-### Pack
+### Presets
 
-`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `my-es6-start-pack` package for a bunch of your projects. See [start-start-pack](https://github.com/start-runner/start-pack) as an example.
+`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `my-es6-start-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example.
 
 ## API
 
