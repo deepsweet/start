@@ -5,17 +5,17 @@ import start from '../../lib/index';
 
 const noopLogger = () => {};
 
-test('export', function(assert) {
-    assert.equal(
+test('export', t => {
+    t.equal(
         typeof start,
         'function',
         'must be a function'
     );
 
-    assert.end();
+    t.end();
 });
 
-test('single task + resolve', function(assert) {
+test('single task + resolve', t => {
     const testSpy = spy();
 
     start(noopLogger)(
@@ -28,16 +28,16 @@ test('single task + resolve', function(assert) {
             };
         }
     ).then(function() {
-        assert.true(
+        t.true(
             testSpy.calledOnce,
             'task must be called once'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('single task + reject', function(assert) {
+test('single task + reject', t => {
     const testSpy = spy();
 
     start(noopLogger)(
@@ -50,16 +50,16 @@ test('single task + reject', function(assert) {
             };
         }
     ).catch(function() {
-        assert.true(
+        t.true(
             testSpy.calledOnce,
             'task must be called once'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('sequence of tasks + resolve', function(assert) {
+test('sequence of tasks + resolve', t => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
@@ -85,26 +85,26 @@ test('sequence of tasks + resolve', function(assert) {
             };
         }
     ).then(function() {
-        assert.true(
+        t.true(
             testSpy1.calledOnce,
             'task 1 must be called once'
         );
 
-        assert.true(
+        t.true(
             testSpy2.calledOnce,
             'task 2 must be called once'
         );
 
-        assert.true(
+        t.true(
             testSpy1.calledBefore(testSpy2),
             'tasks must be called in sequence'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('sequence of tasks + reject', function(assert) {
+test('sequence of tasks + reject', t => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
@@ -126,22 +126,22 @@ test('sequence of tasks + reject', function(assert) {
             };
         }
     ).catch(function() {
-        assert.true(
+        t.true(
             testSpy1.calledOnce,
             'task must be called once'
         );
 
-        assert.equal(
+        t.equal(
             testSpy2.callCount,
             0,
             'task 2 must not been called'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('sequence of tasks + hard error', function(assert) {
+test('sequence of tasks + hard error', t => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
@@ -163,22 +163,22 @@ test('sequence of tasks + hard error', function(assert) {
             };
         }
     ).catch(function() {
-        assert.true(
+        t.true(
             testSpy1.calledOnce,
             'task 1 must be called once'
         );
 
-        assert.equal(
+        t.equal(
             testSpy2.callCount,
             0,
             'task 2 must not been called'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('nested', function(assert) {
+test('nested', t => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
@@ -206,26 +206,26 @@ test('nested', function(assert) {
             };
         }
     ).then(function() {
-        assert.true(
+        t.true(
             testSpy1.calledOnce,
             'task 1 must be called once'
         );
 
-        assert.true(
+        t.true(
             testSpy2.calledOnce,
             'task 2 must be called once'
         );
 
-        assert.true(
+        t.true(
             testSpy1.calledBefore(testSpy2),
             'tasks must be called in sequence'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('logger + single task + resolve', function(assert) {
+test('logger + single task + resolve', t => {
     const spyLogger = spy();
 
     start(spyLogger)(
@@ -237,27 +237,27 @@ test('logger + single task + resolve', function(assert) {
             };
         }
     ).then(function() {
-        assert.equal(
+        t.equal(
             spyLogger.callCount,
             2,
             'logger must be called 2 times'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(1).calledWith('testTask', 'resolve'),
             '2nd: resolve'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('logger + single task + reject', function(assert) {
+test('logger + single task + reject', t => {
     const spyLogger = spy();
 
     start(spyLogger)(
@@ -269,27 +269,27 @@ test('logger + single task + reject', function(assert) {
             };
         }
     ).catch(function() {
-        assert.equal(
+        t.equal(
             spyLogger.callCount,
             2,
             'logger must be called 2 times'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(1).calledWith('testTask', 'reject', 'error'),
             '2nd: reject'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('logger + single task + hard error', function(assert) {
+test('logger + single task + hard error', t => {
     const spyLogger = spy();
 
     start(spyLogger)(
@@ -301,27 +301,27 @@ test('logger + single task + hard error', function(assert) {
             };
         }
     ).catch(function() {
-        assert.equal(
+        t.equal(
             spyLogger.callCount,
             2,
             'logger must be called 2 times'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(1).calledWith('testTask', 'reject', new Error()),
             '2nd: reject'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('logger + single task + log', function(assert) {
+test('logger + single task + log', t => {
     const spyLogger = spy();
 
     start(spyLogger)(
@@ -335,32 +335,32 @@ test('logger + single task + log', function(assert) {
             };
         }
     ).then(function() {
-        assert.equal(
+        t.equal(
             spyLogger.callCount,
             3,
             'logger must be called 3 times'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(1).calledWith('testTask', 'info', 'test'),
             '2nd: info'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(2).calledWith('testTask', 'resolve'),
             '3rd: resolve'
         );
 
-        assert.end();
+        t.end();
     });
 });
 
-test('default logger', function(assert) {
+test('default logger', t => {
     const origConsoleLog = console.log;
     const spyLogger = spy();
 
@@ -377,22 +377,22 @@ test('default logger', function(assert) {
     ).then(function() {
         console.log = origConsoleLog;
 
-        assert.equal(
+        t.equal(
             spyLogger.callCount,
             2,
             'logger must be called 2 times'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
-        assert.true(
+        t.true(
             spyLogger.getCall(1).calledWith('testTask', 'resolve'),
             '2nd: resolve'
         );
 
-        assert.end();
+        t.end();
     });
 });
