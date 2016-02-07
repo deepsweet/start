@@ -14,6 +14,7 @@
     "babel-runtime": "6.3.x"
   },
   "devDependencies": {
+    "start": "3.2.x",
     "start-start-preset": "0.1.x",
 
     "babel-cli": "6.4.x",
