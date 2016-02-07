@@ -7,6 +7,8 @@
     "no-console": 0,
     "no-magic-numbers": 0,
     "no-process-exit": 0,
-    "no-throw-literal": 0
+    "no-throw-literal": 0,
+    "init-declarations": 0,
+    "no-unreachable": 0
   }
 }

@@ -289,7 +289,7 @@ test('logger + single task + reject', t => {
     });
 });
 
-test('logger + single task + hard error', t => {
+test('logger + single task + hard error inside the Promise', t => {
     const spyLogger = spy();
 
     start(spyLogger)(
@@ -297,6 +297,40 @@ test('logger + single task + hard error', t => {
             return function testTask() {
                 return new Promise(function(resolve, reject) {
                     throw new Error('oops');
+                });
+            };
+        }
+    ).catch(function() {
+        t.equal(
+            spyLogger.callCount,
+            2,
+            'logger must be called 2 times'
+        );
+
+        t.true(
+            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            '1st: start'
+        );
+
+        t.true(
+            spyLogger.getCall(1).calledWith('testTask', 'reject', new Error()),
+            '2nd: reject'
+        );
+
+        t.end();
+    });
+});
+
+test('logger + single task + hard error outside the Promise', t => {
+    const spyLogger = spy();
+
+    start(spyLogger)(
+        function() {
+            return function testTask() {
+                throw new Error('oops');
+
+                return new Promise(function(resolve, reject) {
+                    resolve();
                 });
             };
         }
