@@ -4,7 +4,7 @@
 [![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
 [![gitter](https://img.shields.io/badge/gitter-join_chat_%E2%86%92-00d06f.svg?style=flat-square)](https://gitter.im/start-runner/start)
 
-Dead simple tasks runner. `start` is all about functions, composition and chaining Promises.
+[Dead simple](lib/index.js) tasks runner based on composable functions on top of chaining Promises.
 
 ## Install
 
