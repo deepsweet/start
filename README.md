@@ -131,7 +131,7 @@ start <tasks file or moduleID to require> <tasks runner name>
 
 ### Presets
 
-`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `my-es6-start-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example.
+`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `my-es6-start-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example or browse available [presets](https://www.npmjs.com/browse/keyword/start-preset).
 
 ## API
 
@@ -195,7 +195,7 @@ First function call made by user. `params` can be options object, multiple argum
 
 #### `(input)`
 
-Second function call made by Start with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
+Second function call made by `start` with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
 [start-files](https://github.com/start-runner/files) provides an array of found files paths as output:
 
@@ -225,7 +225,7 @@ So every task between them should rely on the first structure and provide the se
 
 #### `taskName(log)`
 
-Third function call made by Start. `taskName` will be used as task name for logging, and `log` is a function that bound to `logger(name, 'info')`, so all you need is to call it with message (or array of messages) like `log('beep')`.
+Third function call made by `start`. `taskName` will be used as task name for logging, and `log` is a function that bound to `logger(name, 'info')`. So if your task has something to say expect errors then you have to call `log` with message (or array of messages) like `log('beep')`.
 
 #### `require`
 
@@ -235,4 +235,10 @@ It's a good idea to "lazyload" your dependencies inside a task scope instead of 
 
 And finally, your task must return an ES6 Promise. It can be resolved with data which will be passed to the next Promise in chain, or rejected with some message (or array of messages).
 
-Browse available [tasks](https://www.npmjs.com/browse/keyword/start-tasks).
+Browse available [tasks](https://www.npmjs.com/browse/keyword/start-task).
+
+## Copyrights
+
+This software is released under the terms of the [MIT license](LICENSE).
+
+The font used in logo is [supernova fat](http://www.ffonts.net/supernova-fat.font).
