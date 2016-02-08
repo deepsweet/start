@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 
 import start from '../../lib/index';
 
-const noopLogger = () => {};
+const noopReporter = () => {};
 
 test('export', t => {
     t.equal(
@@ -18,7 +18,7 @@ test('export', t => {
 test('single task + resolve', t => {
     const testSpy = spy();
 
-    start(noopLogger)(
+    start(noopReporter)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve) {
@@ -40,7 +40,7 @@ test('single task + resolve', t => {
 test('single task + reject', t => {
     const testSpy = spy();
 
-    start(noopLogger)(
+    start(noopReporter)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve, reject) {
@@ -63,7 +63,7 @@ test('sequence of tasks + resolve', t => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
-    start(noopLogger)(
+    start(noopReporter)(
         function() {
             return function testTask1() {
                 return new Promise(function(resolve) {
@@ -108,7 +108,7 @@ test('sequence of tasks + reject', t => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
-    start(noopLogger)(
+    start(noopReporter)(
         function() {
             return function testTask1() {
                 return new Promise(function(resolve, reject) {
@@ -145,7 +145,7 @@ test('sequence of tasks + hard error', t => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
-    start(noopLogger)(
+    start(noopReporter)(
         function() {
             return function testTask1() {
                 return new Promise(function() {
@@ -183,7 +183,7 @@ test('nested', t => {
     const testSpy2 = spy();
 
     function sub() {
-        return start(noopLogger)(
+        return start(noopReporter)(
             function() {
                 return function testTask1() {
                     return new Promise(function(resolve) {
@@ -195,7 +195,7 @@ test('nested', t => {
         );
     }
 
-    start(noopLogger)(
+    start(noopReporter)(
         sub,
         function() {
             return function testTask2() {
@@ -225,10 +225,10 @@ test('nested', t => {
     });
 });
 
-test('logger + single task + resolve', t => {
-    const spyLogger = spy();
+test('reporter + single task + resolve', t => {
+    const spyReporter = spy();
 
-    start(spyLogger)(
+    start(spyReporter)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve) {
@@ -238,18 +238,18 @@ test('logger + single task + resolve', t => {
         }
     ).then(function() {
         t.equal(
-            spyLogger.callCount,
+            spyReporter.callCount,
             2,
-            'logger must be called 2 times'
+            'reporter must be called 2 times'
         );
 
         t.true(
-            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            spyReporter.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         t.true(
-            spyLogger.getCall(1).calledWith('testTask', 'resolve'),
+            spyReporter.getCall(1).calledWith('testTask', 'resolve'),
             '2nd: resolve'
         );
 
@@ -257,10 +257,10 @@ test('logger + single task + resolve', t => {
     });
 });
 
-test('logger + single task + reject', t => {
-    const spyLogger = spy();
+test('reporter + single task + reject', t => {
+    const spyReporter = spy();
 
-    start(spyLogger)(
+    start(spyReporter)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve, reject) {
@@ -270,18 +270,18 @@ test('logger + single task + reject', t => {
         }
     ).catch(function() {
         t.equal(
-            spyLogger.callCount,
+            spyReporter.callCount,
             2,
-            'logger must be called 2 times'
+            'reporter must be called 2 times'
         );
 
         t.true(
-            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            spyReporter.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         t.true(
-            spyLogger.getCall(1).calledWith('testTask', 'reject', 'error'),
+            spyReporter.getCall(1).calledWith('testTask', 'reject', 'error'),
             '2nd: reject'
         );
 
@@ -289,10 +289,10 @@ test('logger + single task + reject', t => {
     });
 });
 
-test('logger + single task + hard error inside the Promise', t => {
-    const spyLogger = spy();
+test('reporter + single task + hard error inside the Promise', t => {
+    const spyReporter = spy();
 
-    start(spyLogger)(
+    start(spyReporter)(
         function() {
             return function testTask() {
                 return new Promise(function(resolve, reject) {
@@ -302,18 +302,18 @@ test('logger + single task + hard error inside the Promise', t => {
         }
     ).catch(function() {
         t.equal(
-            spyLogger.callCount,
+            spyReporter.callCount,
             2,
-            'logger must be called 2 times'
+            'reporter must be called 2 times'
         );
 
         t.true(
-            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            spyReporter.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         t.true(
-            spyLogger.getCall(1).calledWith('testTask', 'reject', new Error()),
+            spyReporter.getCall(1).calledWith('testTask', 'reject', new Error()),
             '2nd: reject'
         );
 
@@ -321,10 +321,10 @@ test('logger + single task + hard error inside the Promise', t => {
     });
 });
 
-test('logger + single task + hard error outside the Promise', t => {
-    const spyLogger = spy();
+test('reporter + single task + hard error outside the Promise', t => {
+    const spyReporter = spy();
 
-    start(spyLogger)(
+    start(spyReporter)(
         function() {
             return function testTask() {
                 throw new Error('oops');
@@ -336,18 +336,18 @@ test('logger + single task + hard error outside the Promise', t => {
         }
     ).catch(function() {
         t.equal(
-            spyLogger.callCount,
+            spyReporter.callCount,
             2,
-            'logger must be called 2 times'
+            'reporter must be called 2 times'
         );
 
         t.true(
-            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            spyReporter.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         t.true(
-            spyLogger.getCall(1).calledWith('testTask', 'reject', new Error()),
+            spyReporter.getCall(1).calledWith('testTask', 'reject', new Error()),
             '2nd: reject'
         );
 
@@ -355,10 +355,10 @@ test('logger + single task + hard error outside the Promise', t => {
     });
 });
 
-test('logger + single task + log', t => {
-    const spyLogger = spy();
+test('reporter + single task + log', t => {
+    const spyReporter = spy();
 
-    start(spyLogger)(
+    start(spyReporter)(
         function() {
             return function testTask(log) {
                 return new Promise(function(resolve, reject) {
@@ -370,23 +370,23 @@ test('logger + single task + log', t => {
         }
     ).then(function() {
         t.equal(
-            spyLogger.callCount,
+            spyReporter.callCount,
             3,
-            'logger must be called 3 times'
+            'reporter must be called 3 times'
         );
 
         t.true(
-            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            spyReporter.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         t.true(
-            spyLogger.getCall(1).calledWith('testTask', 'info', 'test'),
+            spyReporter.getCall(1).calledWith('testTask', 'info', 'test'),
             '2nd: info'
         );
 
         t.true(
-            spyLogger.getCall(2).calledWith('testTask', 'resolve'),
+            spyReporter.getCall(2).calledWith('testTask', 'resolve'),
             '3rd: resolve'
         );
 
@@ -394,11 +394,11 @@ test('logger + single task + log', t => {
     });
 });
 
-test('default logger', t => {
+test('default reporter', t => {
     const origConsoleLog = console.log;
-    const spyLogger = spy();
+    const spyReporter = spy();
 
-    console.log = spyLogger;
+    console.log = spyReporter;
 
     start()(
         function() {
@@ -412,18 +412,18 @@ test('default logger', t => {
         console.log = origConsoleLog;
 
         t.equal(
-            spyLogger.callCount,
+            spyReporter.callCount,
             2,
-            'logger must be called 2 times'
+            'reporter must be called 2 times'
         );
 
         t.true(
-            spyLogger.getCall(0).calledWith('testTask', 'start'),
+            spyReporter.getCall(0).calledWith('testTask', 'start'),
             '1st: start'
         );
 
         t.true(
-            spyLogger.getCall(1).calledWith('testTask', 'resolve'),
+            spyReporter.getCall(1).calledWith('testTask', 'resolve'),
             '2nd: resolve'
         );
 

@@ -24,7 +24,7 @@ npm i -S start
 ```js
 // tasks.js
 import Start from 'start';
-import logger from 'start-simple-logger';
+import reporter from 'start-simple-reporter';
 import files from 'start-files';
 import watch from 'start-watch';
 import clean from 'start-clean';
@@ -37,7 +37,7 @@ import codecov from 'start-codecov';
 
 import istanbul from 'babel-istanbul';
 
-const start = Start(logger());
+const start = Start(reporter());
 
 export function build() {
     return start(
@@ -138,18 +138,18 @@ start <tasks file or moduleID to require> <tasks runner name>
 ## API
 
 ```js
-start(logger())(
+start(reporter())(
     task1(),
     task2(),
     ...
 );
 ```
 
-### Logger
+### Reporter
 
-Logger is an external function that print the results of running tasks.
+Reporter is an external function that print the results of running tasks.
 
-The simplest dummy logger can be represented as following:
+The simplest dummy reporter can be represented as following:
 
 ```js
 export default (params) => (name, type, message) => {
@@ -159,7 +159,7 @@ export default (params) => (name, type, message) => {
 
 #### `(params)`
 
-First function call made by user. `params` can be options object, multiple arguments or whatever your logger needs to be configured and initialized.
+First function call made by user. `params` can be options object, multiple arguments or whatever your reporter needs to be configured and initialized.
 
 #### `(name, type, message)`
 
@@ -173,7 +173,7 @@ Second function calls made by Start and tasks:
   * `error` – may come with `message`
 * `message` – may be undefined, string, array of strings or instance of Error
 
-See [start-simple-logger](https://github.com/start-runner/simple-logger) as an example or browse available [loggers](https://www.npmjs.com/browse/keyword/start-logger).
+See [start-simple-reporter](https://github.com/start-runner/simple-reporter) as an example or browse available [reporters](https://www.npmjs.com/browse/keyword/start-reporter).
 
 ### Task
 
@@ -227,7 +227,7 @@ So every task between them should rely on the first structure and provide the se
 
 #### `taskName(log)`
 
-Third function call made by `start`. `taskName` will be used as task name for logging, and `log` is a function that bound to `logger(name, 'info')`. So if your task has something to say expect errors then you have to call `log` with message (or array of messages) like `log('beep')`.
+Third function call made by `start`. `taskName` will be used as task name for logging, and `log` is a function that bound to `reporter(name, 'info')`. So if your task has something to say expect errors then you have to call `log` with message (or array of messages) like `log('beep')`.
 
 #### `require`
 
