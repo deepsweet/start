@@ -24,7 +24,7 @@ npm i -S start
 ```js
 // tasks.js
 import Start from 'start';
-import reporter from 'start-simple-reporter';
+import reporter from 'start-pretty-reporter';
 import files from 'start-files';
 import watch from 'start-watch';
 import clean from 'start-clean';
@@ -163,7 +163,7 @@ First function call made by user. `params` can be options object, multiple argum
 
 #### `(name, type, message)`
 
-Second function calls made by Start and tasks:
+Second function calls made by `start` and tasks:
 
 * `name` – task name
 * `type` – log type:
