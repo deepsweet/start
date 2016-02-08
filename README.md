@@ -64,7 +64,7 @@ export function dev() {
 
 export function lint() {
     return start(
-        files('**/*.js'),
+        files([ 'lib/**/*.js', 'test/**/*.js' ]),
         eslint()
     );
 }
