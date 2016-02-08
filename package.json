@@ -11,7 +11,7 @@
   "main": "build/index.js",
   "dependencies": {
     "req-cwd": "1.0.x",
-    "babel-runtime": "6.3.x"
+    "babel-runtime": "6.5.x"
   },
   "devDependencies": {
     "start": "3.2.x",
