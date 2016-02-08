@@ -15,17 +15,17 @@
   },
   "devDependencies": {
     "start": "3.2.x",
-    "start-start-preset": "0.1.x",
+    "start-start-preset": "0.2.x",
 
-    "babel-cli": "6.4.x",
-    "babel-core": "6.4.x",
-    "babel-preset-es2015": "6.3.x",
-    "babel-plugin-transform-runtime": "6.4.x",
+    "babel-cli": "6.5.x",
+    "babel-core": "6.5.x",
+    "babel-preset-es2015": "6.5.x",
+    "babel-plugin-transform-runtime": "6.5.x",
     "babel-plugin-add-module-exports": "0.1.x",
 
     "babel-eslint": ">5.0.0-beta1",
     "eslint-plugin-babel": "3.0.x",
-    "eslint-config-rebem": "0.2.x",
+    "eslint-config-rebem": "0.3.x",
 
     "tape": "4.4.x",
     "sinon": "1.17.x",
