@@ -120,14 +120,14 @@ start <tasks file or moduleID to require> <tasks runner name>
 ```js
 // package.json
 "scripts": {
-  "task": "babel-node node_modules/.bin/start ./tasks",
-  "build": "npm run task build",
-  "dev": "npm run task dev",
-  "lint": "npm run task lint",
-  "test": "npm run task test",
-  "tdd": "npm run task tdd",
-  "cover": "npm run task cover",
-  "travis": "npm run task travis"
+  "start": "babel-node node_modules/.bin/start ./tasks",
+  "build": "npm start build",
+  "dev": "npm start dev",
+  "lint": "npm start lint",
+  "test": "npm start test",
+  "tdd": "npm start tdd",
+  "cover": "npm start cover",
+  "travis": "npm start travis"
 }
 ```
 

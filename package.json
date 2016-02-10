@@ -33,18 +33,18 @@
     "husky": "0.10.x"
   },
   "scripts": {
-    "task": "babel-node node_modules/.bin/start start-start-preset",
+    "start": "babel-node node_modules/.bin/start start-start-preset",
 
-    "build": "npm run task build",
-    "dev": "npm run task dev",
+    "build": "npm start build",
+    "dev": "npm start dev",
 
-    "lint": "npm run task lint",
-    "test": "npm run task test",
-    "tdd": "npm run task tdd",
-    "cover": "npm run task cover",
-    "travis": "npm run task travis",
+    "lint": "npm start lint",
+    "test": "npm start test",
+    "tdd": "npm start tdd",
+    "cover": "npm start cover",
+    "travis": "npm start travis",
 
-    "prepush": "npm run task prepush",
+    "prepush": "npm start prepush",
     "prepublish": "npm run build"
   },
   "engines": {
