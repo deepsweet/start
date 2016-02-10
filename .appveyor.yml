@@ -1,14 +1,15 @@
 # https://www.appveyor.com/docs/appveyor-yml
 
+version: "{build}"
+
+init:
+  - git config --global core.autocrlf false
+
 environment:
   matrix:
     - nodejs_version: "0.12"
     - nodejs_version: "4"
     - nodejs_version: "5"
-
-platform:
-  - x86
-  - x64
 
 install:
   - ps: Install-Product node $env:nodejs_version
@@ -29,7 +30,11 @@ matrix:
   fast_finish: true
 
 cache:
-  - node_modules
-  - "%APPDATA%\npm-cache"
+  # global npm modules
+  - "%APPDATA%\\npm\\node_modules -> package.json"
+  # npm cache
+  - "%APPDATA%\\npm-cache -> package.json"
+  # local npm modules
+  - node_modules -> package.json
 
 build: off
