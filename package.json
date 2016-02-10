@@ -21,7 +21,7 @@
     "babel-plugin-add-module-exports": "0.1.x",
 
     "babel-eslint": ">5.0.0-beta1",
-    "eslint-plugin-babel": "3.0.x",
+    "eslint-plugin-babel": "3.1.x",
     "eslint-config-rebem": "0.3.x",
 
     "tape": "4.4.x",
