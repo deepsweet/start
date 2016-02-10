@@ -157,7 +157,7 @@ npm start cover
 npm start travis
 ```
 
-See [NPM documentation](https://docs.npmjs.com/cli/run-script) for details.
+See [NPM documentation](https://docs.npmjs.com/cli/start) for details.
 
 ### Presets
 
