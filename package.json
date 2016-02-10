@@ -10,7 +10,7 @@
   "bin": "build/cli.js",
   "main": "build/index.js",
   "dependencies": {
-    "babel-runtime": "6.5.x"
+    "babel-runtime": "6.x.x"
   },
   "devDependencies": {
     "start-babel-cli": "0.1.x",
