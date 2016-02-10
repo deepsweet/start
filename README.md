@@ -125,6 +125,10 @@ Or you can use an external CLI:
 ## CLI
 
 ```
+npm i -D start-simple-cli
+```
+
+```
 start <tasks file or moduleID to require> <tasks runner name>
 ```
 
@@ -132,7 +136,7 @@ Browse [available CLIs](https://www.npmjs.com/browse/keyword/start-cli).
 
 ### Handy NPM scripts
 
-For example for `tasks.js` listed above:
+For example for `tasks.js` listed above, transpiling with Babel:
 
 ```
 npm i -D start-babel-cli
