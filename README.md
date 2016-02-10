@@ -129,7 +129,7 @@ npm i -D start-simple-cli
 ```
 
 ```
-start <tasks file or moduleID to require> <tasks runner name>
+start-runner <tasks file or moduleID to require> <tasks runner name>
 ```
 
 Browse [available CLIs](https://www.npmjs.com/browse/keyword/start-cli).
@@ -145,7 +145,7 @@ npm i -D start-babel-cli
 ```js
 // package.json
 "scripts": {
-  "start": "start ./tasks"
+  "start": "start-runner ./tasks"
 }
 ```
 
