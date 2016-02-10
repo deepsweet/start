@@ -103,28 +103,49 @@ export function travis() {
 }
 ```
 
-Each named export return a "tasks runner" – sequence of tasks managed by `start`, which will run them one by one passing data through until an error occurs. As you can see in the example above runners can be nested in each other to achieve great reusability.
+Each named export return a "tasks runner" – sequence of tasks Promises managed by `start`, which will run them one by one passing data through until an error occurs.
 
-Technically `start` is just a promises chain so you can put few runners in `Promise.all()` to get a parallel run for free.
+As you can see in the example above runners can be nested in each other to achieve great reusability. Also, because `start` is just a Promise you can put few runners in `Promise.all()` to get a parallel run for free.
+
+You can then call tasks runners manually:
+
+```js
+build()
+    .then(data => {
+        console.log('ok');
+    })
+    .catch(error => {
+        console.log('not ok');
+        process.exit(1);
+    });
+```
+
+Or you can use an external CLI:
 
 ## CLI
-
-Tasks runners then can be called by CLI:
 
 ```
 start <tasks file or moduleID to require> <tasks runner name>
 ```
 
-### NPM scripts
+Browse [available CLIs](https://www.npmjs.com/browse/keyword/start-cli).
+
+### Handy NPM scripts
+
+For example for `tasks.js` listed above:
+
+```
+npm i -D start-babel-cli
+```
 
 ```js
 // package.json
 "scripts": {
-  "start": "babel-node node_modules/.bin/start ./tasks"
+  "start": "start ./tasks"
 }
 ```
 
-And then, for example for `tasks.js` listed above available commands are:
+And your available commands are:
 
 ```
 npm start build
@@ -136,9 +157,11 @@ npm start cover
 npm start travis
 ```
 
+See [NPM documentation](https://docs.npmjs.com/cli/run-script) for details.
+
 ### Presets
 
-`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example or browse available [presets](https://www.npmjs.com/browse/keyword/start-preset).
+`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example or browse [available presets](https://www.npmjs.com/browse/keyword/start-preset).
 
 ## API
 
@@ -178,7 +201,7 @@ Second function calls made by `start` and tasks:
   * `error` – may come with `message`
 * `message` – may be undefined, string, array of strings or instance of Error
 
-See [start-simple-reporter](https://github.com/start-runner/simple-reporter) as an example or browse available [reporters](https://www.npmjs.com/browse/keyword/start-reporter).
+See [start-simple-reporter](https://github.com/start-runner/simple-reporter) as an example or browse [available reporters](https://www.npmjs.com/browse/keyword/start-reporter).
 
 ### Task
 
@@ -242,7 +265,7 @@ It's a good idea to "lazyload" your dependencies inside a task scope instead of 
 
 And finally, your task must return an ES6 Promise. It can be resolved with data which will be passed to the next Promise in chain, or rejected with some message (or array of messages).
 
-Browse available [tasks](https://www.npmjs.com/browse/keyword/start-task).
+Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task).
 
 ## Copyrights
 
