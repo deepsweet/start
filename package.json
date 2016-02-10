@@ -1,6 +1,6 @@
 {
   "name": "start",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Dead simple tasks runner",
   "keywords": [ "tasks", "runner", "start" ],
   "homepage": "https://github.com/start-runner/start",
