@@ -34,16 +34,6 @@
   },
   "scripts": {
     "start": "babel-node node_modules/.bin/start start-start-preset",
-
-    "build": "npm start build",
-    "dev": "npm start dev",
-
-    "lint": "npm start lint",
-    "test": "npm start test",
-    "tdd": "npm start tdd",
-    "cover": "npm start cover",
-    "travis": "npm start travis",
-
     "prepush": "npm start prepush",
     "prepublish": "npm run build"
   },

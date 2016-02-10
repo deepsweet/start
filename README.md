@@ -120,15 +120,20 @@ start <tasks file or moduleID to require> <tasks runner name>
 ```js
 // package.json
 "scripts": {
-  "start": "babel-node node_modules/.bin/start ./tasks",
-  "build": "npm start build",
-  "dev": "npm start dev",
-  "lint": "npm start lint",
-  "test": "npm start test",
-  "tdd": "npm start tdd",
-  "cover": "npm start cover",
-  "travis": "npm start travis"
+  "start": "babel-node node_modules/.bin/start ./tasks"
 }
+```
+
+And then, for example for `tasks.js` listed above available commands are:
+
+```
+npm start build
+npm start dev
+npm start lint
+npm start test
+npm start tdd
+npm start cover
+npm start travis
 ```
 
 ### Presets

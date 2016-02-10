@@ -13,4 +13,4 @@ branches:
   only:
     - master
 
-script: npm run travis
+script: npm start travis
