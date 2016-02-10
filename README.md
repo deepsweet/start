@@ -1,8 +1,8 @@
 # start
 
 [![npm](https://img.shields.io/npm/v/start.svg?style=flat-square)](https://www.npmjs.com/package/start)
-[![linux build](https://img.shields.io/travis/start-runner/start.svg?label=linux%20build&style=flat-square)](https://travis-ci.org/start-runner/start)
-[![windows build](https://img.shields.io/appveyor/ci/start-runner/start.svg?label=windows%20build&style=flat-square)](https://ci.appveyor.com/project/start-runner/start)
+[![linux build](https://img.shields.io/travis/start-runner/start.svg?label=linux&style=flat-square)](https://travis-ci.org/start-runner/start)
+[![windows build](https://img.shields.io/appveyor/ci/start-runner/start.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/start-runner/start)
 [![coverage](https://img.shields.io/codecov/c/github/start-runner/start.svg?style=flat-square)](https://codecov.io/github/start-runner/start)
 [![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
 [![gitter](https://img.shields.io/badge/gitter-join_chat_%E2%86%92-00d06f.svg?style=flat-square)](https://gitter.im/start-runner/start)
@@ -166,7 +166,7 @@ See [NPM documentation](https://docs.npmjs.com/cli/start) for details.
 
 ### Presets
 
-`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example or browse [available presets](https://www.npmjs.com/browse/keyword/start-preset).
+`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example and browse [available presets](https://www.npmjs.com/browse/keyword/start-preset).
 
 ## API
 
@@ -206,7 +206,7 @@ Second function calls made by `start` and tasks:
   * `error` – may come with `message`
 * `message` – may be undefined, string, array of strings or instance of Error
 
-See [start-simple-reporter](https://github.com/start-runner/simple-reporter) as an example or browse [available reporters](https://www.npmjs.com/browse/keyword/start-reporter).
+See [start-simple-reporter](https://github.com/start-runner/simple-reporter) as an example and browse [available reporters](https://www.npmjs.com/browse/keyword/start-reporter).
 
 ### Task
 
@@ -256,7 +256,7 @@ Second function call made by `start` with the result of previous task in chain. 
 ]
 ```
 
-So every task between them should rely on the first structure and provide the second one.
+So every task between them should rely on the first structure and provide the second one. See [start-babel](https://github.com/start-runner/babel) and [start-less](https://github.com/start-runner/less) as an examples.
 
 #### `taskName(log)`
 
