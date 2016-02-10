@@ -7,7 +7,6 @@
   "repository": "start-runner/start",
   "author": "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
   "files": [ "build/" ],
-  "bin": "build/cli.js",
   "main": "build/index.js",
   "dependencies": {
     "babel-runtime": "6.x.x"
