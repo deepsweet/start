@@ -35,7 +35,7 @@
   "scripts": {
     "start": "babel-node node_modules/.bin/start start-start-preset",
     "prepush": "npm start prepush",
-    "prepublish": "npm run build"
+    "prepublish": "npm start build"
   },
   "engines": {
     "node": ">=0.12.0",
