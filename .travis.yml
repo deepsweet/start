@@ -13,4 +13,4 @@ branches:
   only:
     - master
 
-script: npm start travis
+script: npm start ci
