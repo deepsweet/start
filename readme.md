@@ -29,6 +29,7 @@ import reporter from 'start-pretty-reporter';
 import files from 'start-files';
 import watch from 'start-watch';
 import clean from 'start-clean';
+import read from 'start-read';
 import babel from 'start-babel';
 import write from 'start-write';
 import eslint from 'start-eslint';
@@ -45,6 +46,7 @@ export function build() {
         files('build/'),
         clean(),
         files('lib/**/*.js'),
+        read(),
         babel(),
         write('build/')
     );
@@ -57,6 +59,7 @@ export function dev() {
         files('lib/**/*.js'),
         watch(file => start(
             files(file),
+            read(),
             babel(),
             write('build/')
         ))
@@ -232,7 +235,16 @@ First function call made by user. `params` can be options object, multiple argum
 
 Second function call made by `start` with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
-[start-files](https://github.com/start-runner/files) provides an array of found files paths as output:
+Some tasks like [start-tape](https://github.com/start-runner/tape) rely on array of files paths. This may be provided by [start-files](https://github.com/start-runner/files):
+
+```js
+start(
+    files('tests/**/*.js'),
+    tape()
+)
+```
+
+`input`:
 
 ```js
 [
@@ -241,22 +253,43 @@ Second function call made by `start` with the result of previous task in chain. 
 ]
 ```
 
-[start-write](https://github.com/start-runner/write) is rely on array of `{ path, data }` objects as input:
+Some tasks like [start-babel](https://github.com/start-runner/babel) rely on files data and/or source maps. This may be provided by [start-read](https://github.com/start-runner/read) or other tasks which works with data:
+
+```js
+start(
+    files('lib/**/*.js'),
+    read(),
+    babel()
+)
+```
+
+`input`:
 
 ```js
 [
     {
       path: '/absolute/path/file1.js',
-      data: '…'
+      data: '…',
+      map: '…'
     },
     {
       path: '/absolute/path/file2.js',
-      data: '…'
+      data: '…',
+      map: null
     }
 ]
 ```
 
-So every task between them should rely on the first structure and provide the second one. See [start-babel](https://github.com/start-runner/babel) and [start-less](https://github.com/start-runner/less) as an examples.
+And finally [start-write](https://github.com/start-runner/read) may output files data along with source maps (if present):
+
+```js
+start(
+    files('lib/**/*.js'),
+    read(),
+    babel({ sourceMaps: true }),
+    write('build/')
+)
+```
 
 #### `taskName(log)`
 
