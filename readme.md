@@ -274,6 +274,6 @@ Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task).
 
 ## Copyrights
 
-This software is released under the terms of the [MIT license](LICENSE).
+This software is released under the terms of the [MIT License](license.md).
 
 The font used in logo is [supernova fat](http://www.ffonts.net/supernova-fat.font).
