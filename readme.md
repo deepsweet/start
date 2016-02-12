@@ -10,8 +10,8 @@
 <img src="logo.png" width="100" height="100" align="right" alt="logo"/>
 
 * really [dead simple](lib/index.js)
-* extremely modular
-* flexible by the nature of composable functions
+* highly decomposed and modular
+* flexible and functional
 * powered by chaining Promises to control tasks flow
 
 ## Install
