@@ -26,6 +26,7 @@ npm i -S start
 // tasks.js
 import Start from 'start';
 import reporter from 'start-pretty-reporter';
+import env from 'start-env';
 import files from 'start-files';
 import watch from 'start-watch';
 import clean from 'start-clean';
@@ -43,6 +44,7 @@ const start = Start(reporter());
 
 export function build() {
     return start(
+        env('production'),
         files('build/'),
         clean(),
         files('lib/**/*.js'),
@@ -54,6 +56,7 @@ export function build() {
 
 export function dev() {
     return start(
+        env('development'),
         files('build/'),
         clean(),
         files('lib/**/*.js'),
@@ -68,6 +71,7 @@ export function dev() {
 
 export function lint() {
     return start(
+        env('test'),
         files([ 'lib/**/*.js', 'test/**/*.js' ]),
         eslint()
     );
@@ -75,6 +79,7 @@ export function lint() {
 
 export function test() {
     return start(
+        env('test'),
         files('test/**/*.js'),
         mocha()
     );
@@ -82,6 +87,7 @@ export function test() {
 
 export function tdd() {
     return start(
+        env('test'),
         files([ 'lib/**/*.js', 'test/**/*.js' ]),
         watch(test)
     );
@@ -89,6 +95,7 @@ export function tdd() {
 
 export function cover() {
     return start(
+        env('test'),
         files('coverage/'),
         clean(),
         files('lib/**/*.js'),
