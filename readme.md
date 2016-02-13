@@ -87,7 +87,6 @@ export function test() {
 
 export function tdd() {
     return start(
-        env('test'),
         files([ 'lib/**/*.js', 'test/**/*.js' ]),
         watch(test)
     );
