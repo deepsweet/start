@@ -24,10 +24,16 @@ branches:
   only:
     - master
 
+# do not build on tags (GitHub only)
 skip_tags: true
 
+# immediately finish build once one of the jobs fails
 matrix:
   fast_finish: true
+
+# fetch repository as zip archive
+shallow_clone: true
+clone_depth: 1
 
 cache:
   # global npm modules
@@ -37,4 +43,5 @@ cache:
   # local npm modules
   - node_modules -> package.json
 
+# don't actually build
 build: off
