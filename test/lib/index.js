@@ -30,7 +30,7 @@ test('single task + resolve', t => {
     ).then(function() {
         t.true(
             testSpy.calledOnce,
-            'task must be called once'
+            'task must been called once'
         );
 
         t.end();
@@ -52,7 +52,7 @@ test('single task + reject', t => {
     ).catch(function() {
         t.true(
             testSpy.calledOnce,
-            'task must be called once'
+            'task must been called once'
         );
 
         t.end();
@@ -87,17 +87,17 @@ test('sequence of tasks + resolve', t => {
     ).then(function() {
         t.true(
             testSpy1.calledOnce,
-            'task 1 must be called once'
+            'task 1 must been called once'
         );
 
         t.true(
             testSpy2.calledOnce,
-            'task 2 must be called once'
+            'task 2 must been called once'
         );
 
         t.true(
             testSpy1.calledBefore(testSpy2),
-            'tasks must be called in sequence'
+            'tasks must been called in sequence'
         );
 
         t.end();
@@ -128,7 +128,7 @@ test('sequence of tasks + reject', t => {
     ).catch(function() {
         t.true(
             testSpy1.calledOnce,
-            'task must be called once'
+            'task must been called once'
         );
 
         t.equal(
@@ -165,7 +165,7 @@ test('sequence of tasks + hard error', t => {
     ).catch(function() {
         t.true(
             testSpy1.calledOnce,
-            'task 1 must be called once'
+            'task 1 must been called once'
         );
 
         t.equal(
@@ -208,17 +208,17 @@ test('nested', t => {
     ).then(function() {
         t.true(
             testSpy1.calledOnce,
-            'task 1 must be called once'
+            'task 1 must been called once'
         );
 
         t.true(
             testSpy2.calledOnce,
-            'task 2 must be called once'
+            'task 2 must been called once'
         );
 
         t.true(
             testSpy1.calledBefore(testSpy2),
-            'tasks must be called in sequence'
+            'tasks must been called in sequence'
         );
 
         t.end();
@@ -240,7 +240,7 @@ test('reporter + single task + resolve', t => {
         t.equal(
             spyReporter.callCount,
             2,
-            'reporter must be called 2 times'
+            'reporter must been called 2 times'
         );
 
         t.true(
@@ -272,7 +272,7 @@ test('reporter + single task + reject', t => {
         t.equal(
             spyReporter.callCount,
             2,
-            'reporter must be called 2 times'
+            'reporter must been called 2 times'
         );
 
         t.true(
@@ -304,7 +304,7 @@ test('reporter + single task + hard error inside the Promise', t => {
         t.equal(
             spyReporter.callCount,
             2,
-            'reporter must be called 2 times'
+            'reporter must been called 2 times'
         );
 
         t.true(
@@ -338,7 +338,7 @@ test('reporter + single task + hard error outside the Promise', t => {
         t.equal(
             spyReporter.callCount,
             2,
-            'reporter must be called 2 times'
+            'reporter must been called 2 times'
         );
 
         t.true(
@@ -372,7 +372,7 @@ test('reporter + single task + log', t => {
         t.equal(
             spyReporter.callCount,
             3,
-            'reporter must be called 3 times'
+            'reporter must been called 3 times'
         );
 
         t.true(
@@ -414,7 +414,7 @@ test('default reporter', t => {
         t.equal(
             spyReporter.callCount,
             2,
-            'reporter must be called 2 times'
+            'reporter must been called 2 times'
         );
 
         t.true(
