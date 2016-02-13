@@ -242,7 +242,7 @@ First function call made by user. `params` can be options object, multiple argum
 
 Second function call made by `start` with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
-Some tasks like [start-tape](https://github.com/start-runner/tape) rely on array of files paths. This may be provided by [start-files](https://github.com/start-runner/files):
+Tasks like [start-tape](https://github.com/start-runner/tape) relies on array of files paths. This may be provided by [start-files](https://github.com/start-runner/files):
 
 ```js
 start(
@@ -260,7 +260,7 @@ start(
 ]
 ```
 
-Some tasks like [start-babel](https://github.com/start-runner/babel) rely on files data and/or source maps. This may be provided by [start-read](https://github.com/start-runner/read) or other tasks which works with data:
+Tasks like [start-babel](https://github.com/start-runner/babel) relies on files data and optional source maps. This may be provided by [start-read](https://github.com/start-runner/read) or other tasks which works with data:
 
 ```js
 start(
