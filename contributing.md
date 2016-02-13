@@ -14,4 +14,4 @@
 * :lipstick: — cosmetic refactoring
 * :space_invader: — tests
 * :microscope: — experiment
-* :pencil: — README/docs update
+* :pencil: — readme/docs update
