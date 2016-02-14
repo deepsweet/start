@@ -1,21 +1,30 @@
+# https://docs.travis-ci.com/user/customizing-the-build/
+
 sudo: false
-
-language: node_js
-
-cache:
-  directories:
-    - node_modules
 
 git:
   depth: 1
+
+language: node_js
 
 node_js:
   - "0.12"
   - "4"
   - "5"
 
+cache:
+  directories:
+    - node_modules
+
 branches:
   only:
     - master
+
+matrix:
+  fast_finish: true
+
+before_install:
+  - npm install -g npm
+  - npm --version
 
 script: npm start ci
