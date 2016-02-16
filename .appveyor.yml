@@ -16,9 +16,7 @@ environment:
     - nodejs_version: "5"
 
 cache:
-  - "%APPDATA%\\npm\\node_modules -> package.json"
-  - "%APPDATA%\\npm-cache -> package.json"
-  - node_modules -> package.json
+  - "%APPDATA%\\npm-cache"
 
 branches:
   only:
