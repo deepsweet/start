@@ -35,10 +35,10 @@ import babel from 'start-babel';
 import write from 'start-write';
 import eslint from 'start-eslint';
 import mocha from 'start-mocha';
-import * as coverage from 'start-coverage';
+import * as istanbul from 'start-istanbul';
 import codecov from 'start-codecov';
 
-import istanbul from 'babel-istanbul';
+import babelIstanbul from 'babel-istanbul';
 
 const start = Start(reporter());
 
@@ -92,15 +92,15 @@ export function tdd() {
     );
 }
 
-export function cover() {
+export function coverage() {
     return start(
         env('test'),
         files('coverage/'),
         clean(),
         files('lib/**/*.js'),
-        coverage.instrument(istanbul),
+        istanbul.instrument(babelIstanbul),
         test,
-        coverage.report()
+        istanbul.report()
     );
 }
 
@@ -169,7 +169,7 @@ npm start dev
 npm start lint
 npm start test
 npm start tdd
-npm start cover
+npm start coverage
 npm start travis
 ```
 
