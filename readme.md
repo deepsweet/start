@@ -107,7 +107,7 @@ export function coverage() {
 export function travis() {
     return start(
         lint,
-        cover,
+        coverage,
         files('coverage/lcov.info'),
         read(),
         codecov()
