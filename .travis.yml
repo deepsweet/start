@@ -12,6 +12,7 @@ node_js:
 branches:
   only:
     - master
+    - /^greenkeeper-.*$/
 
 matrix:
   fast_finish: true

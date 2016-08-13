@@ -2,31 +2,33 @@
   "name": "start",
   "version": "4.0.1",
   "description": "Dead simple tasks runner",
-  "keywords": [ "tasks", "runner", "start" ],
+  "keywords": [
+    "tasks",
+    "runner",
+    "start"
+  ],
   "homepage": "https://github.com/start-runner/start",
   "repository": "start-runner/start",
   "author": "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
-  "files": [ "build/" ],
+  "files": [
+    "build/"
+  ],
   "main": "build/index.js",
   "dependencies": {
-    "babel-runtime": "6.x.x"
+    "babel-runtime": "^6.11.6"
   },
   "devDependencies": {
-    "start-babel-cli": "1.x.x",
-    "start-start-preset": "2.x.x",
-
-    "babel-preset-es2015": "6.9.x",
-    "babel-plugin-transform-runtime": "6.12.x",
-    "babel-plugin-add-module-exports": "0.2.x",
-
-    "babel-eslint": "6.1.x",
-    "eslint-plugin-babel": "3.3.x",
-    "eslint-config-rebem": "1.x.x",
-
-    "tape": "4.6.x",
-    "sinon": "1.17.x",
-
-    "husky": "0.11.x"
+    "start-babel-cli": "^1.0.0",
+    "start-start-preset": "^2.0.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-eslint": "^6.1.2",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-config-rebem": "^1.1.0",
+    "tape": "^4.6.0",
+    "sinon": "^1.17.5",
+    "husky": "^0.11.6"
   },
   "scripts": {
     "start": "start-runner start-start-preset",
@@ -34,8 +36,7 @@
     "prepublish": "npm start build"
   },
   "engines": {
-    "node": ">=0.12.0",
-    "npm": ">=2.7.0"
+    "node": ">=0.12.0"
   },
   "license": "MIT"
 }
