@@ -5,7 +5,6 @@
 [![windows build](https://img.shields.io/appveyor/ci/start-runner/start.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/start-runner/start)
 [![coverage](https://img.shields.io/codecov/c/github/start-runner/start.svg?style=flat-square)](https://codecov.io/github/start-runner/start)
 [![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
-[![gitter](https://img.shields.io/badge/gitter-join_chat_%E2%86%92-46bc99.svg?style=flat-square)](https://gitter.im/start-runner/start)
 
 <img src="logo.png" width="100" height="100" align="right" alt="logo"/>
 
