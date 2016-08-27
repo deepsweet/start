@@ -5,7 +5,7 @@ import start from '../../lib/index';
 
 const noopReporter = () => {};
 
-test('export', t => {
+test('export', (t) => {
     t.equal(
         typeof start,
         'function',
@@ -15,19 +15,19 @@ test('export', t => {
     t.end();
 });
 
-test('single task + resolve', t => {
+test('single task + resolve', (t) => {
     const testSpy = spy();
 
     start(noopReporter)(
-        function() {
+        () => {
             return function testTask() {
-                return new Promise(function(resolve) {
+                return new Promise((resolve) => {
                     testSpy();
                     resolve();
                 });
             };
         }
-    ).then(function() {
+    ).then(() => {
         t.true(
             testSpy.calledOnce,
             'task must been called once'
@@ -37,19 +37,19 @@ test('single task + resolve', t => {
     });
 });
 
-test('single task + reject', t => {
+test('single task + reject', (t) => {
     const testSpy = spy();
 
     start(noopReporter)(
-        function() {
+        () => {
             return function testTask() {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     testSpy();
                     reject();
                 });
             };
         }
-    ).catch(function() {
+    ).catch(() => {
         t.true(
             testSpy.calledOnce,
             'task must been called once'
@@ -59,32 +59,32 @@ test('single task + reject', t => {
     });
 });
 
-test('sequence of tasks + resolve', t => {
+test('sequence of tasks + resolve', (t) => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
     start(noopReporter)(
-        function() {
+        () => {
             return function testTask1() {
-                return new Promise(function(resolve) {
-                    setTimeout(function() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
                         testSpy1();
                         resolve();
                     }, 0);
                 });
             };
         },
-        function() {
+        () => {
             return function testTask2() {
-                return new Promise(function(resolve) {
-                    setTimeout(function() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
                         testSpy2();
                         resolve();
                     }, 0);
                 });
             };
         }
-    ).then(function() {
+    ).then(() => {
         t.true(
             testSpy1.calledOnce,
             'task 1 must been called once'
@@ -104,28 +104,28 @@ test('sequence of tasks + resolve', t => {
     });
 });
 
-test('sequence of tasks + reject', t => {
+test('sequence of tasks + reject', (t) => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
     start(noopReporter)(
-        function() {
+        () => {
             return function testTask1() {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     testSpy1();
                     reject();
                 });
             };
         },
-        function() {
+        () => {
             return function testTask2() {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     testSpy2();
                     reject();
                 });
             };
         }
-    ).catch(function() {
+    ).catch(() => {
         t.true(
             testSpy1.calledOnce,
             'task must been called once'
@@ -141,28 +141,28 @@ test('sequence of tasks + reject', t => {
     });
 });
 
-test('sequence of tasks + hard error', t => {
+test('sequence of tasks + hard error', (t) => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
     start(noopReporter)(
-        function() {
+        () => {
             return function testTask1() {
-                return new Promise(function() {
+                return new Promise(() => {
                     testSpy1();
                     throw new Error('oops');
                 });
             };
         },
-        function() {
+        () => {
             return function testTask2() {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     testSpy2();
                     reject();
                 });
             };
         }
-    ).catch(function() {
+    ).catch(() => {
         t.true(
             testSpy1.calledOnce,
             'task 1 must been called once'
@@ -178,34 +178,34 @@ test('sequence of tasks + hard error', t => {
     });
 });
 
-test('nested', t => {
+test('nested', (t) => {
     const testSpy1 = spy();
     const testSpy2 = spy();
 
-    function sub() {
+    const sub = () => {
         return start(noopReporter)(
-            function() {
+            () => {
                 return function testTask1() {
-                    return new Promise(function(resolve) {
+                    return new Promise((resolve) => {
                         testSpy1();
                         resolve();
                     });
                 };
             }
         );
-    }
+    };
 
     start(noopReporter)(
         sub,
-        function() {
+        () => {
             return function testTask2() {
-                return new Promise(function(resolve) {
+                return new Promise((resolve) => {
                     testSpy2();
                     resolve();
                 });
             };
         }
-    ).then(function() {
+    ).then(() => {
         t.true(
             testSpy1.calledOnce,
             'task 1 must been called once'
@@ -225,18 +225,18 @@ test('nested', t => {
     });
 });
 
-test('reporter + single task + resolve', t => {
+test('reporter + single task + resolve', (t) => {
     const spyReporter = spy();
 
     start(spyReporter)(
-        function() {
+        () => {
             return function testTask() {
-                return new Promise(function(resolve) {
+                return new Promise((resolve) => {
                     resolve('resolve');
                 });
             };
         }
-    ).then(function() {
+    ).then(() => {
         t.equal(
             spyReporter.callCount,
             2,
@@ -257,18 +257,18 @@ test('reporter + single task + resolve', t => {
     });
 });
 
-test('reporter + single task + reject', t => {
+test('reporter + single task + reject', (t) => {
     const spyReporter = spy();
 
     start(spyReporter)(
-        function() {
+        () => {
             return function testTask() {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     reject('error');
                 });
             };
         }
-    ).catch(function() {
+    ).catch(() => {
         t.equal(
             spyReporter.callCount,
             2,
@@ -289,18 +289,18 @@ test('reporter + single task + reject', t => {
     });
 });
 
-test('reporter + single task + hard error inside the Promise', t => {
+test('reporter + single task + hard error inside the Promise', (t) => {
     const spyReporter = spy();
 
     start(spyReporter)(
-        function() {
+        () => {
             return function testTask() {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     throw new Error('oops');
                 });
             };
         }
-    ).catch(function() {
+    ).catch(() => {
         t.equal(
             spyReporter.callCount,
             2,
@@ -321,20 +321,20 @@ test('reporter + single task + hard error inside the Promise', t => {
     });
 });
 
-test('reporter + single task + hard error outside the Promise', t => {
+test('reporter + single task + hard error outside the Promise', (t) => {
     const spyReporter = spy();
 
     start(spyReporter)(
-        function() {
+        () => {
             return function testTask() {
                 throw new Error('oops');
 
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     resolve();
                 });
             };
         }
-    ).catch(function() {
+    ).catch(() => {
         t.equal(
             spyReporter.callCount,
             2,
@@ -355,20 +355,20 @@ test('reporter + single task + hard error outside the Promise', t => {
     });
 });
 
-test('reporter + single task + log', t => {
+test('reporter + single task + log', (t) => {
     const spyReporter = spy();
 
     start(spyReporter)(
-        function() {
+        () => {
             return function testTask(log) {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     log('test');
 
                     resolve();
                 });
             };
         }
-    ).then(function() {
+    ).then(() => {
         t.equal(
             spyReporter.callCount,
             3,
@@ -394,21 +394,21 @@ test('reporter + single task + log', t => {
     });
 });
 
-test('default reporter', t => {
+test('default reporter', (t) => {
     const origConsoleLog = console.log;
     const spyReporter = spy();
 
     console.log = spyReporter;
 
     start()(
-        function() {
+        () => {
             return function testTask(log) {
-                return new Promise(function(resolve, reject) {
+                return new Promise((resolve, reject) => {
                     resolve();
                 });
             };
         }
-    ).then(function() {
+    ).then(() => {
         console.log = origConsoleLog;
 
         t.equal(
