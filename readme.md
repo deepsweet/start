@@ -36,8 +36,6 @@ import mocha from 'start-mocha';
 import * as istanbul from 'start-istanbul';
 import codecov from 'start-codecov';
 
-import babelIstanbul from 'babel-istanbul';
-
 const start = Start(reporter());
 
 export function build() {
@@ -91,7 +89,7 @@ export function coverage() {
         files('coverage/'),
         clean(),
         files('lib/**/*.js'),
-        istanbul.instrument(babelIstanbul),
+        istanbul.instrument(),
         test,
         istanbul.report()
     );
