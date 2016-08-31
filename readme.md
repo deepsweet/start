@@ -25,6 +25,7 @@ npm i -S start
 // tasks.js
 import Start from 'start';
 import reporter from 'start-pretty-reporter';
+import env from 'start-env';
 import files from 'start-files';
 import watch from 'start-watch';
 import clean from 'start-clean';
@@ -38,72 +39,62 @@ import codecov from 'start-codecov';
 
 const start = Start(reporter());
 
-export function build() {
-    return start(
-        files('build/'),
-        clean(),
-        files('lib/**/*.js'),
+export const build = () => start(
+    env('NODE_ENV', 'production'),
+    files('build/'),
+    clean(),
+    files('lib/**/*.js'),
+    read(),
+    babel(),
+    write('build/')
+);
+
+export const dev = () => start(
+    env('NODE_ENV', 'development'),
+    files('build/'),
+    clean(),
+    files('lib/**/*.js'),
+    watch((file) => start(
+        files(file),
         read(),
         babel(),
         write('build/')
-    );
-}
+    ))
+);
 
-export function dev() {
-    return start(
-        files('build/'),
-        clean(),
-        files('lib/**/*.js'),
-        watch(file => start(
-            files(file),
-            read(),
-            babel(),
-            write('build/')
-        ))
-    );
-}
+export const lint = () => start(
+    files([ 'lib/**/*.js', 'test/**/*.js' ]),
+    eslint()
+);
 
-export function lint() {
-    return start(
-        files([ 'lib/**/*.js', 'test/**/*.js' ]),
-        eslint()
-    );
-}
+export const test = () => start(
+    env('NODE_ENV', 'test'),
+    files('test/**/*.js'),
+    mocha()
+);
 
-export function test() {
-    return start(
-        files('test/**/*.js'),
-        mocha()
-    );
-}
+export tdd = () => start(
+    files([ 'lib/**/*.js', 'test/**/*.js' ]),
+    watch(test)
+);
 
-export function tdd() {
-    return start(
-        files([ 'lib/**/*.js', 'test/**/*.js' ]),
-        watch(test)
-    );
-}
+export coverage = () => start(
+    env('NODE_ENV', 'test'),
+    files('coverage/'),
+    clean(),
+    files('lib/**/*.js'),
+    istanbul.instrument(),
+    test,
+    istanbul.report()
+);
 
-export function coverage() {
-    return start(
-        files('coverage/'),
-        clean(),
-        files('lib/**/*.js'),
-        istanbul.instrument(),
-        test,
-        istanbul.report()
-    );
-}
-
-export function travis() {
-    return start(
-        lint,
-        coverage,
-        files('coverage/lcov.info'),
-        read(),
-        codecov()
-    );
-}
+export ci = () => start(
+    lint,
+    coverage,
+    files('coverage/lcov.info'),
+    read(),
+    codecov()
+);
 ```
 
 Each named export return a "tasks runner" – sequence of tasks Promises managed by `start`, which will run them one by one passing data through until an error occurs.
@@ -161,7 +152,7 @@ npm start lint
 npm start test
 npm start tdd
 npm start coverage
-npm start travis
+npm start ci
 ```
 
 See [NPM documentation](https://docs.npmjs.com/cli/start) for details.
