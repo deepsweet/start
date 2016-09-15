@@ -83,7 +83,7 @@ export coverage = () => start(
     files('coverage/'),
     clean(),
     files('lib/**/*.js'),
-    istanbul.instrument(),
+    istanbul.instrument({ esModules: true }),
     test,
     istanbul.report()
 );
