@@ -1,8 +1,8 @@
 # start
 
 [![npm](https://img.shields.io/npm/v/start.svg?style=flat-square)](https://www.npmjs.com/package/start)
-[![linux build](https://img.shields.io/travis/start-runner/start.svg?label=linux&style=flat-square)](https://travis-ci.org/start-runner/start)
-[![windows build](https://img.shields.io/appveyor/ci/start-runner/start.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/start-runner/start)
+[![linux build](https://img.shields.io/travis/start-runner/start/master.svg?label=linux&style=flat-square)](https://travis-ci.org/start-runner/start)
+[![windows build](https://img.shields.io/appveyor/ci/start-runner/start/master.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/start-runner/start)
 [![coverage](https://img.shields.io/codecov/c/github/start-runner/start.svg?style=flat-square)](https://codecov.io/github/start-runner/start)
 [![deps](https://img.shields.io/gemnasium/start-runner/start.svg?style=flat-square)](https://gemnasium.com/start-runner/start)
 
