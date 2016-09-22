@@ -123,7 +123,13 @@ npm i -D start-simple-cli
 ```
 
 ```
-start-runner <tasks file or moduleID to require> <tasks runner name>
+Usage: start-runner [options] <tasks runner>
+
+Options:
+
+  -h, --help              output usage information
+  -f, --file, <file>      tasks file path, tasks.js by default
+  -p, --preset, <preset>  tasks preset
 ```
 
 Browse [available CLIs](https://www.npmjs.com/browse/keyword/start-cli).
@@ -139,7 +145,7 @@ npm i -D start-babel-cli
 ```js
 // package.json
 "scripts": {
-  "start": "start-runner ./tasks"
+  "start": "start-runner -f tasks.js"
 }
 ```
 
@@ -159,7 +165,14 @@ See [NPM documentation](https://docs.npmjs.com/cli/start) for details.
 
 ### Presets
 
-`<tasks file or moduleID to require>` means that you can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example and browse [available presets](https://www.npmjs.com/browse/keyword/start-preset).
+You can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example and browse [available presets](https://www.npmjs.com/browse/keyword/start-preset).
+
+```js
+// package.json
+"scripts": {
+  "start": "start-runner -p start-my-es6-preset"
+}
+```
 
 ## API
 
