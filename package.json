@@ -31,7 +31,7 @@
     "husky": "^0.11.6"
   },
   "scripts": {
-    "start": "start-runner start-start-preset",
+    "start": "start-runner -p start-start-preset",
     "prepush": "npm start prepush",
     "prepublish": "npm start build"
   },
