@@ -14,9 +14,6 @@
     "build/"
   ],
   "main": "build/index.js",
-  "dependencies": {
-    "babel-runtime": "^6.11.6"
-  },
   "devDependencies": {
     "start-babel-cli": "^3.0.0",
     "start-start-preset": "^2.0.0",
