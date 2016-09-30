@@ -23,7 +23,7 @@
     "babel-eslint": "^6.1.2",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-config-rebem": "^1.1.0",
-    "tape": "^4.6.0",
+    "tape": "^4.6.1",
     "sinon": "^1.17.5",
     "husky": "^0.11.6"
   },
