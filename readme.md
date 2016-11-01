@@ -97,20 +97,17 @@ export ci = () => start(
 );
 ```
 
-Each named export return a "tasks runner" – sequence of tasks Promises managed by `start`, which will run them one by one passing data through until an error occurs.
-
-As you can see in the example above runners can be nested in each other to achieve great reusability. Also, because `start` is just a Promise you can put few runners in `Promise.all()` to get a parallel run for free.
+Each named export return a "tasks runner" – sequence of tasks Promises managed by `start`, which will run them one by one passing data through until an error occurs. Also, as you can see, runners can be nested in each other to achieve great reusability.
 
 You can then call tasks runners manually:
 
 ```js
 build()
-    .then(data => {
-        console.log('ok');
+    .then((data) => {
+        console.log('ok', data);
     })
-    .catch(error => {
-        console.log('not ok');
-        process.exit(1);
+    .catch((error) => {
+        console.error('not ok', error);
     });
 ```
 
@@ -165,7 +162,7 @@ See [NPM documentation](https://docs.npmjs.com/cli/start) for details.
 
 ### Presets
 
-You can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example and browse [available presets](https://www.npmjs.com/browse/keyword/start-preset).
+You can make your tasks file (and its dependencies!) completely external and shareable. Like a `start-my-es6-preset` package for a bunch of your similar projects. See [start-start-preset](https://github.com/start-runner/start-preset) as an example and browse [available presets](https://www.npmjs.com/browse/keyword/start-preset).
 
 ```js
 // package.json
@@ -186,7 +183,7 @@ start(reporter())(
 
 ### Reporter
 
-Reporter is an external function that print the results of running tasks.
+Reporter is an external function which prints the results of running tasks.
 
 The simplest dummy reporter can be represented as following:
 
