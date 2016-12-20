@@ -8,15 +8,17 @@
 
 <img src="logo.png" width="100" height="100" align="right" alt="logo"/>
 
-* really [dead simple](lib/index.js)
-* highly decomposed and modular
+* highly composable and modular
+* [dead simple](lib/index.js)
 * flexible and functional
 * powered by chaining Promises to control tasks flow
 
 ## Install
 
-```
+```sh
 npm i -S start
+# or
+yarn add start
 ```
 
 ## Tasks
@@ -83,7 +85,7 @@ export coverage = () => start(
     files('coverage/'),
     clean(),
     files('lib/**/*.js'),
-    istanbul.instrument({ esModules: true }),
+    istanbul.instrument(),
     test,
     istanbul.report()
 );
@@ -97,17 +99,17 @@ export ci = () => start(
 );
 ```
 
-Each named export return a "tasks runner" – sequence of tasks Promises managed by `start`, which will run them one by one passing data through until an error occurs. Also, as you can see, runners can be nested in each other to achieve great reusability.
+Each named export return a Promise – "tasks runner" – sequence of tasks managed by `start`, which will run them one by one passing data through until an error occurs. As you can see tasks runners can be nested in each other to achieve great reusability.
 
-You can then call tasks runners manually:
+You can run it manually:
 
 ```js
 build()
     .then((data) => {
-        console.log('ok', data);
+        console.log('ok:', data);
     })
     .catch((error) => {
-        console.error('not ok', error);
+        console.error('not ok:', error);
     });
 ```
 
@@ -115,8 +117,10 @@ Or you can use an external CLI:
 
 ## CLI
 
-```
+```sh
 npm i -D start-simple-cli
+# or
+yarn add --dev start-simple-cli
 ```
 
 ```
@@ -135,8 +139,10 @@ Browse [available CLIs](https://www.npmjs.com/browse/keyword/start-cli).
 
 For example for `tasks.js` listed above, transpiling with Babel:
 
-```
+```sh
 npm i -D start-babel-cli
+# or
+yarn add --dev start-babel-cli
 ```
 
 ```js
@@ -148,7 +154,7 @@ npm i -D start-babel-cli
 
 And your available commands are:
 
-```
+```sh
 npm start build
 npm start dev
 npm start lint
@@ -156,6 +162,14 @@ npm start test
 npm start tdd
 npm start coverage
 npm start ci
+# or
+yarn start build
+yarn start dev
+yarn start lint
+yarn start test
+yarn start tdd
+yarn start coverage
+yarn start ci
 ```
 
 See [NPM documentation](https://docs.npmjs.com/cli/start) for details.
@@ -199,7 +213,7 @@ First function call made by user. `params` can be options object, multiple argum
 
 #### `(name, type, message)`
 
-Second function calls made by `start` and tasks:
+Second function call made by `start`:
 
 * `name` – task name
 * `type` – log type:
@@ -235,7 +249,7 @@ First function call made by user. `params` can be options object, multiple argum
 
 Second function call made by `start` with the result of previous task in chain. It's a good idea to pass the `input` data through if your task doesn't modify it.
 
-Tasks like [start-tape](https://github.com/start-runner/tape) relies on array of files paths. This may be provided by [start-files](https://github.com/start-runner/files):
+Tasks like [start-tape](https://github.com/start-runner/tape) relies on array of files paths. This can be provided by [start-files](https://github.com/start-runner/files):
 
 ```js
 start(
@@ -253,7 +267,7 @@ start(
 ]
 ```
 
-Tasks like [start-babel](https://github.com/start-runner/babel) relies on files data and optional source maps. This may be provided by [start-read](https://github.com/start-runner/read) or other tasks which works with data:
+Tasks like [start-babel](https://github.com/start-runner/babel) relies on files data and optional source maps. This can be provided by [start-read](https://github.com/start-runner/read) or other tasks which works with data:
 
 ```js
 start(
@@ -280,7 +294,7 @@ start(
 ]
 ```
 
-And finally [start-write](https://github.com/start-runner/read) may output files data along with source maps (if present):
+And finally [start-write](https://github.com/start-runner/read) may output files data along with source maps:
 
 ```js
 start(
@@ -293,7 +307,7 @@ start(
 
 #### `taskName(log)`
 
-Third function call made by `start`. `taskName` will be used as task name for logging, and `log` is a function that bound to `reporter(name, 'info')`. So if your task has something to say expect errors then you have to call `log` with message (or array of messages) like `log('beep')`.
+Third function call made by `start`. `taskName` will be used as task name for logging, and `log` is a function that bound to `reporter(name, 'info')`. So if your task has something to say expect errors then you have to call `log` with message (or array of messages).
 
 #### `require`
 
