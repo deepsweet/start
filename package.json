@@ -15,17 +15,17 @@
   ],
   "main": "build/index.js",
   "devDependencies": {
-    "start-babel-cli": "^3.0.0",
-    "start-start-preset": "^2.0.0",
-    "babel-preset-es2015": "^6.13.2",
-    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-eslint": "^7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-eslint": "^6.1.2",
-    "eslint-plugin-babel": "^3.3.0",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-es2015": "^6.13.2",
     "eslint-config-rebem": "^1.1.0",
-    "tape": "^4.6.0",
+    "eslint-plugin-babel": "^4.0.0",
+    "husky": "^0.12.0",
     "sinon": "^1.17.5",
-    "husky": "^0.11.6"
+    "start-babel-cli": "^3.0.0",
+    "start-start-preset": "^3.0.0",
+    "tape": "^4.6.0"
   },
   "scripts": {
     "start": "start-runner -p start-start-preset",
@@ -33,7 +33,7 @@
     "prepublish": "npm start build"
   },
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=4"
   },
   "license": "MIT"
 }
