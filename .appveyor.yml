@@ -1,40 +1,26 @@
 # https://www.appveyor.com/docs/appveyor-yml
 
 version: "{build}"
-
 init:
   - git config --global core.autocrlf false
-
 shallow_clone: true
-
 environment:
   matrix:
-    - nodejs_version: "0.12"
     - nodejs_version: "4"
-    - nodejs_version: "5"
     - nodejs_version: "6"
-
+    - nodejs_version: "7"
 cache:
-  - "%APPDATA%\\npm-cache"
-
+ - "%LOCALAPPDATA%\\Yarn"
 branches:
   only:
     - master
     - /^greenkeeper-.*$/
-
 skip_tags: true
-
 matrix:
   fast_finish: true
-
 build: off
-
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm install -g npm
-  - npm install
-
+  - yarn
 test_script:
-  - node --version
-  - npm --version
-  - npm start ci
+  - yarn start ci
