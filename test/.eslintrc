@@ -1,5 +1,10 @@
 {
   "extends": [
-    "rebem/configs/test"
-  ]
+    "tough/config/test"
+  ],
+  "rules": {
+    "no-empty-function": 0,
+    "promise/always-return": 0,
+    "immutable/no-mutation": 0
+  }
 }
