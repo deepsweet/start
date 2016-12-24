@@ -19,7 +19,7 @@
     "eslint-config-tough": "^0.3.2",
     "husky": "^0.12.0",
     "sinon": "^1.17.5",
-    "start-babel-cli": "^3.0.0",
+    "start-babel-cli": "^4.0.0",
     "start-start-preset": "^3.0.0",
     "tape": "^4.6.0"
   },
