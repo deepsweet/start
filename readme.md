@@ -42,60 +42,60 @@ import codecov from 'start-codecov';
 const start = Start(reporter());
 
 export const build = () => start(
-    env('NODE_ENV', 'production'),
-    files('build/'),
-    clean(),
-    files('lib/**/*.js'),
-    read(),
-    babel(),
-    write('build/')
+  env('NODE_ENV', 'production'),
+  files('build/'),
+  clean(),
+  files('lib/**/*.js'),
+  read(),
+  babel(),
+  write('build/')
 );
 
 export const dev = () => start(
-    env('NODE_ENV', 'development'),
-    files('build/'),
-    clean(),
-    files('lib/**/*.js'),
-    watch((file) => start(
-        files(file),
-        read(),
-        babel(),
-        write('build/')
-    ))
+  env('NODE_ENV', 'development'),
+  files('build/'),
+  clean(),
+  files('lib/**/*.js'),
+  watch((file) => start(
+    files(file),
+    read(),
+    babel(),
+    write('build/')
+  ))
 );
 
 export const lint = () => start(
-    files([ 'lib/**/*.js', 'test/**/*.js' ]),
-    eslint()
+  files([ 'lib/**/*.js', 'test/**/*.js' ]),
+  eslint()
 );
 
 export const test = () => start(
-    env('NODE_ENV', 'test'),
-    files('test/**/*.js'),
-    mocha()
+  env('NODE_ENV', 'test'),
+  files('test/**/*.js'),
+  mocha()
 );
 
 export tdd = () => start(
-    files([ 'lib/**/*.js', 'test/**/*.js' ]),
-    watch(test)
+  files([ 'lib/**/*.js', 'test/**/*.js' ]),
+  watch(test)
 );
 
 export coverage = () => start(
-    env('NODE_ENV', 'test'),
-    files('coverage/'),
-    clean(),
-    files('lib/**/*.js'),
-    istanbul.instrument(),
-    test,
-    istanbul.report()
+  env('NODE_ENV', 'test'),
+  files('coverage/'),
+  clean(),
+  files('lib/**/*.js'),
+  istanbul.instrument(),
+  test,
+  istanbul.report()
 );
 
 export ci = () => start(
-    lint,
-    coverage,
-    files('coverage/lcov.info'),
-    read(),
-    codecov()
+  lint,
+  coverage,
+  files('coverage/lcov.info'),
+  read(),
+  codecov()
 );
 ```
 
@@ -105,12 +105,12 @@ You can run it manually:
 
 ```js
 build()
-    .then((data) => {
-        console.log('ok:', data);
-    })
-    .catch((error) => {
-        console.error('not ok:', error);
-    });
+  .then((data) => {
+    console.log('ok:', data);
+  })
+  .catch((error) => {
+    console.error('not ok:', error);
+  });
 ```
 
 Or you can use an external CLI:
@@ -189,9 +189,9 @@ You can make your tasks file (and its dependencies!) completely external and sha
 
 ```js
 start(reporter())(
-    task1(),
-    task2(),
-    ...
+  task1(),
+  task2(),
+  ...
 );
 ```
 
@@ -203,7 +203,7 @@ The simplest dummy reporter can be represented as following:
 
 ```js
 export default (params) => (name, type, message) => {
-    console.log(name, type, message);
+  console.log(name, type, message);
 };
 ```
 
@@ -231,13 +231,13 @@ The simplest dummy task can be represented as following:
 
 ```js
 export default (params) => (input) => {
-    return function taskName(log) {
-        const cats = require('cats-names');
+  return function taskName(log) {
+    const cats = require('cats-names');
 
-        log(cats.random());
+    log(cats.random());
 
-        return Promise.resolve(input);
-    };
+    return Promise.resolve(input);
+  };
 };
 ```
 
@@ -253,8 +253,8 @@ Tasks like [start-tape](https://github.com/start-runner/tape) relies on array of
 
 ```js
 start(
-    files('tests/**/*.js'),
-    tape()
+  files('tests/**/*.js'),
+  tape()
 )
 ```
 
@@ -262,8 +262,8 @@ start(
 
 ```js
 [
-    '/absolute/path/file1.js',
-    '/absolute/path/file2.js'
+  '/absolute/path/file1.js',
+  '/absolute/path/file2.js'
 ]
 ```
 
@@ -271,9 +271,9 @@ Tasks like [start-babel](https://github.com/start-runner/babel) relies on files 
 
 ```js
 start(
-    files('lib/**/*.js'),
-    read(),
-    babel()
+  files('lib/**/*.js'),
+  read(),
+  babel()
 )
 ```
 
@@ -281,16 +281,16 @@ start(
 
 ```js
 [
-    {
-      path: '/absolute/path/file1.js',
-      data: '…',
-      map: '…'
-    },
-    {
-      path: '/absolute/path/file2.js',
-      data: '…',
-      map: null
-    }
+  {
+    path: '/absolute/path/file1.js',
+    data: '…',
+    map: '…'
+  },
+  {
+    path: '/absolute/path/file2.js',
+    data: '…',
+    map: null
+  }
 ]
 ```
 
@@ -298,10 +298,10 @@ And finally [start-write](https://github.com/start-runner/read) may output files
 
 ```js
 start(
-    files('lib/**/*.js'),
-    read(),
-    babel({ sourceMaps: true }),
-    write('build/')
+  files('lib/**/*.js'),
+  read(),
+  babel({ sourceMaps: true }),
+  write('build/')
 )
 ```
 
