@@ -1,7 +1,7 @@
 {
   "name": "start",
-  "version": "4.0.2",
-  "description": "Dead simple tasks runner",
+  "version": "5.0.0",
+  "description": "Highly composable and modular Nodejs tasks runner for the new functional JS era",
   "keywords": [
     "tasks",
     "runner",
