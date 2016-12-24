@@ -8,10 +8,10 @@
 
 <img src="logo.png" width="100" height="100" align="right" alt="logo"/>
 
-* highly composable and modular
-* [dead simple](lib/index.js)
-* flexible and functional
-* powered by chaining Promises to control tasks flow
+* highly composable and modular Nodejs tasks runner for the new functional JS era
+* made with Higher-Order Functions and Promises to control tasks flow
+* using an approach similar to [recompose](https://github.com/acdlite/recompose) or [webpack-blocks](https://github.com/andywer/webpack-blocks)
+* and it's really [dead simple](lib/index.js)
 
 ## Install
 
