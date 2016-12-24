@@ -25,8 +25,8 @@
   },
   "scripts": {
     "start": "start-runner -p start-start-preset",
-    "prepush": "npm start prepush",
-    "prepublish": "npm start build"
+    "prepush": "yarn start prepush",
+    "prepublish": "yarn start build"
   },
   "engines": {
     "node": ">=4"
