@@ -13,6 +13,20 @@
 * powered by Higher-Order Functions and Promises
 * really [dead simple](lib/index.js)
 
+## TOC
+
+* [Install](#install)
+* [Tasks](#tasks-file)
+* [CLI](#cli)
+  * [NPM scripts](#npm-scripts)
+  * [Presets](#presets)
+* [API](#api)
+  * [Reporter](#reporter)
+  * [Task](#task)
+* [Advanced usage](#advanced-usage)
+* [FAQ](#faq)
+* [Copyrights](#copyrights)
+
 ## Install
 
 ```sh
@@ -21,7 +35,7 @@ npm i -S start
 yarn add start
 ```
 
-## Tasks
+## Tasks file
 
 ```js
 // tasks.js
@@ -124,18 +138,18 @@ yarn add --dev start-simple-cli
 ```
 
 ```
-Usage: start-runner [options] <tasks runner>
+  Usage: index [options] <tasks runner> [arguments]
 
-Options:
+  Options:
 
-  -h, --help              output usage information
-  -f, --file, <file>      tasks file path, tasks.js by default
-  -p, --preset, <preset>  tasks preset
+    -h, --help              output usage information
+    -f, --file, <file>      tasks file path, tasks.js by default
+    -p, --preset, <preset>  tasks preset
 ```
 
 Browse [available CLIs](https://www.npmjs.com/browse/keyword/start-cli).
 
-### Handy NPM scripts
+### NPM scripts
 
 For example for `tasks.js` listed above, transpiling with Babel:
 
@@ -318,6 +332,99 @@ It's a good idea to "lazyload" your dependencies inside a task scope instead of 
 And finally, your task must return an ES6 Promise. It can be resolved with data which will be passed to the next Promise in chain, or rejected with some message (or array of messages).
 
 Browse [available tasks](https://www.npmjs.com/browse/keyword/start-task).
+
+## Advanced usage
+
+### Pass arguments to tasks through CLI
+
+```js
+export const build = (arg1, arg2) => start(
+  task1(arg1), // 'lib/**/*.js'
+  task2(arg2) // 'hi'
+);
+
+```
+
+```sh
+npm start build 'lib/**/*.js' 'hi'
+# or
+yarn start build 'lib/**/*.js' 'hi'
+```
+
+### Pass arguments to nested tasks runners
+
+```js
+export const test = (arg) => start(
+  task1(arg) // 'hi'
+);
+
+export const coverage = () => start(
+  tas2k(),
+  () => test('hi'),
+  task3()
+);
+
+```
+
+### Pass output data to nested tasks runners
+
+```js
+import Start from 'start';
+import reporter from 'start-pretty-reporter';
+import files from 'start-files';
+import inputConnector from 'start-input-connector';
+import eslint from 'start-eslint';
+
+const start = Start(reporter());
+
+const lint = (input) => start(
+  inputConnector(input),
+  eslint()
+);
+
+export const lintLib = () => start(
+  files([ 'lib/**/*.js' ]),
+  lint
+);
+
+export const lintTest = () => start(
+  files([ 'test/**/*.js' ]),
+  lint
+);
+```
+
+## FAQ
+
+### Why do I need yet another tasks runner in 2k17 if I already have…
+
+#### …Webpack?
+
+Webpack is a "module bundler", not a tasks runner. Despite the fact that you may have some tricky tasks-plugins and can even lint files or clean folders with Webpack, in my opinion it's not a good idea. A great tool becomes a hulking "swiss-knife", in a bad way.
+
+> Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new "features".
+
+[Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy). So better let Webpack just to bundle modules, he knows how to do it well.
+
+Also, you still need to somehow run Webpack itself. [start-webpack](https://github.com/start-runner/webpack) :) Start can't and shouldn't replace any kind of smart module bundlers. It's more a low-level abstraction, something like Makefile.
+
+#### …NPM scripts?
+
+I know, I know. You don't need any runners because NPM scripts can solve all the common tasks. I thought that too. But then I began to write more and more complex NPM scripts. And pre-scripts. And post-scripts. And scripts `like:that`. And still had a lot of `&&`. After that I began to worry about Windows, because I should be a good person, so I had to install `cross-env`. And `rimraf`. And `cli -i -s --tot ally -i n,c,o, -n=s -- istent`. Try to use `--long-but-understandable-after-2-months` options and your NPM script will be 2 screens width.
+
+ `(╯°□°）╯︵ ┻━┻`.
+
+You already know JavaScript, so use it. API over CLI just because it's cool.
+
+#### …Grunt/Gulp?
+
+It's more a matter of taste. And ["spirit of the age"](https://en.wikipedia.org/wiki/Zeitgeist). If you are totally fine with Grunt/Gulp then most likely there is no any need to change your workflow.
+
+### Whoa! :scream_cat: What a great idea. I want more.
+
+Sure :sunglasses:
+
+* [recompose](https://github.com/acdlite/recompose) for your React components
+* [webpack-blocks](https://github.com/andywer/webpack-blocks) for your Webpack config
 
 ## Copyrights
 
