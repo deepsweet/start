@@ -9,7 +9,7 @@
 <img src="logo.png" width="100" height="100" align="right" alt="logo"/>
 
 * highly composable and modular
-* flexible and functional
+* API over CLI
 * powered by Higher-Order Functions and Promises
 * really [dead simple](lib/index.js)
 
