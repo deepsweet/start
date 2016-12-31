@@ -9,8 +9,8 @@
 <img src="logo.png" width="100" height="100" align="right" alt="logo"/>
 
 * highly composable and modular
-* API over CLI
-* powered by Higher-Order Functions and Promises
+* shareable tasks presets
+* Higher-Order Functions and Promises
 * really [dead simple](lib/index.js)
 
 ## TOC
