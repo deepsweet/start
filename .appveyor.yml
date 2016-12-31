@@ -14,7 +14,7 @@ cache:
 branches:
   only:
     - master
-    - /^greenkeeper-.*$/
+    - /^greenkeeper\/.*$/
 skip_tags: true
 matrix:
   fast_finish: true
