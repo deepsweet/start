@@ -390,6 +390,21 @@ test('reporter + single task + log', (t) => {
   });
 });
 
+test('log + reporter', (t) => {
+  const spyReporter = spy();
+
+  start(spyReporter)(
+    () => {
+      return function testTask(log, reporter) {
+        t.deepEqual(spyReporter, reporter);
+        t.end();
+
+        return Promise.resolve();
+      };
+    }
+  );
+});
+
 test('default reporter', (t) => {
   const origConsoleLog = console.log;
   const spyReporter = spy();

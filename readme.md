@@ -245,7 +245,7 @@ The simplest dummy task can be represented as following:
 
 ```js
 export default (params) => (input) => {
-  return function taskName(log) {
+  return function taskName(log, reporter) {
     const cats = require('cats-names');
 
     log(cats.random());
@@ -319,9 +319,13 @@ start(
 )
 ```
 
-#### `taskName(log)`
+#### `taskName(log, reporter)`
 
-Third function call made by `start`. `taskName` will be used as task name for logging, and `log` is a function that bound to `reporter(name, 'info')`. So if your task has something to say expect errors then you have to call `log` with message (or array of messages).
+Third function call made by `start`.
+
+* `taskName` – will be used as task name for logging
+* `log` – function which is bound to `reporter(name, 'info')`, so if your task has something to say expect errors then you have to call `log` with message (or array of messages)
+* `reporter` – original reporter, enables creating advanced tasks runners, see [start-concurrent](https://github.com/start-runner/concurrent) as an example
 
 #### `require`
 
@@ -423,8 +427,8 @@ It's more a matter of taste. And ["spirit of the age"](https://en.wikipedia.org/
 
 Sure :sunglasses:
 
-* [recompose](https://github.com/acdlite/recompose) for your React components
 * [webpack-blocks](https://github.com/andywer/webpack-blocks) for your Webpack config
+* [recompose](https://github.com/acdlite/recompose) for your React components
 
 ## Copyrights
 
