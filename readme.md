@@ -43,6 +43,7 @@ import Start from 'start';
 import reporter from 'start-pretty-reporter';
 import env from 'start-env';
 import files from 'start-files';
+import inputConnector from 'start-input-connector';
 import watch from 'start-watch';
 import clean from 'start-clean';
 import read from 'start-read';
@@ -70,8 +71,8 @@ export const dev = () => start(
   files('build/'),
   clean(),
   files('lib/**/*.js'),
-  watch((file) => start(
-    files(file),
+  watch('lib/**/*.js')((changedFiles) => start(
+    inputConnector(changedFiles),
     read(),
     babel(),
     write('build/')
@@ -90,8 +91,7 @@ export const test = () => start(
 );
 
 export tdd = () => start(
-  files([ 'lib/**/*.js', 'test/**/*.js' ]),
-  watch(test)
+  watch([ 'lib/**/*.js', 'test/**/*.js' ])(test)
 );
 
 export coverage = () => start(
