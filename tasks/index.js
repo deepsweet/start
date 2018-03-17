@@ -14,6 +14,8 @@ import watch from '@start/watch/src'
 import eslint from '@start/eslint/src/'
 import { istanbulInstrument, istanbulReport /*, istanbulThresholds */ } from '@start/istanbul/src/'
 import tape from '@start/tape/src'
+import npmVersion from '@start/npm-version/src/'
+import npmPublish from '@start/npm-publish/src/'
 import tapDiff from 'tap-diff'
 
 const reporter = Reporter()
@@ -79,3 +81,9 @@ export const test = () =>
   )
 
 export const ci = () => task(subTask(lintAll)(), subTask(test)())
+
+export const publish = (packageName: string, version: string, otp: string) =>
+  task(
+    npmVersion(version, `packages/${packageName}`),
+    npmPublish(`packages/${packageName}`, { otp })
+  )
