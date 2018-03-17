@@ -84,6 +84,7 @@ export const ci = () => task(subTask(lintAll)(), subTask(test)())
 
 export const publish = (packageName: string, version: string, otp: string) =>
   task(
+    subTask(ci)(),
     npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
   )
