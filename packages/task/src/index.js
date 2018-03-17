@@ -14,7 +14,7 @@ export type StartPluginArg = {|
   logMessage(message: string): void,
 |}
 
-export type StartPlugin = (arg: StartPluginArg) => Promise<StartInput>
+export type StartPlugin = (arg: StartPluginArg) => Promise<StartInput> | StartInput
 
 export type StartTaskArg = {|
   input?: StartInput,
@@ -23,7 +23,7 @@ export type StartTaskArg = {|
 
 export type StartTask = (arg: StartTaskArg) => Promise<StartInput>
 
-const task = (reporter: EventEmitter) => (...plugins: StartPlugin[]): StartTask => ({
+const task = (reporter: EventEmitter) => (...plugins: StartPlugin[]): StartTask => async ({
   taskName,
   input = [],
 }) => {
@@ -32,48 +32,40 @@ const task = (reporter: EventEmitter) => (...plugins: StartPlugin[]): StartTask 
     plugins: plugins.map((plugin) => plugin.name),
   })
 
-  return plugins
-    .reduce((current, plugin) => {
-      return current.then((output) => {
-        reporter.emit('plugin:start', { taskName, pluginName: plugin.name })
+  const tasks = await plugins.reduce(async (current, plugin) => {
+    const output = await current
 
-        const logMessage = (message) => {
-          reporter.emit('plugin:log:message', { taskName, pluginName: plugin.name, message })
-        }
-        const logPath = (message) => {
-          reporter.emit('plugin:log:path', { taskName, pluginName: plugin.name, message })
-        }
+    const logMessage = (message) => {
+      reporter.emit('plugin:log:message', { taskName, pluginName: plugin.name, message })
+    }
+    const logPath = (message) => {
+      reporter.emit('plugin:log:path', { taskName, pluginName: plugin.name, message })
+    }
 
-        // Promise.resolve()'d "sync" task errors and errors that are outside of Promise
-        // need to be catched as well, but try-catch leads to duplication of reporter emits
-        return new Promise((resolve, reject) => {
-          plugin({
-            input: output,
-            logMessage,
-            logPath,
-            taskName,
-          })
-            .then(resolve)
-            .catch(reject)
-        })
-          .then((result) => {
-            reporter.emit('plugin:done', { taskName, pluginName: plugin.name })
+    reporter.emit('plugin:start', { taskName, pluginName: plugin.name })
 
-            return result
-          })
-          .catch((error) => {
-            reporter.emit('plugin:error', { taskName, pluginName: plugin.name, error })
-            reporter.emit('task:error', { taskName })
-
-            throw error
-          })
+    try {
+      const result = await plugin({
+        input: output,
+        logMessage,
+        logPath,
+        taskName,
       })
-    }, Promise.resolve(input))
-    .then((result) => {
-      reporter.emit('task:done', { taskName })
+
+      reporter.emit('plugin:done', { taskName, pluginName: plugin.name })
 
       return result
-    })
+    } catch (error) {
+      reporter.emit('plugin:error', { taskName, pluginName: plugin.name, error })
+      reporter.emit('task:error', { taskName })
+
+      throw error
+    }
+  }, input)
+
+  reporter.emit('task:done', { taskName })
+
+  return tasks
 }
 
 export default task
