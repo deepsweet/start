@@ -10,7 +10,6 @@ export default (packagePath: string = '.', options?: {} = {}) => {
       return [...result, `--${key}=${options[key]}`]
     }, [])
 
-    console.log(['publish', '--registry=https://registry.npmjs.org/', ...cliOptions, packagePath])
     return execa(
       'npm',
       ['publish', '--registry=https://registry.npmjs.org/', ...cliOptions, packagePath],
