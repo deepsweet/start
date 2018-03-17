@@ -13,7 +13,10 @@
   ],
   "repository": "deepsweet/start",
   "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
-  "license": "MIT",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/deepsweet/start/blob/master/license.md"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -28,5 +31,8 @@
     "istanbul-lib-instrument": "^1.10.1",
     "istanbul-lib-report": "^1.1.4",
     "istanbul-lib-source-maps": "^1.2.3"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0"
   }
 }

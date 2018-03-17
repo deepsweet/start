@@ -23,5 +23,7 @@
   "engines": {
     "node": ">=6"
   },
-  "license": "MIT"
+  "peerDependencies": {
+    "@start/task": "^0.1.0"
+  }
 }

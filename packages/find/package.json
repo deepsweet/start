@@ -13,7 +13,10 @@
   ],
   "repository": "deepsweet/start",
   "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
-  "license": "MIT",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/deepsweet/start/blob/master/license.md"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -22,5 +25,8 @@
   },
   "dependencies": {
     "globby": "^8.0.1"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0"
   }
 }
