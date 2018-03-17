@@ -12,7 +12,7 @@ import babel from '@start/babel/src'
 import write from '@start/write/src'
 import watch from '@start/watch/src'
 import eslint from '@start/eslint/src/'
-import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/istanbul/src/'
+import { istanbulInstrument, istanbulReport /*, istanbulThresholds */ } from '@start/istanbul/src/'
 import tape from '@start/tape/src'
 import tapDiff from 'tap-diff'
 
@@ -74,8 +74,8 @@ export const test = () =>
     istanbulInstrument({ esModules: true }),
     find('packages/*/test/**/*.js'),
     tape(tapDiff),
-    istanbulReport(['lcovonly', 'html', 'text-summary']),
-    istanbulThresholds({ functions: 70 })
+    istanbulReport(['lcovonly', 'html', 'text-summary'])
+    // istanbulThresholds({ functions: 70 })
   )
 
 export const ci = () => task(subTask(lintAll)(), subTask(test)())
