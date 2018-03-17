@@ -1,0 +1,26 @@
+{
+  "name": "@start/jest",
+  "version": "0.1.0",
+  "description": "Functional tasks runner",
+  "keywords": [
+    "tasks",
+    "runner",
+    "start"
+  ],
+  "main": "build/index",
+  "files": [
+    "build/"
+  ],
+  "repository": "deepsweet/start",
+  "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "jest-cli": "^22.4.2"
+  }
+}

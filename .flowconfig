@@ -1,0 +1,17 @@
+[ignore]
+<PROJECT_ROOT>/coverage/.*
+<PROJECT_ROOT>/packages/.*/build/.*
+
+[include]
+
+[libs]
+
+[lints]
+all=warn
+untyped-import=off
+
+[options]
+emoji=true
+include_warnings=true
+module.ignore_non_literal_requires=true
+module.use_strict=true

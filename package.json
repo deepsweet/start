@@ -1,0 +1,108 @@
+{
+  "private": true,
+  "description": "Functional tasks runner",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-flow": "^7.0.0-beta.42",
+    "@babel/register": "^7.0.0-beta.42",
+    "babel-eslint": "^8.2.2",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "flow-bin": "^0.68.0",
+    "flow-typed": "^2.4.0",
+    "prettier": "^1.11.1",
+    "sinon": "^4.4.6",
+    "tap-diff": "^0.1.1"
+  },
+  "scripts": {
+    "start": "node --require @babel/register packages/cli/src/ --file tasks/"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          },
+          "exclude": [
+            "transform-regenerator"
+          ]
+        }
+      ],
+      "@babel/preset-flow"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "standard",
+      "prettier",
+      "node",
+      "import",
+      "flowtype"
+    ],
+    "extends": [
+      "standard",
+      "prettier",
+      "prettier/standard",
+      "plugin:node/recommended",
+      "plugin:import/recommended",
+      "plugin:flowtype/recommended"
+    ],
+    "env": {
+      "node": true
+    },
+    "settings": {
+      "flowtype": {
+        "onlyFilesWithFlowAnnotation": true
+      }
+    },
+    "rules": {
+      "prettier/prettier": "error",
+      "node/no-unsupported-features": [
+        "error",
+        {
+          "ignores": [
+            "asyncAwait",
+            "modules",
+            "spreadProperties"
+          ]
+        }
+      ],
+      "node/shebang": "off",
+      "prefer-promise-reject-errors": "off"
+    }
+  },
+  "eslintIgnore": [
+    "build/",
+    "coverage/",
+    "node_modules/",
+    "flow-typed/"
+  ],
+  "prettier": {
+    "arrowParens": "always",
+    "singleQuote": true,
+    "parser": "babylon",
+    "semi": false,
+    "printWidth": 100,
+    "trailingComma": "es5"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}

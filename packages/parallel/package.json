@@ -1,0 +1,29 @@
+{
+  "name": "@start/parallel",
+  "version": "0.1.0",
+  "description": "Functional tasks runner",
+  "keywords": [
+    "tasks",
+    "runner",
+    "start"
+  ],
+  "main": "build/index",
+  "files": [
+    "build/"
+  ],
+  "repository": "deepsweet/start",
+  "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "dargs": "^5.1.0",
+    "execa": "^0.10.0",
+    "globby": "^8.0.1",
+    "minimist": "^1.2.0"
+  }
+}
