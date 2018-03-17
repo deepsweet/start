@@ -47,7 +47,7 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
     hooks.add(hook)
     logMessage('require() has been hooked')
 
-    return Promise.resolve(input)
+    return input
   }
 
   return istanbulInstrument

@@ -43,7 +43,7 @@ export default (userOptions?: Options = { rootDir: process.cwd() }) => {
         results.numFailedTestSuites > 0 ||
         results.numTotalTests === 0
       ) {
-        return Promise.reject(null)
+        return Promise.reject()
       }
 
       return input

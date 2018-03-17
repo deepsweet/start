@@ -12,7 +12,7 @@ export default (options: {} = {}) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      return Promise.reject('no coverage information was collected')
+      throw 'no coverage information was collected'
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
@@ -46,10 +46,10 @@ export default (options: {} = {}) => {
     }, [])
 
     if (result.length > 0) {
-      return Promise.reject(result)
+      throw result
     }
 
-    return Promise.resolve(input)
+    return input
   }
 
   return istanbulThresholds

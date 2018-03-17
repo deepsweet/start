@@ -6,7 +6,7 @@ export default (options?: {}, formatter?: {}) => {
     if (input.length === 0) {
       logMessage('¯\\_(ツ)_/¯')
 
-      return Promise.resolve(input)
+      return input
     }
 
     const { CLIEngine } = require('eslint')
@@ -21,14 +21,14 @@ export default (options?: {}, formatter?: {}) => {
     }
 
     if (report.errorCount > 0) {
-      return Promise.reject(null)
+      throw `${report.errorCount} erros(s)`
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
       logMessage('¯\\_(ツ)_/¯')
     }
 
-    return Promise.resolve(input)
+    return input
   }
 
   return eslint

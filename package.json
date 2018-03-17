@@ -86,6 +86,7 @@
         }
       ],
       "node/shebang": "off",
+      "no-throw-literal": "off",
       "prefer-promise-reject-errors": "off"
     }
   },

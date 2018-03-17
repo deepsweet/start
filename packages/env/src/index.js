@@ -7,7 +7,7 @@ export default (key: string, value: string) => {
   const env: StartPlugin = ({ input, logMessage }) => {
     logMessage(`${key} = ${value}`)
 
-    return Promise.resolve(input)
+    return input
   }
 
   return env

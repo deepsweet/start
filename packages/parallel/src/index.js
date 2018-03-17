@@ -33,7 +33,7 @@ export default (...tasks: string[]) => (...args: string[]) => {
         )
         const spawnArgs = [startCommand, ...modifiedArgv]
 
-        return execa(spawnCommand, spawnArgs, spawnOptions).catch(() => Promise.reject(null))
+        return execa(spawnCommand, spawnArgs, spawnOptions).catch(() => Promise.reject())
       })
     )
   }

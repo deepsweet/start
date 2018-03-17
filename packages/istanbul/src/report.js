@@ -12,7 +12,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      return Promise.reject('no coverage information was collected')
+      throw 'no coverage information was collected'
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
@@ -27,7 +27,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
       reporter.write(remappedCoverageMap)
     })
 
-    return Promise.resolve(input)
+    return input
   }
 
   return istanbulReport
