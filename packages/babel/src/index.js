@@ -15,7 +15,7 @@ export default (userOptions?: BabelTransformOptions) => {
       }
 
       if (file.data == null) {
-        throw new Error('@start/babel plugin requires file data')
+        throw 'file data is required'
       }
 
       const result = transform(file.data, options)
