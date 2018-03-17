@@ -13,5 +13,6 @@ untyped-import=off
 [options]
 emoji=true
 include_warnings=true
+experimental.const_params=true
 module.ignore_non_literal_requires=true
 module.use_strict=true
