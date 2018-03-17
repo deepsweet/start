@@ -58,11 +58,12 @@
     ],
     "extends": [
       "standard",
-      "prettier",
-      "prettier/standard",
       "plugin:node/recommended",
       "plugin:import/recommended",
-      "plugin:flowtype/recommended"
+      "plugin:flowtype/recommended",
+      "prettier",
+      "prettier/standard",
+      "prettier/flowtype"
     ],
     "env": {
       "node": true
