@@ -9,6 +9,7 @@
 [lints]
 all=warn
 untyped-import=off
+sketchy-null-bool=error
 
 [options]
 emoji=true
