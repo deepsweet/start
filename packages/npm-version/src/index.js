@@ -1,6 +1,7 @@
 // @flow
 import type { StartPlugin } from '@start/task/src/'
 
+// https://docs.npmjs.com/cli/version
 export default (version: string, packagePath: string = '.') => {
   const npmVersion: StartPlugin = ({ input }) => {
     const path = require('path')
