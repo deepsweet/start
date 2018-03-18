@@ -1,5 +1,6 @@
 // @flow
 /* eslint-disable standard/no-callback-literal */
+/* eslint-disable promise/catch-or-return */
 import type { StartPlugin, StartTask } from '@start/task/src/'
 
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (

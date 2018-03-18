@@ -53,12 +53,14 @@
       "standard",
       "prettier",
       "node",
+      "promise",
       "import",
       "flowtype"
     ],
     "extends": [
       "standard",
       "plugin:node/recommended",
+      "plugin:promise/recommended",
       "plugin:import/recommended",
       "plugin:flowtype/recommended",
       "prettier",
@@ -86,8 +88,11 @@
         }
       ],
       "node/shebang": "off",
-      "no-throw-literal": "off",
-      "prefer-promise-reject-errors": "off"
+      "promise/avoid-new": "off",
+      "promise/always-return": "off",
+      "promise/no-nesting": "off",
+      "prefer-promise-reject-errors": "off",
+      "no-throw-literal": "off"
     }
   },
   "eslintIgnore": [
