@@ -14,6 +14,10 @@ export default (config: {}, userStatsOptions?: {}) => {
     return webpackLib(config).then((stats) => {
       logMessage(stats.toString(statsOptions))
 
+      if (stats.hasErrors()) {
+        return Promise.reject()
+      }
+
       return input
     })
   }
