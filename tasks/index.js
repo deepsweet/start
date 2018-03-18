@@ -10,8 +10,10 @@ import clean from '@start/clean/src/'
 import read from '@start/read/src'
 import babel from '@start/babel/src'
 import write from '@start/write/src'
+import overwrite from '@start/overwrite/src'
 import watch from '@start/watch/src'
 import eslint from '@start/eslint/src/'
+import prettierEslint from '@start/prettier-eslint/src/'
 import { istanbulInstrument, istanbulReport /*, istanbulThresholds */ } from '@start/istanbul/src/'
 import tape from '@start/tape/src'
 import npmVersion from '@start/npm-version/src/'
@@ -72,6 +74,8 @@ export const lintFiles = (...files: string[]) => task(inputFileConnector(files),
 
 export const lintAll = () =>
   task(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
+
+export const fix = () => task(find('packages/*/src/**/*.js'), read, prettierEslint(), overwrite)
 
 export const test = () =>
   task(
