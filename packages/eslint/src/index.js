@@ -21,7 +21,7 @@ export default (options?: {}, formatter?: {}) => {
     }
 
     if (report.errorCount > 0) {
-      throw `${report.errorCount} erros(s)`
+      return Promise.reject()
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
