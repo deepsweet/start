@@ -8,7 +8,7 @@
     "start"
   ],
   "bin": {
-    "start-runner": "build/index.js"
+    "start": "build/index.js"
   },
   "main": "build/index",
   "files": [
@@ -27,8 +27,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "commander": "^2.15.0",
-    "resolve-cwd": "^2.0.0"
+    "import-cwd": "^2.1.0"
   },
   "peerDependencies": {
     "@start/task": "^0.1.0"
