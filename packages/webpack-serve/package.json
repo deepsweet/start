@@ -1,5 +1,5 @@
 {
-  "name": "@start/webpack-dev-server",
+  "name": "@start/webpack-serve",
   "version": "0.1.0",
   "description": "Functional tasks runner",
   "keywords": [
@@ -24,9 +24,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "makethen": "^0.1.0",
-    "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.2"
+    "webpack-serve": "^0.2.0"
   },
   "peerDependencies": {
     "@start/task": "^0.1.0"
