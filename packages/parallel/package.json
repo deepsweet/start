@@ -24,10 +24,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "dargs": "^5.1.0",
-    "execa": "^0.10.0",
-    "globby": "^8.0.1",
-    "minimist": "^1.2.0"
+    "execa": "^0.10.0"
   },
   "peerDependencies": {
     "@start/task": "^0.1.0"
