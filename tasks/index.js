@@ -18,7 +18,7 @@ import { istanbulInstrument, istanbulReport /*, istanbulThresholds */ } from '@s
 import tape from '@start/tape/src'
 import npmVersion from '@start/npm-version/src/'
 import npmPublish from '@start/npm-publish/src/'
-import inputFileConnector from '@start/input-file-connector/src/'
+import inputConnector from '@start/input-connector/src/'
 import tapDiff from 'tap-diff'
 
 const reporter = Reporter()
@@ -70,7 +70,7 @@ export const dev = (packageName: string) => {
 export const lint = () =>
   task(findGitStaged(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
-export const lintFiles = (...files: string[]) => task(inputFileConnector(files), eslint())
+export const lintFiles = (...files: string[]) => task(inputConnector(files), eslint())
 
 export const lintAll = () =>
   task(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
