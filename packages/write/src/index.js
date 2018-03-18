@@ -13,7 +13,7 @@ export default (outDirRelative: string) => {
     return Promise.all(
       input.map((file) => {
         // file.path = /Users/foo/test/packages/beep/src/boop/index.js
-        // process.cwd = /Users/foo/test
+        // process.cwd() = /Users/foo/test
         // outDirRelative = packages/beep/build
 
         // /Users/foo/test/packages/beep/src/boop/index.js -> index.js
