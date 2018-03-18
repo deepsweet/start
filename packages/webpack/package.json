@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "makethen": "^0.1.0",
-    "webpack": "^3.11.0"
+    "webpack": "^4.1.1"
   },
   "peerDependencies": {
     "@start/task": "^0.1.0"
