@@ -75,7 +75,8 @@ export const lintFiles = (...files: string[]) => task(inputConnector(files), esl
 export const lintAll = () =>
   task(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
-export const fix = () => task(find('packages/*/src/**/*.js'), read, prettierEslint(), overwrite)
+export const fix = () =>
+  task(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), read, prettierEslint(), overwrite)
 
 export const test = () =>
   task(
