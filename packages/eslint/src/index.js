@@ -1,7 +1,7 @@
 // @flow
 import type { StartPlugin } from '@start/task/src'
 
-export default (options?: {}, formatter?: {}) => {
+export default (userOptions?: {}, formatter?: {}) => {
   const eslint: StartPlugin = ({ input, logMessage }) => {
     if (input.length === 0) {
       logMessage('¯\\_(ツ)_/¯')
@@ -10,6 +10,11 @@ export default (options?: {}, formatter?: {}) => {
     }
 
     const { CLIEngine } = require('eslint')
+    const options = {
+      cache: true,
+      cacheLocation: 'node_modules/.cache/eslint',
+      ...userOptions,
+    }
 
     const cli = new CLIEngine(options)
     const files = input.filter(({ path }) => !cli.isPathIgnored(path)).map(({ path }) => path)
