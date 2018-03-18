@@ -15,7 +15,7 @@ if (Array.isArray(options.require)) {
   options.require.forEach(require)
 }
 
-let tasks = options.preset ? importCwd(options.preset) : importCwd(`./${options.file}`)
+let tasks = importCwd(options.preset ? options.preset : `./${options.file}`)
 
 const getAvailableTasksRunnersMessage = () => {
   return `Available task runners: "${Object.keys(tasks).join('", "')}"`
