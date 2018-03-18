@@ -38,18 +38,19 @@ const Reporter = (options?: {}) => {
       })
       const stack = stackUtils.clean(error.stack)
 
-      console.log(`${chalk.red(`${taskName}.${pluginName}`)}: ${error.message}`)
+      console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error.message}`)
       console.error(`\n${chalk.red(stack)}`)
-      // soft error(s)
+      // array of "soft" errors
     } else if (Array.isArray(error)) {
       error.forEach((message) => {
-        console.log(`${chalk.red(`${taskName}.${pluginName}`)}: ${message}`)
+        console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${message}`)
       })
+      // "soft" error
     } else if (typeof error === 'string') {
-      console.log(`${chalk.red(`${taskName}.${pluginName}`)}: ${error}`)
+      console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error}`)
     }
 
-    console.log(`${chalk.red(`${taskName}.${pluginName}`)}: error`)
+    console.error(`${chalk.red(`${taskName}.${pluginName}`)}: error`)
   })
 
   reporter.on('task:done', ({ taskName }) => {
@@ -57,7 +58,7 @@ const Reporter = (options?: {}) => {
   })
 
   reporter.on('task:error', ({ taskName }) => {
-    console.log(`${chalk.red(`${taskName}`)}: error`)
+    console.error(`${chalk.red(`${taskName}`)}: error`)
   })
 
   return reporter
