@@ -1,7 +1,9 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin, StartTask } from '@start/task/src/'
 
-export default (...tasks: string[]) => (...args: string[]) => {
+type StartTaskRunner = () => StartTask
+
+export default (...taskRunners: StartTaskRunner[]) => (...args: string[]) => {
   const parallel: StartPlugin = () => {
     const parseArgv = require('minimist')
     const buildArgv = require('dargs')
@@ -23,11 +25,11 @@ export default (...tasks: string[]) => (...args: string[]) => {
     }
 
     return Promise.all(
-      tasks.map((task) => {
+      taskRunners.map((taskRunner) => {
         const modifiedArgv = buildArgv(
           {
             ...parsedArgv,
-            _: [task, ...args],
+            _: [taskRunner.name, ...args],
           },
           buildArgvOptions
         )
