@@ -23,6 +23,8 @@ export type StartTaskArg = {|
 
 export type StartTask = (arg: StartTaskArg) => Promise<StartInput>
 
+export type StartTaskRunner = (...args: any[]) => StartTask
+
 const task = (reporter: EventEmitter) => (...plugins: StartPlugin[]): StartTask => async ({
   taskName,
   input = [],

@@ -4,6 +4,8 @@
 /* eslint-disable no-process-exit */
 import importCwd from 'import-cwd'
 
+import type { StartTaskRunner } from '@start/task/src/'
+
 const rootPackage = importCwd('./package.json')
 
 const options = {
@@ -15,7 +17,7 @@ if (Array.isArray(options.require)) {
   options.require.forEach(require)
 }
 
-let tasks = importCwd(options.preset ? options.preset : `./${options.file}`)
+let tasks: {} = importCwd(options.preset ? options.preset : `./${options.file}`)
 
 const getAvailableTasksRunnersMessage = () => {
   return `Available task runners: "${Object.keys(tasks).join('", "')}"`
@@ -29,7 +31,7 @@ if (typeof taskName === 'undefined') {
   process.exit(0)
 }
 
-const taskRunner = tasks[taskName]
+const taskRunner: StartTaskRunner = tasks[taskName]
 
 if (typeof taskRunner === 'undefined') {
   console.error(`Unable to find task runner "${taskName}"`)

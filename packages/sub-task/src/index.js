@@ -1,7 +1,5 @@
 // @flow
-import type { StartTask, StartPlugin } from '@start/task/src/'
-
-type StartTaskRunner = () => StartTask
+import type { StartTaskRunner, StartPlugin } from '@start/task/src/'
 
 export default (taskRunner: StartTaskRunner) => (...args: *[]) => {
   const subTask: StartPlugin = ({ input, taskName }) =>
