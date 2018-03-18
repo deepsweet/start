@@ -39,7 +39,7 @@ const babelConfig = {
 }
 
 export const build = (packageName: string) => {
-  assert(packageName, 'Package name has not been provided')
+  assert(packageName, 'Package name is required')
 
   return task(
     env('NODE_ENV', 'production'),
@@ -53,7 +53,7 @@ export const build = (packageName: string) => {
 }
 
 export const dev = (packageName: string) => {
-  assert(packageName, 'Package name has not been provided')
+  assert(packageName, 'Package name is required')
 
   return task(
     find(`packages/${packageName}/build/`),
@@ -82,9 +82,14 @@ export const test = () =>
 
 export const ci = () => task(subTask(lintAll)(), subTask(test)())
 
-export const publish = (packageName: string, version: string, otp: string) =>
-  task(
+export const publish = (packageName: string, version: string, otp: string) => {
+  assert(packageName, 'Package name is required')
+  assert(version, 'Version is required')
+  assert(otp, 'OTP is required')
+
+  return task(
     subTask(ci)(),
     npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
   )
+}
