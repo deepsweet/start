@@ -1,13 +1,13 @@
 {
   "name": "@start/reporter",
-  "version": "0.1.0",
-  "description": "Functional tasks runner",
+  "version": "0.1.0-0",
+  "description": "Reporter for @start",
   "keywords": [
     "tasks",
     "runner",
     "start"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -28,6 +28,6 @@
     "stack-utils": "^1.0.1"
   },
   "peerDependencies": {
-    "@start/task": "^0.1.0"
+    "@start/task": "^0.1.0-0"
   }
 }
