@@ -2,14 +2,14 @@
 import type { StartPlugin } from '@start/task/src/'
 
 // https://docs.npmjs.com/cli/publish
-export default (
-  packagePath: string = '.',
-  options?: {} = {
-    registry: 'https://registry.npmjs.org/',
-  }
-) => {
+export default (packagePath: string = '.', userOptions?: {}) => {
   const npmPublish: StartPlugin = ({ input }) => {
     const execa = require('execa')
+
+    const options = {
+      registry: 'https://registry.npmjs.org/',
+      ...userOptions,
+    }
 
     const cliOptions = Object.keys(options).reduce((result, key) => {
       return [...result, `--${key}=${options[key]}`]
