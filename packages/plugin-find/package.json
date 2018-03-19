@@ -1,13 +1,13 @@
 {
-  "name": "@start/task",
+  "name": "@start/plugin-find",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "Find plugin for @start",
   "keywords": [
     "tasks",
     "runner",
     "start"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -22,5 +22,11 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "dependencies": {
+    "globby": "^8.0.1"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }

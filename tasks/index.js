@@ -2,23 +2,26 @@
 import assert from 'assert'
 import Task from '@start/task/src/'
 import Reporter from '@start/reporter/src/'
-import subTask from '@start/sub-task/src/'
-import env from '@start/env/src'
-import find from '@start/find/src/'
-import findGitStaged from '@start/find-git-staged/src/'
-import clean from '@start/clean/src/'
-import read from '@start/read/src'
-import babel from '@start/babel/src'
-import write from '@start/write/src'
-import overwrite from '@start/overwrite/src'
-import watch from '@start/watch/src'
-import eslint from '@start/eslint/src/'
-import prettierEslint from '@start/prettier-eslint/src/'
-import { istanbulInstrument, istanbulReport /*, istanbulThresholds */ } from '@start/istanbul/src/'
-import tape from '@start/tape/src'
-import npmVersion from '@start/npm-version/src/'
-import npmPublish from '@start/npm-publish/src/'
-import inputConnector from '@start/input-connector/src/'
+import subTask from '@start/plugin-sub-task/src/'
+import env from '@start/plugin-env/src'
+import find from '@start/plugin-find/src/'
+import findGitStaged from '@start/plugin-find-git-staged/src/'
+import clean from '@start/plugin-clean/src/'
+import read from '@start/plugin-read/src'
+import babel from '@start/plugin-babel/src'
+import write from '@start/plugin-write/src'
+import overwrite from '@start/plugin-overwrite/src'
+import watch from '@start/plugin-watch/src'
+import eslint from '@start/plugin-eslint/src/'
+import prettierEslint from '@start/plugin-prettier-eslint/src/'
+import {
+  istanbulInstrument,
+  istanbulReport /*, istanbulThresholds */,
+} from '@start/plugin-istanbul/src/'
+import tape from '@start/plugin-tape/src'
+// import npmVersion from '@start/npm-version/src/'
+import npmPublish from '@start/plugin-npm-publish/src/'
+import inputConnector from '@start/plugin-input-connector/src/'
 import tapDiff from 'tap-diff'
 
 const reporter = Reporter()
@@ -90,14 +93,15 @@ export const test = () =>
 
 export const ci = () => task(subTask(lintAll)(), subTask(test)())
 
-export const publish = (packageName: string, version: string, otp: string) => {
+export const publish = (packageName: string, /* version: string, */ otp: string) => {
   assert(packageName, 'Package name is required')
-  assert(version, 'Version is required')
+  // assert(version, 'Version is required')
   assert(otp, 'OTP is required')
 
   return task(
     subTask(ci)(),
-    npmVersion(version, `packages/${packageName}`),
+    subTask(build)(packageName),
+    // npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
   )
 }

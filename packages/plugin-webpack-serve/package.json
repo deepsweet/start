@@ -1,13 +1,14 @@
 {
-  "name": "@start/task",
+  "name": "@start/plugin-webpack-serve",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "Webpack Serve plugin for @start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "webpack"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -22,5 +23,11 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "dependencies": {
+    "webpack-serve": "^0.2.0"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }

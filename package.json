@@ -21,7 +21,6 @@
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.68.0",
     "flow-typed": "^2.4.0",
-    "prettier": "^1.11.1",
     "sinon": "^4.4.6",
     "tap-diff": "^0.1.1"
   },

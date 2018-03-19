@@ -1,1 +1,1 @@
-# cli
+# @start/cli

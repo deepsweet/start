@@ -1,13 +1,14 @@
 {
-  "name": "@start/task",
+  "name": "@start/plugin-eslint",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "ESLint plugin for @start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "eslint"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -22,5 +23,11 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "dependencies": {
+    "eslint": "^4.18.2"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }

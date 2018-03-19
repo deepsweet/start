@@ -1,16 +1,15 @@
 {
-  "name": "@start/cli",
-  "version": "0.1.0-beta.1",
-  "description": "CLI for @start",
+  "name": "@start/plugin-istanbul",
+  "version": "0.1.0-0",
+  "description": "Istanbul plugin for @start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "coverage",
+    "istanbul"
   ],
-  "bin": {
-    "start": "build/index.js"
-  },
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -27,7 +26,13 @@
     "node": ">=6"
   },
   "dependencies": {
-    "import-cwd": "^2.1.0"
+    "convert-source-map": "^1.5.1",
+    "istanbul-api": "^1.3.1",
+    "istanbul-lib-coverage": "^1.2.0",
+    "istanbul-lib-hook": "^1.1.0",
+    "istanbul-lib-instrument": "^1.10.1",
+    "istanbul-lib-report": "^1.1.4",
+    "istanbul-lib-source-maps": "^1.2.3"
   },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"

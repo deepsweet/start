@@ -1,13 +1,15 @@
 {
-  "name": "@start/task",
+  "name": "@start/plugin-find-git-staged",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "Find git staged plugin for @start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "git",
+    "staged"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -22,5 +24,12 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "dependencies": {
+    "execa": "^0.10.0",
+    "multimatch": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }

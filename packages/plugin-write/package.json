@@ -1,13 +1,13 @@
 {
-  "name": "@start/task",
+  "name": "@start/plugin-write",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "Write plugin for @start",
   "keywords": [
     "tasks",
     "runner",
     "start"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -22,5 +22,13 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "dependencies": {
+    "graceful-fs": "^4.1.11",
+    "makethen": "^0.1.0",
+    "mkdirp": "^0.5.1"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }

@@ -1,13 +1,15 @@
 {
-  "name": "@start/task",
+  "name": "@start/plugin-tape",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "Tape plugin for @start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "tap",
+    "tape"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -22,5 +24,12 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "dependencies": {
+    "tape": "^4.9.0",
+    "through": "^2.3.8"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }

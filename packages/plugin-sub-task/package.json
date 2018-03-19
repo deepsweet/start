@@ -1,7 +1,7 @@
 {
-  "name": "@start/task",
+  "name": "@start/plugin-sub-task",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "Plugin for @start that includes other task runners",
   "keywords": [
     "tasks",
     "runner",
@@ -22,5 +22,8 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }

@@ -1,13 +1,15 @@
 {
-  "name": "@start/task",
-  "version": "0.1.0-0",
-  "description": "Task for @start",
+  "name": "@start/plugin-prettier-eslint",
+  "version": "0.1.0-beta.1",
+  "description": "Prettier-ESLint plugin for @start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "prettier",
+    "eslint"
   ],
-  "main": "build/index",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],
@@ -22,5 +24,11 @@
   },
   "engines": {
     "node": ">=6"
+  },
+  "dependencies": {
+    "prettier-eslint": "^8.8.1"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
   }
 }
