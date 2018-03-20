@@ -13,15 +13,13 @@ import write from '@start/plugin-write/src/'
 import overwrite from '@start/plugin-overwrite/src/'
 import watch from '@start/plugin-watch/src/'
 import eslint from '@start/plugin-eslint/src/'
+import flowCheck from '@start/plugin-flow-check/src/'
+import flowGenerate from '@start/plugin-flow-generate/src/'
 import prettierEslint from '@start/plugin-prettier-eslint/src/'
-import {
-  istanbulInstrument,
-  istanbulReport /*, istanbulThresholds */,
-} from '@start/plugin-istanbul/src/'
+import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/plugin-istanbul/src/'
 import tape from '@start/plugin-tape/src/'
 // import npmVersion from '@start/npm-version/src/'
 import npmPublish from '@start/plugin-npm-publish/src/'
-import inputConnector from '@start/plugin-input-connector/src/'
 import tapDiff from 'tap-diff'
 
 const reporter = Reporter()
@@ -54,7 +52,8 @@ export const build = (packageName: string) => {
     find(`packages/${packageName}/src/**/*.js`),
     read,
     babel(babelConfig),
-    write(`packages/${packageName}/build/`)
+    write(`packages/${packageName}/build/`),
+    flowGenerate(`packages/${packageName}/build/`)
   )
 }
 
@@ -73,8 +72,6 @@ export const dev = (packageName: string) => {
 export const lint = () =>
   task(findGitStaged(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
-export const lintFiles = (...files: string[]) => task(inputConnector(files), eslint())
-
 export const lintAll = () =>
   task(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
@@ -87,8 +84,9 @@ export const test = () =>
     istanbulInstrument({ esModules: true }),
     find('packages/*/test/**/*.js'),
     tape(tapDiff),
-    istanbulReport(['lcovonly', 'html', 'text-summary'])
-    // istanbulThresholds({ functions: 70 })
+    istanbulReport(['lcovonly', 'html', 'text-summary']),
+    istanbulThresholds({ functions: 50 }),
+    flowCheck()
   )
 
 export const ci = () => task(subTask(lintAll)(), subTask(test)())
