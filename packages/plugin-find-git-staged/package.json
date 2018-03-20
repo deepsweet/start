@@ -29,6 +29,9 @@
     "execa": "^0.10.0",
     "multimatch": "^2.1.0"
   },
+  "devDependencies": {
+    "@flows/execa": "^0.1.0-0"
+  },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
   }

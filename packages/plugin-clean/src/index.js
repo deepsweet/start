@@ -1,6 +1,5 @@
 // @flow
 import type { StartPlugin } from '@start/task/src/'
-import type { Options as RimrafOptions } from 'rimraf'
 
 const clean: StartPlugin = ({ input, logPath }) => {
   const makethen = require('makethen')
@@ -8,7 +7,7 @@ const clean: StartPlugin = ({ input, logPath }) => {
 
   const rimrafP = makethen(rimraf)
 
-  const options: RimrafOptions = {
+  const options = {
     glob: false,
   }
 

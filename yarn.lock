@@ -530,6 +530,26 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@flows/babel@^0.1.0-0":
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/@flows/babel/-/babel-0.1.0-0.tgz#0b5d358c273e7bffb86213822de8cfc8e51be37e"
+
+"@flows/execa@^0.1.0-0":
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/@flows/execa/-/execa-0.1.0-0.tgz#076a5c956cb0fa93ab23c0f16ee897a972f44baf"
+
+"@flows/globby@^0.1.0-0":
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/@flows/globby/-/globby-0.1.0-0.tgz#4fc322760f6af416586b5203f3e94418cf48601b"
+
+"@flows/makethen@^0.1.0-0":
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/@flows/makethen/-/makethen-0.1.0-0.tgz#a319471587d26baed53b5da88b13f244d65494ec"
+
+"@flows/prettier-eslint@^0.1.0-0":
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/@flows/prettier-eslint/-/prettier-eslint-0.1.0-0.tgz#023519dbb57b902eb69eba80435598a8ab40c677"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2491,6 +2511,21 @@ flow-typed@^2.4.0:
     unzipper "^0.8.11"
     which "^1.3.0"
     yargs "^4.2.0"
+
+flowconfig@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/flowconfig/-/flowconfig-1.0.3.tgz#12f2b06124639d8991817b551d65716a16ae98d1"
+
+flows-sync@^0.1.0-0:
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/flows-sync/-/flows-sync-0.1.0-0.tgz#c7344d459a6b587927b081f1b8f05bdb538b27e1"
+  dependencies:
+    flowconfig "^1.0.3"
+    globby "^8.0.1"
+    graceful-fs "^4.1.11"
+    import-cwd "^2.1.0"
+    makethen "^0.1.0"
+    resolve-from "^4.0.0"
 
 flush-write-stream@^1.0.0:
   version "1.0.2"
@@ -5334,6 +5369,10 @@ resolve-from@^1.0.0:
 resolve-from@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
+
+resolve-from@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
 
 resolve-path@^1.3.3:
   version "1.4.0"

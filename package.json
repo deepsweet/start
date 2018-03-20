@@ -10,6 +10,7 @@
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-flow": "^7.0.0-beta.42",
     "@babel/register": "^7.0.0-beta.42",
+    "flows-sync": "^0.1.0-0",
     "babel-eslint": "^8.2.2",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
@@ -25,7 +26,8 @@
     "tap-diff": "^0.1.1"
   },
   "scripts": {
-    "start": "node --require @babel/register packages/cli/src/"
+    "start": "node --require @babel/register packages/cli/src/",
+    "postinstall": "flows"
   },
   "babel": {
     "presets": [

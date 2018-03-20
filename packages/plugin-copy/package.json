@@ -28,6 +28,9 @@
     "makethen": "^0.1.0",
     "mkdirp": "^0.5.1"
   },
+  "devDependencies": {
+    "@flows/makethen": "^0.1.0-0"
+  },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
   }
