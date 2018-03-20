@@ -1,11 +1,12 @@
 // @flow
 import type { StartPlugin } from '@start/task/src/'
+import type { Glob, GlobbyOptions } from 'globby'
 
-export default (glob: string | string[], userOptions?: {}) => {
+export default (glob: Glob, userOptions?: GlobbyOptions) => {
   const find: StartPlugin = ({ logPath }) => {
     const globby = require('globby')
 
-    const options = {
+    const options: GlobbyOptions = {
       absolute: true,
       deep: true,
       onlyFiles: false,
