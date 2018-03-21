@@ -26,8 +26,7 @@ test('export', (t) => {
 })
 
 test('resolve', (t) => {
-  const taskName = 'taskName'
-  const initialInput = [{ path: 'test', data: null, map: null }]
+  const taskName = 'testTask'
   const testPlugin1Spy = spy()
   const testPlugin1: StartPlugin = () => {
     testPlugin1Spy()
@@ -46,7 +45,7 @@ test('resolve', (t) => {
 
   reporter.onAll(reporterSpy)
 
-  task(reporter)(testPlugin1, testPlugin2)({ taskName, input: initialInput })
+  task(reporter)(testPlugin1, testPlugin2)({ taskName })
     .then(() => {
       t.true(testPlugin1Spy.calledOnce, 'test plugin 1 must be called once')
       t.true(testPlugin2Spy.calledOnce, 'test plugin 2 must be called once')
@@ -98,8 +97,7 @@ test('resolve', (t) => {
 })
 
 test('reject', (t) => {
-  const taskName = 'taskName'
-  const initialInput = [{ path: 'test', data: null, map: null }]
+  const taskName = 'testTask'
   const testPlugin1Spy = spy()
   const testPlugin1: StartPlugin = () => {
     testPlugin1Spy()
@@ -118,7 +116,7 @@ test('reject', (t) => {
 
   reporter.onAll(reporterSpy)
 
-  task(reporter)(testPlugin1, testPlugin2)({ taskName, input: initialInput }).catch(() => {
+  task(reporter)(testPlugin1, testPlugin2)({ taskName }).catch(() => {
     t.true(testPlugin1Spy.calledOnce, 'test plugin 1 must be called once')
     t.equal(testPlugin2Spy.callCount, 0, 'test plugin 2 must be not called')
     t.equal(reporterSpy.callCount, 4, 'reporter events must be fired 6 times')
@@ -155,9 +153,8 @@ test('reject', (t) => {
 })
 
 test('throw', (t) => {
-  const taskName = 'taskName'
+  const taskName = 'testTask'
   const testError = new Error('oopsie')
-  const initialInput = [{ path: 'test', data: null, map: null }]
   const testPlugin1: StartPlugin = () => {
     throw testError
   }
@@ -173,7 +170,7 @@ test('throw', (t) => {
 
   reporter.onAll(reporterSpy)
 
-  task(reporter)(testPlugin1, testPlugin2)({ taskName, input: initialInput }).catch(() => {
+  task(reporter)(testPlugin1, testPlugin2)({ taskName }).catch(() => {
     t.equal(testPlugin2Spy.callCount, 0, 'test plugin 2 must be not called')
     t.equal(reporterSpy.callCount, 4, 'reporter events must be fired 6 times')
     t.true(
@@ -208,8 +205,8 @@ test('throw', (t) => {
   })
 })
 
-test('input', (t) => {
-  const taskName = 'taskName'
+test('arg.input', (t) => {
+  const taskName = 'testTask'
   const customInput = [{ path: 'test', data: null, map: null }]
   const testPlugin1Spy = spy()
   const testPlugin1: StartPlugin = ({ input }) => {
@@ -245,9 +242,8 @@ test('input', (t) => {
     .catch(t.end)
 })
 
-test('logMessage', (t) => {
-  const taskName = 'taskName'
-  const initialInput = [{ path: 'test', data: null, map: null }]
+test('arg.logMessage', (t) => {
+  const taskName = 'testTask'
   const testPlugin1: StartPlugin = ({ logMessage }) => {
     logMessage('message 1')
 
@@ -264,7 +260,7 @@ test('logMessage', (t) => {
 
   reporter.onAll(reporterSpy)
 
-  task(reporter)(testPlugin1, testPlugin2)({ taskName, input: initialInput })
+  task(reporter)(testPlugin1, testPlugin2)({ taskName })
     .then(() => {
       t.equal(reporterSpy.callCount, 8, 'reporter events must be fired 8 times')
       t.true(
@@ -288,9 +284,8 @@ test('logMessage', (t) => {
     .catch(t.end)
 })
 
-test('logPath', (t) => {
-  const taskName = 'taskName'
-  const initialInput = [{ path: 'test', data: null, map: null }]
+test('arg.logPath', (t) => {
+  const taskName = 'testTask'
   const testPlugin1: StartPlugin = ({ logPath }) => {
     logPath('path 1')
 
@@ -307,7 +302,7 @@ test('logPath', (t) => {
 
   reporter.onAll(reporterSpy)
 
-  task(reporter)(testPlugin1, testPlugin2)({ taskName, input: initialInput })
+  task(reporter)(testPlugin1, testPlugin2)({ taskName })
     .then(() => {
       t.equal(reporterSpy.callCount, 8, 'reporter events must be fired 8 times')
       t.true(
@@ -326,6 +321,26 @@ test('logPath', (t) => {
         }),
         'plugin:log:path'
       )
+      t.end()
+    })
+    .catch(t.end)
+})
+
+test('arg.taskName', (t) => {
+  const taskName = 'testTask'
+  const testPluginSpy = spy()
+  const testPlugin: StartPlugin = ({ taskName }) => {
+    testPluginSpy(taskName)
+
+    return Promise.resolve([])
+  }
+
+  const noopReporter = new EventEmitter()
+
+  task(noopReporter)(testPlugin)({ taskName })
+    .then(() => {
+      t.true(testPluginSpy.calledOnce, 'task name spy must be called once')
+      t.true(testPluginSpy.getCall(0).calledWith('testTask'))
       t.end()
     })
     .catch(t.end)
