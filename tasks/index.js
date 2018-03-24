@@ -1,8 +1,8 @@
 // @flow
 import assert from 'assert'
-import Task from '@start/task/src/'
+import Sequence from '@start/sequence/src/'
+// import Parallel from '@start/parallel/src/'
 import Reporter from '@start/reporter/src/'
-import subTask from '@start/plugin-sub-task/src/'
 import env from '@start/plugin-env/src/'
 import find from '@start/plugin-find/src/'
 import findGitStaged from '@start/plugin-find-git-staged/src/'
@@ -14,7 +14,7 @@ import overwrite from '@start/plugin-overwrite/src/'
 import watch from '@start/plugin-watch/src/'
 import eslint from '@start/plugin-eslint/src/'
 import flowCheck from '@start/plugin-flow-check/src/'
-import flowGenerate from '@start/plugin-flow-generate/src/'
+// import flowGenerate from '@start/plugin-flow-generate/src/'
 import prettierEslint from '@start/plugin-prettier-eslint/src/'
 import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/plugin-istanbul/src/'
 import tape from '@start/plugin-tape/src/'
@@ -22,8 +22,9 @@ import tape from '@start/plugin-tape/src/'
 import npmPublish from '@start/plugin-npm-publish/src/'
 import tapDiff from 'tap-diff'
 
+// const parallel = Parallel()
 const reporter = Reporter()
-const task = Task(reporter)
+const sequence = Sequence(reporter)
 
 const babelConfig = {
   babelrc: false,
@@ -42,63 +43,61 @@ const babelConfig = {
   plugins: ['@babel/plugin-proposal-object-rest-spread'],
 }
 
-export const build = (packageName: string) => {
-  assert(packageName, 'Package name is required')
-
-  return task(
+export const build = (packageName: string) =>
+  sequence(
     env('NODE_ENV', 'production'),
     find(`packages/${packageName}/build/`),
     clean,
     find(`packages/${packageName}/src/**/*.js`),
     read,
     babel(babelConfig),
-    write(`packages/${packageName}/build/`),
-    flowGenerate(`packages/${packageName}/build/`)
+    write(`packages/${packageName}/build/`)
   )
-}
 
-export const dev = (packageName: string) => {
-  assert(packageName, 'Package name is required')
-
-  return task(
+export const dev = (packageName: string) =>
+  sequence(
     find(`packages/${packageName}/build/`),
     clean,
     watch(`packages/${packageName}/src/**/*.js`)(
-      task(read, babel(babelConfig), write(`packages/${packageName}/build/`))
+      sequence(read, babel(babelConfig), write(`packages/${packageName}/build/`))
     )
   )
-}
 
 export const lint = () =>
-  task(findGitStaged(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
+  sequence(findGitStaged(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
 export const lintAll = () =>
-  task(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
+  sequence(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
 export const fix = () =>
-  task(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), read, prettierEslint(), overwrite)
+  sequence(
+    find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']),
+    read,
+    prettierEslint(),
+    overwrite
+  )
 
 export const test = () =>
-  task(
+  sequence(
     find('packages/*/src/**/*.js'),
     istanbulInstrument({ esModules: true }),
     find('packages/*/test/**/*.js'),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary']),
-    istanbulThresholds({ functions: 50 }),
+    istanbulThresholds({ functions: 30 }),
     flowCheck()
   )
 
-export const ci = () => task(subTask(lintAll)(), subTask(test)())
+export const lintAndTest = () => sequence(lintAll(), test())
 
 export const publish = (packageName: string, /* version: string, */ otp: string) => {
   assert(packageName, 'Package name is required')
   // assert(version, 'Version is required')
   assert(otp, 'OTP is required')
 
-  return task(
-    subTask(ci)(),
-    subTask(build)(packageName),
+  return sequence(
+    lintAndTest(),
+    build(packageName),
     // npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
   )
