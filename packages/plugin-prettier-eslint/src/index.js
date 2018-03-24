@@ -30,6 +30,7 @@ export default (options?: PrettierEslintOptions) => {
             })
           })
       )
+      // $FlowFixMe ???
     ).then((files) => files.filter((file) => file !== null))
   }
 
