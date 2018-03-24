@@ -3,7 +3,7 @@ import EventEmitter from 'events'
 import test from 'tape'
 import { spy } from 'sinon'
 
-import type { StartPlugin } from '../src/'
+// import type { StartPlugin } from '../src/'
 import task from '../src'
 
 class MyEmitter extends EventEmitter {
@@ -28,13 +28,13 @@ test('export', (t) => {
 test('resolve', (t) => {
   const taskName = 'testTask'
   const testPlugin1Spy = spy()
-  const testPlugin1: StartPlugin = () => {
+  const testPlugin1 = () => {
     testPlugin1Spy()
 
     return Promise.resolve([])
   }
   const testPlugin2Spy = spy()
-  const testPlugin2: StartPlugin = () => {
+  const testPlugin2 = () => {
     testPlugin2Spy()
 
     return Promise.resolve([])
@@ -99,13 +99,13 @@ test('resolve', (t) => {
 test('reject', (t) => {
   const taskName = 'testTask'
   const testPlugin1Spy = spy()
-  const testPlugin1: StartPlugin = () => {
+  const testPlugin1 = () => {
     testPlugin1Spy()
 
     return Promise.reject('oopsie')
   }
   const testPlugin2Spy = spy()
-  const testPlugin2: StartPlugin = () => {
+  const testPlugin2 = () => {
     testPlugin2Spy()
 
     return Promise.resolve([])
@@ -155,11 +155,11 @@ test('reject', (t) => {
 test('throw', (t) => {
   const taskName = 'testTask'
   const testError = new Error('oopsie')
-  const testPlugin1: StartPlugin = () => {
+  const testPlugin1 = () => {
     throw testError
   }
   const testPlugin2Spy = spy()
-  const testPlugin2: StartPlugin = () => {
+  const testPlugin2 = () => {
     testPlugin2Spy()
 
     return Promise.resolve([])
@@ -209,13 +209,13 @@ test('arg.input', (t) => {
   const taskName = 'testTask'
   const customInput = [{ path: 'test', data: null, map: null }]
   const testPlugin1Spy = spy()
-  const testPlugin1: StartPlugin = ({ input }) => {
+  const testPlugin1 = ({ input }) => {
     testPlugin1Spy(input)
 
     return Promise.resolve(customInput)
   }
   const testPlugin2Spy = spy()
-  const testPlugin2: StartPlugin = ({ input }) => {
+  const testPlugin2 = ({ input }) => {
     testPlugin2Spy(input)
 
     return Promise.resolve(customInput)
@@ -244,13 +244,13 @@ test('arg.input', (t) => {
 
 test('arg.logMessage', (t) => {
   const taskName = 'testTask'
-  const testPlugin1: StartPlugin = ({ logMessage }) => {
-    logMessage('message 1')
+  const testPlugin1 = ({ logMessage }) => {
+    logMessage && logMessage('message 1')
 
     return Promise.resolve([])
   }
-  const testPlugin2: StartPlugin = ({ logMessage }) => {
-    logMessage('message 2')
+  const testPlugin2 = ({ logMessage }) => {
+    logMessage && logMessage('message 2')
 
     return Promise.resolve([])
   }
@@ -286,13 +286,13 @@ test('arg.logMessage', (t) => {
 
 test('arg.logPath', (t) => {
   const taskName = 'testTask'
-  const testPlugin1: StartPlugin = ({ logPath }) => {
-    logPath('path 1')
+  const testPlugin1 = ({ logPath }) => {
+    logPath && logPath('path 1')
 
     return Promise.resolve([])
   }
-  const testPlugin2: StartPlugin = ({ logPath }) => {
-    logPath('path 2')
+  const testPlugin2 = ({ logPath }) => {
+    logPath && logPath('path 2')
 
     return Promise.resolve([])
   }
@@ -329,7 +329,7 @@ test('arg.logPath', (t) => {
 test('arg.taskName', (t) => {
   const taskName = 'testTask'
   const testPluginSpy = spy()
-  const testPlugin: StartPlugin = ({ taskName }) => {
+  const testPlugin = ({ taskName }) => {
     testPluginSpy(taskName)
 
     return Promise.resolve([])

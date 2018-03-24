@@ -1,7 +1,7 @@
 {
-  "name": "@start/task",
+  "name": "@start/sequence",
   "version": "0.1.0-0",
-  "description": "Task for @start",
+  "description": "Sequence for @start",
   "keywords": [
     "tasks",
     "runner",
