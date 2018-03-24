@@ -1,7 +1,7 @@
 {
-  "name": "@start/plugin-parallel",
+  "name": "@start/parallel",
   "version": "0.1.0-0",
-  "description": "Plugin to run @start task runners in parallel",
+  "description": "Runs @start tasks in parallel",
   "keywords": [
     "tasks",
     "runner",
