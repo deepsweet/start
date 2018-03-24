@@ -87,6 +87,7 @@
           "ignores": [
             "asyncAwait",
             "modules",
+            "restProperties",
             "spreadProperties"
           ]
         }
