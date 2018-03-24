@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (options?: {}, extensions: string[] = ['.js']) => {
   const istanbulInstrument: StartPlugin = ({ input, logPath, logMessage }) => {
@@ -37,7 +37,7 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
 
         const result = instrumenter.instrumentSync(source, file, sourceMapObject)
 
-        logPath(file)
+        logPath && logPath(file)
 
         return result
       },
@@ -45,7 +45,10 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
     )
 
     hooks.add(hook)
-    logMessage('require() has been hooked')
+
+    if (typeof logMessage === 'function') {
+      logMessage('require() has been hooked')
+    }
 
     return input
   }

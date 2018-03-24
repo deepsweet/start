@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (outDirRelative: string) => {
   const copy: StartPlugin = ({ input, logPath }) => {
@@ -45,7 +45,10 @@ export default (outDirRelative: string) => {
             readStream.on('error', reject)
             writeStream.on('error', reject)
             writeStream.on('finish', () => {
-              logPath(outFile)
+              if (typeof logPath === 'function') {
+                logPath(outFile)
+              }
+
               resolve(file)
             })
 

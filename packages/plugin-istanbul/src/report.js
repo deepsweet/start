@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (formats: string[] = ['lcovonly', 'text-summary']) => {
   const istanbulReport: StartPlugin = ({ input, logMessage }) => {
@@ -20,7 +20,9 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     const remappedCoverageMap = sourceMapStore.transformCoverage(coverageMap).map
     const reporter = createReporter()
 
-    logMessage(formats.join(', '))
+    if (typeof logMessage === 'function') {
+      logMessage(formats.join(', '))
+    }
 
     formats.forEach((format) => {
       reporter.add(format)

@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 import type { BabelTransformOptions } from '@babel/core'
 
 export default (userOptions?: BabelTransformOptions) => {
@@ -20,7 +20,9 @@ export default (userOptions?: BabelTransformOptions) => {
 
       const result = transform(file.data, options)
 
-      logPath(file.path)
+      if (typeof logPath === 'function') {
+        logPath(file.path)
+      }
 
       return {
         ...file,

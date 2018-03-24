@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 import type { Glob, GlobbyOptions } from 'globby'
 
 export default (glob: Glob, userOptions?: GlobbyOptions) => {
@@ -17,7 +17,9 @@ export default (glob: Glob, userOptions?: GlobbyOptions) => {
 
     return globby(glob, options).then((files) =>
       files.map((file) => {
-        logPath(file)
+        if (typeof logPath === 'function') {
+          logPath(file)
+        }
 
         return {
           path: file,

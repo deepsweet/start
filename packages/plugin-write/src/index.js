@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (outDirRelative: string) => {
   const write: StartPlugin = ({ input, logPath }) => {
@@ -67,14 +67,18 @@ export default (outDirRelative: string) => {
 
               writeFiles.push(
                 writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-                  logPath(sourcemapPath)
+                  if (typeof logPath === 'function') {
+                    logPath(sourcemapPath)
+                  }
                 })
               )
             }
 
             writeFiles.push(
               writeFile(outFile, fileData, 'utf8').then(() => {
-                logPath(outFile)
+                if (typeof logPath === 'function') {
+                  logPath(outFile)
+                }
               })
             )
 

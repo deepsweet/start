@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 import type { PrettierEslintOptions } from 'prettier-eslint'
 
 export default (options?: PrettierEslintOptions) => {
@@ -17,7 +17,9 @@ export default (options?: PrettierEslintOptions) => {
         return result
       }
 
-      logPath(file.path)
+      if (typeof logPath === 'function') {
+        logPath(file.path)
+      }
 
       return [
         ...result,

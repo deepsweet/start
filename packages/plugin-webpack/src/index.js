@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (config: {}, userStatsOptions?: {}) => {
   const webpack: StartPlugin = ({ input, logMessage }) => {
@@ -12,7 +12,9 @@ export default (config: {}, userStatsOptions?: {}) => {
     }
 
     return webpackLib(config).then((stats) => {
-      logMessage(stats.toString(statsOptions))
+      if (typeof logMessage === 'function') {
+        logMessage(stats.toString(statsOptions))
+      }
 
       if (stats.hasErrors()) {
         return Promise.reject()

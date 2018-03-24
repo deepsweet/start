@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 const overwrite: StartPlugin = ({ input, logPath }) => {
   const path = require('path')
@@ -40,14 +40,18 @@ const overwrite: StartPlugin = ({ input, logPath }) => {
 
         writeFiles.push(
           writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-            logPath(sourcemapPath)
+            if (typeof logPath === 'function') {
+              logPath(sourcemapPath)
+            }
           })
         )
       }
 
       writeFiles.push(
         writeFile(file.path, fileData, 'utf8').then(() => {
-          logPath(file.path)
+          if (typeof logPath === 'function') {
+            logPath(file.path)
+          }
         })
       )
 

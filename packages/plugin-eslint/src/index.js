@@ -1,14 +1,8 @@
 // @flow
-import type { StartPlugin } from '@start/task/src'
+import type { StartPlugin } from '@start/sequence/src'
 
 export default (userOptions?: {}, formatter?: {}) => {
   const eslint: StartPlugin = ({ input, logMessage }) => {
-    if (input.length === 0) {
-      logMessage('¯\\_(ツ)_/¯')
-
-      return input
-    }
-
     const { CLIEngine } = require('eslint')
     const options = {
       cache: true,
@@ -30,7 +24,9 @@ export default (userOptions?: {}, formatter?: {}) => {
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
-      logMessage('¯\\_(ツ)_/¯')
+      if (typeof logMessage === 'function') {
+        logMessage('¯\\_(ツ)_/¯')
+      }
     }
 
     return input

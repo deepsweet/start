@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 const read: StartPlugin = ({ input, logPath }) => {
   const makethen = require('makethen')
@@ -10,7 +10,9 @@ const read: StartPlugin = ({ input, logPath }) => {
   return Promise.all(
     input.map((file) =>
       readFile(file.path, 'utf8').then((data) => {
-        logPath(file.path)
+        if (typeof logPath === 'function') {
+          logPath(file.path)
+        }
 
         return {
           ...file,

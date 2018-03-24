@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (callback: (file: string) => string) => {
   const rename: StartPlugin = ({ input, logPath }) => {
@@ -12,7 +12,9 @@ export default (callback: (file: string) => string) => {
         return file
       }
 
-      logPath(newPath)
+      if (typeof logPath === 'function') {
+        logPath(newPath)
+      }
 
       if (file.map) {
         // TODO: why not?

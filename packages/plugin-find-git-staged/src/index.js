@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (glob: string | string[]) => {
   if (!glob) {
@@ -19,7 +19,9 @@ export default (glob: string | string[]) => {
       const matchedFiles = multimatch(gitFiles, glob).map((file) => path.resolve(file))
 
       return matchedFiles.map((file) => {
-        logPath(file)
+        if (typeof logPath === 'function') {
+          logPath(file)
+        }
 
         return {
           path: file,

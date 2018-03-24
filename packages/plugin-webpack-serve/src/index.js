@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (options?: {}) => {
   const webpackServe: StartPlugin = ({ input, logMessage }) => {

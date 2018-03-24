@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 const clean: StartPlugin = ({ input, logPath }) => {
   const makethen = require('makethen')
@@ -14,7 +14,9 @@ const clean: StartPlugin = ({ input, logPath }) => {
   return Promise.all(
     input.map((file) => {
       return rimrafP(file.path, options).then(() => {
-        logPath(file.path)
+        if (typeof logPath === 'function') {
+          logPath(file.path)
+        }
 
         return file
       })

@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/task/src/'
+import type { StartPlugin } from '@start/sequence/src/'
 
 export default (outDirRelative: string, ...flowArgs: string[]) => {
   const flowGenerate: StartPlugin = ({ input, logPath }) => {
@@ -21,7 +21,9 @@ export default (outDirRelative: string, ...flowArgs: string[]) => {
             },
           }
         ).then(() => {
-          logPath(path.join(outDir, path.basename(file.path) + '.flow'))
+          if (typeof logPath === 'function') {
+            logPath(path.join(outDir, `${path.basename(file.path)}.flow`))
+          }
 
           return file
         })
