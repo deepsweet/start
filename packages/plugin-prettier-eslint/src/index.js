@@ -6,29 +6,31 @@ export default (options?: PrettierEslintOptions) => {
   const prettierEslint: StartPlugin = ({ input, logPath }) => {
     const format = require('prettier-eslint')
 
-    return input.reduce((result, file) => {
-      if (file.data == null) {
-        throw 'file data is required'
-      }
+    return Promise.all(
+      input.map(
+        (file) =>
+          new Promise((resolve, reject) => {
+            if (file.data == null) {
+              return reject('file data is required')
+            }
 
-      const formatted = format({ ...options, filePath: file.path, text: file.data })
+            const formatted = format({ ...options, filePath: file.path, text: file.data })
 
-      if (file.data === formatted) {
-        return result
-      }
+            if (file.data === formatted) {
+              return resolve(null)
+            }
 
-      if (typeof logPath === 'function') {
-        logPath(file.path)
-      }
+            if (typeof logPath === 'function') {
+              logPath(file.path)
+            }
 
-      return [
-        ...result,
-        {
-          ...file,
-          data: formatted,
-        },
-      ]
-    }, [])
+            resolve({
+              ...file,
+              data: formatted,
+            })
+          })
+      )
+    ).then((files) => files.filter((file) => file !== null))
   }
 
   return prettierEslint
