@@ -25,8 +25,12 @@
     "tap-diff": "^0.1.1"
   },
   "scripts": {
-    "start": "node --require @babel/register packages/cli/src/",
     "postinstall": "flows"
+  },
+  "start": {
+    "require": [
+      "@babel/register"
+    ]
   },
   "babel": {
     "presets": [

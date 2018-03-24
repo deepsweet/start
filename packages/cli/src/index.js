@@ -4,8 +4,6 @@
 /* eslint-disable no-process-exit */
 import importCwd from 'import-cwd'
 
-import type { StartTaskRunner } from '@start/task/src/'
-
 const rootPackage = importCwd('./package.json')
 
 const options = {
@@ -31,7 +29,7 @@ if (typeof taskName === 'undefined') {
   process.exit(0)
 }
 
-const taskRunner: StartTaskRunner = tasks[taskName]
+const taskRunner = tasks[taskName]
 
 if (typeof taskRunner === 'undefined') {
   console.error(`Unable to find task runner "${taskName}"`)
