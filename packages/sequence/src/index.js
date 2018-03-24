@@ -14,21 +14,21 @@ export type StartPluginArg = {
 
 export type StartPlugin = (arg: StartPluginArg) => Promise<StartInput> | StartInput
 
-export type StartReporter = (
+export type StartMiddleware = (
   plugin: StartPlugin
 ) => (arg: StartPluginArg) => Promise<StartInput> | StartInput
 
-const sequence = (reporter: StartReporter) => (...plugins: StartPlugin[]) => ({
+const sequence = (...middlewares: StartMiddleware[]) => (...plugins: StartPlugin[]) => ({
   input = [],
   taskName,
 }: StartPluginArg) =>
-  plugins.map(reporter).reduce(
-    async (current, next) =>
-      next({
-        input: await current,
-        taskName,
-      }),
-    input
-  )
+  plugins.reduce(async (result, plugin) => {
+    const enhancedPlugin = middlewares.reduce((a, b) => b(a), plugin)
+
+    return enhancedPlugin({
+      input: await result,
+      taskName,
+    })
+  }, input)
 
 export default sequence
