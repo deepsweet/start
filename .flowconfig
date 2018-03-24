@@ -12,8 +12,8 @@ experimental.const_params=true
 module.ignore_non_literal_requires=true
 module.use_strict=true
 [libs]
-node_modules/@flows/babel/src
-node_modules/@flows/makethen/src
-node_modules/@flows/globby/src
 node_modules/@flows/execa/src
+node_modules/@flows/makethen/src
+node_modules/@flows/babel/src
+node_modules/@flows/globby/src
 node_modules/@flows/prettier-eslint/src
