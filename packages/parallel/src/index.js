@@ -1,7 +1,7 @@
 // @flow
 import type { StartPlugin } from '@start/sequence/src/'
 
-type StartTask = (...args: any[]) => StartPlugin
+type StartTask = (...args: string[]) => StartPlugin
 
 export default (options?: {}) => (...tasks: StartTask[]) => (...args: string[]) => () => {
   const execa = require('execa')
