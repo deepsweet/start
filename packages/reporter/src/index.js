@@ -1,67 +1,63 @@
 // @flow
 import path from 'path'
-import EventEmitter from 'events'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
-const Reporter = (options?: {}) => {
-  const reporter = new EventEmitter()
+import type { StartMiddleware } from '@start/sequence/src/'
 
-  reporter.on('task:start', ({ taskName }) => {
-    console.log(`${chalk.yellow(`${taskName}`)}: start`)
-  })
+export default (options?: {}) => {
+  const reporter: StartMiddleware = (plugin) => async ({ input, taskName }) => {
+    const pluginName = plugin.name
 
-  reporter.on('plugin:start', ({ taskName, pluginName }) => {
-    console.log(`${chalk.yellow(`${taskName}.${pluginName}`)}: start`)
-  })
+    try {
+      if (!pluginName) {
+        return plugin({ input, taskName })
+      }
 
-  reporter.on('plugin:log:message', ({ taskName, pluginName, message }) => {
-    console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${message}`)
-  })
+      console.log(`${chalk.yellow(`${taskName}.${pluginName}`)}: start`)
 
-  reporter.on('plugin:log:path', ({ taskName, pluginName, message }) => {
-    const relativePath = path.relative(process.cwd(), message)
+      const result = await plugin({
+        input,
+        taskName,
+        logMessage: (message) => {
+          console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${message}`)
+        },
+        logPath: (message) => {
+          const relativePath = path.relative(process.cwd(), message)
 
-    console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${relativePath}`)
-  })
-
-  reporter.on('plugin:done', ({ taskName, pluginName }) => {
-    console.log(`${chalk.green(`${taskName}.${pluginName}`)}: done`)
-  })
-
-  reporter.on('plugin:error', ({ taskName, pluginName, error }) => {
-    // hard error
-    if (error instanceof Error) {
-      const stackUtils = new StackUtils({
-        cwd: process.cwd(),
-        internals: StackUtils.nodeInternals(),
+          console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${relativePath}`)
+        },
       })
-      const stack = stackUtils.clean(error.stack)
 
-      console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error.message}`)
-      console.error(`\n${chalk.red(stack)}`)
-      // array of "soft" errors
-    } else if (Array.isArray(error)) {
-      error.forEach((message) => {
-        console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${message}`)
-      })
-      // "soft" error
-    } else if (typeof error === 'string') {
-      console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error}`)
+      console.log(`${chalk.green(`${taskName}.${pluginName}`)}: done`)
+
+      return result
+    } catch (error) {
+      // hard error
+      if (error instanceof Error) {
+        const stackUtils = new StackUtils({
+          cwd: process.cwd(),
+          internals: StackUtils.nodeInternals(),
+        })
+        const stack = stackUtils.clean(error.stack)
+
+        console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error.message}`)
+        console.error(`\n${chalk.red(stack)}`)
+        // array of "soft" errors
+      } else if (Array.isArray(error)) {
+        error.forEach((message) => {
+          console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${message}`)
+        })
+        // "soft" error
+      } else if (typeof error === 'string') {
+        console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error}`)
+      }
+
+      console.error(`${chalk.red(`${taskName}.${pluginName}`)}: error`)
+
+      throw error
     }
-
-    console.error(`${chalk.red(`${taskName}.${pluginName}`)}: error`)
-  })
-
-  reporter.on('task:done', ({ taskName }) => {
-    console.log(`${chalk.green(`${taskName}`)}: done`)
-  })
-
-  reporter.on('task:error', ({ taskName }) => {
-    console.error(`${chalk.red(`${taskName}`)}: error`)
-  })
+  }
 
   return reporter
 }
-
-export default Reporter
