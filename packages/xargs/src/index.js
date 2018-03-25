@@ -3,7 +3,7 @@ import type { StartPlugin } from '@start/sequence/src/'
 
 type StartTask = (...args: string[]) => StartPlugin
 
-export default (task: StartTask) => (...input) => () => {
+export default (task: StartTask) => (...input: string[]) => () => {
   const execa = require('execa')
 
   const spawnOptions = {
