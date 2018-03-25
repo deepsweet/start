@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-npm-version",
+  "name": "@start/lib-npm-version",
   "version": "0.1.0-0",
   "description": "NPM version plugin for @start",
   "keywords": [

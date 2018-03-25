@@ -2,7 +2,6 @@
 import assert from 'assert'
 import Sequence from '@start/sequence/src/'
 import xargs from '@start/xargs/src/'
-// import Parallel from '@start/parallel/src/'
 import Reporter from '@start/reporter/src/'
 import env from '@start/env/src/'
 import find from '@start/find/src/'
@@ -18,11 +17,10 @@ import flowCheck from '@start/lib-flow-check/src/'
 import prettierEslint from '@start/lib-prettier-eslint/src/'
 import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/lib-istanbul/src/'
 import tape from '@start/lib-tape/src/'
-// import npmVersion from '@start/npm-version/src/'
+// import npmVersion from '@start/lib-npm-version/src/'
 import npmPublish from '@start/lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
 
-// const parallel = Parallel()
 const reporter = Reporter()
 const sequence = Sequence(reporter)
 

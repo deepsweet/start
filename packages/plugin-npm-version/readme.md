@@ -1,1 +1,0 @@
-# @start/plugin-npm-version
