@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-webpack",
+  "name": "@start/lib-webpack",
   "version": "0.1.0-0",
   "description": "Webpack plugin for @start",
   "keywords": [
