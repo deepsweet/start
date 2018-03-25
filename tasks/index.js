@@ -64,10 +64,10 @@ export const dev = (packageName: string) =>
   )
 
 export const lint = () =>
-  sequence(findGitStaged(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
+  sequence(findGitStaged(['packages/**/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
 export const lintAll = () =>
-  sequence(find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
+  sequence(find(['packages/**/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
 
 export const fix = () =>
   sequence(
@@ -79,9 +79,9 @@ export const fix = () =>
 
 export const test = () =>
   sequence(
-    find('packages/*/src/**/*.js'),
+    find('packages/**/src/**/*.js'),
     istanbulInstrument({ esModules: true }),
-    find('packages/*/test/**/*.js'),
+    find('packages/**/test/**/*.js'),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary']),
     istanbulThresholds({ functions: 30 }),
