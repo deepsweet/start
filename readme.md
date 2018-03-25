@@ -40,7 +40,7 @@ const buildPackage = (target) => (
 )
 ```
 
-And now actual Start code:
+And here is a corresponding Start task:
 
 ```js
 export const buildPackage = (packageName) => sequence(
