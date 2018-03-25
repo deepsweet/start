@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-clean",
+  "name": "@start/clean",
   "version": "0.1.0-0",
   "description": "Clean plugin for @start",
   "keywords": [
