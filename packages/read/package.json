@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-read",
+  "name": "@start/read",
   "version": "0.1.0-0",
   "description": "Read plugin for @start",
   "keywords": [
