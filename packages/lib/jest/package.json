@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-jest",
+  "name": "@start/lib-jest",
   "version": "0.1.0-0",
   "description": "Jest plugin for @start",
   "keywords": [
