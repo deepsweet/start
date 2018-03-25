@@ -9,7 +9,7 @@ export type StartInput = {|
 export type StartPluginArg = {
   input: StartInput,
   taskName: string,
-  [key: any]: any,
+  [string]: any,
 }
 
 export type StartPlugin = (arg: StartPluginArg) => Promise<StartInput> | StartInput
