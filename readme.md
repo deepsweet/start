@@ -11,7 +11,7 @@ Imagine that every task in your "javascript pipeline" is a Promise. It's fair en
 Now let's imagine how simple `buildPackage` lazy task could be written in code:
 
 ```js
-const buildPackage = (...args) => (
+const buildPackage = (target) => (
   // * set NODE_ENV to production
   // * clean up target directory
   // * find files with globs
