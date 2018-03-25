@@ -14,7 +14,7 @@ export type StartPluginArg = {
 
 export type StartPlugin = (StartPluginArg) => Promise<StartInput> | StartInput
 
-export type StartMiddleware = (StartPlugin) => (StartPluginArg) => Promise<StartInput> | StartInput
+export type StartMiddleware = (StartPlugin) => StartPlugin
 
 const sequence = (middleware: StartMiddleware) => (...plugins: StartPlugin[]) => ({
   input = [],
