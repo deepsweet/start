@@ -1,23 +1,24 @@
 // @flow
 import assert from 'assert'
 import Sequence from '@start/sequence/src/'
+import xargs from '@start/xargs/src/'
 // import Parallel from '@start/parallel/src/'
 import Reporter from '@start/reporter/src/'
-import env from '@start/plugin-env/src/'
-import find from '@start/plugin-find/src/'
+import env from '@start/env/src/'
+import find from '@start/find/src/'
 import findGitStaged from '@start/plugin-find-git-staged/src/'
-import clean from '@start/plugin-clean/src/'
-import read from '@start/plugin-read/src/'
-import babel from '@start/plugin-babel/src/'
-import write from '@start/plugin-write/src/'
+import clean from '@start/clean/src/'
+import read from '@start/read/src/'
+import babel from '@start/lib-babel/src/'
+import write from '@start/write/src/'
 import overwrite from '@start/plugin-overwrite/src/'
 import watch from '@start/plugin-watch/src/'
-import eslint from '@start/plugin-eslint/src/'
+import eslint from '@start/lib-eslint/src/'
 import flowCheck from '@start/plugin-flow-check/src/'
 // import flowGenerate from '@start/plugin-flow-generate/src/'
 import prettierEslint from '@start/plugin-prettier-eslint/src/'
-import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/plugin-istanbul/src/'
-import tape from '@start/plugin-tape/src/'
+import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/lib-istanbul/src/'
+import tape from '@start/lib-tape/src/'
 // import npmVersion from '@start/npm-version/src/'
 import npmPublish from '@start/plugin-npm-publish/src/'
 import tapDiff from 'tap-diff'
@@ -54,6 +55,8 @@ export const build = (packageName: string) =>
     write(`packages/${packageName}/build/`)
   )
 
+export const builds = xargs(build)
+
 export const dev = (packageName: string) =>
   sequence(
     find(`packages/${packageName}/build/`),
@@ -88,7 +91,7 @@ export const test = () =>
     flowCheck()
   )
 
-export const lintAndTest = () => sequence(lintAll(), test())
+export const ci = () => sequence(lintAll(), test())
 
 export const publish = (packageName: string, /* version: string, */ otp: string) => {
   assert(packageName, 'Package name is required')
@@ -96,7 +99,7 @@ export const publish = (packageName: string, /* version: string, */ otp: string)
   assert(otp, 'OTP is required')
 
   return sequence(
-    lintAndTest(),
+    ci(),
     build(packageName),
     // npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
