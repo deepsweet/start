@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-env",
+  "name": "@start/env",
   "version": "0.1.0-0",
   "description": "process.env plugin for @start",
   "keywords": [
