@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-spawn",
+  "name": "@start/spawn",
   "version": "0.1.0-0",
   "description": "Spawn plugin for @start",
   "keywords": [
