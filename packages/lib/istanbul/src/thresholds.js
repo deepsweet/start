@@ -2,7 +2,7 @@
 import type { StartPlugin } from '@start/sequence/src/'
 
 export default (options: {} = {}) => {
-  const istanbulThresholds: StartPlugin = ({ input }) => {
+  const istanbulThresholds: StartPlugin = ({ input, logMessage }) => {
     const { createCoverageMap } = require('istanbul-lib-coverage')
     const { createSourceMapStore } = require('istanbul-lib-source-maps')
     const { summarizers } = require('istanbul-lib-report')
@@ -12,7 +12,11 @@ export default (options: {} = {}) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      throw 'no coverage information was collected'
+      if (typeof logMessage === 'function') {
+        logMessage('no coverage information was collected')
+      }
+
+      return input
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])

@@ -12,7 +12,11 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      throw 'no coverage information was collected'
+      if (typeof logMessage === 'function') {
+        logMessage('no coverage information was collected')
+      }
+
+      return input
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
