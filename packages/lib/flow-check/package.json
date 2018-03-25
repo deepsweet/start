@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-flow-check",
+  "name": "@start/lib-flow-check",
   "version": "0.1.0-0",
   "description": "Flow check plugin for @start",
   "keywords": [
