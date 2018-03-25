@@ -32,9 +32,9 @@ Now let's imagine how simple `buildPackage` lazy task could be written in code:
 const buildPackage = (target) => (
   // * set NODE_ENV to production
   // * clean up target directory
-  // * find files with globs
-  // * read file data
-  // * transform file data with Babel
+  // * find files using globs
+  // * read files data
+  // * transform files data using Babel
   // * write files into target directory,
   //   for example from `packages/foo/src/index.mjs` to `packages/foo/build/index.js`
 )
