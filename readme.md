@@ -55,13 +55,13 @@ export const buildPackage = (packageName) => sequence(
 )
 ```
 
-And @start/cli:
+And CLI:
 
 ```sh
 $ yarn start buildPackage foo
 ```
 
-And @start/reporter:
+And reporter:
 
 ```sh
 yarn run v1.5.1
