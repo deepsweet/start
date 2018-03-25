@@ -139,7 +139,7 @@ $ yarn start buildPackages foo bar
 # mess of async lines as a report
 ```
 
-We just build 2 packages in parallel child processes, both ESM and CJS in parallel child-child processes on their own with concurrently running promises inside of each process.
+2 packages were built in parallel child processes, both ESM and CJS in parallel child-child processes on their own with concurrently running promises inside of each process.
 
 🛫
 
