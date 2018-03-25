@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-copy",
+  "name": "@start/copy",
   "version": "0.1.0-0",
   "description": "Copy plugin for @start",
   "keywords": [
