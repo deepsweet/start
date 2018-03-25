@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-flow-generate",
+  "name": "@start/lib-flow-generate",
   "version": "0.1.0-0",
   "description": "Flow gen-flow-files plugin for @start",
   "keywords": [
