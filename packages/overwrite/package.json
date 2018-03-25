@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-overwrite",
+  "name": "@start/overwrite",
   "version": "0.1.0-0",
   "description": "Overwrite plugin for @start",
   "keywords": [
