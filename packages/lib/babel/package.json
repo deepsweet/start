@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-babel",
+  "name": "@start/lib-babel",
   "version": "0.1.0-0",
   "description": "Babel plugin for @start",
   "keywords": [
