@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-istanbul",
+  "name": "@start/lib-istanbul",
   "version": "0.1.0-0",
   "description": "Istanbul plugin for @start",
   "keywords": [
