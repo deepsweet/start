@@ -1,1 +1,0 @@
-# @start/plugin-prettier-eslint

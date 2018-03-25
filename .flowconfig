@@ -15,5 +15,5 @@ module.use_strict=true
 node_modules/@flows/makethen/src
 node_modules/@flows/globby/src
 node_modules/@flows/execa/src
-node_modules/@flows/prettier-eslint/src
 node_modules/@flows/babel/src
+node_modules/@flows/prettier-eslint/src

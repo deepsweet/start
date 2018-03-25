@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-prettier-eslint",
+  "name": "@start/lib-prettier-eslint",
   "version": "0.1.0-0",
   "description": "Prettier-ESLint plugin for @start",
   "keywords": [
