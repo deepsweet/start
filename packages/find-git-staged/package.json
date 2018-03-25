@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-find-git-staged",
+  "name": "@start/find-git-staged",
   "version": "0.1.0-0",
   "description": "Find git staged plugin for @start",
   "keywords": [
