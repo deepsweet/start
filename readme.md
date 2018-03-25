@@ -47,7 +47,7 @@ export const buildPackage = (packageName) => sequence(
   env('NODE_ENV', 'production'),
   find(`packages/${packageName}/build/`),
   clean,
-  find(`packages/${packageName}/src/**/*.js`),
+  find(`packages/${packageName}/src/**/*.mjs`),
   read,
   babel({ ...babelConfig, babelrc: false }),
   rename((file) => file.replace(/\.mjs$/, '.js')),
