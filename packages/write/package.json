@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-write",
+  "name": "@start/write",
   "version": "0.1.0-0",
   "description": "Write plugin for @start",
   "keywords": [
