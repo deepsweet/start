@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-tape",
+  "name": "@start/lib-tape",
   "version": "0.1.0-0",
   "description": "Tape plugin for @start",
   "keywords": [
