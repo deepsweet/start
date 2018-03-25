@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-codecov",
+  "name": "@start/lib-codecov",
   "version": "0.1.0-0",
   "description": "Codevoc plugin for @start",
   "keywords": [
