@@ -2,11 +2,29 @@
 
 👉 This is a next iteration which is currently a work in progress, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
-## What
+## Usage example
 
 Imagine that every task in your "javascript pipeline" is a Promise. It's fair enough in most cases, kinda async boolean when your task may be either in "done" or "fail" state.
 
 ### "build"
+
+```
+packages/
+├── foo/
+│   ├── build/
+│   │   └── index.js
+│   ├── src/
+│   │   └── index.mjs
+│   ├── package.json
+│   └── readme.md
+└── bar/
+    ├── build/
+    │   └── index.js
+    ├── src/
+    │   └── index.mjs
+    ├── package.json
+    └── readme.md
+```
 
 Now let's imagine how simple `buildPackage` lazy task could be written in code:
 
@@ -114,14 +132,14 @@ export const buildPackages = xargs(buildPackage)
 ```
 
 ```sh
-$ yarn start buildPackages foo bar baz
+$ yarn start buildPackages foo bar
 ```
 
 ```sh
 # mess of async lines as a report
 ```
 
-We just build 3 packages in parallel child processes, both ESM and CJS in parallel child-child processes on their own with concurrently running promises inside of each process.
+We just build 2 packages in parallel child processes, both ESM and CJS in parallel child-child processes on their own with concurrently running promises inside of each process.
 
 🛫
 
