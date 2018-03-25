@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-watch",
+  "name": "@start/watch",
   "version": "0.1.0-0",
   "description": "Watch plugin for @start",
   "keywords": [
