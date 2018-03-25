@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-npm-publish",
+  "name": "@start/lib-npm-publish",
   "version": "0.1.0-0",
   "description": "NPM publish plugin for @start",
   "keywords": [

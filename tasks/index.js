@@ -19,7 +19,7 @@ import prettierEslint from '@start/lib-prettier-eslint/src/'
 import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/lib-istanbul/src/'
 import tape from '@start/lib-tape/src/'
 // import npmVersion from '@start/npm-version/src/'
-import npmPublish from '@start/plugin-npm-publish/src/'
+import npmPublish from '@start/lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
 
 // const parallel = Parallel()
