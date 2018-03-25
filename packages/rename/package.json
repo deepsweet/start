@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-rename",
+  "name": "@start/rename",
   "version": "0.1.0-0",
   "description": "Rename plugin for @start",
   "keywords": [
