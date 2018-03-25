@@ -2,6 +2,152 @@
 
 👉 This is a next iteration which is currently a work in progress, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
+## What
+
+Imagine that every task in your "javascript pipeline" is a Promise. It's fair enough in most cases, kinda async boolean when your task may be either in "done" or "fail" state.
+
+### "build"
+
+Now let's imagine how simple `buildPackage` lazy task could be written in code:
+
+```js
+const buildPackage = (...args) => (
+  // * set NODE_ENV to production
+  // * clean up target directory
+  // * find files with globs
+  // * read file data
+  // * transform file data with Babel
+  // * write files into target directory,
+  //   for example from `packages/foo/src/index.mjs` to `packages/foo/build/index.js`
+)
+```
+
+And now actual Start code:
+
+```js
+export const buildPackage = (packageName) => sequence(
+  env('NODE_ENV', 'production'),
+  find(`packages/${packageName}/build/`),
+  clean,
+  find(`packages/${packageName}/src/**/*.js`),
+  read,
+  babel({ ...babelConfig, babelrc: false }),
+  rename((file) => file.replace(/\.mjs$/, '.js')),
+  write(`packages/${packageName}/build/`)
+)
+```
+
+And @start/cli:
+
+```sh
+$ yarn start buildPackage foo
+```
+
+And @start/reporter:
+
+```sh
+yarn run v1.5.1
+$ /…/myProject/node_modules/.bin/start buildPackage foo
+buildPackage.env: start
+buildPackage.env: NODE_ENV = production
+buildPackage.env: done
+buildPackage.find: start
+buildPackage.find: packages/foo/build
+buildPackage.find: done
+buildPackage.clean: start
+buildPackage.clean: packages/foo/build
+buildPackage.clean: done
+buildPackage.find: start
+buildPackage.find: packages/foo/src/index.mjs
+buildPackage.find: done
+buildPackage.read: start
+buildPackage.read: packages/foo/src/index.mjs
+buildPackage.read: done
+buildPackage.babel: start
+buildPackage.babel: packages/foo/src/index.mjs
+buildPackage.babel: done
+buildPackage.rename: start
+buildPackage.rename: packages/foo/src/index.js
+buildPackage.rename: done
+buildPackage.write: start
+buildPackage.write: packages/foo/build/index.js
+buildPackage.write: done
+✨  Done in 0.98s.
+```
+
+🤔
+
+Build package in ESM and CJS versions in parallel using child processes (always try to use [esm](https://github.com/standard-things/esm) only, the following is just an example):
+
+
+```js
+export const buildEsm = (packageName) => sequence(
+  // ...
+)
+
+export const buildCjs = (packageName) => sequence(
+  // ...
+)
+
+export const buildPackage = (packageName) => sequence(
+  env('NODE_ENV', 'production'),
+  find(`packages/${packageName}/build/`),
+  clean,
+  parallel(buildEsm, buildCjs)(packageName)
+)
+```
+
+```sh
+$ yarn start buildPackage foo
+```
+
+```sh
+# mess of async lines as a report
+```
+
+🛠
+
+Let's double it:
+
+```js
+export const buildPackages = xargs(buildPackage)
+```
+
+```sh
+$ yarn start buildPackages foo bar baz
+```
+
+```sh
+# mess of async lines as a report
+```
+
+We just build 3 packages in parallel child processes, both ESM and CJS in parallel child-child processes on their own with concurrently running promises inside of each process.
+
+🛫
+
+To be continued…
+
+<!--
+Run `prettier-eslint` to fix all the files in parallel:
+
+```js
+export const fixFile = (file) => task(
+  input(file),
+  read,
+  prettierEslint(),
+  overwrite
+)
+
+export const fix = () => task(
+  find(`packages/${packageName}/src/**/*.js`),
+  xargs(fixFile, { workers: 4 })
+)
+```
+
+```sh
+$ yarn start fix
+``` -->
+
 ## Packages
 
 ### Core
