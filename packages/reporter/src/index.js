@@ -6,18 +6,18 @@ import StackUtils from 'stack-utils'
 import type { StartMiddleware } from '@start/sequence/src/'
 
 export default (options?: {}) => {
-  const reporter: StartMiddleware = (plugin) => async ({ input, taskName }) => {
+  const reporter: StartMiddleware = (plugin) => async ({ taskName, ...rest }) => {
     const pluginName = plugin.name
 
     try {
       if (!pluginName) {
-        return plugin({ input, taskName })
+        return plugin({ taskName, ...rest })
       }
 
       console.log(`${chalk.yellow(`${taskName}.${pluginName}`)}: start`)
 
       const result = await plugin({
-        input,
+        ...rest,
         taskName,
         logMessage: (message) => {
           console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${message}`)

@@ -9,7 +9,8 @@ export type StartInput = {|
 export type StartPluginArg = {
   input: StartInput,
   taskName: string,
-  [string]: any,
+  logMessage(string): void,
+  logPath(string): void,
 }
 
 export type StartPlugin = (StartPluginArg) => Promise<StartInput> | StartInput
@@ -18,13 +19,13 @@ export type StartMiddleware = (StartPlugin) => StartPlugin
 
 const sequence = (middleware: StartMiddleware) => (...plugins: StartPlugin[]) => ({
   input = [],
-  taskName,
+  ...rest
 }: StartPluginArg) =>
   plugins.map(middleware).reduce(
     async (result, plugin) =>
       plugin({
+        ...rest,
         input: await result,
-        taskName,
       }),
     input
   )
