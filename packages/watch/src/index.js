@@ -6,10 +6,9 @@ import type { StartPlugin } from '@start/sequence/src/'
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (
   callback: StartPlugin
 ) => {
-  const watch: StartPlugin = ({ logMessage, taskName }) => {
+  const watch: StartPlugin = ({ logMessage, ...rest }) => {
     const chokidar = require('chokidar')
 
-    const callbackPromise = (...args) => Promise.resolve(callback(...args))
     const events = userEvents || ['add', 'change']
     const options = {
       persistent: true,
@@ -30,39 +29,41 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
 
       watcher.on('add', initialListener)
       watcher.once('error', reject)
-      watcher.once('ready', () => {
+      watcher.once('ready', async () => {
         watcher.removeListener('add', initialListener)
 
         const watchForChanges = () => {
           events.forEach((event) => {
-            watcher.once(event, (file) =>
-              callbackPromise({
-                taskName,
-                input: [
-                  {
-                    path: file,
-                    data: null,
-                    map: null,
-                  },
-                ],
-              })
-                .then(watchForChanges)
-                .catch(watchForChanges)
-            )
+            watcher.once(event, async (file) => {
+              try {
+                await callback({
+                  ...rest,
+                  logMessage,
+                  input: [
+                    {
+                      path: file,
+                      data: null,
+                      map: null,
+                    },
+                  ],
+                })
+              } finally {
+                watchForChanges()
+              }
+            })
           })
         }
 
-        callbackPromise({
-          taskName,
-          input: initialFiles,
-        })
-          .then(watchForChanges)
-          .catch(watchForChanges)
-          .then(() => {
-            if (typeof logMessage === 'function') {
-              logMessage('watching for changes, press ctrl-c to exit')
-            }
+        try {
+          await callback({
+            ...rest,
+            logMessage,
+            input: initialFiles,
           })
+        } finally {
+          watchForChanges()
+          logMessage('watching for changes, press ctrl-c to exit')
+        }
       })
     })
   }
