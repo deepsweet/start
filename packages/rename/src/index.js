@@ -12,9 +12,7 @@ export default (callback: (file: string) => string) => {
         return file
       }
 
-      if (typeof logPath === 'function') {
-        logPath(newPath)
-      }
+      logPath(newPath)
 
       if (file.map) {
         // TODO: why not?

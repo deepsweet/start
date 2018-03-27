@@ -37,7 +37,7 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
 
         const result = instrumenter.instrumentSync(source, file, sourceMapObject)
 
-        logPath && logPath(file)
+        logPath(file)
 
         return result
       },
@@ -46,9 +46,7 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
 
     hooks.add(hook)
 
-    if (typeof logMessage === 'function') {
-      logMessage('require() has been hooked')
-    }
+    logMessage('require() has been hooked')
 
     return input
   }

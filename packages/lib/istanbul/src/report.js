@@ -12,9 +12,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      if (typeof logMessage === 'function') {
-        logMessage('no coverage information was collected')
-      }
+      logMessage('no coverage information was collected')
 
       return input
     }
@@ -24,9 +22,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     const remappedCoverageMap = sourceMapStore.transformCoverage(coverageMap).map
     const reporter = createReporter()
 
-    if (typeof logMessage === 'function') {
-      logMessage(formats.join(', '))
-    }
+    logMessage(formats.join(', '))
 
     formats.forEach((format) => {
       reporter.add(format)

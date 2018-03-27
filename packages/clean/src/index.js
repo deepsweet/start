@@ -14,9 +14,7 @@ const clean: StartPlugin = ({ input, logPath }) => {
   return Promise.all(
     input.map((file) => {
       return rimrafP(file.path, options).then(() => {
-        if (typeof logPath === 'function') {
-          logPath(file.path)
-        }
+        logPath(file.path)
 
         return file
       })

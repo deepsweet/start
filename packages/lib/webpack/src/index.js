@@ -12,9 +12,7 @@ export default (config: {}, userStatsOptions?: {}) => {
     }
 
     return webpackLib(config).then((stats) => {
-      if (typeof logMessage === 'function') {
-        logMessage(stats.toString(statsOptions))
-      }
+      logMessage(stats.toString(statsOptions))
 
       if (stats.hasErrors()) {
         return Promise.reject()

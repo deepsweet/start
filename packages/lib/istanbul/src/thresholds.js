@@ -12,9 +12,7 @@ export default (options: {} = {}) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      if (typeof logMessage === 'function') {
-        logMessage('no coverage information was collected')
-      }
+      logMessage('no coverage information was collected')
 
       return input
     }

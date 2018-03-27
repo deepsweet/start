@@ -23,9 +23,7 @@ export default (userOptions?: BabelTransformOptions) => {
 
             const result = transform(file.data, options)
 
-            if (typeof logPath === 'function') {
-              logPath(file.path)
-            }
+            logPath(file.path)
 
             resolve({
               ...file,

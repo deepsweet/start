@@ -19,9 +19,7 @@ export default (glob: string | string[]) => {
       const matchedFiles = multimatch(gitFiles, glob).map((file) => path.resolve(file))
 
       return matchedFiles.map((file) => {
-        if (typeof logPath === 'function') {
-          logPath(file)
-        }
+        logPath(file)
 
         return {
           path: file,

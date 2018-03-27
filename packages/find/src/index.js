@@ -17,9 +17,7 @@ export default (glob: Glob, userOptions?: GlobbyOptions) => {
 
     return globby(glob, options).then((files) =>
       files.map((file) => {
-        if (typeof logPath === 'function') {
-          logPath(file)
-        }
+        logPath(file)
 
         return {
           path: file,

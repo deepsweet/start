@@ -7,9 +7,7 @@ const codecov: StartPlugin = ({ input, logMessage }) => {
   return Promise.all(
     input.map((file) => {
       return codecovLite(file.data).then((result) => {
-        if (typeof logMessage === 'function') {
-          logMessage(result.reportURL)
-        }
+        logMessage(result.reportURL)
 
         return file
       })

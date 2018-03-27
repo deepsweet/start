@@ -45,10 +45,7 @@ export default (outDirRelative: string) => {
             readStream.on('error', reject)
             writeStream.on('error', reject)
             writeStream.on('finish', () => {
-              if (typeof logPath === 'function') {
-                logPath(outFile)
-              }
-
+              logPath(outFile)
               resolve(file)
             })
 

@@ -24,9 +24,7 @@ export default (userOptions?: {}, formatter?: {}) => {
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
-      if (typeof logMessage === 'function') {
-        logMessage('¯\\_(ツ)_/¯')
-      }
+      logMessage('¯\\_(ツ)_/¯')
     }
 
     return input

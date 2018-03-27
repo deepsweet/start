@@ -20,9 +20,7 @@ export default (options?: PrettierEslintOptions) => {
               return resolve(null)
             }
 
-            if (typeof logPath === 'function') {
-              logPath(file.path)
-            }
+            logPath(file.path)
 
             resolve({
               ...file,

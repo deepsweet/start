@@ -10,9 +10,7 @@ const read: StartPlugin = ({ input, logPath }) => {
   return Promise.all(
     input.map((file) =>
       readFile(file.path, 'utf8').then((data) => {
-        if (typeof logPath === 'function') {
-          logPath(file.path)
-        }
+        logPath(file.path)
 
         return {
           ...file,

@@ -67,18 +67,14 @@ export default (outDirRelative: string) => {
 
               writeFiles.push(
                 writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-                  if (typeof logPath === 'function') {
-                    logPath(sourcemapPath)
-                  }
+                  logPath(sourcemapPath)
                 })
               )
             }
 
             writeFiles.push(
               writeFile(outFile, fileData, 'utf8').then(() => {
-                if (typeof logPath === 'function') {
-                  logPath(outFile)
-                }
+                logPath(outFile)
               })
             )
 

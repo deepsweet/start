@@ -40,18 +40,14 @@ const overwrite: StartPlugin = ({ input, logPath }) => {
 
         writeFiles.push(
           writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-            if (typeof logPath === 'function') {
-              logPath(sourcemapPath)
-            }
+            logPath(sourcemapPath)
           })
         )
       }
 
       writeFiles.push(
         writeFile(file.path, fileData, 'utf8').then(() => {
-          if (typeof logPath === 'function') {
-            logPath(file.path)
-          }
+          logPath(file.path)
         })
       )
 
