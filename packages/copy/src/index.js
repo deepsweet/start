@@ -39,7 +39,7 @@ export default (outDirRelative: string) => {
 
         return makeDir(outDir).then(() => {
           return new Promise((resolve, reject) => {
-            const readStream = fs.createReadStream(file)
+            const readStream = fs.createReadStream(file.path)
             const writeStream = fs.createWriteStream(outFile)
 
             readStream.on('error', reject)
