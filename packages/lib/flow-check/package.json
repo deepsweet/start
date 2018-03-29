@@ -29,5 +29,8 @@
   },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
+  },
+  "devDependencies": {
+    "@types/execa": "^0.9.0"
   }
 }

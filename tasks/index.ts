@@ -1,4 +1,3 @@
-// @flow
 import assert from 'assert'
 import Sequence from '@start/sequence/src/'
 import xargs from '@start/xargs/src/'

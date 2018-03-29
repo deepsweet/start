@@ -194,7 +194,7 @@
     "@babel/helper-remap-async-to-generator" "7.0.0-beta.42"
     "@babel/plugin-syntax-async-generators" "7.0.0-beta.42"
 
-"@babel/plugin-proposal-object-rest-spread@7.0.0-beta.42", "@babel/plugin-proposal-object-rest-spread@^7.0.0-beta.42":
+"@babel/plugin-proposal-object-rest-spread@7.0.0-beta.42":
   version "7.0.0-beta.42"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.0.0-beta.42.tgz#56ebd55a8268165cb7cb43a5a232b60f5435a822"
   dependencies:
