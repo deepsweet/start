@@ -20,12 +20,14 @@ const sequence = (middleware: StartMiddleware) => (...plugins: StartPlugin[]): S
   ...rest
 }) =>
   plugins.map(middleware).reduce(
-    async (result, plugin) =>
-      plugin({
-        ...rest,
-        input: await result,
-      }),
-    input
+    (prev, next) =>
+      prev.then((output) =>
+        next({
+          ...rest,
+          input: output,
+        })
+      ),
+    Promise.resolve(input)
   )
 
 export default sequence

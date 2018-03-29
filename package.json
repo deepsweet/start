@@ -113,6 +113,7 @@
       "promise/avoid-new": "off",
       "promise/always-return": "off",
       "promise/no-nesting": "off",
+      "promise/no-callback-in-promise": "off",
       "prefer-promise-reject-errors": "off",
       "no-throw-literal": "off"
     }
