@@ -1,4 +1,3 @@
-// @flow
 import EventEmitter from 'events'
 import test from 'tape'
 import { spy } from 'sinon'

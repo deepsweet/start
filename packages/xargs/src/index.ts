@@ -10,7 +10,7 @@ export default (task: StartTask) => (...input: string[]) => async () => {
     stderr: process.stderr,
     stripEof: false,
     env: {
-      FORCE_COLOR: true,
+      FORCE_COLOR: '1',
     },
   }
 

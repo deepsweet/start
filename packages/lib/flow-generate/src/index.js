@@ -17,7 +17,7 @@ export default (outDirRelative: string, ...flowArgs: string[]) => {
           {
             stripEof: false,
             env: {
-              FORCE_COLOR: true,
+              FORCE_COLOR: '1',
             },
           }
         ).then(() => {

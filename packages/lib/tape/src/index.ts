@@ -1,4 +1,3 @@
-// @flow
 import { StartPlugin, StartInput } from '@start/sequence/src/'
 
 export default (reporter: () => NodeJS.ReadWriteStream) => {

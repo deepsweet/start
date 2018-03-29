@@ -1,4 +1,3 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 const read: StartPlugin = async ({ input, logPath }) => {

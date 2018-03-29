@@ -10,7 +10,7 @@ export default (options?: {}) => (...tasks: StartTask[]) => (...args: string[]) 
     stderr: process.stderr,
     stripEof: false,
     env: {
-      FORCE_COLOR: true,
+      FORCE_COLOR: '1',
     },
   }
 

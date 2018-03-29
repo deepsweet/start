@@ -20,7 +20,7 @@ export default (packagePath: string = '.', userOptions?: {}) => {
       stderr: process.stderr,
       stripEof: false,
       env: {
-        FORCE_COLOR: true,
+        FORCE_COLOR: '1',
       },
     }).catch(() => Promise.reject())
   }
