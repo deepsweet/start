@@ -1,8 +1,8 @@
 import { StartPlugin } from '@start/sequence/src/'
 
-const clean: StartPlugin = ({ input, logPath }) => {
-  const makethen = require('makethen')
-  const rimraf = require('rimraf')
+const clean: StartPlugin = async ({ input, logPath }) => {
+  const { default: makethen } = await import('makethen')
+  const { default: rimraf } = await import('rimraf')
 
   const rimrafP = makethen(rimraf)
 

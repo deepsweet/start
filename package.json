@@ -9,6 +9,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-flow": "^7.0.0-beta.42",
     "@babel/preset-typescript": "^7.0.0-beta.42",
@@ -23,6 +24,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
+    "esm": "^3.0.14",
     "flow-bin": "^0.68.0",
     "flows-sync": "^0.1.0-0",
     "sinon": "^4.4.8",
@@ -31,6 +33,7 @@
     "typescript-eslint-parser": "^14.0.0"
   },
   "scripts": {
+    "start": "node --require esm packages/cli/src/",
     "postinstall": "flows"
   },
   "start": {
@@ -56,13 +59,15 @@
           },
           "exclude": [
             "transform-regenerator"
-          ]
+          ],
+          "modules": false
         }
       ],
       "@babel/preset-typescript"
     ],
     "plugins": [
-      "@babel/plugin-proposal-object-rest-spread"
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-syntax-dynamic-import"
     ]
   },
   "eslintConfig": {

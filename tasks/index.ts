@@ -34,11 +34,12 @@ const babelConfig = {
           node: 6,
         },
         exclude: ['transform-regenerator'],
+        modules: false,
       },
     ],
     '@babel/preset-flow',
   ],
-  plugins: ['@babel/plugin-proposal-object-rest-spread'],
+  plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/plugin-syntax-dynamic-import'],
 }
 
 export const build = (packageName: string) =>

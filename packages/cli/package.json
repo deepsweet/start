@@ -8,9 +8,9 @@
     "start"
   ],
   "bin": {
-    "start": "build/index.js"
+    "start": "build/index.mjs"
   },
-  "main": "build/index",
+  "main": "build/index.mjs",
   "files": [
     "build/"
   ],
