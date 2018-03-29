@@ -26,6 +26,7 @@ const sequence = Sequence(reporter)
 
 const babelConfig = {
   babelrc: false,
+  retainLines: true,
   presets: [
     [
       '@babel/preset-env',
@@ -50,7 +51,7 @@ export const build = (packageName: string) =>
     find(`packages/${packageName}/src/**/*.ts`),
     read,
     babel(babelConfig),
-    rename((file) => file.replace(/\.ts$/, '.mjs')),
+    rename((file) => file.replace(/\.ts$/, '.js')),
     write(`packages/${packageName}/build/`)
   )
 
