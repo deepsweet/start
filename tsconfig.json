@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "noEmit": true,
+    "pretty": true,
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "typeRoots": [ "node_modules/@types/" ]
+  },
+  "exclude": ["node_modules/", "build/"]
+}

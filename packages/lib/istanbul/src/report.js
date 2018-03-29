@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence/src/'
 
 export default (formats: string[] = ['lcovonly', 'text-summary']) => {
   const istanbulReport: StartPlugin = ({ input, logMessage }) => {

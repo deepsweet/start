@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence/src/'
 
 // https://docs.npmjs.com/cli/publish
 export default (packagePath: string = '.', userOptions?: {}) => {

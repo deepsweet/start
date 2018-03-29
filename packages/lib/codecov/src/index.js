@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence/src/'
 
 const codecov: StartPlugin = ({ input, logMessage }) => {
   const codecovLite = require('codecov-lite')

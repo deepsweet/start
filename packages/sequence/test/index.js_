@@ -3,7 +3,7 @@ import EventEmitter from 'events'
 import test from 'tape'
 import { spy } from 'sinon'
 
-// import type { StartPlugin } from '../src/'
+// import { StartPlugin } from '../src/'
 import task from '../src'
 
 class MyEmitter extends EventEmitter {

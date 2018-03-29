@@ -1,9 +1,8 @@
-// @flow
 import path from 'path'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
-import type { StartMiddleware } from '@start/sequence/src/'
+import { StartMiddleware } from '@start/sequence/src/'
 
 export default (options?: {}) => {
   const reporter: StartMiddleware = (plugin) => async ({ taskName, ...rest }) => {

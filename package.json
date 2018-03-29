@@ -11,7 +11,9 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-flow": "^7.0.0-beta.42",
+    "@babel/preset-typescript": "^7.0.0-beta.42",
     "@babel/register": "^7.0.0-beta.42",
+    "@types/node": "^8.10.0",
     "babel-eslint": "^8.2.2",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
@@ -24,14 +26,24 @@
     "flow-bin": "^0.68.0",
     "flows-sync": "^0.1.0-0",
     "sinon": "^4.4.8",
-    "tap-diff": "^0.1.1"
+    "tap-diff": "^0.1.1",
+    "typescript": "^2.7.2",
+    "typescript-eslint-parser": "^14.0.0"
   },
   "scripts": {
     "postinstall": "flows"
   },
   "start": {
     "require": [
-      "@babel/register"
+      [
+        "@babel/register",
+        {
+          "extensions": [
+            ".ts",
+            ".js"
+          ]
+        }
+      ]
     ]
   },
   "babel": {
@@ -47,14 +59,14 @@
           ]
         }
       ],
-      "@babel/preset-flow"
+      "@babel/preset-typescript"
     ],
     "plugins": [
       "@babel/plugin-proposal-object-rest-spread"
     ]
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
+    "parser": "typescript-eslint-parser",
     "plugins": [
       "standard",
       "prettier",
@@ -82,6 +94,9 @@
       }
     },
     "rules": {
+      "no-undef": "off",
+      "no-unused-vars": "off",
+      "import/no-unresolved": "off",
       "prettier/prettier": "error",
       "node/no-unsupported-features": [
         "error",
@@ -111,7 +126,7 @@
   "prettier": {
     "arrowParens": "always",
     "singleQuote": true,
-    "parser": "babylon",
+    "parser": "typescript",
     "semi": false,
     "printWidth": 100,
     "trailingComma": "es5"

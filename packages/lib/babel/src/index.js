@@ -1,6 +1,6 @@
 // @flow
-import type { StartPlugin } from '@start/sequence/src/'
-import type { BabelTransformOptions } from '@babel/core'
+import { StartPlugin } from '@start/sequence/src/'
+import { BabelTransformOptions } from '@babel/core'
 
 export default (userOptions?: BabelTransformOptions) => {
   const babel: StartPlugin = ({ input, logPath }) => {

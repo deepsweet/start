@@ -1,6 +1,6 @@
 // @flow
-import type { StartPlugin } from '@start/sequence/src/'
-import type { Glob, GlobbyOptions } from 'globby'
+import { StartPlugin } from '@start/sequence/src/'
+import { Glob, GlobbyOptions } from 'globby'
 
 export default (glob: Glob, userOptions?: GlobbyOptions) => {
   const find: StartPlugin = ({ logPath }) => {

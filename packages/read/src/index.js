@@ -1,5 +1,5 @@
 // @flow
-import type { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence/src/'
 
 const read: StartPlugin = ({ input, logPath }) => {
   const makethen = require('makethen')

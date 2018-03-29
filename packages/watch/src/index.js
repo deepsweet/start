@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable standard/no-callback-literal */
 /* eslint-disable promise/catch-or-return */
-import type { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence/src/'
 
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (
   callback: StartPlugin

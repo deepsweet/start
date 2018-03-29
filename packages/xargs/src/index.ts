@@ -1,5 +1,4 @@
-// @flow
-import type { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence/src/'
 
 type StartTask = (...args: string[]) => StartPlugin
 

@@ -12,7 +12,13 @@ const options = {
 }
 
 if (Array.isArray(options.require)) {
-  options.require.forEach(require)
+  options.require.forEach((module) => {
+    if (typeof module === 'string') {
+      require(module)
+    } else if (Array.isArray(module)) {
+      require(module[0])(module[1])
+    }
+  })
 }
 
 let tasks: {} = importCwd(options.preset ? options.preset : `./${options.file}`)
