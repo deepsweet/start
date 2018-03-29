@@ -23,7 +23,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "dependencies": {
     "prettier-eslint": "^8.8.1"

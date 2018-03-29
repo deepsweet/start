@@ -24,7 +24,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "dependencies": {
     "esm": "^3.0.14",

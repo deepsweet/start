@@ -22,7 +22,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "dependencies": {
     "execa": "^0.10.0"

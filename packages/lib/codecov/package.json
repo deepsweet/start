@@ -23,7 +23,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "dependencies": {
     "codecov-lite": "^0.1.3"

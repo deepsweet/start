@@ -23,7 +23,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "dependencies": {
     "convert-source-map": "^1.5.1",

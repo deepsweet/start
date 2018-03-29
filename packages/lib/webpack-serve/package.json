@@ -22,7 +22,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "dependencies": {
     "webpack-serve": "^0.2.0"

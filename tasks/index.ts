@@ -32,7 +32,7 @@ const babelConfig = {
       '@babel/preset-env',
       {
         targets: {
-          node: 6,
+          node: 8,
         },
         exclude: ['transform-regenerator'],
         modules: false,
@@ -40,7 +40,7 @@ const babelConfig = {
     ],
     '@babel/preset-typescript',
   ],
-  plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/plugin-syntax-dynamic-import'],
+  plugins: ['@babel/plugin-syntax-dynamic-import'],
 }
 
 export const build = (packageName: string) =>
