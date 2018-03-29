@@ -60,20 +60,20 @@ export const dev = (packageName: string) =>
   sequence(
     find(`packages/${packageName}/build/`),
     clean,
-    watch(`packages/${packageName}/src/**/*.js`)(
+    watch(`packages/${packageName}/src/**/*.ts`)(
       sequence(read, babel(babelConfig), write(`packages/${packageName}/build/`))
     )
   )
 
 export const lint = () =>
-  sequence(findGitStaged(['packages/**/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
+  sequence(findGitStaged(['packages/**/@(src|test)/**/*.ts', 'tasks/**/*.ts']), eslint())
 
 export const lintAll = () =>
-  sequence(find(['packages/**/@(src|test)/**/*.js', 'tasks/**/*.js']), eslint())
+  sequence(find(['packages/**/@(src|test)/**/*.ts', 'tasks/**/*.ts']), eslint())
 
 export const fix = () =>
   sequence(
-    find(['packages/*/@(src|test)/**/*.js', 'tasks/**/*.js']),
+    find(['packages/*/@(src|test)/**/*.ts', 'tasks/**/*.ts']),
     read,
     prettierEslint(),
     overwrite
@@ -81,9 +81,9 @@ export const fix = () =>
 
 export const test = () =>
   sequence(
-    find('packages/**/src/**/*.js'),
+    find('packages/**/src/**/*.ts'),
     istanbulInstrument({ esModules: true }),
-    find('packages/**/test/**/*.js'),
+    find('packages/**/test/**/*.ts'),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary']),
     istanbulThresholds({ functions: 30 })

@@ -1,8 +1,7 @@
 // @flow
 import { StartPlugin, StartInput_ } from '@start/sequence/src/'
-import { BabelTransformOptions } from '@babel/core'
 
-export default (userOptions?: BabelTransformOptions) => {
+export default (userOptions?: {}) => {
   const babel: StartPlugin = async ({ input, logPath }) => {
     const { default: { transform } } = await import('@babel/core')
 

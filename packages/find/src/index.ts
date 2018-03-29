@@ -1,12 +1,10 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
-import { Glob, GlobbyOptions } from 'globby'
 
-export default (glob: Glob, userOptions?: GlobbyOptions) => {
+export default (glob: string | string[], userOptions?: {}) => {
   const find: StartPlugin = async ({ logPath }) => {
     const { default: globby } = await import('globby')
 
-    const options: GlobbyOptions = {
+    const options = {
       absolute: true,
       deep: true,
       onlyFiles: false,

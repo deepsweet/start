@@ -1,4 +1,3 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 export default (key: string, value: string) => {

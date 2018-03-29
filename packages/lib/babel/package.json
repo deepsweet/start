@@ -27,9 +27,6 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42"
   },
-  "devDependencies": {
-    "@flows/babel": "^0.1.0-0"
-  },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
   }

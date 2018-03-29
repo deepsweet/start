@@ -26,10 +26,10 @@
   "dependencies": {
     "globby": "^8.0.1"
   },
-  "devDependencies": {
-    "@flows/globby": "^0.1.0-0"
-  },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
+  },
+  "devDependencies": {
+    "@types/globby": "^6.1.0"
   }
 }

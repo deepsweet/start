@@ -28,9 +28,6 @@
   "dependencies": {
     "prettier-eslint": "^8.8.1"
   },
-  "devDependencies": {
-    "@flows/prettier-eslint": "^0.1.0-0"
-  },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
   }

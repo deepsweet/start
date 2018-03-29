@@ -1,6 +1,3 @@
-#!/usr/bin/env node
-
-// @flow
 /* eslint-disable no-process-exit */
 import importCwd from 'import-cwd'
 

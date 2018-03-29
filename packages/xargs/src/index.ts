@@ -2,8 +2,8 @@ import { StartPlugin } from '@start/sequence/src/'
 
 type StartTask = (...args: string[]) => StartPlugin
 
-export default (task: StartTask) => (...input: string[]) => () => {
-  const execa = require('execa')
+export default (task: StartTask) => (...input: string[]) => async () => {
+  const { default: execa } = await import('execa')
 
   const spawnOptions = {
     stdout: process.stdout,
@@ -19,7 +19,7 @@ export default (task: StartTask) => (...input: string[]) => () => {
       const spawnCommand = process.argv[0]
       const spawnArgs = [process.argv[1], task.name, arg]
 
-      return execa(spawnCommand, spawnArgs, spawnOptions).catch(() => Promise.reject())
+      return execa(spawnCommand, spawnArgs, spawnOptions).catch(() => Promise.reject(null))
     })
   )
 }

@@ -536,26 +536,6 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@flows/babel@^0.1.0-0":
-  version "0.1.0-0"
-  resolved "https://registry.yarnpkg.com/@flows/babel/-/babel-0.1.0-0.tgz#0b5d358c273e7bffb86213822de8cfc8e51be37e"
-
-"@flows/execa@^0.1.0-0":
-  version "0.1.0-0"
-  resolved "https://registry.yarnpkg.com/@flows/execa/-/execa-0.1.0-0.tgz#076a5c956cb0fa93ab23c0f16ee897a972f44baf"
-
-"@flows/globby@^0.1.0-0":
-  version "0.1.0-0"
-  resolved "https://registry.yarnpkg.com/@flows/globby/-/globby-0.1.0-0.tgz#4fc322760f6af416586b5203f3e94418cf48601b"
-
-"@flows/makethen@^0.1.0-0":
-  version "0.1.0-0"
-  resolved "https://registry.yarnpkg.com/@flows/makethen/-/makethen-0.1.0-0.tgz#a319471587d26baed53b5da88b13f244d65494ec"
-
-"@flows/prettier-eslint@^0.1.0-0":
-  version "0.1.0-0"
-  resolved "https://registry.yarnpkg.com/@flows/prettier-eslint/-/prettier-eslint-0.1.0-0.tgz#023519dbb57b902eb69eba80435598a8ab40c677"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -589,6 +569,12 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
 
+"@types/execa@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@types/execa/-/execa-0.9.0.tgz#9b025d2755f17e80beaf9368c3f4f319d8b0fb93"
+  dependencies:
+    "@types/node" "*"
+
 "@types/glob@*":
   version "5.0.35"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-5.0.35.tgz#1ae151c802cece940443b5ac246925c85189f32a"
@@ -597,9 +583,27 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/globby@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@types/globby/-/globby-6.1.0.tgz#7c25b975512a89effea2a656ca8cf6db7fb29d11"
+  dependencies:
+    "@types/glob" "*"
+
+"@types/graceful-fs@^4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.2.tgz#fbc9575dbcc6d1d91dd768d30c5fc0c19f6c50bd"
+  dependencies:
+    "@types/node" "*"
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
+
+"@types/mkdirp@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@types/mkdirp/-/mkdirp-0.5.2.tgz#503aacfe5cc2703d5484326b1b27efa67a339c1f"
+  dependencies:
+    "@types/node" "*"
 
 "@types/node@*":
   version "9.6.1"
@@ -5922,9 +5926,13 @@ typescript-eslint-parser@^14.0.0:
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-typescript@^2.5.1, typescript@^2.7.2:
+typescript@^2.5.1:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
+
+typescript@^2.7.2:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.8.1.tgz#6160e4f8f195d5ba81d4876f9c0cc1fbc0820624"
 
 uglify-es@^3.3.4:
   version "3.3.9"

@@ -1,12 +1,12 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 export default (outDirRelative: string) => {
-  const copy: StartPlugin = ({ input, logPath }) => {
-    const path = require('path')
-    const makethen = require('makethen')
-    const fs = require('graceful-fs')
-    const makeDir = makethen(require('mkdirp'))
+  const copy: StartPlugin = async ({ input, logPath }) => {
+    const { default: path } = await import('path')
+    const { default: makethen } = await import('makethen')
+    const { default: fs } = await import('graceful-fs')
+    const { default: mkdirp } = await import('mkdirp')
+    const makeDir = makethen(mkdirp)
 
     return Promise.all(
       input.map((file) => {

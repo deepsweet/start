@@ -28,9 +28,6 @@
     "makethen": "^0.1.0",
     "webpack": "^4.1.1"
   },
-  "devDependencies": {
-    "@flows/makethen": "^0.1.0-0"
-  },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
   }
