@@ -1,5 +1,5 @@
 // @flow
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin, StartInput_ } from '@start/sequence/src/'
 import { BabelTransformOptions } from '@babel/core'
 
 export default (userOptions?: BabelTransformOptions) => {
@@ -9,7 +9,7 @@ export default (userOptions?: BabelTransformOptions) => {
     return Promise.all(
       input.map(
         (file) =>
-          new Promise((resolve, reject) => {
+          new Promise<StartInput_>((resolve, reject) => {
             const options = {
               ...userOptions,
               ast: false,

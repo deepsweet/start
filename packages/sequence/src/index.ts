@@ -4,6 +4,12 @@ export type StartInput = {
   map: null | {}
 }[]
 
+export type StartInput_ = {
+  path: string
+  data: null | string
+  map: null | {}
+}
+
 export type StartPluginArg = {
   input: StartInput
   taskName: string

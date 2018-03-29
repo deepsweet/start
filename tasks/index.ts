@@ -9,11 +9,11 @@ import findGitStaged from '@start/find-git-staged/src/'
 import clean from '@start/clean/src/'
 import read from '@start/read/src/'
 import babel from '@start/lib-babel/src/'
+import rename from '@start/rename/src/'
 import write from '@start/write/src/'
 import overwrite from '@start/overwrite/src/'
 import watch from '@start/watch/src/'
 import eslint from '@start/lib-eslint/src/'
-import flowCheck from '@start/lib-flow-check/src/'
 import prettierEslint from '@start/lib-prettier-eslint/src/'
 import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/lib-istanbul/src/'
 import tape from '@start/lib-tape/src/'
@@ -50,6 +50,7 @@ export const build = (packageName: string) =>
     find(`packages/${packageName}/src/**/*.ts`),
     read,
     babel(babelConfig),
+    rename((file) => file.replace(/\.ts$/, '.mjs')),
     write(`packages/${packageName}/build/`)
   )
 
@@ -85,8 +86,7 @@ export const test = () =>
     find('packages/**/test/**/*.js'),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary']),
-    istanbulThresholds({ functions: 30 }),
-    flowCheck()
+    istanbulThresholds({ functions: 30 })
   )
 
 export const ci = () => sequence(lintAll(), test())
