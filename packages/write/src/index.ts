@@ -2,11 +2,11 @@
 import { StartPlugin } from '@start/sequence/src/'
 
 export default (outDirRelative: string) => {
-  const write: StartPlugin = ({ input, logPath }) => {
-    const path = require('path')
-    const makethen = require('makethen')
-    const gracefulFs = require('graceful-fs')
-    const makeDirP = require('mkdirp')
+  const write: StartPlugin = async ({ input, logPath }) => {
+    const { default: path } = await import('path')
+    const { default: makethen } = await import('makethen')
+    const { default: gracefulFs } = await import('graceful-fs')
+    const { default: makeDirP } = await import('mkdirp')
     const makeDir = makethen(makeDirP)
     const writeFile = makethen(gracefulFs.writeFile)
 

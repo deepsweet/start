@@ -3,8 +3,8 @@ import { StartPlugin } from '@start/sequence/src/'
 import { Glob, GlobbyOptions } from 'globby'
 
 export default (glob: Glob, userOptions?: GlobbyOptions) => {
-  const find: StartPlugin = ({ logPath }) => {
-    const globby = require('globby')
+  const find: StartPlugin = async ({ logPath }) => {
+    const { default: globby } = await import('globby')
 
     const options: GlobbyOptions = {
       absolute: true,

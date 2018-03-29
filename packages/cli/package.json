@@ -8,7 +8,7 @@
     "start"
   ],
   "bin": {
-    "start": "build/index.mjs"
+    "start": "build/index.js"
   },
   "main": "build/index.mjs",
   "files": [
@@ -27,6 +27,7 @@
     "node": ">=6"
   },
   "dependencies": {
+    "esm": "^3.0.14",
     "import-cwd": "^2.1.0"
   },
   "peerDependencies": {

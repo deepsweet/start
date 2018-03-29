@@ -3,8 +3,8 @@ import { StartPlugin } from '@start/sequence/src/'
 import { BabelTransformOptions } from '@babel/core'
 
 export default (userOptions?: BabelTransformOptions) => {
-  const babel: StartPlugin = ({ input, logPath }) => {
-    const { transform } = require('@babel/core')
+  const babel: StartPlugin = async ({ input, logPath }) => {
+    const { default: { transform } } = await import('@babel/core')
 
     return Promise.all(
       input.map(

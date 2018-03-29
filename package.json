@@ -11,30 +11,21 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
-    "@babel/preset-flow": "^7.0.0-beta.42",
     "@babel/preset-typescript": "^7.0.0-beta.42",
     "@babel/register": "^7.0.0-beta.42",
     "@types/node": "^8.10.0",
     "babel-eslint": "^8.2.2",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "esm": "^3.0.14",
-    "flow-bin": "^0.68.0",
-    "flows-sync": "^0.1.0-0",
     "sinon": "^4.4.8",
     "tap-diff": "^0.1.1",
     "typescript": "^2.7.2",
     "typescript-eslint-parser": "^14.0.0"
-  },
-  "scripts": {
-    "start": "node --require esm packages/cli/src/",
-    "postinstall": "flows"
   },
   "start": {
     "require": [
@@ -77,26 +68,18 @@
       "prettier",
       "node",
       "promise",
-      "import",
-      "flowtype"
+      "import"
     ],
     "extends": [
       "standard",
       "plugin:node/recommended",
       "plugin:promise/recommended",
       "plugin:import/recommended",
-      "plugin:flowtype/recommended",
       "prettier",
-      "prettier/standard",
-      "prettier/flowtype"
+      "prettier/standard"
     ],
     "env": {
       "node": true
-    },
-    "settings": {
-      "flowtype": {
-        "onlyFilesWithFlowAnnotation": true
-      }
     },
     "rules": {
       "no-undef": "off",
@@ -126,8 +109,7 @@
   "eslintIgnore": [
     "build/",
     "coverage/",
-    "node_modules/",
-    "flow-typed/"
+    "node_modules/"
   ],
   "prettier": {
     "arrowParens": "always",

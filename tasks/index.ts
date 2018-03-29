@@ -37,7 +37,7 @@ const babelConfig = {
         modules: false,
       },
     ],
-    '@babel/preset-flow',
+    '@babel/preset-typescript',
   ],
   plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/plugin-syntax-dynamic-import'],
 }
@@ -47,7 +47,7 @@ export const build = (packageName: string) =>
     env('NODE_ENV', 'production'),
     find(`packages/${packageName}/build/`),
     clean,
-    find(`packages/${packageName}/src/**/*.js`),
+    find(`packages/${packageName}/src/**/*.ts`),
     read,
     babel(babelConfig),
     write(`packages/${packageName}/build/`)
