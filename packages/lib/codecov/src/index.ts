@@ -1,8 +1,7 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
-const codecov: StartPlugin = ({ input, logMessage }) => {
-  const codecovLite = require('codecov-lite')
+const codecov: StartPlugin = async ({ input, logMessage }) => {
+  const { default: codecovLite } = await import('codecov-lite')
 
   return Promise.all(
     input.map((file) => {

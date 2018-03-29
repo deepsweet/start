@@ -1,16 +1,11 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 export default (glob: string | string[]) => {
-  if (!glob) {
-    throw new Error('Glob pattern is required')
-  }
-
-  const findGitStaged: StartPlugin = ({ logPath }) => {
-    const { EOL } = require('os')
-    const path = require('path')
-    const execa = require('execa')
-    const multimatch = require('multimatch')
+  const findGitStaged: StartPlugin = async ({ logPath }) => {
+    const { default: { EOL } } = await import('os')
+    const { default: path } = await import('path')
+    const { default: execa } = await import('execa')
+    const { default: multimatch } = await import('multimatch')
 
     const gitArgs = ['diff', '--cached', '--name-only', '--diff-filter=ACM']
 
@@ -23,6 +18,8 @@ export default (glob: string | string[]) => {
 
         return {
           path: file,
+          data: null,
+          map: null,
         }
       })
     })

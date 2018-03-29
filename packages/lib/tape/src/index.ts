@@ -1,12 +1,12 @@
 // @flow
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin, StartInput } from '@start/sequence/src/'
 
-export default (reporter: () => void) => {
-  const tape: StartPlugin = ({ input }) => {
-    const test = require('tape')
-    const through = require('through')
+export default (reporter: () => NodeJS.ReadWriteStream) => {
+  const tape: StartPlugin = async ({ input }) => {
+    const { default: test } = await import('tape')
+    const { default: through } = await import('through')
 
-    return new Promise((resolve, reject) => {
+    return new Promise<StartInput>((resolve, reject) => {
       const stream = test.createStream()
       const results = test.getHarness()._results
 
@@ -43,6 +43,7 @@ export default (reporter: () => void) => {
         this._stream.queue(null)
       })
 
+      // TODO: get rid of `require`
       input.forEach((file) => require(file.path))
     })
   }

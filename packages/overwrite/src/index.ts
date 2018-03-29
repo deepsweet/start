@@ -1,10 +1,9 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
-const overwrite: StartPlugin = ({ input, logPath }) => {
-  const path = require('path')
-  const makethen = require('makethen')
-  const gracefulFs = require('graceful-fs')
+const overwrite: StartPlugin = async ({ input, logPath }) => {
+  const { default: path } = await import('path')
+  const { default: makethen } = await import('makethen')
+  const { default: gracefulFs } = await import('graceful-fs')
   const writeFile = makethen(gracefulFs.writeFile)
 
   return Promise.all(

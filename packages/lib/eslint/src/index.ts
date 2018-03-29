@@ -1,9 +1,8 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src'
 
-export default (userOptions?: {}, formatter?: {}) => {
-  const eslint: StartPlugin = ({ input, logMessage }) => {
-    const { CLIEngine } = require('eslint')
+export default (userOptions?: {}, formatter?: string) => {
+  const eslint: StartPlugin = async ({ input, logMessage }) => {
+    const { default: { CLIEngine } } = await import('eslint')
     const options = {
       cache: true,
       cacheLocation: 'node_modules/.cache/eslint',
@@ -20,7 +19,7 @@ export default (userOptions?: {}, formatter?: {}) => {
     }
 
     if (report.errorCount > 0) {
-      return Promise.reject()
+      return Promise.reject(null)
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {

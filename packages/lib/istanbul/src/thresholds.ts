@@ -2,12 +2,12 @@
 import { StartPlugin } from '@start/sequence/src/'
 
 export default (options: {} = {}) => {
-  const istanbulThresholds: StartPlugin = ({ input, logMessage }) => {
-    const { createCoverageMap } = require('istanbul-lib-coverage')
-    const { createSourceMapStore } = require('istanbul-lib-source-maps')
-    const { summarizers } = require('istanbul-lib-report')
-    const hooks = require('./hooks')
-    const coverageVariable = require('./variable').default
+  const istanbulThresholds: StartPlugin = async ({ input, logMessage }) => {
+    const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
+    const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
+    const { default: { summarizers } } = await import('istanbul-lib-report')
+    const hooks = await import('./hooks')
+    const { default: coverageVariable } = await import('./variable')
 
     hooks.clearAll()
 

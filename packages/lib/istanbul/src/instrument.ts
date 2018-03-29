@@ -1,13 +1,12 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 export default (options?: {}, extensions: string[] = ['.js']) => {
-  const istanbulInstrument: StartPlugin = ({ input, logPath, logMessage }) => {
-    const { fromSource: getSourceMapFromSource } = require('convert-source-map')
-    const { createInstrumenter } = require('istanbul-lib-instrument')
-    const { hookRequire } = require('istanbul-lib-hook')
-    const hooks = require('./hooks')
-    const coverageVariable = require('./variable').default
+  const istanbulInstrument: StartPlugin = async ({ input, logPath, logMessage }) => {
+    const { default: { fromSource: getSourceMapFromSource } } = await import('convert-source-map')
+    const { default: { createInstrumenter } } = await import('istanbul-lib-instrument')
+    const { default: { hookRequire } } = await import('istanbul-lib-hook')
+    const hooks = await import('./hooks')
+    const { default: coverageVariable } = await import('./variable')
 
     const instrumenter = createInstrumenter({
       ...options,

@@ -1,13 +1,12 @@
-// @flow
 /* eslint-disable standard/no-callback-literal */
 /* eslint-disable promise/catch-or-return */
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin, StartInput_ } from '@start/sequence/src/'
 
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (
   callback: StartPlugin
 ) => {
-  const watch: StartPlugin = ({ logMessage, ...rest }) => {
-    const chokidar = require('chokidar')
+  const watch: StartPlugin = async ({ logMessage, ...rest }) => {
+    const { default: chokidar } = await import('chokidar')
 
     const events = userEvents || ['add', 'change']
     const options = {

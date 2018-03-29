@@ -83,7 +83,7 @@ export const fix = () =>
 export const test = () =>
   sequence(
     find('packages/**/src/**/*.ts'),
-    istanbulInstrument({ esModules: true }),
+    istanbulInstrument({ esModules: true }, ['.ts']),
     find('packages/**/test/**/*.ts'),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary']),

@@ -1,4 +1,3 @@
-// @flow
 let hooks = []
 
 export const add = (hook: () => void) => {

@@ -1,9 +1,8 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 export default (callback: (file: string) => string) => {
-  const rename: StartPlugin = ({ input, logPath }) => {
-    const path = require('path')
+  const rename: StartPlugin = async ({ input, logPath }) => {
+    const { default: path } = await import('path')
 
     return input.map((file) => {
       const newPath = callback(file.path)

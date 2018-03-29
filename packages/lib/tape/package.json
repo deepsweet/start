@@ -31,5 +31,9 @@
   },
   "peerDependencies": {
     "@start/task": "^0.1.0-0"
+  },
+  "devDependencies": {
+    "@types/tape": "^4.2.32",
+    "@types/through": "^0.0.29"
   }
 }

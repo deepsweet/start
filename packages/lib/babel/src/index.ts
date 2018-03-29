@@ -1,4 +1,3 @@
-// @flow
 import { StartPlugin, StartInput_ } from '@start/sequence/src/'
 
 export default (userOptions?: {}) => {
