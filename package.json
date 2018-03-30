@@ -23,7 +23,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "sinon": "^4.4.8",
     "tap-diff": "^0.1.1",
-    "typescript": "^2.7.2",
+    "typescript": "^2.8.1",
     "typescript-eslint-parser": "^14.0.0"
   },
   "start": {
