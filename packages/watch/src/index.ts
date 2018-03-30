@@ -1,6 +1,6 @@
 /* eslint-disable standard/no-callback-literal */
 /* eslint-disable promise/catch-or-return */
-import { StartPlugin, StartInput_ } from '@start/sequence/src/'
+import { StartPlugin, StartInput } from '@start/sequence/src/'
 
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (
   callback: StartPlugin
@@ -14,7 +14,7 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
       ...userOptions,
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise<StartInput>((resolve, reject) => {
       const initialFiles = []
       const initialListener = (file) => {
         initialFiles.push({

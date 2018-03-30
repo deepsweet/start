@@ -1,14 +1,13 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 type Options = {
-  rootDir?: string,
-  coverageThreshold?: {},
-  globals?: {},
-  haste?: {},
-  moduleNameMapper?: {},
-  resolver?: {},
-  transform?: {},
+  rootDir?: string
+  coverageThreshold?: {}
+  globals?: {}
+  haste?: {}
+  moduleNameMapper?: {}
+  resolver?: {}
+  transform?: {}
 }
 
 const optionsToStringify = [
@@ -20,9 +19,9 @@ const optionsToStringify = [
   'transform',
 ]
 
-export default (userOptions?: Options = { rootDir: process.cwd() }) => {
-  const jest: StartPlugin = ({ input }) => {
-    const jestCLI = require('jest-cli')
+export default (userOptions: Options = { rootDir: process.cwd() }) => {
+  const jest: StartPlugin = async ({ input }) => {
+    const { default: jestCLI } = await import('jest-cli')
 
     const options = {
       ...userOptions,
@@ -43,7 +42,7 @@ export default (userOptions?: Options = { rootDir: process.cwd() }) => {
         results.numFailedTestSuites > 0 ||
         results.numTotalTests === 0
       ) {
-        return Promise.reject()
+        return Promise.reject(null)
       }
 
       return input

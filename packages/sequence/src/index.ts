@@ -1,14 +1,10 @@
-export type StartInput = {
-  path: string
-  data: null | string
-  map: null | {}
-}[]
-
-export type StartInput_ = {
+export type StartFile = {
   path: string
   data: null | string
   map: null | {}
 }
+
+export type StartInput = StartFile[]
 
 export type StartPluginArg = {
   input: StartInput

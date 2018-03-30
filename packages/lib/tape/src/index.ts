@@ -7,6 +7,8 @@ export default (reporter: () => NodeJS.ReadWriteStream) => {
 
     return new Promise<StartInput>((resolve, reject) => {
       const stream = test.createStream()
+      // FIXME
+      // @ts-ignore
       const results = test.getHarness()._results
 
       if (typeof reporter === 'function') {

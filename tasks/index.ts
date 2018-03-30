@@ -16,6 +16,7 @@ import eslint from '@start/lib-eslint/src/'
 import prettierEslint from '@start/lib-prettier-eslint/src/'
 import { istanbulInstrument, istanbulReport, istanbulThresholds } from '@start/lib-istanbul/src/'
 import tape from '@start/lib-tape/src/'
+import typescriptGenerate from '@start/lib-typescript-generate/src/'
 // import npmVersion from '@start/lib-npm-version/src/'
 import npmPublish from '@start/lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
@@ -50,8 +51,11 @@ export const build = (packageName: string) =>
     find(`packages/${packageName}/src/**/*.ts`),
     read,
     babel(babelConfig),
+    prettierEslint(),
     rename((file) => file.replace(/\.ts$/, '.js')),
-    write(`packages/${packageName}/build/`)
+    write(`packages/${packageName}/build/`),
+    find(`packages/${packageName}/src/**/*.ts`),
+    typescriptGenerate(`packages/${packageName}/build/`, ['--lib', 'esnext'])
   )
 
 export const builds = xargs(build)

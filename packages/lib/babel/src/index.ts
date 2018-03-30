@@ -1,4 +1,4 @@
-import { StartPlugin, StartInput_ } from '@start/sequence/src/'
+import { StartPlugin, StartFile } from '@start/sequence/src/'
 
 export default (userOptions?: {}) => {
   const babel: StartPlugin = async ({ input, logPath }) => {
@@ -7,7 +7,7 @@ export default (userOptions?: {}) => {
     return Promise.all(
       input.map(
         (file) =>
-          new Promise<StartInput_>((resolve, reject) => {
+          new Promise<StartFile>((resolve, reject) => {
             const options = {
               ...userOptions,
               ast: false,

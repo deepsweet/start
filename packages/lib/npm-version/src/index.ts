@@ -1,11 +1,10 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 // https://docs.npmjs.com/cli/version
 export default (version: string, packagePath: string = '.') => {
-  const npmVersion: StartPlugin = ({ input }) => {
-    const path = require('path')
-    const execa = require('execa')
+  const npmVersion: StartPlugin = async ({ input }) => {
+    const { default: path } = await import('path')
+    const { default: execa } = await import('execa')
 
     return execa('npm', ['version', version], {
       cwd: path.resolve(packagePath),
@@ -15,7 +14,9 @@ export default (version: string, packagePath: string = '.') => {
       env: {
         FORCE_COLOR: '1',
       },
-    }).catch(() => Promise.reject())
+    })
+      .then(() => input)
+      .catch(() => Promise.reject(null))
   }
 
   return npmVersion

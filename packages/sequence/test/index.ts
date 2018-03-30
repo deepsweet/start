@@ -1,22 +1,22 @@
-import EventEmitter from 'events'
+// import EventEmitter from 'events'
 import test from 'tape'
-import { spy } from 'sinon'
+// import { spy } from 'sinon'
 // import { StartPlugin } from '../src/'
 import task from '../src'
 
-class MyEmitter extends EventEmitter {
-  __allCallback: (...args: any[]) => void
-
-  emit(...args) {
-    this.__allCallback(...args)
-
-    return super.emit(...args)
-  }
-
-  onAll(callback) {
-    this.__allCallback = callback
-  }
-}
+// class MyEmitter extends EventEmitter {
+//   __allCallback: (...args: any[]) => void
+//
+//   emit(eventName, data) {
+//     this.__allCallback(eventName, data)
+//
+//     return super.emit(eventName, data)
+//   }
+//
+//   onAll(callback) {
+//     this.__allCallback = callback
+//   }
+// }
 
 test('export', (t) => {
   t.equal(typeof task, 'function', 'must be a function')

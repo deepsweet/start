@@ -79,7 +79,10 @@ export default (outDirRelative: string) => {
 
             return Promise.all(writeFiles)
           })
-          .then(() => file)
+          .then(() => ({
+            ...file,
+            path: outFile,
+          }))
       })
     )
   }

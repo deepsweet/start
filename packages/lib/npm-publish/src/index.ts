@@ -1,10 +1,9 @@
-// @flow
 import { StartPlugin } from '@start/sequence/src/'
 
 // https://docs.npmjs.com/cli/publish
 export default (packagePath: string = '.', userOptions?: {}) => {
-  const npmPublish: StartPlugin = ({ input }) => {
-    const execa = require('execa')
+  const npmPublish: StartPlugin = async ({ input }) => {
+    const { default: execa } = await import('execa')
 
     const options = {
       registry: 'https://registry.npmjs.org/',
@@ -22,7 +21,9 @@ export default (packagePath: string = '.', userOptions?: {}) => {
       env: {
         FORCE_COLOR: '1',
       },
-    }).catch(() => Promise.reject())
+    })
+      .then(() => input)
+      .catch(() => Promise.reject(null))
   }
 
   return npmPublish
