@@ -55,7 +55,12 @@ export const build = (packageName: string) =>
     rename((file) => file.replace(/\.ts$/, '.js')),
     write(`packages/${packageName}/build/`),
     find(`packages/${packageName}/src/**/*.ts`),
-    typescriptGenerate(`packages/${packageName}/build/`, ['--lib', 'esnext'])
+    // FIXME using TypeScript API even if it's horrible
+    typescriptGenerate(`packages/${packageName}/build/`, [
+      '--lib',
+      'esnext',
+      '--allowSyntheticDefaultImports',
+    ])
   )
 
 export const builds = xargs(build)
