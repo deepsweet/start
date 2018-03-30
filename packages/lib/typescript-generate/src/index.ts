@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (outDirRelative: string, tscArgs: string[]) => {
   const typescriptGenerate: StartPlugin = async ({ input, logPath }) => {

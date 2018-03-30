@@ -1,4 +1,4 @@
-import { StartPlugin, StartFile } from '@start/sequence/src/'
+import { StartPlugin, StartFile } from '@start/sequence'
 
 export default (userOptions?: {}) => {
   const babel: StartPlugin = async ({ input, logPath }) => {
