@@ -13,19 +13,15 @@ export default (callback: (file: string) => string) => {
 
       logPath(newPath)
 
-      if (file.map) {
-        // TODO: why not?
-        // file.map.file = path.basename(newPath)
-        file.map = {
-          ...file.map,
-          file: path.basename(newPath),
-        }
-      }
-
       return {
         path: newPath,
         data: file.data,
-        map: file.map,
+        map: file.map
+          ? {
+              ...file.map,
+              file: path.basename(newPath),
+            }
+          : null,
       }
     })
   }
