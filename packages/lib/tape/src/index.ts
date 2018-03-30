@@ -7,7 +7,8 @@ export default (reporter: () => NodeJS.ReadWriteStream) => {
 
     return new Promise<StartInput>((resolve, reject) => {
       const stream = test.createStream()
-      // FIXME
+      // FIXME submit `tape.getHarness` to DefinitelyTypes
+      // https://github.com/substack/tape/blob/9d501ff25b20f9318cda741c88cf50d469175da5/index.js#L47
       // @ts-ignore
       const results = test.getHarness()._results
 
