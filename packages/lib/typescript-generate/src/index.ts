@@ -1,6 +1,6 @@
 import { StartPlugin } from '@start/sequence'
 
-export default (outDirRelative: string, tscArgs: string[]) => {
+export default (outDirRelative: string, tscArgs: string[] = []) => {
   const typescriptGenerate: StartPlugin = async ({ input, logPath }) => {
     const { default: path } = await import('path')
     const { default: execa } = await import('execa')
