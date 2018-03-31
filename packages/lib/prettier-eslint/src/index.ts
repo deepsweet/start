@@ -1,5 +1,4 @@
-// @flow
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin, StartFile } from '@start/sequence'
 import { PrettierEslintOptions } from 'prettier-eslint'
 
 export default (options?: PrettierEslintOptions) => {
@@ -9,12 +8,12 @@ export default (options?: PrettierEslintOptions) => {
     return Promise.all(
       input.map(
         (file) =>
-          new Promise((resolve, reject) => {
+          new Promise<StartFile>((resolve, reject) => {
             if (file.data == null) {
               return reject('file data is required')
             }
 
-            const formatted = format({ ...options, filePath: file.path, text: file.data })
+            const formatted: string = format({ ...options, filePath: file.path, text: file.data })
 
             if (file.data === formatted) {
               return resolve(null)
@@ -28,7 +27,6 @@ export default (options?: PrettierEslintOptions) => {
             })
           })
       )
-      // $FlowFixMe ???
     ).then((files) => files.filter((file) => file !== null))
   }
 

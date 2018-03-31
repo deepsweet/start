@@ -1,5 +1,4 @@
-// @flow
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (files: string[]) => {
   const inputConnector: StartPlugin = ({ logPath }) => {
