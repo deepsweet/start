@@ -1,6 +1,13 @@
 #!/usr/bin/env node
+/* eslint-disable no-process-exit */
 /* eslint-disable no-global-assign */
 /* eslint-disable import/unambiguous */
 
 require = require('esm')(module)
-require('./cli')
+
+const cli = require('@start/cli-lib')
+
+cli(process.argv).catch((error) => {
+  console.error(error)
+  process.exit(1)
+})

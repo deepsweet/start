@@ -1,15 +1,12 @@
 {
-  "name": "@start/cli-esm",
+  "name": "@start/cli-lib",
   "version": "0.1.0-0",
-  "description": "CLI for @start",
+  "description": "CLI lib for @start",
   "keywords": [
     "tasks",
     "runner",
     "start"
   ],
-  "bin": {
-    "start": "build/index.js"
-  },
   "main": "build/index.js",
   "files": [
     "build/"
@@ -27,8 +24,6 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@start/cli-lib": "^0.1.0-0",
-    "esm": "^3.0.14",
     "import-cwd": "^2.1.0"
   },
   "peerDependencies": {
