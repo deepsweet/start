@@ -1,5 +1,6 @@
 import assert from 'assert'
 import Sequence from '@start/sequence/src/'
+import Parallel from '@start/parallel/src/'
 import xargs from '@start/xargs/src/'
 import Reporter from '@start/reporter/src/'
 import env from '@start/env/src/'
@@ -23,6 +24,7 @@ import tapDiff from 'tap-diff'
 
 const reporter = Reporter()
 const sequence = Sequence(reporter)
+const parallel = Parallel()
 
 const babelConfig = {
   babelrc: false,
@@ -43,6 +45,17 @@ const babelConfig = {
   plugins: ['@babel/plugin-syntax-dynamic-import'],
 }
 
+export const dts = (packageName: string) =>
+  sequence(
+    find(`packages/${packageName}/src/**/*.ts`),
+    // FIXME using TypeScript API even if it's horrible
+    typescriptGenerate(`packages/${packageName}/build/`, [
+      '--lib',
+      'esnext',
+      '--allowSyntheticDefaultImports',
+    ])
+  )
+
 export const build = (packageName: string) =>
   sequence(
     env('NODE_ENV', 'production'),
@@ -53,14 +66,15 @@ export const build = (packageName: string) =>
     babel(babelConfig),
     prettierEslint(),
     rename((file) => file.replace(/\.ts$/, '.js')),
-    write(`packages/${packageName}/build/`),
-    find(`packages/${packageName}/src/**/*.ts`),
-    // FIXME using TypeScript API even if it's horrible
-    typescriptGenerate(`packages/${packageName}/build/`, [
-      '--lib',
-      'esnext',
-      '--allowSyntheticDefaultImports',
-    ])
+    write(`packages/${packageName}/build/`)
+  )
+
+export const pack = (packageName: string) =>
+  sequence(
+    env('NODE_ENV', 'production'),
+    find(`packages/${packageName}/build/`),
+    clean,
+    parallel(build, dts)(packageName)
   )
 
 export const builds = xargs(build)
@@ -94,8 +108,8 @@ export const test = () =>
     istanbulInstrument({ esModules: true }, ['.ts']),
     find('packages/**/test/**/*.ts'),
     tape(tapDiff),
-    istanbulReport(['lcovonly', 'html', 'text-summary']),
-    istanbulThresholds({ functions: 30 })
+    istanbulReport(['lcovonly', 'html', 'text-summary'])
+    // istanbulThresholds({ functions: 30 })
   )
 
 export const ci = () => sequence(lintAll(), test())
@@ -107,7 +121,7 @@ export const publish = (packageName: string, /* version: string, */ otp: string)
 
   return sequence(
     ci(),
-    build(packageName),
+    pack(packageName),
     // npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
   )
