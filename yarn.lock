@@ -552,7 +552,7 @@
     mz "^2.6.0"
     resolve-path "^1.3.3"
 
-"@shellscape/koa-static@^4.0.2":
+"@shellscape/koa-static@^4.0.4":
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/@shellscape/koa-static/-/koa-static-4.0.5.tgz#b329b55bfd41056a6981c584ae6bace30b5b6b3b"
   dependencies:
@@ -3862,7 +3862,7 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
-koa-webpack@^3.0.0:
+koa-webpack@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/koa-webpack/-/koa-webpack-3.0.2.tgz#5a0604d476ec5ab3f12f02fd5bf8406a77b49ed2"
   dependencies:
@@ -5278,7 +5278,7 @@ resolve@1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
-resolve@^1.3.2, resolve@^1.3.3, resolve@^1.5.0:
+resolve@^1.3.2, resolve@^1.3.3, resolve@^1.5.0, resolve@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.6.0.tgz#0fbd21278b27b4004481c395349e7aba60a9ff5c"
   dependencies:
@@ -6149,7 +6149,7 @@ urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
 
-url-join@^3.0.0:
+url-join@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/url-join/-/url-join-3.0.0.tgz#26e8113ace195ea30d0fc38186e45400f9cea672"
 
@@ -6269,7 +6269,7 @@ webpack-dev-middleware@^3.0.0:
     url-join "^4.0.0"
     webpack-log "^1.0.1"
 
-webpack-hot-client@^2.0.0:
+webpack-hot-client@^2.0.0, webpack-hot-client@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/webpack-hot-client/-/webpack-hot-client-2.2.0.tgz#21055a60f4292d00ac5376fe76786cfbef576482"
   dependencies:
@@ -6288,11 +6288,11 @@ webpack-log@^1.0.1, webpack-log@^1.1.1, webpack-log@^1.1.2:
     loglevelnext "^1.0.1"
     uuid "^3.1.0"
 
-webpack-serve@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/webpack-serve/-/webpack-serve-0.2.0.tgz#3378c1b7fcf5766dd30ddae262b12c77bf98ac8c"
+webpack-serve@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/webpack-serve/-/webpack-serve-0.3.1.tgz#a91a99d013a70d2c15df2d12c5d31a8842c033ba"
   dependencies:
-    "@shellscape/koa-static" "^4.0.2"
+    "@shellscape/koa-static" "^4.0.4"
     chalk "^2.3.0"
     clipboardy "^1.2.2"
     cosmiconfig "^4.0.0"
@@ -6302,16 +6302,18 @@ webpack-serve@^0.2.0:
     import-local "^1.0.0"
     killable "^1.0.0"
     koa "^2.4.1"
-    koa-webpack "^3.0.0"
+    koa-webpack "^3.0.1"
     lodash "^4.17.5"
     loud-rejection "^1.6.0"
     meow "^4.0.0"
     nanobus "^4.3.1"
     opn "^5.1.0"
+    resolve "^1.6.0"
     time-fix-plugin "^2.0.0"
     update-notifier "^2.3.0"
-    url-join "^3.0.0"
+    url-join "3.0.0"
     v8-compile-cache "^1.1.0"
+    webpack-hot-client "^2.2.0"
     webpack-log "^1.1.2"
 
 webpack-sources@^1.0.1, webpack-sources@^1.1.0:
