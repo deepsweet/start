@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (command: string, args?: string[], userOptions?: {}) => {
   const spawn: StartPlugin = async ({ input }) => {

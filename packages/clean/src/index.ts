@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 const clean: StartPlugin = async ({ input, logPath }) => {
   const { default: makethen } = await import('makethen')

@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 const codecov: StartPlugin = async ({ input, logMessage }) => {
   const { default: codecovLite } = await import('codecov-lite')

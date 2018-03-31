@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (glob: string | string[]) => {
   const findGitStaged: StartPlugin = async ({ logPath }) => {

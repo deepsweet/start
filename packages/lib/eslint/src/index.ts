@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src'
+import { StartPlugin } from '@start/sequence'
 
 export default (userOptions?: {}, formatter?: string) => {
   const eslint: StartPlugin = async ({ input, logMessage }) => {

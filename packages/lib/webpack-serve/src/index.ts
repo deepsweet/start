@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 import { Configuration as WebpackConfig } from 'webpack'
 
 type Options = {

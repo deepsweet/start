@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (outDirRelative: string) => {
   const copy: StartPlugin = async ({ input, logPath }) => {

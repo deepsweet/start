@@ -1,4 +1,4 @@
-import { StartPlugin, StartInput } from '@start/sequence/src/'
+import { StartPlugin, StartInput } from '@start/sequence'
 
 export default (reporter: () => NodeJS.ReadWriteStream) => {
   const tape: StartPlugin = async ({ input }) => {

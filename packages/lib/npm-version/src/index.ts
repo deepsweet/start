@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 // https://docs.npmjs.com/cli/version
 export default (version: string, packagePath: string = '.') => {

@@ -2,7 +2,7 @@ import path from 'path'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
-import { StartMiddleware } from '@start/sequence/src/'
+import { StartMiddleware } from '@start/sequence'
 
 export default (options?: {}) => {
   const reporter: StartMiddleware = (plugin) => async ({ taskName, ...rest }) => {

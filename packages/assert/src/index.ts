@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (value: string, message?: string) => {
   const assert: StartPlugin = async ({ input }) => {

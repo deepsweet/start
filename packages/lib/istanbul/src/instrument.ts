@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (options?: {}, extensions: string[] = ['.js']) => {
   const istanbulInstrument: StartPlugin = async ({ input, logPath, logMessage }) => {

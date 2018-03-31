@@ -1,6 +1,6 @@
 /* eslint-disable standard/no-callback-literal */
 /* eslint-disable promise/catch-or-return */
-import { StartPlugin, StartInput } from '@start/sequence/src/'
+import { StartPlugin, StartInput } from '@start/sequence'
 
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (
   callback: StartPlugin

@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (formats: string[] = ['lcovonly', 'text-summary']) => {
   const istanbulReport: StartPlugin = async ({ input, logMessage }) => {

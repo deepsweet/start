@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/sequence/src/'
+import { StartPlugin } from '@start/sequence'
 
 export default (callback: (file: string) => string) => {
   const rename: StartPlugin = async ({ input, logPath }) => {
