@@ -1,1 +1,0 @@
-# @start/lib-prettier-eslint

@@ -2,9 +2,7 @@
   "private": true,
   "description": "Functional tasks runner",
   "workspaces": [
-    "packages/*",
-    "!packages/lib",
-    "packages/lib/*"
+    "packages/*"
   ],
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.42",

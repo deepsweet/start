@@ -1,0 +1,39 @@
+{
+  "name": "@start/plugin-find-git-staged",
+  "version": "0.1.0-0",
+  "description": "Find git staged plugin for @start",
+  "keywords": [
+    "tasks",
+    "runner",
+    "start",
+    "git",
+    "staged"
+  ],
+  "main": "build/index.js",
+  "files": [
+    "build/"
+  ],
+  "repository": "deepsweet/start",
+  "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/deepsweet/start/blob/master/license.md"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "execa": "^0.10.0",
+    "multimatch": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
+  },
+  "devDependencies": {
+    "@types/execa": "^0.9.0",
+    "@types/multimatch": "^2.1.2"
+  }
+}

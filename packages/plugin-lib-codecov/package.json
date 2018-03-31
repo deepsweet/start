@@ -1,0 +1,34 @@
+{
+  "name": "@start/plugin-lib-codecov",
+  "version": "0.1.0-0",
+  "description": "Codevoc plugin for @start",
+  "keywords": [
+    "tasks",
+    "runner",
+    "start",
+    "coverage",
+    "codecov"
+  ],
+  "main": "build/index.js",
+  "files": [
+    "build/"
+  ],
+  "repository": "deepsweet/start",
+  "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/deepsweet/start/blob/master/license.md"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "codecov-lite": "^0.1.3"
+  },
+  "peerDependencies": {
+    "@start/task": "^0.1.0-0"
+  }
+}
