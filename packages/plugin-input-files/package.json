@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-input",
+  "name": "@start/plugin-input-files",
   "version": "0.1.0-0",
   "description": "Input connector plugin for @start",
   "keywords": [
