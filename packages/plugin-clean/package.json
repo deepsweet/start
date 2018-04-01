@@ -30,8 +30,5 @@
   },
   "devDependencies": {
     "@types/rimraf": "^2.0.2"
-  },
-  "peerDependencies": {
-    "@start/task": "^0.1.0-0"
   }
 }

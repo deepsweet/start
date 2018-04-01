@@ -27,8 +27,5 @@
     "graceful-fs": "^4.1.11",
     "makethen": "^0.1.0",
     "mkdirp": "^0.5.1"
-  },
-  "peerDependencies": {
-    "@start/task": "^0.1.0-0"
   }
 }

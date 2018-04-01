@@ -30,8 +30,5 @@
     "@start/cli-lib": "^0.1.0-0",
     "esm": "^3.0.14",
     "import-cwd": "^2.1.0"
-  },
-  "peerDependencies": {
-    "@start/task": "^0.1.0-0"
   }
 }

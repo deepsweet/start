@@ -34,9 +34,6 @@
     "istanbul-lib-report": "^1.1.4",
     "istanbul-lib-source-maps": "^1.2.3"
   },
-  "peerDependencies": {
-    "@start/task": "^0.1.0-0"
-  },
   "devDependencies": {
     "@types/convert-source-map": "^1.5.1",
     "@types/istanbul-lib-coverage": "^1.1.0",

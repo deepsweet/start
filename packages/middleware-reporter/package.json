@@ -26,8 +26,5 @@
   "dependencies": {
     "chalk": "^2.3.2",
     "stack-utils": "^1.0.1"
-  },
-  "peerDependencies": {
-    "@start/task": "^0.1.0-0"
   }
 }

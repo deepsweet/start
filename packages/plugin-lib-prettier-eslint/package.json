@@ -27,8 +27,5 @@
   },
   "dependencies": {
     "prettier-eslint": "^8.8.1"
-  },
-  "peerDependencies": {
-    "@start/task": "^0.1.0-0"
   }
 }
