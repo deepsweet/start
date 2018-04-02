@@ -49,7 +49,7 @@ export default (options?: {}) => {
 
       console.error(`${chalk.red(`${taskName}.${pluginName}`)}: error`)
 
-      throw error
+      throw null
     }
   }
 

@@ -8,6 +8,9 @@ require = require('esm')(module)
 const cli = require('@start/cli-lib')
 
 cli(process.argv).catch((error) => {
-  console.error(error)
+  if (error !== null) {
+    console.error(error)
+  }
+
   process.exit(1)
 })
