@@ -84,7 +84,7 @@ export const pack = (packageName: string) =>
     parallel(build, dts)(packageName)
   )
 
-export const packs = xargs(pack)
+export const packs = xargs('pack')
 
 export const dev = (packageName: string) =>
   sequence(
