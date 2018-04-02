@@ -18,7 +18,7 @@ export default (options?: {}) => {
       const result = await plugin({
         ...rest,
         taskName,
-        logMessage: (message) => {
+        log: (message) => {
           console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${message}`)
         },
       })

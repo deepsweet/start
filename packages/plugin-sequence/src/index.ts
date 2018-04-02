@@ -9,8 +9,7 @@ export type StartInput = StartFile[]
 export type StartPluginArg = {
   input: StartInput
   taskName: string
-  logMessage(string): void
-  logMessage(string): void
+  log(string): void
 }
 
 export type StartPlugin = (arg: StartPluginArg) => StartInput | Promise<StartInput>

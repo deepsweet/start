@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (glob: string | string[]) => {
-  const findGitStaged: StartPlugin = async ({ logMessage }) => {
+  const findGitStaged: StartPlugin = async ({ log }) => {
     const { default: { EOL } } = await import('os')
     const { default: execa } = await import('execa')
     const { default: multimatch } = await import('multimatch')
@@ -13,7 +13,7 @@ export default (glob: string | string[]) => {
       const matchedFiles = multimatch(gitFiles, glob)
 
       return matchedFiles.map((file) => {
-        logMessage(file)
+        log(file)
 
         return {
           path: file,

@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (userOptions?: {}, formatter?: string) => {
-  const eslint: StartPlugin = async ({ input, logMessage }) => {
+  const eslint: StartPlugin = async ({ input, log }) => {
     const { default: { CLIEngine } } = await import('eslint')
     const options = {
       cache: true,
@@ -23,7 +23,7 @@ export default (userOptions?: {}, formatter?: string) => {
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
-      logMessage('¯\\_(ツ)_/¯')
+      log('¯\\_(ツ)_/¯')
     }
 
     return input

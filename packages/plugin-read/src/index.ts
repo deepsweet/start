@@ -1,6 +1,6 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
-const read: StartPlugin = async ({ input, logMessage }) => {
+const read: StartPlugin = async ({ input, log }) => {
   const { default: makethen } = await import('makethen')
   const { default: gracefulFs } = await import('graceful-fs')
 
@@ -9,7 +9,7 @@ const read: StartPlugin = async ({ input, logMessage }) => {
   return Promise.all(
     input.map((file) =>
       readFile(file.path, 'utf8').then((data) => {
-        logMessage(file.path)
+        log(file.path)
 
         return {
           ...file,

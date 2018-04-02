@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (outDirRoot: string) => {
-  const copy: StartPlugin = async ({ input, logMessage }) => {
+  const copy: StartPlugin = async ({ input, log }) => {
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
     const { default: fs } = await import('graceful-fs')
@@ -39,7 +39,7 @@ export default (outDirRoot: string) => {
             readStream.on('error', reject)
             writeStream.on('error', reject)
             writeStream.on('finish', () => {
-              logMessage(outFile)
+              log(outFile)
               resolve(file)
             })
 

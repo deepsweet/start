@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (outDir: string, tscArgs: string[] = []) => {
-  const typescriptGenerate: StartPlugin = async ({ input, logMessage }) => {
+  const typescriptGenerate: StartPlugin = async ({ input, log }) => {
     const { default: path } = await import('path')
     const { default: execa } = await import('execa')
 
@@ -28,7 +28,7 @@ export default (outDir: string, tscArgs: string[] = []) => {
           ],
           spawnOptions
         ).then(() => {
-          logMessage(path.join(outDir, `${path.basename(file.path, '.ts')}.d.ts`))
+          log(path.join(outDir, `${path.basename(file.path, '.ts')}.d.ts`))
 
           return file
         })

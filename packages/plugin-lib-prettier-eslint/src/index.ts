@@ -2,7 +2,7 @@ import { StartPlugin, StartFile } from '@start/plugin-sequence'
 import { PrettierEslintOptions } from 'prettier-eslint'
 
 export default (options?: PrettierEslintOptions) => {
-  const prettierEslint: StartPlugin = ({ input, logMessage }) => {
+  const prettierEslint: StartPlugin = ({ input, log }) => {
     const format = require('prettier-eslint')
 
     return Promise.all(
@@ -19,7 +19,7 @@ export default (options?: PrettierEslintOptions) => {
               return resolve(null)
             }
 
-            logMessage(file.path)
+            log(file.path)
 
             resolve({
               ...file,

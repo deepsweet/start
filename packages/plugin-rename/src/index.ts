@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (callback: (file: string) => string) => {
-  const rename: StartPlugin = async ({ input, logMessage }) => {
+  const rename: StartPlugin = async ({ input, log }) => {
     const { default: path } = await import('path')
 
     return input.map((file) => {
@@ -11,7 +11,7 @@ export default (callback: (file: string) => string) => {
         return file
       }
 
-      logMessage(newPath)
+      log(newPath)
 
       return {
         path: newPath,

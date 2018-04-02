@@ -7,7 +7,7 @@ type Options = {
 }
 
 export default (options?: Options) => {
-  const webpackServe: StartPlugin = async ({ input, logMessage }) => {
+  const webpackServe: StartPlugin = async ({ input, log }) => {
     const serve = await import('webpack-serve')
 
     return serve(options).then(() => input)

@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (outDirRoot: string) => {
-  const write: StartPlugin = async ({ input, logMessage }) => {
+  const write: StartPlugin = async ({ input, log }) => {
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
     const { default: gracefulFs } = await import('graceful-fs')
@@ -60,14 +60,14 @@ export default (outDirRoot: string) => {
 
               writeFiles.push(
                 writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-                  logMessage(sourcemapPath)
+                  log(sourcemapPath)
                 })
               )
             }
 
             writeFiles.push(
               writeFile(outFile, fileData, 'utf8').then(() => {
-                logMessage(outFile)
+                log(outFile)
               })
             )
 

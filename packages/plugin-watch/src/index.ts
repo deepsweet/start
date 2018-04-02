@@ -5,7 +5,7 @@ import { StartPlugin, StartInput } from '@start/plugin-sequence'
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (
   callback: StartPlugin
 ) => {
-  const watch: StartPlugin = async ({ logMessage, ...rest }) => {
+  const watch: StartPlugin = async ({ log, ...rest }) => {
     const { default: chokidar } = await import('chokidar')
 
     const events = userEvents || ['add', 'change']
@@ -38,7 +38,7 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
               try {
                 await callback({
                   ...rest,
-                  logMessage,
+                  log,
                   input: [
                     {
                       path: file,
@@ -57,12 +57,12 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
         try {
           await callback({
             ...rest,
-            logMessage,
+            log,
             input: initialFiles,
           })
         } finally {
           watchForChanges()
-          logMessage('watching for changes, press ctrl-c to exit')
+          log('watching for changes, press ctrl-c to exit')
         }
       })
     })

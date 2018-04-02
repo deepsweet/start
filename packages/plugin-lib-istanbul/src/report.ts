@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (formats: string[] = ['lcovonly', 'text-summary']) => {
-  const istanbulReport: StartPlugin = async ({ input, logMessage }) => {
+  const istanbulReport: StartPlugin = async ({ input, log }) => {
     const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
     const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
     const { default: { createReporter } } = await import('istanbul-api')
@@ -11,7 +11,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      logMessage('no coverage information was collected')
+      log('no coverage information was collected')
 
       return input
     }
@@ -21,7 +21,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     const remappedCoverageMap = sourceMapStore.transformCoverage(coverageMap).map
     const reporter = createReporter()
 
-    logMessage(formats.join(', '))
+    log(formats.join(', '))
 
     formats.forEach((format) => {
       reporter.add(format)

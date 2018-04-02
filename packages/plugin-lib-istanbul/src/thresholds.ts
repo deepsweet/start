@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (options: {} = {}) => {
-  const istanbulThresholds: StartPlugin = async ({ input, logMessage }) => {
+  const istanbulThresholds: StartPlugin = async ({ input, log }) => {
     const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
     const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
     const { default: { summarizers } } = await import('istanbul-lib-report')
@@ -11,7 +11,7 @@ export default (options: {} = {}) => {
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      logMessage('no coverage information was collected')
+      log('no coverage information was collected')
 
       return input
     }
