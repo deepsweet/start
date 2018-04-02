@@ -21,13 +21,12 @@ const sequence = (middleware: StartMiddleware) => (...plugins: StartPlugin[]): S
   ...rest
 }) =>
   plugins.map(middleware).reduce(
-    (prev, next) =>
-      prev.then((output) =>
-        next({
-          ...rest,
-          input: output,
-        })
-      ),
+    async (prev, next) =>
+      next({
+        ...rest,
+        input: await prev,
+      }),
+    // TODO: TypeScript, why not just `input`?
     Promise.resolve(input)
   )
 
