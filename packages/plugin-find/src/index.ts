@@ -1,11 +1,11 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (glob: string | string[], userOptions?: {}) => {
-  const find: StartPlugin = async ({ logPath }) => {
+  const find: StartPlugin = async ({ logMessage }) => {
     const { default: globby } = await import('globby')
 
     const options = {
-      absolute: true,
+      absolute: false,
       deep: true,
       onlyFiles: false,
       expandDirectories: false,
@@ -15,7 +15,7 @@ export default (glob: string | string[], userOptions?: {}) => {
 
     return globby(glob, options).then((files) =>
       files.map((file) => {
-        logPath(file)
+        logMessage(file)
 
         return {
           path: file,

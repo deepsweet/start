@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
-export default (outDirRelative: string) => {
-  const write: StartPlugin = async ({ input, logPath }) => {
+export default (outDirRoot: string) => {
+  const write: StartPlugin = async ({ input, logMessage }) => {
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
     const { default: gracefulFs } = await import('graceful-fs')
@@ -11,21 +11,15 @@ export default (outDirRelative: string) => {
 
     return Promise.all(
       input.map((file) => {
-        // file.path = /Users/foo/test/packages/beep/src/boop/index.js
-        // process.cwd() = /Users/foo/test
-        // outDirRelative = packages/beep/build
+        // file.path = packages/beep/src/boop/index.js
+        // outDir = packages/beep/build
 
-        // /Users/foo/test/packages/beep/src/boop/index.js -> index.js
+        // packages/beep/src/boop/index.js -> index.js
         const inFile = path.basename(file.path)
-        // /Users/foo/test/packages/beep/src/boop/index.js -> /Users/foo/test/packages/beep/src/boop
+        // packages/beep/src/boop/index.js -> packages/beep/src/boop
         const inDir = path.dirname(file.path)
-        // /Users/foo/test/packages/beep/src/boop -> packages/beep/src/boop
-        const inDirRelative = path.relative(process.cwd(), inDir)
-        // src/beep -> [ 'packages', 'beep', 'src', 'boop ]
-        const inDirSplit = inDirRelative.split(path.sep)
-        // [ 'packages', 'beep', 'build' ]
-        const outDirSplit = outDirRelative.split(path.sep)
-        // [ 'packages', 'beep', 'src', 'boop ] + [ 'packages', 'beep', 'build' ]
+        const inDirSplit = inDir.split(path.sep)
+        const outDirSplit = outDirRoot.split(path.sep)
         const inDirUnique = inDirSplit
           // [ 'packages', 'beep', 'src', 'boop ] -> [ 'src', 'boop' ]
           .filter((segment, index) => segment !== outDirSplit[index])
@@ -33,9 +27,9 @@ export default (outDirRelative: string) => {
           .slice(1)
           // [ 'boop' ] -> 'boop'
           .join(path.sep)
-        // packages/beep/build + boop -> /Users/foo/test/packages/beep/build/boop
-        const outDir = path.resolve(outDirRelative, inDirUnique)
-        // packages/beep/build/boop + index.js ->  /Users/foo/test/packages/beep/build/boop/index.js
+        // packages/beep/build + boop -> packages/beep/build/boop
+        const outDir = path.join(outDirRoot, inDirUnique)
+        // packages/beep/build/boop + index.js ->  packages/beep/build/boop/index.js
         const outFile = path.join(outDir, inFile)
 
         return makeDir(outDir)
@@ -66,14 +60,14 @@ export default (outDirRelative: string) => {
 
               writeFiles.push(
                 writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-                  logPath(sourcemapPath)
+                  logMessage(sourcemapPath)
                 })
               )
             }
 
             writeFiles.push(
               writeFile(outFile, fileData, 'utf8').then(() => {
-                logPath(outFile)
+                logMessage(outFile)
               })
             )
 

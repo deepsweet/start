@@ -21,11 +21,6 @@ export default (options?: {}) => {
         logMessage: (message) => {
           console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${message}`)
         },
-        logPath: (message) => {
-          const relativePath = path.relative(process.cwd(), message)
-
-          console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${relativePath}`)
-        },
       })
 
       console.log(`${chalk.green(`${taskName}.${pluginName}`)}: done`)

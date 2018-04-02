@@ -1,6 +1,6 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
-const overwrite: StartPlugin = async ({ input, logPath }) => {
+const overwrite: StartPlugin = async ({ input, logMessage }) => {
   const { default: path } = await import('path')
   const { default: makethen } = await import('makethen')
   const { default: gracefulFs } = await import('graceful-fs')
@@ -39,14 +39,14 @@ const overwrite: StartPlugin = async ({ input, logPath }) => {
 
         writeFiles.push(
           writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-            logPath(sourcemapPath)
+            logMessage(sourcemapPath)
           })
         )
       }
 
       writeFiles.push(
         writeFile(file.path, fileData, 'utf8').then(() => {
-          logPath(file.path)
+          logMessage(file.path)
         })
       )
 

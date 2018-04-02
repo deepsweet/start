@@ -10,7 +10,7 @@ export type StartPluginArg = {
   input: StartInput
   taskName: string
   logMessage(string): void
-  logPath(string): void
+  logMessage(string): void
 }
 
 export type StartPlugin = (arg: StartPluginArg) => StartInput | Promise<StartInput>

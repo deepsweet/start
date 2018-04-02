@@ -1,9 +1,8 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (glob: string | string[]) => {
-  const findGitStaged: StartPlugin = async ({ logPath }) => {
+  const findGitStaged: StartPlugin = async ({ logMessage }) => {
     const { default: { EOL } } = await import('os')
-    const { default: path } = await import('path')
     const { default: execa } = await import('execa')
     const { default: multimatch } = await import('multimatch')
 
@@ -11,10 +10,10 @@ export default (glob: string | string[]) => {
 
     return execa('git', gitArgs).then(({ stdout }) => {
       const gitFiles = stdout.split(EOL)
-      const matchedFiles = multimatch(gitFiles, glob).map((file) => path.resolve(file))
+      const matchedFiles = multimatch(gitFiles, glob)
 
       return matchedFiles.map((file) => {
-        logPath(file)
+        logMessage(file)
 
         return {
           path: file,

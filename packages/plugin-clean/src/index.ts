@@ -1,6 +1,6 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
-const clean: StartPlugin = async ({ input, logPath }) => {
+const clean: StartPlugin = async ({ input, logMessage }) => {
   const { default: makethen } = await import('makethen')
   const { default: rimraf } = await import('rimraf')
 
@@ -13,7 +13,7 @@ const clean: StartPlugin = async ({ input, logPath }) => {
   return Promise.all(
     input.map((file) => {
       return rimrafP(file.path, options).then(() => {
-        logPath(file.path)
+        logMessage(file.path)
 
         return file
       })

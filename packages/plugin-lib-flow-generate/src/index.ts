@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (outDirRelative: string, ...flowArgs: string[]) => {
-  const flowGenerate: StartPlugin = async ({ input, logPath }) => {
+  const flowGenerate: StartPlugin = async ({ input, logMessage }) => {
     const { default: path } = require('path')
     const { default: execa } = require('execa')
 
@@ -22,8 +22,8 @@ export default (outDirRelative: string, ...flowArgs: string[]) => {
           [flowBinPath, 'gen-flow-files', file.path, '--out-dir', outDir, ...flowArgs],
           spawnOptions
         ).then(() => {
-          if (typeof logPath === 'function') {
-            logPath(path.join(outDir, `${path.basename(file.path)}.flow`))
+          if (typeof logMessage === 'function') {
+            logMessage(path.join(outDir, `${path.basename(file.path)}.flow`))
           }
 
           return file

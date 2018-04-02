@@ -1,11 +1,10 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
-export default (outDirRelative: string, tscArgs: string[] = []) => {
-  const typescriptGenerate: StartPlugin = async ({ input, logPath }) => {
+export default (outDir: string, tscArgs: string[] = []) => {
+  const typescriptGenerate: StartPlugin = async ({ input, logMessage }) => {
     const { default: path } = await import('path')
     const { default: execa } = await import('execa')
 
-    const outDir = path.resolve(outDirRelative)
     const tscBinPath = path.resolve('node_modules/.bin/tsc')
 
     const spawnOptions = {
@@ -23,13 +22,13 @@ export default (outDirRelative: string, tscArgs: string[] = []) => {
             '--emitDeclarationOnly',
             '--declaration',
             '--declarationDir',
-            outDirRelative,
+            outDir,
             ...tscArgs,
             file.path,
           ],
           spawnOptions
         ).then(() => {
-          logPath(path.resolve(outDir, `${path.basename(file.path, '.ts')}.d.ts`))
+          logMessage(path.join(outDir, `${path.basename(file.path, '.ts')}.d.ts`))
 
           return file
         })

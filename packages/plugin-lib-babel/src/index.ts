@@ -1,7 +1,7 @@
 import { StartPlugin, StartFile } from '@start/plugin-sequence'
 
 export default (userOptions?: {}) => {
-  const babel: StartPlugin = async ({ input, logPath }) => {
+  const babel: StartPlugin = async ({ input, logMessage }) => {
     const { default: { transform } } = await import('@babel/core')
 
     return Promise.all(
@@ -21,7 +21,7 @@ export default (userOptions?: {}) => {
 
             const result = transform(file.data, options)
 
-            logPath(file.path)
+            logMessage(file.path)
 
             resolve({
               ...file,

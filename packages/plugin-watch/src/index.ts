@@ -10,6 +10,7 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
 
     const events = userEvents || ['add', 'change']
     const options = {
+      cwd: process.cwd(),
       persistent: true,
       ...userOptions,
     }

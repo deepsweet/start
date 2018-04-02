@@ -1,7 +1,7 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
 export default (options?: {}, extensions: string[] = ['.js']) => {
-  const istanbulInstrument: StartPlugin = async ({ input, logPath, logMessage }) => {
+  const istanbulInstrument: StartPlugin = async ({ input, logMessage }) => {
     const { default: { fromSource: getSourceMapFromSource } } = await import('convert-source-map')
     const { default: { createInstrumenter } } = await import('istanbul-lib-instrument')
     const { default: { hookRequire } } = await import('istanbul-lib-hook')
@@ -36,7 +36,7 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
 
         const result = instrumenter.instrumentSync(source, file, sourceMapObject)
 
-        logPath(file)
+        logMessage(file)
 
         return result
       },
