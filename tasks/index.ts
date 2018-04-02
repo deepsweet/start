@@ -1,5 +1,5 @@
 import Sequence from '@start/plugin-sequence/src/'
-import Parallel from '@start/plugin-parallel/src/'
+import parallel from '@start/plugin-parallel/src/'
 import xargs from '@start/plugin-xargs/src/'
 import Reporter from '@start/middleware-reporter/src/'
 import assert from '@start/plugin-assert/src/'
@@ -28,7 +28,6 @@ import tapDiff from 'tap-diff'
 
 const reporter = Reporter()
 const sequence = Sequence(reporter)
-const parallel = Parallel()
 
 const babelConfig = {
   babelrc: false,
@@ -81,7 +80,7 @@ export const pack = (packageName: string) =>
     env('NODE_ENV', 'production'),
     find(`packages/${packageName}/build/`),
     clean,
-    parallel(build, dts)(packageName)
+    parallel(['build', 'dts'])(packageName)
   )
 
 export const packs = xargs('pack')

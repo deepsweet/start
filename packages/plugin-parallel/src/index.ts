@@ -1,11 +1,14 @@
 import { StartPlugin } from '@start/plugin-sequence'
 
-type StartTask = (...args: string[]) => StartPlugin
+type Options = {
+  concurrency?: number
+}
 
-export default (options?: {}) => (...tasks: StartTask[]) => (...args: string[]) => async ({
+export default (taskNames: string[], options?: Options) => (...args: string[]) => async ({
   input,
 }) => {
   const { default: execa } = await import('execa')
+  const { default: pAll } = await import('p-all')
 
   const spawnOptions = {
     stdout: process.stdout,
@@ -15,13 +18,18 @@ export default (options?: {}) => (...tasks: StartTask[]) => (...args: string[]) 
       FORCE_COLOR: '1',
     },
   }
+  const pAllOptions = {
+    concurrency: Infinity,
+    ...options,
+  }
 
-  return Promise.all(
-    tasks.map((task) => {
+  return pAll(
+    taskNames.map((taskName) => {
       const spawnCommand = process.argv[0]
-      const spawnArgs = [process.argv[1], task.name, ...process.argv.slice(3)]
+      const spawnArgs = [process.argv[1], taskName, ...args]
 
-      return execa(spawnCommand, spawnArgs, spawnOptions).catch(() => Promise.reject(null))
-    })
+      return () => execa(spawnCommand, spawnArgs, spawnOptions).catch(() => Promise.reject(null))
+    }),
+    pAllOptions
   ).then(() => input)
 }
