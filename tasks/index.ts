@@ -1,7 +1,7 @@
 import Sequence from '@start/plugin-sequence/src/'
 import parallel from '@start/plugin-parallel/src/'
 import xargs from '@start/plugin-xargs/src/'
-import Reporter from '@start/middleware-reporter/src/'
+import reporter from '@start/middleware-reporter/src/'
 import assert from '@start/plugin-assert/src/'
 import env from '@start/plugin-env/src/'
 import find from '@start/plugin-find/src/'
@@ -26,7 +26,6 @@ import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
 import npmPublish from '@start/plugin-lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
 
-const reporter = Reporter()
 const sequence = Sequence(reporter)
 
 const babelConfig = {
@@ -69,9 +68,9 @@ export const build = (packageName: string) =>
     find(`packages/${packageName}/src/**/*.ts`),
     read,
     babel(babelConfig),
-    prettierEslint(),
-    rename((file) => file.replace(/\.ts$/, '.js')),
-    write(`packages/${packageName}/build/`)
+    // prettierEslint(),
+    // rename((file) => file.replace(/\.ts$/, '.js')),
+    // write(`packages/${packageName}/build/`)
   )
 
 export const pack = (packageName: string) =>

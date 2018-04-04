@@ -1,13 +1,14 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (key: string, value: string) => {
-  process.env[key] = value
+export default (key: string, value: string) => plugin({
+  name: 'env',
+  run: (emit) => {
+    process.env[key] = value
 
-  const env: StartPlugin = ({ input, log }) => {
-    log(`${key} = ${value}`)
+    return ({ files }) => {
+      emit(`${key} = ${value}`)
 
-    return input
+      return files
+    }
   }
-
-  return env
-}
+})

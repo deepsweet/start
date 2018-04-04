@@ -1,23 +1,24 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-const read: StartPlugin = async ({ input, log }) => {
-  const { default: makethen } = await import('makethen')
-  const { default: gracefulFs } = await import('graceful-fs')
+export default plugin({
+  name: 'read',
+  run: (emit) => async ({ files }) => {
+    const { default: makethen } = await import('makethen')
+    const { default: gracefulFs } = await import('graceful-fs')
 
-  const readFile = makethen(gracefulFs.readFile)
+    const readFile = makethen(gracefulFs.readFile)
 
-  return Promise.all(
-    input.map((file) =>
-      readFile(file.path, 'utf8').then((data) => {
-        log(file.path)
+    return Promise.all(
+      files.map((file) =>
+        readFile(file.path, 'utf8').then((data) => {
+          emit(file.path)
 
-        return {
-          ...file,
-          data,
-        }
-      })
+          return {
+            ...file,
+            data,
+          }
+        })
+      )
     )
-  )
-}
-
-export default read
+  }
+})

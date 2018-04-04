@@ -1,11 +1,12 @@
-import { StartPlugin, StartFile } from '@start/plugin-sequence'
+import plugin, { StartFile } from '@start/plugin/src/'
 
-export default (userOptions?: {}) => {
-  const babel: StartPlugin = async ({ input, log }) => {
+export default (userOptions?: {}) => plugin({
+  name: 'babel',
+  run: (emit) => async ({ files }) => {
     const { default: { transform } } = await import('@babel/core')
 
     return Promise.all(
-      input.map(
+      files.map(
         (file) =>
           new Promise<StartFile>((resolve, reject) => {
             const options = {
@@ -21,7 +22,7 @@ export default (userOptions?: {}) => {
 
             const result = transform(file.data, options)
 
-            log(file.path)
+            emit(file.path)
 
             resolve({
               ...file,
@@ -32,6 +33,4 @@ export default (userOptions?: {}) => {
       )
     )
   }
-
-  return babel
-}
+})

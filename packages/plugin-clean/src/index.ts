@@ -1,24 +1,25 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-const clean: StartPlugin = async ({ input, log }) => {
-  const { default: makethen } = await import('makethen')
-  const { default: rimraf } = await import('rimraf')
+export default plugin({
+  name: 'clean',
+  run: (emit) => async ({ files }) => {
+    const { default: makethen } = await import('makethen')
+    const { default: rimraf } = await import('rimraf')
 
-  const rimrafP = makethen(rimraf)
+    const rimrafP = makethen(rimraf)
 
-  const options = {
-    glob: false,
-  }
+    const options = {
+      glob: false,
+    }
 
-  return Promise.all(
-    input.map((file) => {
-      return rimrafP(file.path, options).then(() => {
-        log(file.path)
+    return Promise.all(
+      files.map((file) => {
+        return rimrafP(file.path, options).then(() => {
+          emit(file.path)
 
-        return file
+          return file
+        })
       })
-    })
-  )
-}
-
-export default clean
+    )
+  }
+})
