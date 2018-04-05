@@ -1,14 +1,11 @@
 import plugin from '@start/plugin/src/'
 
-export default (key: string, value: string) => plugin({
-  name: 'env',
-  run: (emit) => {
-    process.env[key] = value
+export default (key: string, value: string) => {
+  process.env[key] = value
 
-    return ({ files }) => {
-      emit(`${key} = ${value}`)
+  return plugin('env', ({ files, log }) => {
+    log(`${key} = ${value}`)
 
-      return files
-    }
-  }
-})
+    return files
+  })
+}

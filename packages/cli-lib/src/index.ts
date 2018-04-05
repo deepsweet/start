@@ -30,7 +30,7 @@ module.exports = (argv: string[]) => {
     )
   }
 
-  const taskargv = argv.slice(3)
+  const taskArgs = argv.slice(3)
 
-  return task(...taskargv)({ taskName })
+  return task(...taskArgs)({ taskName })
 }

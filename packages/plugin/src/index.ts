@@ -8,50 +8,26 @@ export type StartFile = {
 
 export type StartFiles = StartFile[]
 
-export type StartPluginArg = {
+export type StartPluginIn = {
   files: StartFiles,
   taskName: string,
+  log: (message: string) => void
 }
 
-export type StartEmit = (event: string, arg?: any) => void
+export type StartPluginOut = StartFiles | Promise<StartFiles>
 
-export type StartOn = (event: string, callback: (arg?: any) => void) => void
+export type StartPluginRun = (props: StartPluginIn) => StartPluginOut
 
-export type StartPluginIn = {
-  name?: string,
-  run: (emit: StartEmit) => (arg: StartPluginArg) => StartFiles | Promise<StartFiles>
+export type StartPlugin = {
+  name: string,
+  run: StartPluginRun
 }
 
-export type StartPluginOut = {
-  on: StartOn,
-  name?: string,
-  run: (arg: StartPluginArg) => StartFiles | Promise<StartFiles>
-}
+export type StartMiddleware = (plugin: StartPlugin) => StartPlugin
 
-export default (plugin: StartPluginIn): StartPluginOut => {
-  const eventEmitter = new EventEmitter()
-  const on = eventEmitter.on.bind(eventEmitter)
+const noopLog = () => { }
 
-  return {
-    ...plugin,
-    on,
-    run: async (arg) => {
-      const id = { taskName: arg.taskName, pluginName: plugin.name }
-      const emit = (message) => eventEmitter.emit('message', { ...id, message })
-
-      eventEmitter.emit('start', id)
-
-      try {
-        const result = await plugin.run(emit)(arg)
-
-        eventEmitter.emit('done', id)
-
-        return result
-      } catch (error) {
-        eventEmitter.emit('error', { ...id, error })
-
-        throw null
-      }
-    }
-  }
-}
+export default (name: string, run: StartPluginRun): StartPlugin => ({
+  name,
+  run: ({ log = noopLog, ...props }) => run({ ...props, log })
+})

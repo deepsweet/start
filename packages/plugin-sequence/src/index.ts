@@ -1,14 +1,13 @@
-import plugin, { StartPluginOut } from '@start/plugin/src/'
+import plugin, { StartPlugin, StartMiddleware } from '@start/plugin/src/'
 
-export type StartMiddleware = (plugin: StartPluginOut) => StartPluginOut
-
-export default (reporter: StartMiddleware) => (...plugins: StartPluginOut[]) => reporter(plugin({
-  name: 'sequence',
-  run: () => ({ files, ...rest }) => plugins.map(reporter).reduce(
-    async (prev, next) => next.run({
-      ...rest,
-      files: await prev
-    }),
-    Promise.resolve(files)
-  )
-}))
+export default (middleware: StartMiddleware) =>
+  (...plugins: StartPlugin[]) =>
+    plugin('sequence', ({ files, ...props }) =>
+      plugins.map(middleware).reduce(
+        async (prev, next) => next.run({
+          ...props,
+          files: await prev
+        }),
+        Promise.resolve(files)
+      )
+    )

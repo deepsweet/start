@@ -1,42 +1,46 @@
-import plugin, { StartPluginOut } from '@start/plugin/src/'
+import plugin, { StartPlugin } from '@start/plugin/src/'
 import path from 'path'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
-// import { StartMiddleware } from '@start/plugin-sequence'
+export default (plugin: StartPlugin): StartPlugin => ({
+  name: 'reporter',
+  run: async (props) => {
+    const id = `${props.taskName}.${plugin.name}`
+    const log = (message) => console.log(`${chalk.blue(`${id}`)}: ${message}`)
 
-export default (plugin: StartPluginOut) => {
-  const { on, name } = plugin
+    console.log(`${chalk.yellow(`${id}`)}: start`)
 
-  on('start', () => console.log(`${chalk.yellow(`${name}`)}: start`))
+    try {
+      const result = await plugin.run({ ...props, log })
 
-  on('message', ({ message }) => console.log(`${chalk.blue(`${name}`)}: ${message}`))
+      console.log(`${chalk.green(`${id}`)}: done`)
 
-  on('done', () => console.log(`${chalk.green(`${name}`)}: done`))
+      return result
+    } catch (error) {
+      // hard error
+      if (error instanceof Error) {
+        const stackUtils = new StackUtils({
+          cwd: process.cwd(),
+          internals: StackUtils.nodeInternals(),
+        })
+        const stack = stackUtils.clean(error.stack)
 
-  on('error', ({ error }) => {
-    // hard error
-    if (error instanceof Error) {
-      const stackUtils = new StackUtils({
-        cwd: process.cwd(),
-        internals: StackUtils.nodeInternals(),
-      })
-      const stack = stackUtils.clean(error.stack)
+        console.error(`${chalk.red(`${id}`)}: ${error.message}`)
+        console.error(`\n${chalk.red(stack)}`)
+        // array of "soft" errors
+      } else if (Array.isArray(error)) {
+        error.forEach((message) => {
+          console.error(`${chalk.red(`${id}`)}: ${message}`)
+        })
+        // "soft" error
+      } else if (typeof error === 'string') {
+        console.error(`${chalk.red(`${id}`)}: ${error}`)
+      }
 
-      console.error(`${chalk.red(`${name}`)}: ${error.message}`)
-      console.error(`\n${chalk.red(stack)}`)
-      // array of "soft" errors
-    } else if (Array.isArray(error)) {
-      error.forEach((message) => {
-        console.error(`${chalk.red(`${name}`)}: ${message}`)
-      })
-      // "soft" error
-    } else if (typeof error === 'string') {
-      console.error(`${chalk.red(`${name}`)}: ${error}`)
+      console.error(`${chalk.red(`${id}`)}: error`)
+
+      throw null
     }
-
-    console.error(`${chalk.red(`${name}`)}: error`)
-  })
-
-  return plugin
-}
+  }
+})
