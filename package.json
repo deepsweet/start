@@ -5,11 +5,11 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.42",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.42",
-    "@babel/preset-env": "^7.0.0-beta.42",
-    "@babel/preset-typescript": "^7.0.0-beta.42",
-    "@babel/register": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-typescript": "^7.0.0-beta.44",
+    "@babel/register": "^7.0.0-beta.44",
     "@types/node": "^8.10.0",
     "babel-eslint": "^8.2.2",
     "eslint-config-standard": "^11.0.0",
@@ -88,12 +88,26 @@
         }
       ],
       "node/shebang": "off",
-      "node/no-missing-import": ["error", {
-        "tryExtensions": [".ts", ".js", ".json"]
-      }],
-      "node/no-missing-require": ["error", {
-        "tryExtensions": [".ts", ".js", ".json"]
-      }],
+      "node/no-missing-import": [
+        "error",
+        {
+          "tryExtensions": [
+            ".ts",
+            ".js",
+            ".json"
+          ]
+        }
+      ],
+      "node/no-missing-require": [
+        "error",
+        {
+          "tryExtensions": [
+            ".ts",
+            ".js",
+            ".json"
+          ]
+        }
+      ],
       "promise/avoid-new": "off",
       "promise/always-return": "off",
       "promise/no-nesting": "off",

@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@start/cli-lib": "^0.1.0-0",
-    "esm": "^3.0.15",
+    "esm": "^3.0.16",
     "import-cwd": "^2.1.0"
   }
 }
