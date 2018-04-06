@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (formats: string[] = ['lcovonly', 'text-summary']) => {
-  const istanbulReport: StartPlugin = async ({ input, log }) => {
+export default (formats: string[] = ['lcovonly', 'text-summary']) =>
+  plugin('istanbulReport', async ({ files, log }) => {
     const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
     const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
     const { default: { createReporter } } = await import('istanbul-api')
@@ -13,7 +13,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
     if (!global[coverageVariable]) {
       log('no coverage information was collected')
 
-      return input
+      return files
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
@@ -28,8 +28,5 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) => {
       reporter.write(remappedCoverageMap)
     })
 
-    return input
-  }
-
-  return istanbulReport
-}
+    return files
+  })

@@ -1,13 +1,13 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-const overwrite: StartPlugin = async ({ input, log }) => {
+export default plugin('overwrite', async ({ files, log }) => {
   const { default: path } = await import('path')
   const { default: makethen } = await import('makethen')
   const { default: gracefulFs } = await import('graceful-fs')
   const writeFile = makethen(gracefulFs.writeFile)
 
   return Promise.all(
-    input.map((file) => {
+    files.map((file) => {
       // file.path = /Users/foo/test/packages/beep/src/boop/index.js
       const writeFiles = []
       let fileData = file.data || ''
@@ -52,7 +52,5 @@ const overwrite: StartPlugin = async ({ input, log }) => {
 
       return Promise.all(writeFiles)
     })
-  ).then(() => input)
-}
-
-export default overwrite
+  ).then(() => files)
+})

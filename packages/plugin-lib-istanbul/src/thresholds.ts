@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (options: {} = {}) => {
-  const istanbulThresholds: StartPlugin = async ({ input, log }) => {
+export default (options: {} = {}) =>
+  plugin('istanbulThresholds', async ({ files, log }) => {
     const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
     const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
     const { default: { summarizers } } = await import('istanbul-lib-report')
@@ -13,7 +13,7 @@ export default (options: {} = {}) => {
     if (!global[coverageVariable]) {
       log('no coverage information was collected')
 
-      return input
+      return files
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
@@ -50,8 +50,5 @@ export default (options: {} = {}) => {
       throw result
     }
 
-    return input
-  }
-
-  return istanbulThresholds
-}
+    return files
+  })

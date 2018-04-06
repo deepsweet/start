@@ -1,7 +1,9 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (options?: {}, extensions: string[] = ['.js']) => {
-  const istanbulInstrument: StartPlugin = async ({ input, log }) => {
+export default (options?: {}, extensions: string[] = ['.js']) =>
+  plugin('istanbulInstrument', async ({ files, log }) => {
+    const { resolve } = await import('path')
+    const { default: Module } = await import('module')
     const { default: { fromSource: getSourceMapFromSource } } = await import('convert-source-map')
     const { default: { createInstrumenter } } = await import('istanbul-lib-instrument')
     const { default: { hookRequire } } = await import('istanbul-lib-hook')
@@ -10,20 +12,21 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
 
     const instrumenter = createInstrumenter({
       ...options,
-      coverageVariable,
+      coverageVariable
     })
 
     hooks.clearAll()
 
     // clear require cache
-    input.forEach((file) => {
-      delete require.cache[file.path]
+    files.forEach((file) => {
+      // @ts-ignore
+      delete Module._cache[resolve(file.path)]
     })
 
     const hook = hookRequire(
-      // hook requires matches input files
+      // hook requires matches files files
       (file) => {
-        return input.findIndex(({ path }) => file === path) !== -1
+        return files.findIndex(({ path }) => file === resolve(path)) !== -1
       },
       // and instrument that sources
       (source, file) => {
@@ -47,8 +50,5 @@ export default (options?: {}, extensions: string[] = ['.js']) => {
 
     log('require() has been hooked')
 
-    return input
-  }
-
-  return istanbulInstrument
-}
+    return files
+  })
