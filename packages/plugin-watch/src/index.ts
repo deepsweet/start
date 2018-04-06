@@ -1,72 +1,68 @@
 /* eslint-disable standard/no-callback-literal */
 /* eslint-disable promise/catch-or-return */
-import { StartPlugin, StartInput } from '@start/plugin-sequence'
+import plugin, { StartFiles, StartPlugin } from '@start/plugin/src/'
 
-export default (glob: string | string[], userEvents?: string[], userOptions?: {}) => (
-  callback: StartPlugin
-) => {
-  const watch: StartPlugin = async ({ log, ...rest }) => {
-    const { default: chokidar } = await import('chokidar')
+export default (glob: string | string[], userEvents?: string[], userOptions?: {}) =>
+  (callback: StartPlugin) =>
+    plugin('watch', async ({ log, ...rest }) => {
+      const { default: chokidar } = await import('chokidar')
 
-    const events = userEvents || ['add', 'change']
-    const options = {
-      cwd: process.cwd(),
-      persistent: true,
-      ...userOptions,
-    }
-
-    return new Promise<StartInput>((resolve, reject) => {
-      const initialFiles = []
-      const initialListener = (file) => {
-        initialFiles.push({
-          path: file,
-          data: null,
-          map: null,
-        })
+      const events = userEvents || ['add', 'change']
+      const options = {
+        cwd: process.cwd(),
+        persistent: true,
+        ...userOptions
       }
 
-      const watcher = chokidar.watch(glob, options)
+      return new Promise<StartFiles>((resolve, reject) => {
+        const initialFiles = []
+        const initialListener = (file) => {
+          initialFiles.push({
+            path: file,
+            data: null,
+            map: null
+          })
+        }
 
-      watcher.on('add', initialListener)
-      watcher.once('error', reject)
-      watcher.once('ready', async () => {
-        watcher.removeListener('add', initialListener)
+        const watcher = chokidar.watch(glob, options)
 
-        const watchForChanges = () => {
-          events.forEach((event) => {
-            watcher.once(event, async (file) => {
-              try {
-                await callback({
-                  ...rest,
-                  log,
-                  input: [
-                    {
-                      path: file,
-                      data: null,
-                      map: null,
-                    },
-                  ],
-                })
-              } finally {
-                watchForChanges()
-              }
+        watcher.on('add', initialListener)
+        watcher.once('error', reject)
+        watcher.once('ready', async () => {
+          watcher.removeListener('add', initialListener)
+
+          const watchForChanges = () => {
+            events.forEach((event) => {
+              watcher.once(event, async (file) => {
+                try {
+                  await callback.run({
+                    ...rest,
+                    log,
+                    files: [
+                      {
+                        path: file,
+                        data: null,
+                        map: null
+                      }
+                    ]
+                  })
+                } finally {
+                  watchForChanges()
+                }
+              })
             })
-          })
-        }
+          }
 
-        try {
-          await callback({
-            ...rest,
-            log,
-            input: initialFiles,
-          })
-        } finally {
-          watchForChanges()
-          log('watching for changes, press ctrl-c to exit')
-        }
+          try {
+            await callback.run({
+              ...rest,
+              log,
+              files: initialFiles
+            })
+          } finally {
+            watchForChanges()
+            log('watching for changes, press ctrl-c to exit')
+          }
+        })
       })
     })
-  }
-
-  return watch
-}

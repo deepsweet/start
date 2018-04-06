@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (glob: string | string[]) => {
-  const findGitStaged: StartPlugin = async ({ log }) => {
+export default (glob: string | string[]) =>
+  plugin('findGitStaged', async ({ log }) => {
     const { default: { EOL } } = await import('os')
     const { default: execa } = await import('execa')
     const { default: multimatch } = await import('multimatch')
@@ -18,11 +18,8 @@ export default (glob: string | string[]) => {
         return {
           path: file,
           data: null,
-          map: null,
+          map: null
         }
       })
     })
-  }
-
-  return findGitStaged
-}
+  })

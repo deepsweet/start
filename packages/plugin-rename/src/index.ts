@@ -1,30 +1,32 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (callback: (file: string) => string) => {
-  const rename: StartPlugin = async ({ input, log }) => {
-    const { default: path } = await import('path')
+export default (callback: (file: string) => string) => plugin('rename', async ({ files, log }) => {
+  const { default: path } = await import('path')
 
-    return input.map((file) => {
-      const newPath = callback(file.path)
+  return files.map((file) => {
+    const newPath = callback(file.path)
 
-      if (file.path === newPath) {
-        return file
-      }
+    if (file.path === newPath) {
+      return file
+    }
 
-      log(newPath)
+    log(newPath)
 
+    if (file.map !== null) {
       return {
         path: newPath,
         data: file.data,
-        map: file.map
-          ? {
-              ...file.map,
-              file: path.basename(newPath),
-            }
-          : null,
+        map: {
+          ...file.map,
+          file: path.basename(newPath)
+        }
       }
-    })
-  }
+    }
 
-  return rename
-}
+    return {
+      path: newPath,
+      data: file.data,
+      map: null
+    }
+  })
+})

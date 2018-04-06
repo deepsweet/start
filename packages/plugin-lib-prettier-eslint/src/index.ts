@@ -1,34 +1,30 @@
-import { StartPlugin, StartFile } from '@start/plugin-sequence'
+import plugin, { StartFile } from '@start/plugin/src/'
 import { PrettierEslintOptions } from 'prettier-eslint'
 
-export default (options?: PrettierEslintOptions) => {
-  const prettierEslint: StartPlugin = ({ input, log }) => {
-    const format = require('prettier-eslint')
+export default (options?: PrettierEslintOptions) =>
+  plugin('prettierEslint', async ({ files, log }) => {
+    const { default: format } = await import('prettier-eslint')
 
     return Promise.all(
-      input.map(
-        (file) =>
-          new Promise<StartFile>((resolve, reject) => {
-            if (file.data == null) {
-              return reject('file data is required')
-            }
+      files.map((file) =>
+        new Promise<StartFile>((resolve, reject) => {
+          if (file.data == null) {
+            return reject('file data is required')
+          }
 
-            const formatted: string = format({ ...options, filePath: file.path, text: file.data })
+          const formatted: string = format({ ...options, filePath: file.path, text: file.data })
 
-            if (file.data === formatted) {
-              return resolve(null)
-            }
+          if (file.data === formatted) {
+            return resolve(null)
+          }
 
-            log(file.path)
+          log(file.path)
 
-            resolve({
-              ...file,
-              data: formatted,
-            })
+          resolve({
+            ...file,
+            data: formatted
           })
+        })
       )
     ).then((files) => files.filter((file) => file !== null))
-  }
-
-  return prettierEslint
-}
+  })

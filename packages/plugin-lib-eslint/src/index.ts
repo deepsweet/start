@@ -1,17 +1,17 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (userOptions?: {}, formatter?: string) => {
-  const eslint: StartPlugin = async ({ input, log }) => {
+export default (userOptions?: {}, formatter?: string) =>
+  plugin('eslint', async ({ files, log }) => {
     const { default: { CLIEngine } } = await import('eslint')
     const options = {
       cache: true,
       cacheLocation: 'node_modules/.cache/eslint',
-      ...userOptions,
+      ...userOptions
     }
 
     const cli = new CLIEngine(options)
-    const files = input.filter(({ path }) => !cli.isPathIgnored(path)).map(({ path }) => path)
-    const report = cli.executeOnFiles(files)
+    const filesToCheck = files.filter(({ path }) => !cli.isPathIgnored(path)).map(({ path }) => path)
+    const report = cli.executeOnFiles(filesToCheck)
     const format = cli.getFormatter(formatter)
 
     if (report.errorCount > 0 || report.warningCount > 0) {
@@ -26,8 +26,5 @@ export default (userOptions?: {}, formatter?: string) => {
       log('¯\\_(ツ)_/¯')
     }
 
-    return input
-  }
-
-  return eslint
-}
+    return files
+  })

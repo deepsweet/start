@@ -12,7 +12,7 @@ export default (userOptions?: {}) =>
               ...userOptions,
               ast: false,
               inputSourceMap: file.map != null ? file.map : false,
-              filename: file.path,
+              filename: file.path
             }
 
             if (file.data == null) {
@@ -26,7 +26,7 @@ export default (userOptions?: {}) =>
             resolve({
               ...file,
               data: result.code,
-              map: result.map,
+              map: result.map
             })
           })
       )

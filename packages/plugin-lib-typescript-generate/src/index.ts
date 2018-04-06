@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (outDir: string, tscArgs: string[] = []) => {
-  const typescriptGenerate: StartPlugin = async ({ input, log }) => {
+export default (outDir: string, tscArgs: string[] = []) =>
+  plugin('typescriptGenerate', async ({ files, log }) => {
     const { default: path } = await import('path')
     const { default: execa } = await import('execa')
 
@@ -10,12 +10,12 @@ export default (outDir: string, tscArgs: string[] = []) => {
     const spawnOptions = {
       stripEof: false,
       env: {
-        FORCE_COLOR: '1',
-      },
+        FORCE_COLOR: '1'
+      }
     }
 
     return Promise.all(
-      input.map((file) =>
+      files.map((file) =>
         execa(
           tscBinPath,
           [
@@ -24,7 +24,7 @@ export default (outDir: string, tscArgs: string[] = []) => {
             '--declarationDir',
             outDir,
             ...tscArgs,
-            file.path,
+            file.path
           ],
           spawnOptions
         ).then(() => {
@@ -34,7 +34,4 @@ export default (outDir: string, tscArgs: string[] = []) => {
         })
       )
     )
-  }
-
-  return typescriptGenerate
-}
+  })

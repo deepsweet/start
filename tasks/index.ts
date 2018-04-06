@@ -18,7 +18,7 @@ import prettierEslint from '@start/plugin-lib-prettier-eslint/src/'
 import {
   istanbulInstrument,
   istanbulReport,
-  istanbulThresholds,
+  istanbulThresholds
 } from '@start/plugin-lib-istanbul/src/'
 import tape from '@start/plugin-lib-tape/src/'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
@@ -36,15 +36,15 @@ const babelConfig = {
       '@babel/preset-env',
       {
         targets: {
-          node: 8,
+          node: 8
         },
         exclude: ['transform-regenerator'],
-        modules: false,
-      },
+        modules: false
+      }
     ],
-    '@babel/preset-typescript',
+    '@babel/preset-typescript'
   ],
-  plugins: ['@babel/plugin-syntax-dynamic-import'],
+  plugins: ['@babel/plugin-syntax-dynamic-import']
 }
 
 export const dts = (packageName: string) =>
@@ -55,7 +55,7 @@ export const dts = (packageName: string) =>
     typescriptGenerate(`packages/${packageName}/build/`, [
       '--lib',
       'esnext',
-      '--allowSyntheticDefaultImports',
+      '--allowSyntheticDefaultImports'
     ])
   )
 
@@ -68,9 +68,9 @@ export const build = (packageName: string) =>
     find(`packages/${packageName}/src/**/*.ts`),
     read,
     babel(babelConfig),
-    // prettierEslint(),
-    // rename((file) => file.replace(/\.ts$/, '.js')),
-    // write(`packages/${packageName}/build/`)
+    prettierEslint(),
+    rename((file) => file.replace(/\.ts$/, '.js')),
+    write(`packages/${packageName}/build/`)
   )
 
 export const pack = (packageName: string) =>
@@ -90,7 +90,7 @@ export const dev = (packageName: string) =>
     find(`packages/${packageName}/build/`),
     clean,
     watch(`packages/${packageName}/src/**/*.ts`)(
-      sequence(read, babel(babelConfig), write(`packages/${packageName}/build/`))
+      pack(packageName)
     )
   )
 

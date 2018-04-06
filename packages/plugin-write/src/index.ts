@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (outDirRoot: string) => {
-  const write: StartPlugin = async ({ input, log }) => {
+export default (outDirRoot: string) =>
+  plugin('write', async ({ files, log }) => {
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
     const { default: gracefulFs } = await import('graceful-fs')
@@ -10,22 +10,22 @@ export default (outDirRoot: string) => {
     const writeFile = makethen(gracefulFs.writeFile)
 
     return Promise.all(
-      input.map((file) => {
-        // file.path = packages/beep/src/boop/index.js
-        // outDir = packages/beep/build
+      files.map((file) => {
+      // file.path = packages/beep/src/boop/index.js
+      // outDir = packages/beep/build
 
-        // packages/beep/src/boop/index.js -> index.js
+      // packages/beep/src/boop/index.js -> index.js
         const inFile = path.basename(file.path)
         // packages/beep/src/boop/index.js -> packages/beep/src/boop
         const inDir = path.dirname(file.path)
         const inDirSplit = inDir.split(path.sep)
         const outDirSplit = outDirRoot.split(path.sep)
         const inDirUnique = inDirSplit
-          // [ 'packages', 'beep', 'src', 'boop ] -> [ 'src', 'boop' ]
+        // [ 'packages', 'beep', 'src', 'boop ] -> [ 'src', 'boop' ]
           .filter((segment, index) => segment !== outDirSplit[index])
-          // [ 'src', 'boop' ] -> [ 'boop' ]
+        // [ 'src', 'boop' ] -> [ 'boop' ]
           .slice(1)
-          // [ 'boop' ] -> 'boop'
+        // [ 'boop' ] -> 'boop'
           .join(path.sep)
         // packages/beep/build + boop -> packages/beep/build/boop
         const outDir = path.join(outDirRoot, inDirUnique)
@@ -39,7 +39,7 @@ export default (outDirRoot: string) => {
 
             // sourcemap
             if (file.map != null) {
-              // /beep/boop/src/beep/index.js -> .js
+            // /beep/boop/src/beep/index.js -> .js
               const inExtname = path.extname(file.path)
               // index.js -> index.js.map
               const sourcemapFile = inFile + '.map'
@@ -52,7 +52,7 @@ export default (outDirRoot: string) => {
                 fileData += '\n/*# sourceMappingURL='
                 fileData += sourcemapFile
                 fileData += ' */'
-                // //# sourceMappingURL=index.js.map
+              // //# sourceMappingURL=index.js.map
               } else {
                 fileData += '\n//# sourceMappingURL='
                 fileData += sourcemapFile
@@ -75,11 +75,8 @@ export default (outDirRoot: string) => {
           })
           .then(() => ({
             ...file,
-            path: outFile,
+            path: outFile
           }))
       })
     )
-  }
-
-  return write
-}
+  })
