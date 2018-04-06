@@ -31,17 +31,19 @@ export default (reporter: () => NodeJS.ReadWriteStream) =>
         }
 
         this._stream.once('end', () => {
-          if (this.fail > 0) {
-            reject()
-          } else {
-            resolve(files)
-          }
+          const hasFailed = this.fail > 0
 
           this.count = 0
           this.fail = 0
           this.pass = 0
           this.tests = []
           this._stream = through()
+
+          if (hasFailed) {
+            reject(null)
+          } else {
+            resolve(files)
+          }
         })
         this._stream.queue(null)
       })
