@@ -10,7 +10,7 @@ export default (userOptions?: {}, formatter?: string) =>
     }
 
     const cli = new CLIEngine(options)
-    const filesToCheck = files.filter(({ path }) => !cli.isPathIgnored(path)).map(({ path }) => path)
+    const filesToCheck = files.map((file) => file.path).filter((file) => !cli.isPathIgnored(file))
     const report = cli.executeOnFiles(filesToCheck)
     const format = cli.getFormatter(formatter)
 
@@ -19,7 +19,7 @@ export default (userOptions?: {}, formatter?: string) =>
     }
 
     if (report.errorCount > 0) {
-      return Promise.reject(null)
+      throw null
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
