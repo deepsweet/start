@@ -12,11 +12,9 @@
     "@babel/register": "^7.0.0-beta.42",
     "@types/node": "^8.10.0",
     "babel-eslint": "^8.2.2",
-    "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "sinon": "^4.4.8",
@@ -61,7 +59,6 @@
     "parser": "typescript-eslint-parser",
     "plugins": [
       "standard",
-      "prettier",
       "node",
       "promise",
       "import"
@@ -70,9 +67,7 @@
       "standard",
       "plugin:node/recommended",
       "plugin:promise/recommended",
-      "plugin:import/recommended",
-      "prettier",
-      "prettier/standard"
+      "plugin:import/recommended"
     ],
     "env": {
       "node": true
@@ -82,7 +77,6 @@
       "no-unused-vars": "off",
       "import/no-unresolved": "off",
       "import/named": "off",
-      "prettier/prettier": "error",
       "node/no-unsupported-features": [
         "error",
         {
@@ -113,14 +107,6 @@
     "coverage/",
     "node_modules/"
   ],
-  "prettier": {
-    "arrowParens": "always",
-    "singleQuote": true,
-    "parser": "typescript",
-    "semi": false,
-    "printWidth": 100,
-    "trailingComma": "es5"
-  },
   "engines": {
     "node": ">=8"
   }
