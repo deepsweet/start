@@ -110,6 +110,9 @@ export const fix = () =>
 
 export const test = () =>
   sequence(
+    env('NODE_ENV', 'test'),
+    find(`coverage/`),
+    clean,
     find('packages/**/src/**/*.ts'),
     istanbulInstrument({ esModules: true }, ['.ts']),
     find('packages/**/test/**/*.ts'),
