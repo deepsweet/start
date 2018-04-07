@@ -1,5 +1,3 @@
-import EventEmitter from 'events'
-
 export type StartFile = {
   path: string
   data: null | string
@@ -10,22 +8,28 @@ export type StartFiles = StartFile[]
 
 export type StartPluginIn = {
   files: StartFiles,
-  taskName: string,
+  reporter: any,
   log: (message: string) => void
 }
 
 export type StartPluginOut = StartFiles | Promise<StartFiles>
 
-export type StartPluginRun = (props: StartPluginIn) => StartPluginOut
+export type StartPlugin = (props: StartPluginIn) => StartPluginOut
 
-export type StartPlugin = {
-  name: string,
-  run: StartPluginRun
+export default (name: string, plugin: StartPlugin): StartPlugin => ({ reporter, ...props }) => {
+  try {
+    reporter.emit('start', name)
+
+    const result = plugin({
+      ...props,
+      reporter,
+      log: (message) => reporter.emit('message', name, message)
+    })
+
+    reporter.emit('done', name)
+
+    return result
+  } catch (error) {
+    reporter.emit('error', name, error)
+  }
 }
-
-const noopLog = () => { }
-
-export default (name: string, run: StartPluginRun): StartPlugin => ({
-  name,
-  run: ({ log = noopLog, ...props }) => run({ ...props, log })
-})

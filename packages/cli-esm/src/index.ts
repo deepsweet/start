@@ -5,7 +5,7 @@
 
 require = require('esm')(module)
 
-const cli = require('@start/cli-lib')
+const cli = require('@start/cli-lib').default
 
 cli(process.argv).catch((error) => {
   if (error !== null) {

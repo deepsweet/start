@@ -1,9 +1,9 @@
 /* eslint-disable import/unambiguous */
-const importCwd = require('import-cwd')
+import importCwd from 'import-cwd'
 
 const rootPackage = importCwd('./package.json')
 
-module.exports = (argv: string[]) => {
+export default (argv: string[]) => {
   const options = {
     file: 'tasks',
     ...rootPackage.start
@@ -31,6 +31,7 @@ module.exports = (argv: string[]) => {
   }
 
   const taskArgs = argv.slice(3)
+  const reporter = require(options.reporter).default
 
-  return task(...taskArgs)({ taskName })
+  return task(...taskArgs)({ reporter: reporter(taskName) })
 }

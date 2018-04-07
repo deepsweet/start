@@ -35,7 +35,7 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
             events.forEach((event) => {
               watcher.once(event, async (file) => {
                 try {
-                  await callback.run({
+                  await callback({
                     ...rest,
                     log,
                     files: [
@@ -54,7 +54,7 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
           }
 
           try {
-            await callback.run({
+            await callback({
               ...rest,
               log,
               files: initialFiles

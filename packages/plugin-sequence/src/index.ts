@@ -4,7 +4,7 @@ export default (...plugins: StartPlugin[]) =>
   plugin('sequence', ({ files, ...props }) =>
     plugins.reduce(
       async (prev, next) =>
-        next.run({
+        next({
           ...props,
           files: await prev
         }),

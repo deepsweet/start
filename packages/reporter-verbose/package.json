@@ -1,5 +1,5 @@
 {
-  "name": "@start/plugin-report",
+  "name": "@start/reporter-verbose",
   "version": "0.1.0-0",
   "description": "Reporter for @start",
   "keywords": [

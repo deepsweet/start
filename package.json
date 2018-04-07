@@ -33,7 +33,8 @@
           ]
         }
       ]
-    ]
+    ],
+    "reporter": "@start/reporter-verbose/src/"
   },
   "babel": {
     "presets": [
