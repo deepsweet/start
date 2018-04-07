@@ -10,7 +10,7 @@ export default (glob: string | string[], userOptions?: {}) =>
       onlyFiles: false,
       expandDirectories: false,
       ignore: ['node_modules/**'],
-      ...userOptions,
+      ...userOptions
     }
 
     return globby(glob, options).then((files) =>
@@ -20,7 +20,7 @@ export default (glob: string | string[], userOptions?: {}) =>
         return {
           path: file,
           data: null,
-          map: null,
+          map: null
         }
       })
     )

@@ -7,7 +7,7 @@ export default plugin('clean', async ({ files, log }) => {
   const rimrafP = makethen(rimraf)
 
   const options = {
-    glob: false,
+    glob: false
   }
 
   return Promise.all(

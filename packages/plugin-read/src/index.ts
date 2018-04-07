@@ -13,7 +13,7 @@ export default plugin('read', async ({ files, log }) => {
 
         return {
           ...file,
-          data,
+          data
         }
       })
     )

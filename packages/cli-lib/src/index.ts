@@ -6,7 +6,7 @@ const rootPackage = importCwd('./package.json')
 module.exports = (argv: string[]) => {
   const options = {
     file: 'tasks',
-    ...rootPackage.start,
+    ...rootPackage.start
   }
 
   if (Array.isArray(options.require)) {
