@@ -1,8 +1,12 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin, { StartPlugin } from '@start/plugin/src/'
 
-export default (...files: string[]): StartPlugin => () =>
-  files.map((file) => ({
-    path: file,
-    data: null,
-    map: null,
+export default (target: StartPlugin) => (...files: string[]) =>
+  plugin('inputFiles', (arg) => target.run({
+    ...arg,
+    files:
+    files.map((file) => ({
+      path: file,
+      data: null,
+      map: null
+    }))
   }))
