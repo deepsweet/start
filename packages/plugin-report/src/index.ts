@@ -3,37 +3,36 @@ import path from 'path'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
-export default (plugin: StartPlugin): StartPlugin => ({
-  name: 'reporter',
-  run: async (props) => {
+export default (target: StartPlugin) =>
+  plugin('reporter', async (props) => {
     const id = `${props.taskName}.${plugin.name}`
     const log = (message) => console.log(`${chalk.blue(`${id}`)}: ${message}`)
 
     console.log(`${chalk.yellow(`${id}`)}: start`)
 
     try {
-      const result = await plugin.run({ ...props, log })
+      const result = await target.run({ ...props, log })
 
       console.log(`${chalk.green(`${id}`)}: done`)
 
       return result
     } catch (error) {
-      // hard error
+    // hard error
       if (error instanceof Error) {
         const stackUtils = new StackUtils({
           cwd: process.cwd(),
-          internals: StackUtils.nodeInternals(),
+          internals: StackUtils.nodeInternals()
         })
         const stack = stackUtils.clean(error.stack)
 
         console.error(`${chalk.red(`${id}`)}: ${error.message}`)
         console.error(`\n${chalk.red(stack)}`)
-        // array of "soft" errors
+      // array of "soft" errors
       } else if (Array.isArray(error)) {
         error.forEach((message) => {
           console.error(`${chalk.red(`${id}`)}: ${message}`)
         })
-        // "soft" error
+      // "soft" error
       } else if (typeof error === 'string') {
         console.error(`${chalk.red(`${id}`)}: ${error}`)
       }
@@ -42,5 +41,4 @@ export default (plugin: StartPlugin): StartPlugin => ({
 
       throw null
     }
-  }
-})
+  })
