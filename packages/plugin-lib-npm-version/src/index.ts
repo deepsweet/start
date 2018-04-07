@@ -1,8 +1,8 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
 // https://docs.npmjs.com/cli/version
-export default (version: string, packagePath: string = '.') => {
-  const npmVersion: StartPlugin = async ({ input }) => {
+export default (version: string, packagePath: string = '.') =>
+  plugin('npmVersion', async ({ files }) => {
     const { default: path } = await import('path')
     const { default: execa } = await import('execa')
 
@@ -12,12 +12,9 @@ export default (version: string, packagePath: string = '.') => {
       stderr: process.stderr,
       stripEof: false,
       env: {
-        FORCE_COLOR: '1',
-      },
+        FORCE_COLOR: '1'
+      }
     })
-      .then(() => input)
+      .then(() => files)
       .catch(() => Promise.reject(null))
-  }
-
-  return npmVersion
-}
+  })

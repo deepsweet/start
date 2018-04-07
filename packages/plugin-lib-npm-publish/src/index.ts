@@ -1,13 +1,13 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
 // https://docs.npmjs.com/cli/publish
-export default (packagePath: string = '.', userOptions?: {}) => {
-  const npmPublish: StartPlugin = async ({ input }) => {
+export default (packagePath: string = '.', userOptions?: {}) =>
+  plugin('npmPublish', async ({ files }) => {
     const { default: execa } = await import('execa')
 
     const options = {
       registry: 'https://registry.npmjs.org/',
-      ...userOptions,
+      ...userOptions
     }
 
     const cliOptions = Object.keys(options).reduce((result, key) => {
@@ -19,12 +19,9 @@ export default (packagePath: string = '.', userOptions?: {}) => {
       stderr: process.stderr,
       stripEof: false,
       env: {
-        FORCE_COLOR: '1',
-      },
+        FORCE_COLOR: '1'
+      }
     })
-      .then(() => input)
+      .then(() => files)
       .catch(() => Promise.reject(null))
-  }
-
-  return npmPublish
-}
+  })

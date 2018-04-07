@@ -1,4 +1,4 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
 type Options = {
   rootDir?: string
@@ -16,11 +16,11 @@ const optionsToStringify = [
   'haste',
   'moduleNameMapper',
   'resolver',
-  'transform',
+  'transform'
 ]
 
-export default (userOptions: Options = { rootDir: process.cwd() }) => {
-  const jest: StartPlugin = async ({ input }) => {
+export default (userOptions: Options = { rootDir: process.cwd() }) =>
+  plugin('jest', async ({ files }) => {
     const { default: jestCLI } = await import('jest-cli')
 
     const options = {
@@ -32,7 +32,7 @@ export default (userOptions: Options = { rootDir: process.cwd() }) => {
         }
 
         return result
-      }, {}),
+      }, {})
     }
     const projects = [options.rootDir]
 
@@ -45,9 +45,6 @@ export default (userOptions: Options = { rootDir: process.cwd() }) => {
         return Promise.reject(null)
       }
 
-      return input
+      return files
     })
-  }
-
-  return jest
-}
+  })

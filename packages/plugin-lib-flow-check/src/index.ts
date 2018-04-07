@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (...flowArgs: string[]) => {
-  const flowCheck: StartPlugin = async ({ input }) => {
+export default (...flowArgs: string[]) =>
+  plugin('flowCheck', async ({ files }) => {
     const { default: path } = await import('path')
     const { default: execa } = await import('execa')
 
@@ -12,14 +12,11 @@ export default (...flowArgs: string[]) => {
       stderr: process.stderr,
       stripEof: false,
       env: {
-        FORCE_COLOR: '1',
-      },
+        FORCE_COLOR: '1'
+      }
     }
 
     return execa('node', [flowBinPath, 'check', ...flowArgs], spawnOptions)
-      .then(() => input)
+      .then(() => files)
       .catch(() => Promise.reject(null))
-  }
-
-  return flowCheck
-}
+  })

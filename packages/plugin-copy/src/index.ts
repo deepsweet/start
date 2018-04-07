@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (outDirRoot: string) => {
-  const copy: StartPlugin = async ({ input, log }) => {
+export default (outDirRoot: string) =>
+  plugin('copy', async ({ files, log }) => {
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
     const { default: fs } = await import('graceful-fs')
@@ -9,7 +9,7 @@ export default (outDirRoot: string) => {
     const makeDir = makethen(mkdirp)
 
     return Promise.all(
-      input.map((file) => {
+      files.map((file) => {
         // file.path = packages/beep/src/boop/index.js
         // outDir = packages/beep/build
 
@@ -48,7 +48,4 @@ export default (outDirRoot: string) => {
         })
       })
     )
-  }
-
-  return copy
-}
+  })

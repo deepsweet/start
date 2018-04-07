@@ -1,10 +1,10 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-const codecov: StartPlugin = async ({ input, log }) => {
+export default plugin('codecov', async ({ files, log }) => {
   const { default: codecovLite } = await import('codecov-lite')
 
   return Promise.all(
-    input.map((file) => {
+    files.map((file) => {
       return codecovLite(file.data).then((result) => {
         log(result.reportURL)
 
@@ -12,6 +12,4 @@ const codecov: StartPlugin = async ({ input, log }) => {
       })
     })
   )
-}
-
-export default codecov
+})

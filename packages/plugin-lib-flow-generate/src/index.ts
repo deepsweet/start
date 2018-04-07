@@ -1,7 +1,7 @@
-import { StartPlugin } from '@start/plugin-sequence'
+import plugin from '@start/plugin/src/'
 
-export default (outDirRelative: string, ...flowArgs: string[]) => {
-  const flowGenerate: StartPlugin = async ({ input, log }) => {
+export default (outDirRelative: string, ...flowArgs: string[]) =>
+  plugin('flowGenerate', async ({ files, log }) => {
     const { default: path } = require('path')
     const { default: execa } = require('execa')
 
@@ -11,12 +11,12 @@ export default (outDirRelative: string, ...flowArgs: string[]) => {
     const spawnOptions = {
       stripEof: false,
       env: {
-        FORCE_COLOR: '1',
-      },
+        FORCE_COLOR: '1'
+      }
     }
 
     return Promise.all(
-      input.map((file) =>
+      files.map((file) =>
         execa(
           'node',
           [flowBinPath, 'gen-flow-files', file.path, '--out-dir', outDir, ...flowArgs],
@@ -28,7 +28,4 @@ export default (outDirRelative: string, ...flowArgs: string[]) => {
         })
       )
     )
-  }
-
-  return flowGenerate
-}
+  })
