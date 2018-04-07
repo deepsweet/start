@@ -4,8 +4,8 @@ import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
 export default (target: StartPlugin) =>
-  plugin('reporter', async (props) => {
-    const id = `${props.taskName}.${plugin.name}`
+  plugin('report', async (props) => {
+    const id = `${props.taskName}.${target.name}`
     const log = (message) => console.log(`${chalk.blue(`${id}`)}: ${message}`)
 
     console.log(`${chalk.yellow(`${id}`)}: start`)
@@ -17,7 +17,7 @@ export default (target: StartPlugin) =>
 
       return result
     } catch (error) {
-    // hard error
+      // hard error
       if (error instanceof Error) {
         const stackUtils = new StackUtils({
           cwd: process.cwd(),
