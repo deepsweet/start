@@ -23,8 +23,6 @@ export type StartPlugin = {
   run: StartPluginRun
 }
 
-export type StartMiddleware = (plugin: StartPlugin) => StartPlugin
-
 const noopLog = () => { }
 
 export default (name: string, run: StartPluginRun): StartPlugin => ({

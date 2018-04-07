@@ -1,8 +1,8 @@
-import plugin, { StartPlugin, StartMiddleware } from '@start/plugin/src/'
+import plugin, { StartPlugin } from '@start/plugin/src/'
 
-export default (middleware: StartMiddleware) => (...plugins: StartPlugin[]) =>
+export default (...plugins: StartPlugin[]) =>
   plugin('sequence', ({ files, ...props }) =>
-    plugins.map(middleware).reduce(
+    plugins.reduce(
       async (prev, next) =>
         next.run({
           ...props,

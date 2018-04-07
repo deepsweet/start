@@ -1,7 +1,6 @@
-import Sequence from '@start/plugin-sequence/src/'
+import sequence from '@start/plugin-sequence/src/'
 import parallel from '@start/plugin-parallel/src/'
 import xargs from '@start/plugin-xargs/src/'
-import report from '@start/plugin-report/src/'
 import assert from '@start/plugin-assert/src/'
 import env from '@start/plugin-env/src/'
 import find from '@start/plugin-find/src/'
@@ -25,8 +24,6 @@ import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
 // import npmVersion from '@start/plugin-lib-npm-version/src/'
 import npmPublish from '@start/plugin-lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
-
-const sequence = Sequence(report)
 
 const babelConfig = {
   babelrc: false,
