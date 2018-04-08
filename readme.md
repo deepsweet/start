@@ -2,6 +2,13 @@
 
 👉 This is a next iteration which is currently a WORK IN PROGRESS, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
+* [x] experiments
+* [ ] stabilize and publish 0.1.0 of everything
+* [ ] tests
+* [ ] documentation
+  * [ ] main readme
+  * [ ] recipes
+
 ## Usage example
 
 Imagine that every task in your "javascript pipeline" is a Promise. It's fair enough in most cases, kinda async boolean when your task may be either in "done" or "fail" state.
