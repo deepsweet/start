@@ -24,7 +24,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "@start/cli-lib": "^0.1.0-0",

@@ -22,7 +22,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "eslint": "^4.18.2"
