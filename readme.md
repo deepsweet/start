@@ -169,7 +169,7 @@ To be continued…
 | 🔍 [plugin-find-git-staged](packages/plugin-find-git-staged) | Finds staged in Git files and filters it using glob patterns                 |
 | 📖 [plugin-read](packages/plugin-read)                       | Reads files content                                                          |
 | 🔠 [plugin-rename](packages/plgun-rename)                    | Renames files                                                                |
-| 🚽 [plugin-clean](packages/plugin-clean)                     | Deletes folders/files                                                        |
+| ❌ [plugin-remove](packages/plugin-remove)                   | Removes files or directories                                                 |
 | 👯 [plugin-copy](packages/plugin-copy)                       | Copies files to relative destination preserving nested folders structure     |
 | ✏️ [plugin-write](packages/plugin-write)                     | Writes files to relative destination preserving nested folders structure     |
 | ✏️ [plugin-overwrite](packages/plugin-overwrite)             | Overwrites files                                                             |

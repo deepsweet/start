@@ -5,7 +5,7 @@ import assert from '@start/plugin-assert/src/'
 import env from '@start/plugin-env/src/'
 import find from '@start/plugin-find/src/'
 import findGitStaged from '@start/plugin-find-git-staged/src/'
-import clean from '@start/plugin-clean/src/'
+import remove from '@start/plugin-remove/src/'
 import read from '@start/plugin-read/src/'
 import babel from '@start/plugin-lib-babel/src/'
 import rename from '@start/plugin-rename/src/'
@@ -61,8 +61,8 @@ export const build = (packageName: string) =>
     assert(packageName, 'package name is required'),
     env('NODE_ENV', 'production'),
     find(`packages/${packageName}/build/`),
-    clean,
     find(`packages/${packageName}/src/**/*.ts`),
+    remove,
     read,
     babel(babelConfig),
     prettierEslint(),
@@ -75,7 +75,7 @@ export const pack = (packageName: string) =>
     assert(packageName, 'package name is required'),
     env('NODE_ENV', 'production'),
     find(`packages/${packageName}/build/`),
-    clean,
+    remove,
     parallel(['build', 'dts'])(packageName)
   )
 
@@ -85,7 +85,7 @@ export const dev = (packageName: string) =>
   sequence(
     assert(packageName, 'package name is required'),
     find(`packages/${packageName}/build/`),
-    clean,
+    remove,
     watch(`packages/${packageName}/src/**/*.ts`)(
       pack(packageName)
     )
@@ -109,7 +109,7 @@ export const test = () =>
   sequence(
     env('NODE_ENV', 'test'),
     find(`coverage/`),
-    clean,
+    remove,
     find('packages/**/src/**/*.ts'),
     istanbulInstrument({ esModules: true }, ['.ts']),
     find('packages/**/test/**/*.ts'),

@@ -1,12 +1,12 @@
 {
-  "name": "@start/plugin-clean",
+  "name": "@start/plugin-remove",
   "version": "0.1.0-0",
-  "description": "Clean plugin for @start",
+  "description": "Remove plugin for @start",
   "keywords": [
     "tasks",
     "runner",
     "start",
-    "clean"
+    "remove"
   ],
   "main": "build/index.mjs",
   "files": [
