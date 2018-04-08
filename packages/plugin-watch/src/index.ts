@@ -1,6 +1,6 @@
 /* eslint-disable standard/no-callback-literal */
 /* eslint-disable promise/catch-or-return */
-import plugin, { StartFiles, StartPlugin } from '@start/plugin/src/'
+import plugin, { StartFiles, StartPlugin } from '@start/plugin'
 
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) =>
   (callback: StartPlugin) =>

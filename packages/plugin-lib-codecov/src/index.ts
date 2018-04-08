@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin from '@start/plugin'
 
 export default plugin('codecov', async ({ files, log }) => {
   const { default: codecovLite } = await import('codecov-lite')

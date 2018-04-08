@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin from '@start/plugin'
 import { Configuration as WebpackConfig } from 'webpack'
 
 export default (config: WebpackConfig, userStatsOptions?: {}) =>

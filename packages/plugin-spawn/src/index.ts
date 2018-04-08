@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin from '@start/plugin'
 
 export default (command: string, args?: string[], userOptions?: {}) =>
   plugin('spawn', async ({ files }) => {

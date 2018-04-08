@@ -1,4 +1,4 @@
-import plugin, { StartPlugin } from '@start/plugin/src/'
+import plugin, { StartPlugin } from '@start/plugin'
 
 export default (...plugins: StartPlugin[]) =>
   plugin('sequence', ({ files, ...props }) =>

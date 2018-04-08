@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin from '@start/plugin'
 
 export default (options?: {}, extensions: string[] = ['.js']) =>
   plugin('istanbulInstrument', async ({ files, log }) => {

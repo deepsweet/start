@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin from '@start/plugin'
 
 // https://docs.npmjs.com/cli/version
 export default (version: string, packagePath: string = '.') =>

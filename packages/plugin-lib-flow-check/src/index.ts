@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin from '@start/plugin'
 
 export default (...flowArgs: string[]) =>
   plugin('flowCheck', async ({ files }) => {

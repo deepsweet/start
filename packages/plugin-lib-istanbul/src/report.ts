@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin from '@start/plugin'
 
 export default (formats: string[] = ['lcovonly', 'text-summary']) =>
   plugin('istanbulReport', async ({ files, log }) => {

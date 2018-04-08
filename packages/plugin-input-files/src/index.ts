@@ -1,4 +1,4 @@
-import plugin, { StartPlugin } from '@start/plugin/src/'
+import plugin, { StartPlugin } from '@start/plugin'
 
 export default (target: StartPlugin) => (...files: string[]) =>
   plugin('inputFiles', (arg) => target({
