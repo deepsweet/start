@@ -2,7 +2,7 @@
 
 👉 This is a next iteration which is currently a WORK IN PROGRESS, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
-* [x] API experiments
+* [ ] API experiments
 * [ ] make sure that it works in "strict" ESM
 * [ ] stabilize and publish 0.1.0 of everything
 * [ ] tests
