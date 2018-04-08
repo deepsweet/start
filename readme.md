@@ -1,6 +1,6 @@
 # @start
 
-👉 This is a next iteration which is currently a work in progress, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
+👉 This is a next iteration which is currently a WORK IN PROGRESS, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
 ## Usage example
 
@@ -111,7 +111,7 @@ export const buildPackage = (packageName) => sequence(
   env('NODE_ENV', 'production'),
   find(`packages/${packageName}/build/`),
   clean,
-  parallel(buildEsm, buildCjs)(packageName)
+  parallel(['buildEsm', 'buildCjs'])(packageName)
 )
 ```
 
@@ -128,7 +128,7 @@ $ yarn start buildPackage foo
 Let's double it:
 
 ```js
-export const buildPackages = xargs(buildPackage)
+export const buildPackages = xargs('buildPackage')
 ```
 
 ```sh
@@ -145,27 +145,6 @@ $ yarn start buildPackages foo bar
 
 To be continued…
 
-<!--
-Run `prettier-eslint` to fix all the files in parallel:
-
-```js
-export const fixFile = (file) => task(
-  input(file),
-  read,
-  prettierEslint(),
-  overwrite
-)
-
-export const fix = () => task(
-  find(`packages/${packageName}/src/**/*.js`),
-  xargs(fixFile, { workers: 4 })
-)
-```
-
-```sh
-$ yarn start fix
-``` -->
-
 ## Packages
 
 ### Core
@@ -177,7 +156,7 @@ $ yarn start fix
 | 🔂 [plugin-xargs](packages/plugin-xargs)                     | Runs task in parallel for each argument                                      |
 | 🐣 [plugin-spawn](packages/spawn)                            | Spawns new child process                                                     |
 | ⬛️ [cli-esm](packages/cli-esm)                              | Runs tasks file or preset, uses `start` field in `package.json` for settings |
-| 📄 [middleware-reporter](packages/reporter)                  | Reporter "middleware"                                                        |
+| 📄 [reporter-verbose](packages/reporter-verbose)             | Verbose reporter                                                             |
 | 👔 [plugin-env](packages/plugin-env)                         | Sets `process.env`                                                           |
 | 🔍 [plugin-find](packages/plugin-find)                       | Finds files using glob patterns                                              |
 | 🔍 [plugin-find-git-staged](packages/plugin-find-git-staged) | Finds staged in Git files and filters it using glob patterns                 |
