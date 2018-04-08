@@ -10,11 +10,9 @@
   * [ ] main readme
   * [ ] recipes
 
-## Usage example
+## Example
 
-Imagine that every task in your "javascript pipeline" is a Promise. It's fair enough in most cases, kinda async boolean when your task may be either in "done" or "fail" state.
-
-### "build"
+"Pack" 2 packages in parallel child processes: transpile and generate type definitions in parallel child-child processes with concurrently running promises inside of each process:
 
 ```
 packages/
@@ -34,124 +32,58 @@ packages/
     └── readme.md
 ```
 
-Now let's imagine how simple `buildPackage` lazy task could be written in code:
+```js
+export const build = (packageName) =>
+  sequence(
+    find(`packages/${packageName}/src/**/*.ts`),
+    read,
+    babel({ ...babelConfig, babelrc: false }),
+    rename((file) => file.replace(/\.ts$/, '.mjs')),
+    write(`packages/${packageName}/build/`)
+  )
+```
+
+```sh
+$ yarn start build foo
+```
 
 ```js
-const buildPackage = (target) => (
-  // * set NODE_ENV to production
-  // * clean up target directory
-  // * find files using globs
-  // * read files data
-  // * transform files data using Babel
-  // * change files extension from `.ts` to `.mjs`
-  // * write files into target directory
-)
+export const dts = (packageName: string) =>
+  sequence(
+    find(`packages/${packageName}/src/**/*.ts`),
+    typescriptGenerate(`packages/${packageName}/build/`, [
+      '--lib',
+      'esnext',
+      '--allowSyntheticDefaultImports'
+    ])
+  )
 ```
 
-And here is a corresponding Start task:
+```sh
+$ yarn start dts foo
+```
 
 ```js
-export const buildPackage = (packageName) => sequence(
-  env('NODE_ENV', 'production'),
-  find(`packages/${packageName}/build/`),
-  clean,
-  find(`packages/${packageName}/src/**/*.ts`),
-  read,
-  babel({ ...babelConfig, babelrc: false }),
-  rename((file) => file.replace(/\.ts$/, '.mjs')),
-  write(`packages/${packageName}/build/`)
-)
+export const pack = (packageName: string) =>
+  sequence(
+    assert(packageName, 'package name is required'),
+    find(`packages/${packageName}/build/`),
+    remove,
+    parallel(['build', 'dts'])(packageName)
+  )
 ```
-
-And CLI:
 
 ```sh
-$ yarn start buildPackage foo
+$ yarn start pack foo
 ```
-
-And reporter:
-
-```sh
-yarn run v1.5.1
-$ /…/myProject/node_modules/.bin/start buildPackage foo
-buildPackage.env: start
-buildPackage.env: NODE_ENV = production
-buildPackage.env: done
-buildPackage.find: start
-buildPackage.find: packages/foo/build
-buildPackage.find: done
-buildPackage.clean: start
-buildPackage.clean: packages/foo/build
-buildPackage.clean: done
-buildPackage.find: start
-buildPackage.find: packages/foo/src/index.ts
-buildPackage.find: done
-buildPackage.read: start
-buildPackage.read: packages/foo/src/index.ts
-buildPackage.read: done
-buildPackage.babel: start
-buildPackage.babel: packages/foo/src/index.ts
-buildPackage.babel: done
-buildPackage.rename: start
-buildPackage.rename: packages/foo/src/index.mjs
-buildPackage.rename: done
-buildPackage.write: start
-buildPackage.write: packages/foo/build/index.mjs
-buildPackage.write: done
-✨  Done in 0.98s.
-```
-
-🤔
-
-Build package in ESM and CJS versions in parallel using child processes (always try to use [esm](https://github.com/standard-things/esm) only, the following is just an example):
-
 
 ```js
-export const buildEsm = (packageName) => sequence(
-  // ...
-)
-
-export const buildCjs = (packageName) => sequence(
-  // ...
-)
-
-export const buildPackage = (packageName) => sequence(
-  env('NODE_ENV', 'production'),
-  find(`packages/${packageName}/build/`),
-  clean,
-  parallel(['buildEsm', 'buildCjs'])(packageName)
-)
+export const packs = xargs('pack')
 ```
 
 ```sh
-$ yarn start buildPackage foo
+$ yarn start packs foo bar
 ```
-
-```sh
-# mess of async lines as a report
-```
-
-🛠
-
-Let's double it:
-
-```js
-export const buildPackages = xargs('buildPackage')
-```
-
-```sh
-$ yarn start buildPackages foo bar
-```
-
-```sh
-# mess of async lines as a report
-```
-
-2 packages were built in parallel child processes, both ESM and CJS in parallel child-child processes on their own with concurrently running promises inside of each process.
-
-🛫
-
-To be continued…
 
 ## Packages
 
