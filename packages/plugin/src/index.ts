@@ -1,3 +1,5 @@
+import { EventEmitter } from 'events'
+
 export type StartFile = {
   path: string
   data: null | string
@@ -8,7 +10,7 @@ export type StartFiles = StartFile[]
 
 export type StartPluginIn = {
   files: StartFiles,
-  reporter: NodeJS.EventEmitter,
+  reporter: EventEmitter,
   log: (message: string) => void
 }
 
