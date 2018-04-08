@@ -7,7 +7,7 @@
     "runner",
     "start"
   ],
-  "main": "build/index.js",
+  "main": "build/index.mjs",
   "types": "build/index.d.ts",
   "files": [
     "build/"

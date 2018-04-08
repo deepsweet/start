@@ -8,7 +8,7 @@
     "start",
     "eslint"
   ],
-  "main": "build/index.js",
+  "main": "build/index.mjs",
   "files": [
     "build/"
   ],
