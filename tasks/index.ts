@@ -46,7 +46,6 @@ const babelConfig = {
 
 export const dts = (packageName: string) =>
   sequence(
-    assert(packageName, 'package name is required'),
     find(`packages/${packageName}/src/**/*.ts`),
     // FIXME using TypeScript API even if it's horrible
     typescriptGenerate(`packages/${packageName}/build/`, [
@@ -58,10 +57,6 @@ export const dts = (packageName: string) =>
 
 export const build = (packageName: string) =>
   sequence(
-    assert(packageName, 'package name is required'),
-    env('NODE_ENV', 'production'),
-    find(`packages/${packageName}/build/`),
-    remove,
     find(`packages/${packageName}/src/**/*.{js,ts}`),
     read,
     babel(babelConfig),
@@ -82,13 +77,8 @@ export const pack = (packageName: string) =>
 export const packs = xargs('pack')
 
 export const dev = (packageName: string) =>
-  sequence(
-    assert(packageName, 'package name is required'),
-    find(`packages/${packageName}/build/`),
-    remove,
-    watch(`packages/${packageName}/src/**/*.ts`)(
-      pack(packageName)
-    )
+  watch(`packages/${packageName}/src/**/*.ts`)(
+    pack(packageName)
   )
 
 export const lint = () =>
