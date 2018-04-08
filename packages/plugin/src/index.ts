@@ -8,7 +8,7 @@ export type StartFiles = StartFile[]
 
 export type StartPluginIn = {
   files: StartFiles,
-  reporter: any,
+  reporter: NodeJS.EventEmitter,
   log: (message: string) => void
 }
 
