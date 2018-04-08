@@ -3,20 +3,28 @@ import importCwd from 'import-cwd'
 
 const rootPackage = importCwd('./package.json')
 
+const importModules = (modules) => Promise.all(
+  modules.map(async (module) => {
+    if (typeof module === 'string') {
+      return import(module)
+    }
+
+    if (Array.isArray(module)) {
+      const { default: registerModule } = await import(module[0])
+
+      return registerModule(module[1])
+    }
+  })
+)
+
 export default async (argv: string[]) => {
   const options = {
     file: 'tasks',
     ...rootPackage.start
   }
 
-  if (Array.isArray(options.require)) {
-    options.require.forEach((module) => {
-      if (typeof module === 'string') {
-        require(module)
-      } else if (Array.isArray(module)) {
-        require(module[0])(module[1])
-      }
-    })
+  if (Array.isArray(options.imports)) {
+    await importModules(options.imports)
   }
 
   let tasks = importCwd(options.preset ? options.preset : `./${options.file}`)

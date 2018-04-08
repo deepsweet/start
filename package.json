@@ -23,7 +23,7 @@
     "typescript-eslint-parser": "^14.0.0"
   },
   "start": {
-    "require": [
+    "imports": [
       [
         "@babel/register",
         {
