@@ -69,8 +69,8 @@ export const pack = (packageName: string) =>
   sequence(
     assert(packageName, 'package name is required'),
     env('NODE_ENV', 'production'),
-    find(`packages/${packageName}/build/`),
-    remove,
+    // find(`packages/${packageName}/build/`),
+    // remove,
     parallel(['build', 'dts'])(packageName)
   )
 
