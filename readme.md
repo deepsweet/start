@@ -66,7 +66,6 @@ $ yarn start dts foo
 ```js
 export const pack = (packageName: string) =>
   sequence(
-    assert(packageName, 'package name is required'),
     find(`packages/${packageName}/build/`),
     remove,
     parallel(['build', 'dts'])(packageName)
@@ -83,6 +82,17 @@ export const packs = xargs('pack')
 
 ```sh
 $ yarn start packs foo bar
+```
+
+```js
+export const dev = (packageName: string) =>
+  watch(`packages/${packageName}/src/**/*.ts`)(
+    pack(packageName)
+  )
+```
+
+```sh
+$ yarn start dev foo
 ```
 
 ## Packages
@@ -107,7 +117,8 @@ $ yarn start packs foo bar
 | ✏️ [plugin-write](packages/plugin-write)                     | Writes files to relative destination preserving nested folders structure     |
 | ✏️ [plugin-overwrite](packages/plugin-overwrite)             | Overwrites files                                                             |
 | 👀 [plugin-watch](packages/plugin-watch)                     | Watches for new or changed files matched by globs patterns                   |
-| 🔌 [plugin-input](packages/plugin-input)                     | Connects external input into a task flow                                     |
+| 🔌 [plugin-input-files](packages/plugin-input-files)         | Inject arguments as input files                                              |
+| ✅ [plugin-assert](packages/plugin-assert)                   | Node.js `assert()` as a plugin                                               |
 
 ### Lib
 
