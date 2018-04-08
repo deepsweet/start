@@ -44,9 +44,6 @@
           "targets": {
             "node": "current"
           },
-          "exclude": [
-            "transform-regenerator"
-          ],
           "modules": false
         }
       ],
