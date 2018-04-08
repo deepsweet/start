@@ -2,7 +2,8 @@
 
 👉 This is a next iteration which is currently a WORK IN PROGRESS, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
-* [x] experiments
+* [x] API experiments
+* [ ] make sure that it works in "strict" ESM
 * [ ] stabilize and publish 0.1.0 of everything
 * [ ] tests
 * [ ] documentation
@@ -19,16 +20,16 @@ Imagine that every task in your "javascript pipeline" is a Promise. It's fair en
 packages/
 ├── foo/
 │   ├── build/
-│   │   └── index.js
-│   ├── src/
 │   │   └── index.mjs
+│   ├── src/
+│   │   └── index.ts
 │   ├── package.json
 │   └── readme.md
 └── bar/
     ├── build/
-    │   └── index.js
-    ├── src/
     │   └── index.mjs
+    ├── src/
+    │   └── index.ts
     ├── package.json
     └── readme.md
 ```
@@ -42,8 +43,8 @@ const buildPackage = (target) => (
   // * find files using globs
   // * read files data
   // * transform files data using Babel
-  // * write files into target directory,
-  //   for example from `packages/foo/src/index.mjs` to `packages/foo/build/index.js`
+  // * change files extension from `.ts` to `.mjs`
+  // * write files into target directory
 )
 ```
 
@@ -54,10 +55,10 @@ export const buildPackage = (packageName) => sequence(
   env('NODE_ENV', 'production'),
   find(`packages/${packageName}/build/`),
   clean,
-  find(`packages/${packageName}/src/**/*.mjs`),
+  find(`packages/${packageName}/src/**/*.ts`),
   read,
   babel({ ...babelConfig, babelrc: false }),
-  rename((file) => file.replace(/\.mjs$/, '.js')),
+  rename((file) => file.replace(/\.ts$/, '.mjs')),
   write(`packages/${packageName}/build/`)
 )
 ```
@@ -83,19 +84,19 @@ buildPackage.clean: start
 buildPackage.clean: packages/foo/build
 buildPackage.clean: done
 buildPackage.find: start
-buildPackage.find: packages/foo/src/index.mjs
+buildPackage.find: packages/foo/src/index.ts
 buildPackage.find: done
 buildPackage.read: start
-buildPackage.read: packages/foo/src/index.mjs
+buildPackage.read: packages/foo/src/index.ts
 buildPackage.read: done
 buildPackage.babel: start
-buildPackage.babel: packages/foo/src/index.mjs
+buildPackage.babel: packages/foo/src/index.ts
 buildPackage.babel: done
 buildPackage.rename: start
-buildPackage.rename: packages/foo/src/index.js
+buildPackage.rename: packages/foo/src/index.mjs
 buildPackage.rename: done
 buildPackage.write: start
-buildPackage.write: packages/foo/build/index.js
+buildPackage.write: packages/foo/build/index.mjs
 buildPackage.write: done
 ✨  Done in 0.98s.
 ```
