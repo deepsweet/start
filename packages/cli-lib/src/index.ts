@@ -3,7 +3,7 @@ import importCwd from 'import-cwd'
 
 const rootPackage = importCwd('./package.json')
 
-export default (argv: string[]) => {
+export default async (argv: string[]) => {
   const options = {
     file: 'tasks',
     ...rootPackage.start
@@ -30,7 +30,12 @@ export default (argv: string[]) => {
   }
 
   const taskArgs = argv.slice(3)
-  const reporter = require(options.reporter).default
+
+  if (!options.reporter) {
+    return Promise.reject('`reporter` option is missing')
+  }
+
+  const { default: reporter } = await import(options.reporter)
 
   return task(...taskArgs)({ reporter: reporter(taskName) })
 }
