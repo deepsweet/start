@@ -31,5 +31,7 @@ export default (name: string, plugin: StartPlugin): StartPlugin => async ({ repo
     return result
   } catch (error) {
     reporter.emit('error', name, error)
+
+    throw null
   }
 }
