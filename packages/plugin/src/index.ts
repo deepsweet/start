@@ -16,11 +16,11 @@ export type StartPluginOut = StartFiles | Promise<StartFiles>
 
 export type StartPlugin = (props: StartPluginIn) => StartPluginOut
 
-export default (name: string, plugin: StartPlugin): StartPlugin => ({ reporter, ...props }) => {
+export default (name: string, plugin: StartPlugin): StartPlugin => async ({ reporter, ...props }) => {
   try {
     reporter.emit('start', name)
 
-    const result = plugin({
+    const result = await plugin({
       ...props,
       reporter,
       log: (message) => reporter.emit('message', name, message)
