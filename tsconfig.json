@@ -7,5 +7,5 @@
     "moduleResolution": "node",
     "typeRoots": [ "types/", "node_modules/@types/" ]
   },
-  "exclude": ["node_modules/", "coverage/"]
+  "exclude": ["node_modules/", "coverage/", "packages/*/build/"]
 }
