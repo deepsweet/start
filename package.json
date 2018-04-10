@@ -41,7 +41,7 @@
         }
       ]
     ],
-    "reporter": "@start/reporter-verbose"
+    "reporter": "@start/reporter-verbose/src/"
   },
   "babel": {
     "presets": [
