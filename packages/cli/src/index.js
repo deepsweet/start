@@ -23,9 +23,9 @@ options.require.map((pkg) => {
   }
 })
 
-const { default: cli } = require('./cli')
+const { default: cliLib } = require('./lib')
 
-cli(process.argv, options).catch((error) => {
+cliLib(process.argv, options).catch((error) => {
   if (error !== null) {
     console.log(error)
   }

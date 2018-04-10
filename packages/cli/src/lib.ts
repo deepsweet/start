@@ -8,20 +8,18 @@ type Options = {
 }
 
 export default async (argv: string[], options: Options) => {
-  let tasks = importCwd(options.preset ? options.preset : `./${options.file}`)
+  let tasks = importCwd(options.preset || `./${options.file}`)
   const taskName = argv[2]
   const task = tasks[taskName]
 
   if (typeof taskName === 'undefined' || typeof task === 'undefined') {
-    return Promise.reject(
-      `One of the following tasks is required: ${Object.keys(tasks).join('", "')}`
-    )
+    throw `One of the following task names is required: "${Object.keys(tasks).join('", "')}"`
   }
 
   const taskArgs = argv.slice(3)
 
   if (!options.reporter) {
-    return Promise.reject('`reporter` option is missing')
+    throw '`reporter` option is missing in your `package.json` → `start`'
   }
 
   const { default: reporter } = await import(options.reporter)
