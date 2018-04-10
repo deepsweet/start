@@ -10,16 +10,23 @@ const options = {
   require: [],
   ...rootPackage.start
 }
+const ESM_SYMBOL = Symbol.for('esm\u200D:package')
 
-options.require.map((pkg) => {
+options.require.forEach((pkg) => {
   if (typeof pkg === 'string') {
     const required = require(pkg)
 
-    if (required[Symbol.for('esm\u200D:package')]) {
+    if (required[ESM_SYMBOL]) {
       require = required(module)
     }
   } else if (Array.isArray(pkg)) {
-    require(pkg[0])(pkg[1])
+    const required = require(pkg[0])
+
+    if (required[ESM_SYMBOL]) {
+      require = required(module, pkg[1])
+    } else {
+      required(pkg[1])
+    }
   }
 })
 
