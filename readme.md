@@ -105,7 +105,7 @@ $ yarn start dev foo
 | 🔀 [plugin-parallel](packages/plugin-parallel)               | Runs tasks in parallel with same agruments                                   |
 | 🔂 [plugin-xargs](packages/plugin-xargs)                     | Runs task in parallel for each argument                                      |
 | 🐣 [plugin-spawn](packages/spawn)                            | Spawns new child process                                                     |
-| ⬛️ [cli-esm](packages/cli-esm)                              | Runs tasks file or preset, uses `start` field in `package.json` for settings |
+| ⬛️ [cli](packages/cli)                                      | Runs tasks file or preset, uses `start` field in `package.json` for settings |
 | 📄 [reporter-verbose](packages/reporter-verbose)             | Verbose reporter                                                             |
 | 👔 [plugin-env](packages/plugin-env)                         | Sets `process.env`                                                           |
 | 🔍 [plugin-find](packages/plugin-find)                       | Finds files using glob patterns                                              |
