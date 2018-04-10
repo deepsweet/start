@@ -2,7 +2,7 @@ import EventEmitter from 'events'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
-export default (taskName) => {
+export default (taskName: string) => {
   const emitter = new EventEmitter()
 
   emitter.on('start', (pluginName) => {

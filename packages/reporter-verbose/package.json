@@ -26,5 +26,8 @@
   "dependencies": {
     "chalk": "^2.3.2",
     "stack-utils": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/stack-utils": "^1.0.1"
   }
 }
