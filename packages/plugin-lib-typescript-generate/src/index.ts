@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (outDir: string, tscArgs: string[] = []) =>
-  plugin('typescriptGenerate', async ({ files, log }) => {
+  plugin('typescriptGenerate', async ({ files, logFile }) => {
     const { default: path } = await import('path')
     const { default: execa } = await import('execa')
 
@@ -29,7 +29,7 @@ export default (outDir: string, tscArgs: string[] = []) =>
           spawnOptions
         ).then(() => {
           const dtsFile = path.join(outDir, `${path.basename(file.path, '.ts')}.d.ts`)
-          log(dtsFile)
+          logFile(dtsFile)
 
           return {
             path: dtsFile,

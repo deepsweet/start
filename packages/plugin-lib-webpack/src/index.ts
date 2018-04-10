@@ -2,7 +2,7 @@ import plugin from '@start/plugin/src/'
 import { Configuration as WebpackConfig } from 'webpack'
 
 export default (config: WebpackConfig, userStatsOptions?: {}) =>
-  plugin('webpack', async ({ files, log }) => {
+  plugin('webpack', async ({ files }) => {
     const makethen = await import('makethen')
     const webpackLib = await import('webpack')
     const compiler = makethen(webpackLib)
@@ -13,7 +13,7 @@ export default (config: WebpackConfig, userStatsOptions?: {}) =>
     }
 
     return compiler(config).then((stats) => {
-      log(stats.toString(statsOptions))
+      console.log(stats.toString(statsOptions))
 
       if (stats.hasErrors()) {
         return Promise.reject(null)

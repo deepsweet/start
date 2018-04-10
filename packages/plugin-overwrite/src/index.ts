@@ -1,6 +1,6 @@
 import plugin from '@start/plugin/src/'
 
-export default plugin('overwrite', async ({ files, log }) => {
+export default plugin('overwrite', async ({ files, logFile }) => {
   const { default: path } = await import('path')
   const { default: makethen } = await import('makethen')
   const { default: gracefulFs } = await import('graceful-fs')
@@ -39,14 +39,14 @@ export default plugin('overwrite', async ({ files, log }) => {
 
         writeFiles.push(
           writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-            log(sourcemapPath)
+            logFile(sourcemapPath)
           })
         )
       }
 
       writeFiles.push(
         writeFile(file.path, fileData, 'utf8').then(() => {
-          log(file.path)
+          logFile(file.path)
         })
       )
 

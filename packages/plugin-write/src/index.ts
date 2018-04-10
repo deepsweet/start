@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (outDirRoot: string) =>
-  plugin('write', async ({ files, log }) => {
+  plugin('write', async ({ files, logFile }) => {
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
     const { default: gracefulFs } = await import('graceful-fs')
@@ -60,14 +60,14 @@ export default (outDirRoot: string) =>
 
               writeFiles.push(
                 writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-                  log(sourcemapPath)
+                  logFile(sourcemapPath)
                 })
               )
             }
 
             writeFiles.push(
               writeFile(outFile, fileData, 'utf8').then(() => {
-                log(outFile)
+                logFile(outFile)
               })
             )
 

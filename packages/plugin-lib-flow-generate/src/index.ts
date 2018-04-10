@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (outDirRelative: string, ...flowArgs: string[]) =>
-  plugin('flowGenerate', async ({ files, log }) => {
+  plugin('flowGenerate', async ({ files, logFile }) => {
     const { default: path } = require('path')
     const { default: execa } = require('execa')
 
@@ -22,7 +22,7 @@ export default (outDirRelative: string, ...flowArgs: string[]) =>
           [flowBinPath, 'gen-flow-files', file.path, '--out-dir', outDir, ...flowArgs],
           spawnOptions
         ).then(() => {
-          log(path.join(outDir, `${path.basename(file.path)}.flow`))
+          logFile(path.join(outDir, `${path.basename(file.path)}.flow`))
 
           return file
         })

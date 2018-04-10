@@ -1,7 +1,7 @@
 import plugin, { StartFile } from '@start/plugin/src/'
 
 export default (userOptions?: {}) =>
-  plugin('babel', async ({ files, log }) => {
+  plugin('babel', async ({ files, logFile }) => {
     const { default: { transform } } = await import('@babel/core')
 
     return Promise.all(
@@ -21,7 +21,7 @@ export default (userOptions?: {}) =>
 
             const result = transform(file.data, options)
 
-            log(file.path)
+            logFile(file.path)
 
             resolve({
               ...file,

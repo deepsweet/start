@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (glob: string | string[], userOptions?: {}) =>
-  plugin('find', async ({ files, log }) => {
+  plugin('find', async ({ files, logFile }) => {
     const { default: globby } = await import('globby')
 
     const options = {
@@ -15,7 +15,7 @@ export default (glob: string | string[], userOptions?: {}) =>
 
     return globby(glob, options).then((files) =>
       files.map((file) => {
-        log(file)
+        logFile(file)
 
         return {
           path: file,

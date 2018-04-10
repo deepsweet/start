@@ -1,6 +1,6 @@
 import plugin from '@start/plugin/src/'
 
-export default plugin('read', async ({ files, log }) => {
+export default plugin('read', async ({ files, logFile }) => {
   const { default: makethen } = await import('makethen')
   const { default: gracefulFs } = await import('graceful-fs')
 
@@ -9,7 +9,7 @@ export default plugin('read', async ({ files, log }) => {
   return Promise.all(
     files.map((file) =>
       readFile(file.path, 'utf8').then((data) => {
-        log(file.path)
+        logFile(file.path)
 
         return {
           ...file,

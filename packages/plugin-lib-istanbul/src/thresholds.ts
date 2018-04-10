@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (options: {} = {}) =>
-  plugin('istanbulThresholds', async ({ files, log }) => {
+  plugin('istanbulThresholds', async ({ files, logMessage }) => {
     const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
     const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
     const { default: { summarizers } } = await import('istanbul-lib-report')
@@ -11,7 +11,7 @@ export default (options: {} = {}) =>
     hooks.clearAll()
 
     if (!global[coverageVariable]) {
-      log('no coverage information was collected')
+      logMessage('no coverage information was collected')
 
       return files
     }

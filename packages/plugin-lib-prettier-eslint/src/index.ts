@@ -2,7 +2,7 @@ import plugin, { StartFile } from '@start/plugin/src/'
 import { PrettierEslintOptions } from 'prettier-eslint'
 
 export default (options?: PrettierEslintOptions) =>
-  plugin('prettierEslint', async ({ files, log }) => {
+  plugin('prettierEslint', async ({ files, logFile }) => {
     const { default: format } = await import('prettier-eslint')
 
     return Promise.all(
@@ -18,7 +18,7 @@ export default (options?: PrettierEslintOptions) =>
             return resolve(null)
           }
 
-          log(file.path)
+          logFile(file.path)
 
           resolve({
             ...file,

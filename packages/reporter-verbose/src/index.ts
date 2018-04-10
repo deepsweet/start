@@ -10,7 +10,11 @@ export default (taskName: string) => {
   })
 
   emitter.on('message', (pluginName, message) => {
-    console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${message}`)
+    console.log(`${chalk.cyan(`${taskName}.${pluginName}`)}: ${message}`)
+  })
+
+  emitter.on('file', (pluginName, file) => {
+    console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${file}`)
   })
 
   emitter.on('done', (pluginName) => {

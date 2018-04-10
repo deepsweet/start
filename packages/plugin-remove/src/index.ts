@@ -1,6 +1,6 @@
 import plugin from '@start/plugin/src/'
 
-export default plugin('clean', async ({ files, log }) => {
+export default plugin('clean', async ({ files, logFile }) => {
   const { default: makethen } = await import('makethen')
   const { default: rimraf } = await import('rimraf')
 
@@ -13,7 +13,7 @@ export default plugin('clean', async ({ files, log }) => {
   return Promise.all(
     files.map((file) => {
       return rimrafP(file.path, options).then(() => {
-        log(file.path)
+        logFile(file.path)
 
         return file
       })

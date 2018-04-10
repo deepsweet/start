@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (userOptions?: {}, formatter?: string) =>
-  plugin('eslint', async ({ files, log }) => {
+  plugin('eslint', async ({ files, logMessage }) => {
     const { default: { CLIEngine } } = await import('eslint')
     const options = {
       cache: true,
@@ -23,7 +23,7 @@ export default (userOptions?: {}, formatter?: string) =>
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
-      log('¯\\_(ツ)_/¯')
+      logMessage('¯\\_(ツ)_/¯')
     }
 
     return files

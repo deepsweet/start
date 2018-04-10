@@ -9,7 +9,8 @@ export type StartFiles = StartFile[]
 export type StartPluginIn = {
   files: StartFiles,
   reporter: NodeJS.EventEmitter,
-  log: (message: string) => void
+  logFile: (file: string) => void,
+  logMessage: (message: string) => void
 }
 
 export type StartPluginOut = StartFiles | Promise<StartFiles>
@@ -23,7 +24,8 @@ export default (name: string, plugin: StartPlugin): StartPlugin => async ({ repo
     const result = await plugin({
       ...props,
       reporter,
-      log: (message) => reporter.emit('message', name, message)
+      logFile: (file) => reporter.emit('file', name, file),
+      logMessage: (message) => reporter.emit('message', name, message)
     })
 
     reporter.emit('done', name)
