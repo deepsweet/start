@@ -28,9 +28,14 @@ export default (outDir: string, tscArgs: string[] = []) =>
           ],
           spawnOptions
         ).then(() => {
-          log(path.join(outDir, `${path.basename(file.path, '.ts')}.d.ts`))
+          const dtsFile = path.join(outDir, `${path.basename(file.path, '.ts')}.d.ts`)
+          log(dtsFile)
 
-          return file
+          return {
+            path: dtsFile,
+            data: null,
+            map: null
+          }
         })
       )
     )
