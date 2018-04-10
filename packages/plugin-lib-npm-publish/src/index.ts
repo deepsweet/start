@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 // https://docs.npmjs.com/cli/publish
 export default (packagePath: string = '.', userOptions?: {}) =>

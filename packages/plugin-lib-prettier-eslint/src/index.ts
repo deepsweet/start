@@ -1,4 +1,4 @@
-import plugin, { StartFile } from '@start/plugin'
+import plugin, { StartFile } from '@start/plugin/src/'
 import { PrettierEslintOptions } from 'prettier-eslint'
 
 export default (options?: PrettierEslintOptions) =>

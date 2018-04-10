@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default (glob: string | string[], userOptions?: {}) =>
   plugin('find', async ({ files, log }) => {

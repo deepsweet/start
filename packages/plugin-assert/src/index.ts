@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default (value: string, message?: string) =>
   plugin('assert', async ({ files }) => {

@@ -1,4 +1,4 @@
-import plugin, { StartFiles } from '@start/plugin'
+import plugin, { StartFiles } from '@start/plugin/src/'
 
 export default (reporter: () => NodeJS.ReadWriteStream) =>
   plugin('tape', async ({ files }) => {

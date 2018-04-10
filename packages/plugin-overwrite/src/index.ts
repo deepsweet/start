@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default plugin('overwrite', async ({ files, log }) => {
   const { default: path } = await import('path')

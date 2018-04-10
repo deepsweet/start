@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default (userOptions?: {}, formatter?: string) =>
   plugin('eslint', async ({ files, log }) => {

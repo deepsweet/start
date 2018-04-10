@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default (options: {} = {}) =>
   plugin('istanbulThresholds', async ({ files, log }) => {

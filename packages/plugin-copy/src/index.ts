@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default (outDirRoot: string) =>
   plugin('copy', async ({ files, log }) => {

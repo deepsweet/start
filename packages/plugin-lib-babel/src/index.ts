@@ -1,4 +1,4 @@
-import plugin, { StartFile } from '@start/plugin'
+import plugin, { StartFile } from '@start/plugin/src/'
 
 export default (userOptions?: {}) =>
   plugin('babel', async ({ files, log }) => {

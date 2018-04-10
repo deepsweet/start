@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default plugin('clean', async ({ files, log }) => {
   const { default: makethen } = await import('makethen')

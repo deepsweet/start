@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 import { Configuration as WebpackConfig } from 'webpack'
 
 type Options = {

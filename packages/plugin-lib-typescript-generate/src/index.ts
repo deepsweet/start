@@ -1,4 +1,4 @@
-import plugin from '@start/plugin'
+import plugin from '@start/plugin/src/'
 
 export default (outDir: string, tscArgs: string[] = []) =>
   plugin('typescriptGenerate', async ({ files, log }) => {
