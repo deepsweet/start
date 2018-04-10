@@ -10,6 +10,7 @@
   "bin": {
     "start": "build/index.js"
   },
+  "main": "build/lib.mjs",
   "files": [
     "build/"
   ],
