@@ -25,24 +25,17 @@ import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
 import npmPublish from '@start/plugin-lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
 
-const babelConfig = {
-  babelrc: false,
-  retainLines: true,
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          node: 8
-        },
-        exclude: ['transform-regenerator'],
-        modules: false
-      }
-    ],
-    '@babel/preset-typescript'
-  ],
-  plugins: ['@babel/plugin-syntax-dynamic-import']
-}
+import { babelConfigBuild, babelConfigDts } from './config/babel'
+
+export const build = (packageName: string) =>
+  sequence(
+    find(`packages/${packageName}/src/**/*.{js,ts}`),
+    read,
+    babel(babelConfigBuild),
+    // prettierEslint(),
+    rename((file) => file.replace(/\.ts$/, '.mjs')),
+    write(`packages/${packageName}/build/`)
+  )
 
 export const dts = (packageName: string) =>
   sequence(
@@ -52,16 +45,9 @@ export const dts = (packageName: string) =>
       '--lib',
       'esnext',
       '--allowSyntheticDefaultImports'
-    ])
-  )
-
-export const build = (packageName: string) =>
-  sequence(
-    find(`packages/${packageName}/src/**/*.{js,ts}`),
+    ]),
     read,
-    babel(babelConfig),
-    prettierEslint(),
-    rename((file) => file.replace(/\.ts$/, '.mjs')),
+    babel(babelConfigDts),
     write(`packages/${packageName}/build/`)
   )
 
@@ -69,8 +55,8 @@ export const pack = (packageName: string) =>
   sequence(
     assert(packageName, 'package name is required'),
     env('NODE_ENV', 'production'),
-    // find(`packages/${packageName}/build/`),
-    // remove,
+    find(`packages/${packageName}/build/`),
+    remove,
     parallel(['build', 'dts'])(packageName)
   )
 
