@@ -1,6 +1,6 @@
 const babelConfigCommon = {
   babelrc: false,
-  retainLines: true,
+  // retainLines: true,
   presets: [
     [
       '@babel/preset-env',
