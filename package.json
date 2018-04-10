@@ -19,13 +19,18 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
+    "esm": "^3.0.17",
     "sinon": "^4.4.8",
     "tap-diff": "^0.1.1",
     "typescript": "^2.8.1",
     "typescript-eslint-parser": "^14.0.0"
   },
+  "scripts": {
+    "start": "node packages/cli/src/index.js"
+  },
   "start": {
-    "imports": [
+    "require": [
+      "esm",
       [
         "@babel/register",
         {
@@ -93,8 +98,7 @@
         {
           "tryExtensions": [
             ".ts",
-            ".js",
-            ".json"
+            ".js"
           ]
         }
       ],
@@ -103,8 +107,7 @@
         {
           "tryExtensions": [
             ".ts",
-            ".js",
-            ".json"
+            ".js"
           ]
         }
       ],
