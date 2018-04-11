@@ -2,26 +2,28 @@ import EventEmitter from 'events'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
+type StartError = Error | string[] | string
+
 export default (taskName: string) => {
   const emitter = new EventEmitter()
 
-  emitter.on('start', (pluginName) => {
+  emitter.on('start', (pluginName: string) => {
     console.log(`${chalk.yellow(`${taskName}.${pluginName}`)}: start`)
   })
 
-  emitter.on('message', (pluginName, message) => {
+  emitter.on('message', (pluginName: string, message: string) => {
     console.log(`${chalk.cyan(`${taskName}.${pluginName}`)}: ${message}`)
   })
 
-  emitter.on('file', (pluginName, file) => {
+  emitter.on('file', (pluginName: string, file: string) => {
     console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${file}`)
   })
 
-  emitter.on('done', (pluginName) => {
+  emitter.on('done', (pluginName: string) => {
     console.log(`${chalk.green(`${taskName}.${pluginName}`)}: done`)
   })
 
-  emitter.on('error', (pluginName, error) => {
+  emitter.on('error', (pluginName: string, error: StartError) => {
     // hard error
     if (error instanceof Error) {
       const stackUtils = new StackUtils({
@@ -32,12 +34,12 @@ export default (taskName: string) => {
 
       console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error.message}`)
       console.error(`\n${chalk.red(stack)}`)
-      // array of "soft" errors
+    // array of "soft" errors
     } else if (Array.isArray(error)) {
       error.forEach((message) => {
         console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${message}`)
       })
-      // "soft" error
+    // "soft" error
     } else if (typeof error === 'string') {
       console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error}`)
     }
