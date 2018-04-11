@@ -26,5 +26,9 @@
   "dependencies": {
     "execa": "^0.10.0",
     "p-all": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/execa": "^0.9.0",
+    "@types/p-all": "^1.0.0"
   }
 }
