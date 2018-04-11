@@ -1,7 +1,6 @@
 import plugin, { StartFile } from '@start/plugin/src/'
-import { PrettierEslintOptions } from 'prettier-eslint'
 
-export default (options?: PrettierEslintOptions) =>
+export default (options?: {}) =>
   plugin('prettierEslint', async ({ files, logFile }) => {
     const { default: format } = await import('prettier-eslint')
 
