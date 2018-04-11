@@ -21,7 +21,7 @@ import {
 } from '@start/plugin-lib-istanbul/src/'
 import tape from '@start/plugin-lib-tape/src/'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
-// import npmVersion from '@start/plugin-lib-npm-version/src/'
+import npmVersion from '@start/plugin-lib-npm-version/src/'
 import npmPublish from '@start/plugin-lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
 
@@ -40,7 +40,6 @@ export const build = (packageName: string) =>
 export const dts = (packageName: string) =>
   sequence(
     find(`packages/${packageName}/src/**/*.ts`),
-    // FIXME using TypeScript API even if it's horrible
     typescriptGenerate(`packages/${packageName}/build/`, [
       '--lib',
       'esnext',
@@ -91,18 +90,17 @@ export const test = () =>
     find('packages/**/test/**/*.ts'),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary'])
-    // istanbulThresholds({ functions: 30 })
   )
 
 export const ci = () => sequence(lintAll(), test())
 
-export const publish = (packageName: string, /* version: string, */ otp: string) =>
+export const publish = (packageName: string, version: string, otp: string) =>
   sequence(
     assert(packageName, 'package name is required'),
-    // assert(version, 'package name is required'),
+    assert(version, 'package name is required'),
     assert(packageName, 'OTP is required'),
     ci(),
     pack(packageName),
-    // npmVersion(version, `packages/${packageName}`),
+    npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
   )
