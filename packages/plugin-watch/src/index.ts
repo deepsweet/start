@@ -4,7 +4,7 @@ import plugin, { StartFiles, StartPlugin } from '@start/plugin/src/'
 
 export default (glob: string | string[], userEvents?: string[], userOptions?: {}) =>
   (callback: StartPlugin) =>
-    plugin('watch', async ({ logMessage, ...rest }) => {
+    plugin('watch', async ({ logMessage, reporter }) => {
       const { default: chokidar } = await import('chokidar')
 
       const events = userEvents || ['add', 'change']
@@ -36,8 +36,7 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
               watcher.once(event, async (file) => {
                 try {
                   await callback({
-                    ...rest,
-                    logMessage,
+                    reporter,
                     files: [
                       {
                         path: file,
@@ -55,8 +54,7 @@ export default (glob: string | string[], userEvents?: string[], userOptions?: {}
 
           try {
             await callback({
-              ...rest,
-              logMessage,
+              reporter,
               files: initialFiles
             })
           } finally {

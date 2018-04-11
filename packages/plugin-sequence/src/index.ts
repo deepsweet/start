@@ -1,11 +1,11 @@
 import plugin, { StartPlugin } from '@start/plugin/src/'
 
 export default (...plugins: StartPlugin[]) =>
-  plugin('sequence', ({ files, ...props }) =>
+  plugin('sequence', ({ files, reporter }) =>
     plugins.reduce(
       async (prev, next) =>
         next({
-          ...props,
+          reporter,
           files: await prev
         }),
       Promise.resolve(files)
