@@ -99,26 +99,26 @@ $ yarn start dev foo
 
 ### Core
 
-| Name                                                         | Description                                                                  |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| ⏩ [plugin-sequence](packages/plugin-sequence)               | Runs plugins in sequence                                                     |
-| 🔀 [plugin-parallel](packages/plugin-parallel)               | Runs tasks in parallel with same agruments                                   |
-| 🔂 [plugin-xargs](packages/plugin-xargs)                     | Runs task in parallel for each argument                                      |
-| 🐣 [plugin-spawn](packages/spawn)                            | Spawns new child process                                                     |
-| ⬛️ [cli](packages/cli)                                      | Runs tasks file or preset, uses `start` field in `package.json` for settings |
-| 📄 [reporter-verbose](packages/reporter-verbose)             | Verbose reporter                                                             |
-| 👔 [plugin-env](packages/plugin-env)                         | Sets `process.env`                                                           |
-| 🔍 [plugin-find](packages/plugin-find)                       | Finds files using glob patterns                                              |
-| 🔍 [plugin-find-git-staged](packages/plugin-find-git-staged) | Finds staged in Git files and filters it using glob patterns                 |
-| 📖 [plugin-read](packages/plugin-read)                       | Reads files content                                                          |
-| 🔠 [plugin-rename](packages/plgun-rename)                    | Renames files                                                                |
-| ❌ [plugin-remove](packages/plugin-remove)                   | Removes files or directories                                                 |
-| 👯 [plugin-copy](packages/plugin-copy)                       | Copies files to relative destination preserving nested folders structure     |
-| ✏️ [plugin-write](packages/plugin-write)                     | Writes files to relative destination preserving nested folders structure     |
-| ✏️ [plugin-overwrite](packages/plugin-overwrite)             | Overwrites files                                                             |
-| 👀 [plugin-watch](packages/plugin-watch)                     | Watches for new or changed files matched by globs patterns                   |
-| 🔌 [plugin-input-files](packages/plugin-input-files)         | Inject arguments as input files                                              |
-| ✅ [plugin-assert](packages/plugin-assert)                   | Node.js `assert()` as a plugin                                               |
+| Name                                                         | Published                                                                                                                                               | Description                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| ⬛️ [cli](packages/cli)                                      | [![npm](https://img.shields.io/npm/v/@start/cli.svg?style=flat-square)](https://www.npmjs.com/package/@start/cli)                                       | Runs tasks file or preset                                         |
+| 📄 [reporter-verbose](packages/reporter-verbose)             | [![npm](https://img.shields.io/npm/v/@start/reporter-verbose.svg?style=flat-square)](https://www.npmjs.com/package/@start/reporter-verbose)             | Verbose reporter                                                  |
+| ⏩ [plugin-sequence](packages/plugin-sequence)               | [![npm](https://img.shields.io/npm/v/@start/plugin-sequence.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-sequence)               | Runs plugins in sequence                                          |
+| 🔀 [plugin-parallel](packages/plugin-parallel)               | [![npm](https://img.shields.io/npm/v/@start/plugin-parallel.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-parallel)               | Runs tasks in parallel with same agruments                        |
+| 🔂 [plugin-xargs](packages/plugin-xargs)                     | [![npm](https://img.shields.io/npm/v/@start/plugin-xargs.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-xargs)                     | Runs task in parallel for each argument                           |
+| 🐣 [plugin-spawn](packages/plugin-spawn)                     | [![npm](https://img.shields.io/npm/v/@start/plugin-spawn.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-spawn)                     | Spawns new child process                                          |
+| 👔 [plugin-env](packages/plugin-env)                         | [![npm](https://img.shields.io/npm/v/@start/plugin-env.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-env)                         | Sets `process.env`                                                |
+| 🔍 [plugin-find](packages/plugin-find)                       | [![npm](https://img.shields.io/npm/v/@start/plugin-find.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-find)                       | Finds files using glob patterns                                   |
+| 🔍 [plugin-find-git-staged](packages/plugin-find-git-staged) | [![npm](https://img.shields.io/npm/v/@start/plugin-find-git-staged.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-find-git-staged) | Finds staged in Git files and filters it using glob patterns      |
+| 📖 [plugin-read](packages/plugin-read)                       | [![npm](https://img.shields.io/npm/v/@start/plugin-read.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-read)                       | Reads files content                                               |
+| 🔠 [plugin-rename](packages/plgun-rename)                    | [![npm](https://img.shields.io/npm/v/@start/plugin-rename.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-rename)                   | Renames files                                                     |
+| ❌ [plugin-remove](packages/plugin-remove)                   | [![npm](https://img.shields.io/npm/v/@start/plugin-remove.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-remove)                   | Removes files or directories                                      |
+| 👯 [plugin-copy](packages/plugin-copy)                       | [![npm](https://img.shields.io/npm/v/@start/plugin-copy.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-copy)                       | Copies files to relative destination preserving folders structure |
+| ✏️ [plugin-write](packages/plugin-write)                     | [![npm](https://img.shields.io/npm/v/@start/plugin-write.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-write)                     | Writes files to relative destination preserving folders structure |
+| ✏️ [plugin-overwrite](packages/plugin-overwrite)             | [![npm](https://img.shields.io/npm/v/@start/plugin-overwrite.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-overwrite)             | Overwrites files                                                  |
+| 👀 [plugin-watch](packages/plugin-watch)                     | [![npm](https://img.shields.io/npm/v/@start/plugin-watch.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-watch)                     | Watches for new or changed files matched by globs patterns        |
+| 🔌 [plugin-input-files](packages/plugin-input-files)         | [![npm](https://img.shields.io/npm/v/@start/plugin-input-files.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-input-files)         | Inject arguments as input files                                   |
+| ✅ [plugin-assert](packages/plugin-assert)                   | [![npm](https://img.shields.io/npm/v/@start/plugin-assert.svg?style=flat-square)](https://www.npmjs.com/package/@start/plugin-assert)                   | Node.js `assert()` as a plugin                                    |
 
 ### Lib
 
