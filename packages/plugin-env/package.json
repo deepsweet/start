@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-env",
-  "version": "0.1.0-0",
-  "description": "process.env plugin for @start",
+  "version": "0.1.0-1",
+  "description": "process.env plugin for Start",
   "keywords": [
     "tasks",
     "runner",

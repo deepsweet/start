@@ -1,11 +1,12 @@
 {
   "name": "@start/plugin-find",
-  "version": "0.1.0-0",
-  "description": "Find plugin for @start",
+  "version": "0.1.0-1",
+  "description": "Find plugin for Start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "glob"
   ],
   "main": "build/index.mjs",
   "types": "build/index.d.ts",

@@ -1,13 +1,14 @@
 {
   "name": "@start/plugin-read",
-  "version": "0.1.0-0",
-  "description": "Read plugin for @start",
+  "version": "0.1.0-1",
+  "description": "Read plugin for Start",
   "keywords": [
     "tasks",
     "runner",
     "start"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

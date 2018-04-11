@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-spawn",
-  "version": "0.1.0-0",
-  "description": "Spawn plugin for @start",
+  "version": "0.1.0-1",
+  "description": "Spawn plugin for Start",
   "keywords": [
     "tasks",
     "runner",
@@ -9,6 +9,7 @@
     "spawn"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

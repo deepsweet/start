@@ -1,13 +1,15 @@
 {
   "name": "@start/plugin-xargs",
   "version": "0.1.0-0",
-  "description": "Runs @start task in parallel for each argument",
+  "description": "Runs Start task in parallel child process for each argument",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "xargs"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

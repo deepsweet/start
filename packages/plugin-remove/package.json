@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-remove",
   "version": "0.1.0-0",
-  "description": "Remove plugin for @start",
+  "description": "Remove plugin for Start",
   "keywords": [
     "tasks",
     "runner",
@@ -9,6 +9,7 @@
     "remove"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

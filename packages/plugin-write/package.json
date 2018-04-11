@@ -1,13 +1,14 @@
 {
   "name": "@start/plugin-write",
-  "version": "0.1.0-0",
-  "description": "Write plugin for @start",
+  "version": "0.1.0-1",
+  "description": "Write plugin for Start",
   "keywords": [
     "tasks",
     "runner",
     "start"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

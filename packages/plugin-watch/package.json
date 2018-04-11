@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-watch",
-  "version": "0.1.0-0",
-  "description": "Watch plugin for @start",
+  "version": "0.1.0-1",
+  "description": "Watch plugin for Start",
   "keywords": [
     "tasks",
     "runner",
@@ -9,6 +9,7 @@
     "watch"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

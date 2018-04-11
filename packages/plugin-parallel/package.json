@@ -1,13 +1,15 @@
 {
   "name": "@start/plugin-parallel",
-  "version": "0.1.0-0",
-  "description": "Runs @start tasks in parallel",
+  "version": "0.1.0-2",
+  "description": "Runs Start tasks in parallel child processes",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "parallel"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

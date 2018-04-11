@@ -1,11 +1,12 @@
 {
   "name": "@start/plugin-sequence",
   "version": "0.1.0-0",
-  "description": "Sequence for @start",
+  "description": "Sequence for Start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "sequence"
   ],
   "main": "build/index.mjs",
   "types": "build/index.d.ts",

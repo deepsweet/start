@@ -1,16 +1,18 @@
 {
   "name": "@start/cli",
-  "version": "0.1.0-0",
-  "description": "CLI for @start",
+  "version": "0.1.0-1",
+  "description": "CLI for Start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "cli"
   ],
   "bin": {
     "start": "build/index.js"
   },
   "main": "build/lib.mjs",
+  "types": "build/lib.d.ts",
   "files": [
     "build/"
   ],

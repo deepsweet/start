@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-assert",
   "version": "0.1.0-0",
-  "description": "Assert plugin for @start",
+  "description": "Assert plugin for Start",
   "keywords": [
     "tasks",
     "runner",

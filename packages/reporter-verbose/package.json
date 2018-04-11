@@ -1,13 +1,15 @@
 {
   "name": "@start/reporter-verbose",
   "version": "0.1.0-0",
-  "description": "Reporter for @start",
+  "description": "Reporter for Start",
   "keywords": [
     "tasks",
     "runner",
-    "start"
+    "start",
+    "reporter"
   ],
   "main": "build/index.mjs",
+  "types": "build/index.d.ts",
   "files": [
     "build/"
   ],

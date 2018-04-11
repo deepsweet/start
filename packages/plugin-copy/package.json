@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-copy",
-  "version": "0.1.0-0",
-  "description": "Copy plugin for @start",
+  "version": "0.1.0-1",
+  "description": "Copy plugin for Start",
   "keywords": [
     "tasks",
     "runner",
