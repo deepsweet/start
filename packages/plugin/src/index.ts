@@ -24,12 +24,12 @@ export type StartPluginFn = (props: StartPluginFnArg) => StartPluginOut
 
 export type StartPlugin = (props: StartPluginArg) => StartPluginOut
 
-export default (name: string, pluginFn: StartPluginFn): StartPlugin => async ({ reporter, ...props }) => {
+export default (name: string, pluginFn: StartPluginFn): StartPlugin => async ({ reporter, files }) => {
   try {
     reporter.emit('start', name)
 
     const result = await pluginFn({
-      ...props,
+      files,
       reporter,
       logFile: (file) => reporter.emit('file', name, file),
       logMessage: (message) => reporter.emit('message', name, message)
