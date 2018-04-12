@@ -9,7 +9,7 @@
     "tap",
     "tape"
   ],
-  "main": "build/index.mjs",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],

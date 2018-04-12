@@ -11,7 +11,7 @@
   "bin": {
     "start": "build/index.js"
   },
-  "main": "build/lib.mjs",
+  "main": "build/lib.js",
   "types": "build/lib.d.ts",
   "files": [
     "build/"

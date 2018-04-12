@@ -9,7 +9,7 @@
     "coverage",
     "istanbul"
   ],
-  "main": "build/index.mjs",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],

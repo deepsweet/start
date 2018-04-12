@@ -8,7 +8,7 @@
     "start",
     "webpack"
   ],
-  "main": "build/index.mjs",
+  "main": "build/index.js",
   "files": [
     "build/"
   ],

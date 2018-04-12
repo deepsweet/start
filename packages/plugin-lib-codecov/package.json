@@ -9,7 +9,7 @@
     "coverage",
     "codecov"
   ],
-  "main": "build/index.mjs",
+  "main": "build/index.js",
   "types": "build/index.d.ts",
   "files": [
     "build/"
