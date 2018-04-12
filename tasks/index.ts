@@ -33,7 +33,7 @@ export const build = (packageName: string) =>
     read,
     babel(babelConfigBuild),
     // prettierEslint(),
-    rename((file) => file.replace(/\.ts$/, '.mjs')),
+    rename((file) => file.replace(/\.ts$/, '.js')),
     write(`packages/${packageName}/build/`)
   )
 
