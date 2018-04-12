@@ -27,8 +27,5 @@
   },
   "engines": {
     "node": ">=8.6.0"
-  },
-  "dependencies": {
-    "import-cwd": "^2.1.0"
   }
 }
