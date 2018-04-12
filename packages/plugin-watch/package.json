@@ -26,6 +26,7 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@start/plugin": "^0.1.0-0",
     "chokidar": "^2.0.2"
   },
   "devDependencies": {

@@ -26,6 +26,7 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@start/plugin": "^0.1.0-0",
     "execa": "^0.10.0"
   },
   "devDependencies": {
