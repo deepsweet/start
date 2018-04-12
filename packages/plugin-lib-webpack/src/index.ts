@@ -3,8 +3,8 @@ import { Configuration as WebpackConfig } from 'webpack'
 
 export default (config: WebpackConfig, userStatsOptions?: {}) =>
   plugin('webpack', async ({ files }) => {
-    const makethen = await import('makethen')
-    const webpackLib = await import('webpack')
+    const { default: makethen } = await import('makethen')
+    const { default: webpackLib } = await import('webpack')
     const compiler = makethen(webpackLib)
 
     const statsOptions = {
