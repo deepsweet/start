@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-rename",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "description": "Rename plugin for Start",
   "keywords": [
     "tasks",

@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-input-files",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "Input connector plugin for Start",
   "keywords": [
     "tasks",

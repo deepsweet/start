@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-spawn",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "description": "Spawn plugin for Start",
   "keywords": [
     "tasks",

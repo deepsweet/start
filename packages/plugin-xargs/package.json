@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-xargs",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "Runs Start task in parallel child process for each argument",
   "keywords": [
     "tasks",

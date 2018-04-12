@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-parallel",
-  "version": "0.1.0-2",
+  "version": "0.1.0-3",
   "description": "Runs Start tasks in parallel child processes",
   "keywords": [
     "tasks",
