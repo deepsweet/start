@@ -1,4 +1,4 @@
-const importCwd = require('import-cwd')
+import importCwd from 'import-cwd'
 
 type Options = {
   file?: string,
