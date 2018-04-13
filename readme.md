@@ -56,8 +56,8 @@ $ yarn add --dev --ignore-workspace-root-check \
   ],
   "devDependencies": {},
   "start": {
-    // default
-    "file": "tasks.js"
+    // default, `./tasks.ts` or `./tasks/index.ts`
+    "file": "tasks"
     "require": [
       // https://github.com/standard-things/esm
       "esm",
