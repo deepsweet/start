@@ -2,8 +2,7 @@
 
 👉 This is a next iteration which is currently a WORK IN PROGRESS, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
-* [ ] API experiments
-* [ ] make sure that it works in "strict" ESM
+* [x] API experiments
 * [ ] stabilize and publish 0.1.0 of everything
 * [ ] tests
 * [ ] documentation
@@ -12,87 +11,169 @@
 
 ## Example
 
-"Pack" 2 packages in parallel child processes: transpile and generate type definitions in parallel child-child processes with concurrently running promises inside of each process:
-
 ```
-packages/
-├── foo/
-│   ├── build/
-│   │   └── index.mjs
-│   ├── src/
-│   │   └── index.ts
-│   ├── package.json
-│   └── readme.md
-└── bar/
-    ├── build/
-    │   └── index.mjs
-    ├── src/
-    │   └── index.ts
-    ├── package.json
-    └── readme.md
-```
-
-```js
-export const build = (packageName) =>
-  sequence(
-    find(`packages/${packageName}/src/**/*.ts`),
-    read,
-    babel({ ...babelConfig, babelrc: false }),
-    rename((file) => file.replace(/\.ts$/, '.mjs')),
-    write(`packages/${packageName}/build/`)
-  )
+.
+├── packages/
+│   ├── foo/
+│   │   ├── src/
+│   │   │   └── index.ts
+│   │   └── package.json
+│   └── bar/
+│       ├── src/
+│       │   └── index.ts
+│       └── package.json
+├── package.json
+└── tasks.ts
 ```
 
 ```sh
-$ yarn start build foo
+$ yarn add --dev --ignore-workspace-root-check \
+  esm \
+  @babel/core \
+  @babel/register \
+  @babel/preset-env \
+  @start/cli \
+  @start/reporter-verbose \
+  @start/plugin-sequence \
+  @start/plugin-parallel \
+  @start/plugin-xargs \
+  @start/plugin-find \
+  @start/plugin-remove \
+  @start/plugin-read \
+  @start/plugin-rename \
+  @start/plugin-write \
+  @start/plugin-lib-babel \
+  @start/plugin-lib-typescript-generate
 ```
 
 ```js
+// package.json
+{
+  "private": true,
+  "description": "Start example",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {},
+  "start": {
+    // default
+    "file": "tasks.js"
+    "require": [
+      // https://github.com/standard-things/esm
+      "esm",
+      [
+        "@babel/register",
+        {
+          "extensions": [
+            ".ts",
+            ".js"
+          ]
+        }
+      ]
+    ],
+    "reporter": "@start/reporter-verbose"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          },
+          // "Tomorrow's ECMAScript modules today"
+          "modules": false
+        }
+      ],
+      // Babel 7
+      "@babel/preset-typescript"
+    ]
+  }
+}
+```
+
+```ts
+// tasks.ts
+import sequence from '@start/plugin-sequence'
+import parallel from '@start/plugin-parallel'
+import xargs from '@start/plugin-xargs'
+import find from '@start/plugin-find'
+import remove from '@start/plugin-remove'
+import read from '@start/plugin-read'
+import babel from '@start/plugin-lib-babel'
+import rename from '@start/plugin-rename'
+import write from '@start/plugin-write'
+import typescriptGenerate from '@start/plugin-lib-typescript-generate'
+
+// got scared of amount of atomic dependencies?
+// write tasks file once, publish it and then reuse or even extend
+// in all projects using `start.preset` option in `package.json`,
+// something like `my-start-preset` package with everything included
+
+const babelConfig = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 8
+        },
+        modules: false
+      }
+    ],
+    '@babel/preset-typescript'
+  ]
+}
+
+// each named export is a "task"
+export const build = (packageName: string) =>
+  sequence(
+    find(`packages/${packageName}**/*.ts`),
+    read,
+    babel({ ...babelConfig, babelrc: false }),
+    rename((file) => file.replace(/\.ts$/, '.js')),
+    write(`packages/${packageName}/build/`)
+  )
+
 export const dts = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}/src/**/*.ts`),
+    find(`packages/${packageName}**/*.ts`),
     typescriptGenerate(`packages/${packageName}/build/`, [
       '--lib',
       'esnext',
       '--allowSyntheticDefaultImports'
     ])
   )
-```
 
-```sh
-$ yarn start dts foo
-```
-
-```js
 export const pack = (packageName: string) =>
   sequence(
     find(`packages/${packageName}/build/`),
     remove,
+    // child-processes
     parallel(['build', 'dts'])(packageName)
   )
-```
 
-```sh
-$ yarn start pack foo
-```
-
-```js
+// child processes
 export const packs = xargs('pack')
-```
 
-```sh
-$ yarn start packs foo bar
-```
-
-```js
 export const dev = (packageName: string) =>
-  watch(`packages/${packageName}/src/**/*.ts`)(
+  watch(`packages/${packageName}**/*.ts`)(
     pack(packageName)
   )
 ```
 
 ```sh
-$ yarn start dev foo
+$ yarn start
+
+One of the following task names is required: "build", "dts", "pack", "packs", "dev"
+```
+
+```sh
+$ yarn start build foo
+$ yarn start dts foo
+$ yarn start pack foo
+$ yarn start packs foo bar
+$ yarn start dev bar
 ```
 
 ## Packages
@@ -103,7 +184,7 @@ $ yarn start dev foo
 | ------------------------------------------------------------ | ----------------------------------------------------------------- |
 | ⬛️ [cli](packages/cli)                                      | CLI entry point to tasks file or preset                           |
 | 📄 [reporter-verbose](packages/reporter-verbose)             | Verbose reporter                                                  |
-| ⏩ [plugin-sequence](packages/plugin-sequence)               | Runs plugins in sequence                                          |
+| ⏩ [plugin-sequence](packages/foo)                           | Runs plugins in sequence                                          |
 | 🔀 [plugin-parallel](packages/plugin-parallel)               | Runs tasks in parallel with same agruments                        |
 | 🔂 [plugin-xargs](packages/plugin-xargs)                     | Runs task in parallel for each argument                           |
 | 🐣 [plugin-spawn](packages/plugin-spawn)                     | Spawns new child process                                          |
