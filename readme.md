@@ -105,7 +105,6 @@ import rename from '@start/plugin-rename'
 import write from '@start/plugin-write'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate'
 
-// got scared of amount of atomic dependencies?
 // write tasks file once, publish it and then reuse or even extend
 // in all projects using `start.preset` option in `package.json`,
 // something like `my-start-preset` package with everything included
