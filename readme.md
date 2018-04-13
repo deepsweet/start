@@ -111,6 +111,7 @@ import typescriptGenerate from '@start/plugin-lib-typescript-generate'
 // something like `my-start-preset` package with everything included
 
 const babelConfig = {
+  babelrc: false,
   presets: [
     [
       '@babel/preset-env',
@@ -130,7 +131,7 @@ export const build = (packageName: string) =>
   sequence(
     find(`packages/${packageName}**/*.ts`),
     read,
-    babel({ ...babelConfig, babelrc: false }),
+    babel(babelConfig),
     rename((file) => file.replace(/\.ts$/, '.js')),
     write(`packages/${packageName}/build/`)
   )
