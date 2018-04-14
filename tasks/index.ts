@@ -13,7 +13,6 @@ import write from '@start/plugin-write/src/'
 import overwrite from '@start/plugin-overwrite/src/'
 import watch from '@start/plugin-watch/src/'
 import eslint from '@start/plugin-lib-eslint/src/'
-import prettierEslint from '@start/plugin-lib-prettier-eslint/src/'
 import {
   istanbulInstrument,
   istanbulReport,
@@ -29,10 +28,10 @@ import { babelConfigBuild, babelConfigDts } from './config/babel'
 
 export const build = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}/src/**/*.{js,ts}`),
+    find(`packages/${packageName}/src/**/*.+(js|ts)`),
     read,
     babel(babelConfigBuild),
-    // prettierEslint(),
+    eslint({ fix: true }),
     rename((file) => file.replace(/\.ts$/, '.js')),
     write(`packages/${packageName}/build/`)
   )
@@ -68,21 +67,23 @@ export const dev = (packageName: string) =>
 
 export const lint = () =>
   sequence(
-    findGitStaged(['packages/*/@(src|test)/**/*.ts', 'tasks/**/*.ts']),
+    findGitStaged(['packages/*/+(src|test)/**/*.ts', 'tasks/**/*.ts']),
+    read,
     eslint()
   )
 
 export const lintAll = () =>
   sequence(
-    find(['packages/*/@(src|test)/**/*.ts', 'tasks/**/*.ts']),
+    find(['packages/*/+(src|test)/**/*.+(ts|js)', 'tasks/**/*.ts']),
+    read,
     eslint()
   )
 
 export const fix = () =>
   sequence(
-    find(['packages/*/@(src|test)/**/*.ts', 'tasks/**/*.ts']),
+    find(['packages/*/+(src|test)/**/*.+(js|ts)', 'tasks/**/*.ts']),
     read,
-    prettierEslint(),
+    eslint({ fix: true }),
     overwrite
   )
 
