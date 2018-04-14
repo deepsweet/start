@@ -98,7 +98,11 @@ export const test = () =>
     istanbulReport(['lcovonly', 'html', 'text-summary'])
   )
 
-export const ci = () => sequence(lintAll(), test())
+export const ci = () =>
+  sequence(
+    lintAll(),
+    test()
+  )
 
 export const publish = (packageName: string, version: string, otp: string) =>
   sequence(
