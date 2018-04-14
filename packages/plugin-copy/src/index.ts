@@ -1,6 +1,6 @@
 import plugin from '@start/plugin/src/'
 
-export default (outDirRoot: string) =>
+export default (outDirRelative: string) =>
   plugin('copy', async ({ files, logFile }) => {
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
@@ -10,15 +10,21 @@ export default (outDirRoot: string) =>
 
     return Promise.all(
       files.map((file) => {
-        // file.path = packages/beep/src/boop/index.js
-        // outDir = packages/beep/build
+        // file.path = /Users/foo/test/packages/beep/src/boop/index.js
+        // process.cwd() = /Users/foo/test
+        // outDirRelative = packages/beep/build
 
-        // packages/beep/src/boop/index.js -> index.js
+        // /Users/foo/test/packages/beep/src/boop/index.js -> index.js
         const inFile = path.basename(file.path)
-        // packages/beep/src/boop/index.js -> packages/beep/src/boop
+        // /Users/foo/test/packages/beep/src/boop/index.js -> /Users/foo/test/packages/beep/src/boop
         const inDir = path.dirname(file.path)
-        const inDirSplit = inDir.split(path.sep)
-        const outDirSplit = outDirRoot.split(path.sep)
+        // /Users/foo/test/packages/beep/src/boop -> packages/beep/src/boop
+        const inDirRelative = path.relative(process.cwd(), inDir)
+        // src/beep -> [ 'packages', 'beep', 'src', 'boop ]
+        const inDirSplit = inDirRelative.split(path.sep)
+        // [ 'packages', 'beep', 'build' ]
+        const outDirSplit = outDirRelative.split(path.sep)
+        // [ 'packages', 'beep', 'src', 'boop ] + [ 'packages', 'beep', 'build' ]
         const inDirUnique = inDirSplit
           // [ 'packages', 'beep', 'src', 'boop ] -> [ 'src', 'boop' ]
           .filter((segment, index) => segment !== outDirSplit[index])
@@ -26,9 +32,9 @@ export default (outDirRoot: string) =>
           .slice(1)
           // [ 'boop' ] -> 'boop'
           .join(path.sep)
-        // packages/beep/build + boop -> packages/beep/build/boop
-        const outDir = path.join(outDirRoot, inDirUnique)
-        // packages/beep/build/boop + index.js ->  packages/beep/build/boop/index.js
+        // packages/beep/build + boop -> /Users/foo/test/packages/beep/build/boop
+        const outDir = path.resolve(outDirRelative, inDirUnique)
+        // packages/beep/build/boop + index.js ->  /Users/foo/test/packages/beep/build/boop/index.js
         const outFile = path.join(outDir, inFile)
 
         return makeDir(outDir).then(() => {

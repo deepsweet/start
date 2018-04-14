@@ -5,7 +5,7 @@ export default (glob: string | string[], userOptions?: {}) =>
     const { default: globby } = await import('globby')
 
     const options = {
-      absolute: false,
+      absolute: true,
       deep: true,
       onlyFiles: false,
       expandDirectories: false,

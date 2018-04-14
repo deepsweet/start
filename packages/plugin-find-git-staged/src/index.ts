@@ -2,6 +2,7 @@ import plugin from '@start/plugin/src/'
 
 export default (glob: string | string[]) =>
   plugin('findGitStaged', async ({ logFile }) => {
+    const { default: path } = await import('path')
     const { default: { EOL } } = await import('os')
     const { default: execa } = await import('execa')
     const { default: multimatch } = await import('multimatch')
@@ -12,14 +13,16 @@ export default (glob: string | string[]) =>
       const gitFiles = stdout.split(EOL)
       const matchedFiles = multimatch(gitFiles, glob)
 
-      return matchedFiles.map((file) => {
-        logFile(file)
+      return matchedFiles
+        .map((file) => path.resolve(file))
+        .map((file) => {
+          logFile(file)
 
-        return {
-          path: file,
-          data: null,
-          map: null
-        }
-      })
+          return {
+            path: file,
+            data: null,
+            map: null
+          }
+        })
     })
   })

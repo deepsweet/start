@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-istanbul",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "description": "Istanbul plugin for @start",
   "keywords": [
     "tasks",

@@ -13,7 +13,7 @@ type Options = {
 export default (options: Options = {}) =>
   plugin('istanbulInstrument', async ({ files, logFile, logMessage }) => {
     const { resolve, relative } = await import('path')
-    const { default: Module } = await import('module')
+    const { default: module } = await import('module')
     const { default: { fromSource: getSourceMapFromSource } } = await import('convert-source-map')
     const { default: { createInstrumenter } } = await import('istanbul-lib-instrument')
     const { default: { hookRequire } } = await import('istanbul-lib-hook')
@@ -31,13 +31,13 @@ export default (options: Options = {}) =>
     // clear require cache
     files.forEach((file) => {
       // @ts-ignore
-      delete Module._cache[resolve(file.path)]
+      delete module._cache[file.path]
     })
 
     const hook = hookRequire(
       // hook requires matches files files
       (file) => {
-        return files.findIndex(({ path }) => file === resolve(path)) !== -1
+        return files.findIndex(({ path }) => file === path) !== -1
       },
       // and instrument that sources
       (source, file) => {
@@ -50,7 +50,7 @@ export default (options: Options = {}) =>
 
         const result = instrumenter.instrumentSync(source, file, sourceMapObject)
 
-        logFile(relative(process.cwd(), file))
+        logFile(file)
 
         return result
       },

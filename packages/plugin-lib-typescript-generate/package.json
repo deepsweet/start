@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-typescript-generate",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "TypeScript declaration generator plugin for @start",
   "keywords": [
     "tasks",

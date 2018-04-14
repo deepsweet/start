@@ -1,3 +1,4 @@
+import path from 'path'
 import EventEmitter from 'events'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
@@ -16,7 +17,9 @@ export default (taskName: string) => {
   })
 
   emitter.on('file', (pluginName: string, file: string) => {
-    console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${file}`)
+    const relativeFile = path.relative(process.cwd(), file)
+
+    console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${relativeFile}`)
   })
 
   emitter.on('done', (pluginName: string) => {

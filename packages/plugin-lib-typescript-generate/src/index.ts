@@ -28,7 +28,7 @@ export default (outDir: string, tscArgs: string[] = []) =>
           ],
           spawnOptions
         ).then(() => {
-          const dtsFile = path.join(outDir, `${path.basename(file.path, '.ts')}.d.ts`)
+          const dtsFile = path.resolve(outDir, `${path.basename(file.path, '.ts')}.d.ts`)
           logFile(dtsFile)
 
           return {
