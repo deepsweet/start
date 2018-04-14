@@ -56,6 +56,7 @@ $ yarn add --dev --ignore-workspace-root-check \
 
 ```js
 // package.json
+
 {
   "private": true,
   "description": "Start example",
@@ -102,6 +103,11 @@ $ yarn add --dev --ignore-workspace-root-check \
 
 ```ts
 // tasks.ts
+
+// write tasks file once, publish it and then reuse or even extend
+// in all projects using `start.preset` option in `package.json`,
+// something like `my-start-preset` package with everything included
+
 import sequence from '@start/plugin-sequence'
 import parallel from '@start/plugin-parallel'
 import xargs from '@start/plugin-xargs'
@@ -121,10 +127,6 @@ import {
 } from '@start/plugin-lib-istanbul/src/'
 import tape from '@start/plugin-lib-tape'
 import codecov from '@start/plugin-lib-codecov'
-
-// write tasks file once, publish it and then reuse or even extend
-// in all projects using `start.preset` option in `package.json`,
-// something like `my-start-preset` package with everything included
 
 const babelConfig = {
   babelrc: false,
@@ -181,12 +183,14 @@ export const dev = (packageName: string) =>
 export const lint = () =>
   sequence(
     findGitStaged(['packages/*/@(src|test)/**/*.ts']),
+    read,
     eslint()
   )
 
 export const lintAll = () =>
   sequence(
     find(['packages/*/@(src|test)/**/*.ts']),
+    read,
     eslint()
   )
 
