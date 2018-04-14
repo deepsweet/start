@@ -109,7 +109,7 @@ export const publish = (packageName: string, version: string, otp: string) =>
     assert(packageName, 'package name is required'),
     assert(version, 'package name is required'),
     assert(packageName, 'OTP is required'),
-    ci(),
+    // ci(),
     pack(packageName),
     npmVersion(version, `packages/${packageName}`),
     npmPublish(`packages/${packageName}`, { otp })
