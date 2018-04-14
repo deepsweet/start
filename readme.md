@@ -48,10 +48,11 @@ $ yarn add --dev --ignore-workspace-root-check \
   @start/plugin-rename \
   @start/plugin-write \
   @start/plugin-lib-babel \
+  @start/plugin-lib-typescript-generate \
   @start/plugin-lib-eslint \
   @start/plugin-lib-istanbul \
   @start/plugin-lib-tape \
-  @start/plugin-lib-typescript-generate
+  @start/plugin-lib-codecov
 ```
 
 ```js
@@ -112,6 +113,7 @@ import read from '@start/plugin-read'
 import rename from '@start/plugin-rename'
 import write from '@start/plugin-write'
 import babel from '@start/plugin-lib-babel'
+import typescriptGenerate from '@start/plugin-lib-typescript-generate'
 import eslint from '@start/plugin-lib-eslint'
 import {
   istanbulInstrument,
@@ -119,7 +121,7 @@ import {
   istanbulThresholds
 } from '@start/plugin-lib-istanbul/src/'
 import tape from '@start/plugin-lib-tape'
-import typescriptGenerate from '@start/plugin-lib-typescript-generate'
+import codecov from '@start/plugin-lib-codecov'
 
 // write tasks file once, publish it and then reuse or even extend
 // in all projects using `start.preset` option in `package.json`,
@@ -179,7 +181,13 @@ export const dev = (packageName: string) =>
 
 export const lint = () =>
   sequence(
-    findGitStaged('packages/*/src/**/*.ts']),
+    findGitStaged(['packages/*/@(src|test)/**/*.ts']),
+    eslint()
+  )
+
+export const lintAll = () =>
+  sequence(
+    find(['packages/*/@(src|test)/**/*.ts']),
     eslint()
   )
 
@@ -194,12 +202,32 @@ export const test = () =>
     istanbulReport(['lcovonly', 'html', 'text-summary']),
     istanbulThresholds({ functions: 100 })
   )
+
+export const ci = () =>
+  sequence(
+    // nested task
+    lintAll(),
+    // nested task
+    test(),
+    find('coverage/*.lcov'),
+    read,
+    codecov
+  )
 ```
 
 ```sh
 $ yarn start
 
-One of the following task names is required: "build", "dts", "pack", "packs", "dev", "lint", "test"
+One of the following task names is required:
+* build
+* dts
+* pack,
+* packs
+* dev
+* lint
+* lintAll
+* test
+* ci
 ```
 
 ```sh
