@@ -1,6 +1,6 @@
 import plugin, { StartFiles } from '@start/plugin/src/'
 
-export default (reporter: () => NodeJS.ReadWriteStream) =>
+export default (reporter?: () => NodeJS.ReadWriteStream) =>
   plugin('tape', async ({ files }) => {
     const { default: path } = await import('path')
     const { default: test } = await import('tape')
