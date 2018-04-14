@@ -17,9 +17,13 @@
 │   ├── foo/
 │   │   ├── src/
 │   │   │   └── index.ts
+│   │   ├── test/
+│   │   │   └── index.ts
 │   │   └── package.json
 │   └── bar/
 │       ├── src/
+│       │   └── index.ts
+│       ├── test/
 │       │   └── index.ts
 │       └── package.json
 ├── package.json
@@ -45,6 +49,8 @@ $ yarn add --dev --ignore-workspace-root-check \
   @start/plugin-write \
   @start/plugin-lib-babel \
   @start/plugin-lib-eslint \
+  @start/plugin-lib-istanbul \
+  @start/plugin-lib-tape \
   @start/plugin-lib-typescript-generate
 ```
 
@@ -106,6 +112,13 @@ import read from '@start/plugin-read'
 import rename from '@start/plugin-rename'
 import write from '@start/plugin-write'
 import babel from '@start/plugin-lib-babel'
+import eslint from '@start/plugin-lib-eslint'
+import {
+  istanbulInstrument,
+  istanbulReport,
+  istanbulThresholds
+} from '@start/plugin-lib-istanbul/src/'
+import tape from '@start/plugin-lib-tape'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate'
 
 // write tasks file once, publish it and then reuse or even extend
@@ -169,12 +182,24 @@ export const lint = () =>
     findGitStaged('packages/*/src/**/*.ts']),
     eslint()
   )
+
+export const test = () =>
+  sequence(
+    find(`coverage/`),
+    remove,
+    find('packages/*/src/**/*.ts'),
+    istanbulInstrument({ esModules: true, extensions: ['.ts'] }),
+    find('packages/*/test/**/*.ts'),
+    tape(),
+    istanbulReport(['lcovonly', 'html', 'text-summary']),
+    istanbulThresholds({ functions: 100 })
+  )
 ```
 
 ```sh
 $ yarn start
 
-One of the following task names is required: "build", "dts", "pack", "packs", "dev", "lint"
+One of the following task names is required: "build", "dts", "pack", "packs", "dev", "lint", "test"
 ```
 
 ```sh
@@ -184,6 +209,7 @@ $ yarn start pack foo
 $ yarn start packs foo bar
 $ yarn start dev bar
 $ yarn start lint
+$ yarn start test
 ```
 
 ## Packages
