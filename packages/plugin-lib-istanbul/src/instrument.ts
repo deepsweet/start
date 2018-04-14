@@ -1,6 +1,16 @@
 import plugin from '@start/plugin/src/'
 
-export default (options?: {}, extensions: string[] = ['.js']) =>
+type Options = {
+  coverageVariable?: string,
+  preserveComments?: boolean,
+  compact?: boolean,
+  esModules?: boolean,
+  autoWrap?: boolean,
+  produceSourceMap?: boolean,
+  extensions?: string[],
+}
+
+export default (options: Options = {}) =>
   plugin('istanbulInstrument', async ({ files, logFile, logMessage }) => {
     const { resolve, relative } = await import('path')
     const { default: Module } = await import('module')
@@ -10,8 +20,9 @@ export default (options?: {}, extensions: string[] = ['.js']) =>
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
 
+    const { extensions, ...instrumenterOptions } = options
     const instrumenter = createInstrumenter({
-      ...options,
+      ...instrumenterOptions,
       coverageVariable
     })
 
@@ -43,7 +54,7 @@ export default (options?: {}, extensions: string[] = ['.js']) =>
 
         return result
       },
-      { extensions }
+      { extensions: options.extensions }
     )
 
     hooks.add(hook)
