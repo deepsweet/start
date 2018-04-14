@@ -67,10 +67,16 @@ export const dev = (packageName: string) =>
   )
 
 export const lint = () =>
-  sequence(findGitStaged(['packages/**/@(src|test)/**/*.ts', 'tasks/**/*.ts']), eslint())
+  sequence(
+    findGitStaged(['packages/*/@(src|test)/**/*.ts', 'tasks/**/*.ts']),
+    eslint()
+  )
 
 export const lintAll = () =>
-  sequence(find(['packages/**/@(src|test)/**/*.ts', 'tasks/**/*.ts']), eslint())
+  sequence(
+    find(['packages/*/@(src|test)/**/*.ts', 'tasks/**/*.ts']),
+    eslint()
+  )
 
 export const fix = () =>
   sequence(
