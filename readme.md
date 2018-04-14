@@ -38,11 +38,13 @@ $ yarn add --dev --ignore-workspace-root-check \
   @start/plugin-parallel \
   @start/plugin-xargs \
   @start/plugin-find \
+  @start/plugin-find-git-staged \
   @start/plugin-remove \
   @start/plugin-read \
   @start/plugin-rename \
   @start/plugin-write \
   @start/plugin-lib-babel \
+  @start/plugin-lib-eslint \
   @start/plugin-lib-typescript-generate
 ```
 
@@ -98,11 +100,12 @@ import sequence from '@start/plugin-sequence'
 import parallel from '@start/plugin-parallel'
 import xargs from '@start/plugin-xargs'
 import find from '@start/plugin-find'
+import findGitStaged from '@start/plugin-find-git-staged'
 import remove from '@start/plugin-remove'
 import read from '@start/plugin-read'
-import babel from '@start/plugin-lib-babel'
 import rename from '@start/plugin-rename'
 import write from '@start/plugin-write'
+import babel from '@start/plugin-lib-babel'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate'
 
 // write tasks file once, publish it and then reuse or even extend
@@ -160,12 +163,18 @@ export const dev = (packageName: string) =>
   watch(`packages/${packageName}**/*.ts`)(
     pack(packageName)
   )
+
+export const lint = () =>
+  sequence(
+    findGitStaged('packages/*/src/**/*.ts']),
+    eslint()
+  )
 ```
 
 ```sh
 $ yarn start
 
-One of the following task names is required: "build", "dts", "pack", "packs", "dev"
+One of the following task names is required: "build", "dts", "pack", "packs", "dev", "lint"
 ```
 
 ```sh
@@ -174,6 +183,7 @@ $ yarn start dts foo
 $ yarn start pack foo
 $ yarn start packs foo bar
 $ yarn start dev bar
+$ yarn start lint
 ```
 
 ## Packages
