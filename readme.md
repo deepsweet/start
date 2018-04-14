@@ -221,7 +221,7 @@ $ yarn start
 One of the following task names is required:
 * build
 * dts
-* pack,
+* pack
 * packs
 * dev
 * lint
