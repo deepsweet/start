@@ -91,9 +91,9 @@ export const test = () =>
     env('NODE_ENV', 'test'),
     find(`coverage/`),
     remove,
-    find('packages/**/src/**/*.ts'),
-    istanbulInstrument({ esModules: true }, ['.ts']),
-    find('packages/**/test/**/*.ts'),
+    find('packages/*/src/**/*.ts'),
+    istanbulInstrument({ esModules: true, extensions: ['.ts'] }),
+    find('packages/*/test/**/*.ts'),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary'])
   )
