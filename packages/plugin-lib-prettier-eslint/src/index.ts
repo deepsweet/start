@@ -13,11 +13,9 @@ export default (options?: {}) =>
 
           const formatted: string = format({ ...options, filePath: file.path, text: file.data })
 
-          if (file.data === formatted) {
-            return resolve(null)
+          if (file.data !== formatted) {
+            logFile(file.path)
           }
-
-          logFile(file.path)
 
           resolve({
             ...file,
@@ -25,5 +23,5 @@ export default (options?: {}) =>
           })
         })
       )
-    ).then((files) => files.filter((file) => file !== null))
+    )
   })
