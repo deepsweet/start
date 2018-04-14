@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-eslint",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "ESLint plugin for @start",
   "keywords": [
     "tasks",
