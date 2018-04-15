@@ -2,7 +2,7 @@ import plugin from '@start/plugin/src/'
 import { Configuration as WebpackConfig } from 'webpack'
 
 type Options = {
-  config: WebpackConfig
+  config: WebpackConfig,
   [key: string]: any
 }
 
