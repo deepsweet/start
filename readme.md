@@ -1,12 +1,17 @@
 # @start
 
-👉 This is a next iteration which is currently a WORK IN PROGRESS, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
+👉 This is a next iteration which is currently a *work in progress*, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
 * [ ] stabilize and publish 0.1.0 of everything
 * [ ] tests
 * [ ] documentation
   * [ ] main readme
+    * [x] example
+    * [ ] packages
   * [ ] recipes
+    * [x] Node.js libraries monorepo
+    * [ ] React components monorepo
+    * [ ] React application
 
 ## Example
 
