@@ -8,12 +8,18 @@
   * [ ] main readme
     * [x] example
     * [ ] packages
+    * [ ] how to "plugin"
+    * [ ] how to "reporter"
   * [ ] recipes
     * [x] Node.js libraries monorepo
     * [ ] React components monorepo
     * [ ] React application
 
-## Example
+## Usage examples
+
+### Node.js libraries monorepo
+
+See [`tasks/index.ts`](tasks/index.ts) for more details – Start project builds itself from sources using sources.
 
 ```
 .
