@@ -297,7 +297,7 @@ $ yarn start test
 
 | Name                                                                 | Description                              |
 | -------------------------------------------------------------------- | ---------------------------------------- |
-| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                   | Lints files with ESlint                  |
+| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                   | Lints and/or fixes files with ESlint     |
 | 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check)           | Checks types with Flow                   |
 | 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint) | Fixes code(style) with Prettier + ESLint |
 
