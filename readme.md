@@ -1,5 +1,3 @@
-# @start
-
 👉 This is a next iteration which is currently a *work in progress*, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
 * [ ] stabilize and publish 0.1.0 of everything
@@ -14,6 +12,15 @@
     * [x] Node.js libraries monorepo
     * [ ] React components monorepo
     * [ ] React application
+
+-----
+
+<img src="logo.svg" width="100" height="100" align="right" alt="logo"/>
+
+* functional – in all senses
+* fast – [parallelism and concurrency](https://stackoverflow.com/questions/1050222/what-is-the-difference-between-concurrency-and-parallelism)
+* shareable – presets as published packages
+* …
 
 ## Usage examples
 
