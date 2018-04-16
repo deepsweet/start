@@ -8,9 +8,9 @@ $ yarn add --dev @start/cli
 // package.json
 
 "start": {
-  // `./tasks` by default, so `./tasks.js` or `./tasks/index.js`
+  // `./tasks.js` or `./tasks/index.js` by default if there is no `preset` option
   "file": "./my-tasks-file.js",
-  // optional module name as a preset
+  // module name as a preset, overrides `file` option
   "preset": "my-awesome-start-preset",
   // modules to require before anything else, kinda `node -r`
   "require": [
