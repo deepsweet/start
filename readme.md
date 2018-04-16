@@ -267,7 +267,7 @@ $ yarn start test
 
 | Name                                                         | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------------- |
-| ⬛️ [cli](packages/cli)                                      | CLI entry point to tasks file or preset                           |
+| ⬛️ [cli](packages/cli)                                      | CLI entry point                                                   |
 | 📄 [reporter-verbose](packages/reporter-verbose)             | Verbose reporter                                                  |
 | ⏩ [plugin-sequence](packages/foo)                           | Runs plugins in sequence                                          |
 | 🔀 [plugin-parallel](packages/plugin-parallel)               | Runs tasks in parallel with same agruments                        |
