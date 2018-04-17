@@ -2,12 +2,11 @@
   "name": "@start/cli",
   "version": "0.1.0-4",
   "description": "CLI for Start",
-  "keywords": [
-    "tasks",
-    "runner",
-    "start",
-    "cli"
-  ],
+  "keywords": "tasks, runner, start, cli",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/cli",
+  "author": "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)",
+  "license": "MIT",
   "bin": {
     "start": "build/index.js"
   },
@@ -16,12 +15,6 @@
   "files": [
     "build/"
   ],
-  "repository": "deepsweet/start",
-  "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/deepsweet/start/blob/master/license.md"
-  },
   "publishConfig": {
     "access": "public"
   },

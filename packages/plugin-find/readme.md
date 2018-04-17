@@ -1,1 +1,1 @@
-# @start/find
+# @start/plugin-find

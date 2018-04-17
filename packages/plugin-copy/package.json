@@ -2,22 +2,16 @@
   "name": "@start/plugin-copy",
   "version": "0.1.0-3",
   "description": "Copy plugin for Start",
-  "keywords": [
-    "tasks",
-    "runner",
-    "start"
-  ],
+  "keywords": "tasks, runner, start, start-plugin",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-copy",
+  "author": "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)",
+  "license": "MIT",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "files": [
     "build/"
   ],
-  "repository": "deepsweet/start",
-  "author": "Kir Belevich <kir@belevi.ch> (https://github.com/deepsweet)",
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/deepsweet/start/blob/master/license.md"
-  },
   "publishConfig": {
     "access": "public"
   },
