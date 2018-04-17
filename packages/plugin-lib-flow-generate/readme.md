@@ -1,1 +1,1 @@
-# @start/plugin-lib-flow-check
+# @start/plugin-lib-flow-generate
