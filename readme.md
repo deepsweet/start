@@ -142,7 +142,7 @@ import {
   istanbulInstrument,
   istanbulReport,
   istanbulThresholds
-} from '@start/plugin-lib-istanbul/src/'
+} from '@start/plugin-lib-istanbul'
 import tape from '@start/plugin-lib-tape'
 import codecov from '@start/plugin-lib-codecov'
 
