@@ -42,15 +42,25 @@ export default (userOptions?: CLIEngine.Options, format?: string) =>
     }
 
     if (options.fix && report.results.length > 0) {
-      return report.results.map((result) => {
-        logFile(result.filePath)
+      const fixedFiles = report.results
+        .filter(({ output }) => typeof output === 'string')
+        .map((result) => {
+          logFile(result.filePath)
 
-        return ({
-          path: result.filePath,
-          data: result.output,
-          map: null
+          return ({
+            path: result.filePath,
+            data: result.output,
+            map: null
+          })
         })
-      })
+
+      if (fixedFiles.length === 0) {
+        logMessage('¯\\_(ツ)_/¯')
+
+        return []
+      }
+
+      return fixedFiles
     }
 
     if (report.errorCount === 0 && report.warningCount === 0) {
