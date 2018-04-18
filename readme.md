@@ -230,7 +230,7 @@ export const ci = () =>
     lintAll(),
     // nested task
     test(),
-    find('coverage/*.lcov'),
+    find('coverage/lcov.info'),
     read,
     codecov
   )
