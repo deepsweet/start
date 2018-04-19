@@ -18,7 +18,7 @@ export default (command: string, args?: string[], userOptions?: {}) =>
       .then(() => files)
       .catch((error) => {
         if (options.stderr) {
-          return Promise.reject(null)
+          throw null
         }
 
         throw error
