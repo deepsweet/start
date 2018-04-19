@@ -2,8 +2,8 @@ import plugin from '@start/plugin/src/'
 
 export default (outDirRelative: string, ...flowArgs: string[]) =>
   plugin('flowGenerate', async ({ files, logFile }) => {
-    const { default: path } = require('path')
-    const { default: execa } = require('execa')
+    const { default: path } = await import('path')
+    const { default: execa } = await import('execa')
 
     const outDir = path.resolve(outDirRelative)
     const flowBinPath = path.resolve('node_modules/.bin/flow')
