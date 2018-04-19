@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 // https://docs.npmjs.com/cli/publish
-export default (packagePath: string = '.', userOptions?: {}) =>
+export default (packagePath: string, userOptions?: {}) =>
   plugin('npmPublish', async ({ files }) => {
     const { default: execa } = await import('execa')
 

@@ -21,7 +21,7 @@
   "dependencies": {
     "@start/plugin": "^0.1.0-0",
     "graceful-fs": "^4.1.11",
-    "makethen": "^0.1.0"
+    "makethen": "^0.2.2"
   },
   "devDependencies": {
     "@types/graceful-fs": "^4.1.2"

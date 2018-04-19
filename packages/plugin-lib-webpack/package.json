@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@start/plugin": "^0.1.0-0",
-    "makethen": "^0.1.0",
+    "makethen": "^0.2.2",
     "webpack": "^4.5.0"
   },
   "devDependencies": {

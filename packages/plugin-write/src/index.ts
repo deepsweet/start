@@ -1,5 +1,7 @@
 import plugin from '@start/plugin/src/'
 
+type WriteFile = (path: string, data: string, options: string, cb: (err: any) => void) => void
+
 export default (outDirRelative: string) =>
   plugin('write', async ({ files, logFile }) => {
     const { default: path } = await import('path')
@@ -7,7 +9,7 @@ export default (outDirRelative: string) =>
     const { default: gracefulFs } = await import('graceful-fs')
     const { default: makeDirP } = await import('mkdirp')
     const makeDir = makethen(makeDirP)
-    const writeFile = makethen(gracefulFs.writeFile)
+    const writeFile = makethen(gracefulFs.writeFile as WriteFile)
 
     return Promise.all(
       files.map((file) => {

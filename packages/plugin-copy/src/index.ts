@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartFile } from '@start/plugin/src/'
 
 export default (outDirRelative: string) =>
   plugin('copy', async ({ files, logFile }) => {
@@ -38,7 +38,7 @@ export default (outDirRelative: string) =>
         const outFile = path.join(outDir, inFile)
 
         return makeDir(outDir).then(() => {
-          return new Promise((resolve, reject) => {
+          return new Promise<StartFile>((resolve, reject) => {
             const readStream = fs.createReadStream(file.path)
             const writeStream = fs.createWriteStream(outFile)
 

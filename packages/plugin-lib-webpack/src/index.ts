@@ -1,11 +1,13 @@
 import plugin from '@start/plugin/src/'
-import { Configuration as WebpackConfig } from 'webpack'
+import { Configuration, Stats } from 'webpack'
 
-export default (config: WebpackConfig, userStatsOptions?: {}) =>
+type Webpack = (options: Configuration, cb: (err: any, stats: Stats) => void) => void
+
+export default (config?: Configuration, userStatsOptions?: {}) =>
   plugin('webpack', async ({ files }) => {
     const { default: makethen } = await import('makethen')
     const { default: webpackLib } = await import('webpack')
-    const compiler = makethen(webpackLib)
+    const compiler = makethen(webpackLib as Webpack)
 
     const statsOptions = {
       colors: true,
@@ -16,7 +18,7 @@ export default (config: WebpackConfig, userStatsOptions?: {}) =>
       console.log(stats.toString(statsOptions))
 
       if (stats.hasErrors()) {
-        return Promise.reject(null)
+        throw null
       }
 
       return files
