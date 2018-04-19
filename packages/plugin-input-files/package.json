@@ -15,7 +15,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=6"
   },
   "dependencies": {
     "@start/plugin": "^0.1.0-0"

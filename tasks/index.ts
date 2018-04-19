@@ -31,7 +31,6 @@ export const build = (packageName: string) =>
     find(`packages/${packageName}/src/**/*.+(js|ts)`),
     read,
     babel(babelConfigBuild),
-    eslint({ fix: true }),
     rename((file) => file.replace(/\.ts$/, '.js')),
     write(`packages/${packageName}/build/`)
   )

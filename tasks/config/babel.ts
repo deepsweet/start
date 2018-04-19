@@ -1,20 +1,23 @@
 const babelConfigCommon = {
   babelrc: false,
-  retainLines: true,
   comments: false,
   presets: [
     [
       '@babel/preset-env',
       {
         targets: {
-          node: 8
+          node: 6
         },
         modules: false
       }
     ]
   ],
   plugins: [
+    '@babel/plugin-proposal-object-rest-spread',
     '@babel/plugin-syntax-dynamic-import',
+    ['@babel/plugin-transform-runtime', {
+      polyfill: false
+    }],
     ['module-resolver', {
       'alias': {
         '@start/plugin/src/': '@start/plugin'

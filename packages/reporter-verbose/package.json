@@ -16,7 +16,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=6"
   },
   "dependencies": {
     "chalk": "^2.3.2",
