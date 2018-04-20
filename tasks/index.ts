@@ -38,11 +38,7 @@ export const build = (packageName: string) =>
 export const dts = (packageName: string) =>
   sequence(
     find(`packages/${packageName}/src/**/*.ts`),
-    typescriptGenerate(`packages/${packageName}/build/`, [
-      '--lib',
-      'esnext',
-      '--allowSyntheticDefaultImports'
-    ]),
+    typescriptGenerate(`packages/${packageName}/build/`),
     read,
     babel(babelConfigDts),
     write(`packages/${packageName}/build/`)
