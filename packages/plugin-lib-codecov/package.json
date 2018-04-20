@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-codecov",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "Codecov plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, coverage, codecov",
   "repository": "deepsweet/start",

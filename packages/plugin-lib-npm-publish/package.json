@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-npm-publish",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "NPM publish plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, npm",
   "repository": "deepsweet/start",

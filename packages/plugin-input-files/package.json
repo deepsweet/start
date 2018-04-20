@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-input-files",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-input-files",

@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-xargs",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "description": "xargs plugin for Start",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",

@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-flow-generate",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "Flow gen-flow-files plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, flow, flowtype",
   "repository": "deepsweet/start",

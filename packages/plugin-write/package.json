@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-write",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "Write plugin for Start",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",

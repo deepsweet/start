@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-find-git-staged",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "Find git staged plugin for Start",
   "keywords": "tasks, runner, glob, git, start, start-plugin",
   "repository": "deepsweet/start",

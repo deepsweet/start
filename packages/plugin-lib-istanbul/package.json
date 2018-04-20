@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-istanbul",
-  "version": "0.1.0-2",
+  "version": "0.1.0-3",
   "description": "Istanbul plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, coverage, istanbul",
   "repository": "deepsweet/start",

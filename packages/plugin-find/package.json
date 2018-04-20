@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-find",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "Find plugin for Start",
   "keywords": "tasks, runner, glob, start, start-plugin",
   "repository": "deepsweet/start",

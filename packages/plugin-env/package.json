@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-env",
-  "version": "0.1.0-2",
+  "version": "0.1.0-3",
   "description": "process.env plugin for Start",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",

@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-prettier-eslint",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "description": "Prettier-ESLint plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, prettier, eslint",
   "repository": "deepsweet/start",

@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-flow-check",
-  "version": "0.1.0-0",
+  "version": "0.1.0-1",
   "description": "Flow check plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, flow, flowtype",
   "repository": "deepsweet/start",
