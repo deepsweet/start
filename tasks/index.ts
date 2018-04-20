@@ -103,13 +103,12 @@ export const ci = () =>
     test()
   )
 
-export const publish = (packageName: string, version: string, otp: string) =>
+export const publish = (packageName: string, version: string/*, otp: string */) =>
   sequence(
     assert(packageName, 'package name is required'),
-    assert(version, 'package name is required'),
-    assert(packageName, 'OTP is required'),
-    // ci(),
+    assert(version, 'package version is required'),
+    // assert(packageName, 'OTP is required'),
     pack(packageName),
     npmVersion(version, `packages/${packageName}`),
-    npmPublish(`packages/${packageName}`, { otp })
+    npmPublish(`packages/${packageName}`/*, { otp } */)
   )
