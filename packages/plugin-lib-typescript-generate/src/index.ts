@@ -19,6 +19,7 @@ export default (outDir: string, userOptions?: Options) =>
     const options: Options = {
       allowSyntheticDefaultImports: true,
       lib: 'esnext',
+      moduleResolution: 'node',
       ...userOptions,
       declarationDir: outDir,
       emitDeclarationOnly: true,
