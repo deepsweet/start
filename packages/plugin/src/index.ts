@@ -1,6 +1,6 @@
 export type StartFile = {
-  path: string
-  data: null | string
+  path: string,
+  data: null | string,
   map: null | {}
 }
 
