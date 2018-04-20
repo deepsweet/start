@@ -3,7 +3,7 @@ import EventEmitter from 'events'
 import chalk from 'chalk'
 import StackUtils from 'stack-utils'
 
-type StartError = Error | string[] | string
+type StartError = Error | string[] | string | null
 
 export default (taskName: string) => {
   const emitter = new EventEmitter()
