@@ -23,7 +23,7 @@
     "esm": "^3.0.20",
     "sinon": "^4.4.8",
     "tap-diff": "^0.1.1",
-    "typescript": "^2.8.1",
+    "typescript": "^2.8.3",
     "typescript-eslint-parser": "^15.0.0"
   },
   "scripts": {
