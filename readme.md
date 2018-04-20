@@ -5,9 +5,9 @@
 * [ ] documentation
   * [ ] main readme
     * [x] example
-    * [ ] packages
-    * [ ] how to "plugin"
-    * [ ] how to "reporter"
+    * [x] packages
+    * [x] how to "plugin"
+    * [x] how to "reporter"
   * [ ] recipes
     * [x] Node.js libraries monorepo
     * [ ] React components monorepo
@@ -327,3 +327,84 @@ $ yarn start test
 | 💯 plugin-lib-coveralls                                      | [To be migrated](https://github.com/start-runner/coveralls) |
 | 🔢 [plugin-lib-npm-version](packages/plugin-lib-npm-version) | Bumps package version                                       |
 | 📦 [plugin-lib-npm-publish](packages/plugin-lib-npm-publish) | Publishes package to NPM                                    |
+
+## How to
+
+### Plugin
+
+```ts
+type StartFile = {
+  path: string
+  data: null | string
+  map: null | {}
+}
+
+type StartFiles = StartFile[]
+
+type StartPluginArg = {
+  files: StartFiles,
+  logFile: (file: string) => void,
+  logMessage: (message: string) => void
+}
+```
+
+```js
+import plugin from '@start/plugin'
+
+export default plugin('noop', ({ files }) => files)
+```
+
+```js
+import plugin from '@start/plugin'
+
+export default plugin('foo', async ({ files, logFile }) => {
+  const { default: fooTransform } = await import('foo-lib')
+
+  return Promise.all(
+    files.map((file) =>
+      fooTransform(file.data).then(({ transformedData, sourceMap }) => {
+        logFile(file.path)
+
+        return {
+          path: file.path,
+          data: transformedData,
+          map: sourceMap
+        }
+      })
+    )
+  )
+})
+```
+
+```js
+import plugin from '@start/plugin'
+
+export default (barOptions) =>
+  plugin('bar', async ({ files, logMessage }) => {
+    const { default: barCheck } = await import('bar-lib')
+
+    const barResult = barCheck(files, barOptions)
+
+    if (barResult.issues.length === 0) {
+      logMessage('¯\\_(ツ)_/¯')
+    }
+
+    return files
+  })
+```
+
+### Reporter
+
+```ts
+export default (taskName: string) => {
+  const emitter = new EventEmitter()
+
+  emitter.on('start', (pluginName: string) => {})
+  emitter.on('message', (pluginName: string, message: string) => {})
+  emitter.on('file', (pluginName: string, file: string) => {})
+  emitter.on('done', (pluginName: string) => {})
+  emitter.on('error', (pluginName: string, error: Error | string[] | string | null) => {})
+
+  return emitter
+}
+```
