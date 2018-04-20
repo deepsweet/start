@@ -259,6 +259,7 @@ $ yarn start packs foo bar
 $ yarn start dev bar
 $ yarn start lint
 $ yarn start test
+$ yarn start ci
 ```
 
 ## Packages
@@ -334,8 +335,9 @@ $ yarn start test
 
 ```ts
 type StartFile = {
-  path: string
-  data: null | string
+  path: string,
+  reporter: NodeJS.EventEmitter,
+  data: null | string,
   map: null | {}
 }
 
