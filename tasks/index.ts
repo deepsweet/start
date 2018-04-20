@@ -20,6 +20,7 @@ import {
 } from '@start/plugin-lib-istanbul/src/'
 import tape from '@start/plugin-lib-tape/src/'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
+import typescriptCheck from '@start/plugin-lib-typescript-check/src/'
 import npmVersion from '@start/plugin-lib-npm-version/src/'
 import npmPublish from '@start/plugin-lib-npm-publish/src/'
 import tapDiff from 'tap-diff'
@@ -64,14 +65,16 @@ export const lint = () =>
   sequence(
     findGitStaged(['packages/*/+(src|test)/**/*.ts', 'tasks/**/*.ts']),
     read,
-    eslint()
+    eslint(),
+    typescriptCheck()
   )
 
 export const lintAll = () =>
   sequence(
     find(['packages/*/+(src|test)/**/*.+(ts|js)', 'tasks/**/*.ts']),
     read,
-    eslint()
+    eslint(),
+    typescriptCheck()
   )
 
 export const fix = () =>
