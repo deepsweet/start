@@ -1,13 +1,36 @@
 import plugin from '@start/plugin/src/'
 
+type Options = {
+  packagePath?: string,
+  message?: string,
+  [key: string]: boolean | string
+}
+
 // https://docs.npmjs.com/cli/version
-export default (version: string, packagePath: string = '.') =>
+export default (version: string, userOptions?: Options) =>
   plugin('npmVersion', async ({ files }) => {
-    const { default: path } = await import('path')
     const { default: execa } = await import('execa')
 
-    return execa('npm', ['version', version], {
-      cwd: path.resolve(packagePath),
+    const { packagePath, ...options } = {
+      packagePath: '.',
+      ...userOptions
+    }
+    const cliArgs = Object.keys(options).reduce((result, key) => {
+      const value = options[key]
+
+      if (typeof value === 'boolean') {
+        return result.concat(`--${key}`)
+      }
+
+      if (typeof value === 'string') {
+        return result.concat(`--${key}`, `${value}`)
+      }
+
+      return result
+    }, [])
+
+    return execa('npm', ['version', ...cliArgs, version], {
+      cwd: packagePath,
       stdout: process.stdout,
       stderr: process.stderr,
       stripEof: false,
