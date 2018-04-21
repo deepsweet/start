@@ -149,7 +149,7 @@ const babelConfig = {
       '@babel/preset-env',
       {
         targets: {
-          node: 8
+          node: 6
         },
         modules: false
       }
@@ -171,11 +171,7 @@ export const build = (packageName: string) =>
 export const dts = (packageName: string) =>
   sequence(
     find(`packages/${packageName}**/*.ts`),
-    typescriptGenerate(`packages/${packageName}/build/`, [
-      '--lib',
-      'esnext',
-      '--allowSyntheticDefaultImports'
-    ])
+    typescriptGenerate(`packages/${packageName}/build/`)
   )
 
 export const pack = (packageName: string) =>
