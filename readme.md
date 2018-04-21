@@ -161,7 +161,7 @@ const babelConfig = {
 // each named export is a "task"
 export const build = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}**/*.ts`),
+    find(`packages/${packageName}/**/*.ts`),
     read,
     babel(babelConfig),
     rename((file) => file.replace(/\.ts$/, '.js')),
@@ -170,7 +170,7 @@ export const build = (packageName: string) =>
 
 export const dts = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}**/*.ts`),
+    find(`packages/${packageName}/**/*.ts`),
     typescriptGenerate(`packages/${packageName}/build/`)
   )
 
@@ -186,20 +186,20 @@ export const pack = (packageName: string) =>
 export const packs = xargs('pack')
 
 export const dev = (packageName: string) =>
-  watch(`packages/${packageName}**/*.ts`)(
+  watch(`packages/${packageName}/**/*.ts`)(
     pack(packageName)
   )
 
 export const lint = () =>
   sequence(
-    findGitStaged(['packages/*/@(src|test)/**/*.ts']),
+    findGitStaged(['packages/*/{src,test}/**/*.ts']),
     read,
     eslint()
   )
 
 export const lintAll = () =>
   sequence(
-    find(['packages/*/@(src|test)/**/*.ts']),
+    find(['packages/*/{src,test}/**/*.ts']),
     read,
     eslint()
   )
