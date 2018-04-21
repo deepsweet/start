@@ -7,16 +7,12 @@ export default (userOptions?: {}) =>
     return Promise.all(
       files.map(
         (file) =>
-          new Promise<StartFile>((resolve, reject) => {
+          new Promise<StartFile>((resolve) => {
             const options = {
               ...userOptions,
               ast: false,
               inputSourceMap: file.map != null ? file.map : false,
               filename: file.path
-            }
-
-            if (file.data == null) {
-              return reject('file data is required')
             }
 
             const result = transform(file.data, options)

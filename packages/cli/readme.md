@@ -1,8 +1,12 @@
 # @start/cli
 
+## Install
+
 ```sh
 $ yarn add --dev @start/cli
 ```
+
+## Usage
 
 ```js
 // package.json
@@ -30,4 +34,8 @@ $ yarn add --dev @start/cli
   // reporter module name
   "reporter": "@start/reporter-verbose"
 }
+```
+
+```sh
+$ yarn start
 ```

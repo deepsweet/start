@@ -1,11 +1,15 @@
 import plugin, { StartPlugin } from '@start/plugin/src/'
 
 export default (target: StartPlugin) => (...files: string[]) =>
-  plugin('inputFiles', ({ reporter }) => target({
-    reporter,
-    files: files.map((file) => ({
-      path: file,
-      data: null,
-      map: null
-    }))
-  }))
+  plugin('inputFiles', async ({ reporter }) => {
+    const { default: path } = await import('path')
+
+    return target({
+      reporter,
+      files: files.map((file) => ({
+        path: path.resolve(file),
+        data: null,
+        map: null
+      }))
+    })
+  })

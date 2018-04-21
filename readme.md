@@ -10,7 +10,7 @@
     * [x] how to "reporter"
   * [ ] recipes
     * [x] Node.js libraries monorepo
-    * [ ] React components monorepo
+    * [x] React components monorepo
     * [ ] React application
 
 -----
@@ -20,13 +20,9 @@
 * functional – in all senses
 * fast – [parallelism and concurrency](https://stackoverflow.com/questions/1050222/what-is-the-difference-between-concurrency-and-parallelism)
 * shareable – presets as published packages
-* …
+* 4th line to align with logo on the right
 
-## Usage examples
-
-### Node.js libraries monorepo
-
-See [`tasks/index.ts`](tasks/index.ts) for more details – Start project builds itself from sources using sources.
+## Understand by example
 
 ```
 .
@@ -262,30 +258,43 @@ $ yarn start test
 $ yarn start ci
 ```
 
+## How to
+
+* [Use CLI and pass options](packages/cli)
+* [Create a plugin](packages/plugin)
+* [Create a reporter](packages/reporter-verbose)
+
+## Live examples
+
+* Node.js TypeScript library – [makethen](https://github.com/deepsweet/makethen)
+* Node.js TypeScript libraries monorepo – Start project builds itself from sources using sources, see [`tasks/index.ts`](tasks/index.ts)
+* React higher-order components monorepo – [hocs](https://github.com/deepsweet/hocs) (to be migrated)
+
 ## Packages
 
 ### Core
 
-| Name                                                         | Description                                                       |
-| ------------------------------------------------------------ | ----------------------------------------------------------------- |
-| ⬛️ [cli](packages/cli)                                      | CLI entry point                                                   |
-| 📄 [reporter-verbose](packages/reporter-verbose)             | Verbose reporter                                                  |
-| ⏩ [plugin-sequence](packages/foo)                           | Runs plugins in sequence                                          |
-| 🔀 [plugin-parallel](packages/plugin-parallel)               | Runs tasks in parallel with same agruments                        |
-| 🔂 [plugin-xargs](packages/plugin-xargs)                     | Runs task in parallel for each argument                           |
-| 🐣 [plugin-spawn](packages/plugin-spawn)                     | Spawns new child process                                          |
-| 👔 [plugin-env](packages/plugin-env)                         | Sets `process.env`                                                |
-| 🔍 [plugin-find](packages/plugin-find)                       | Finds files using glob patterns                                   |
-| 🔍 [plugin-find-git-staged](packages/plugin-find-git-staged) | Finds staged in Git files and filters it using glob patterns      |
-| 📖 [plugin-read](packages/plugin-read)                       | Reads files content                                               |
-| 🔠 [plugin-rename](packages/plgun-rename)                    | Renames files                                                     |
-| ❌ [plugin-remove](packages/plugin-remove)                   | Removes files or directories                                      |
-| 👯 [plugin-copy](packages/plugin-copy)                       | Copies files to relative destination preserving folders structure |
-| ✏️ [plugin-write](packages/plugin-write)                     | Writes files to relative destination preserving folders structure |
-| ✏️ [plugin-overwrite](packages/plugin-overwrite)             | Overwrites files                                                  |
-| 👀 [plugin-watch](packages/plugin-watch)                     | Watches for new or changed files matched by globs patterns        |
-| 🔌 [plugin-input-files](packages/plugin-input-files)         | Inject arguments as input files                                   |
-| ✅ [plugin-assert](packages/plugin-assert)                   | Node.js `assert()` as a plugin                                    |
+| Name                                                         | Description                                                                                         |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| ⬛️ [cli](packages/cli)                                      | CLI entry point                                                                                     |
+| ⚙️ [plugin](packages/plugin)                                 | Start plugin "creator"                                                                              |
+| 📄 [reporter-verbose](packages/reporter-verbose)             | Verbose "example" reporter                                                                          |
+| ⏩ [plugin-sequence](packages/foo)                           | Run plugins in sequence                                                                             |
+| 🔀 [plugin-parallel](packages/plugin-parallel)               | Run tasks in parallel with same agruments                                                           |
+| 🔂 [plugin-xargs](packages/plugin-xargs)                     | Run task in parallel for each argument                                                              |
+| 🐣 [plugin-spawn](packages/plugin-spawn)                     | Spawn new child process                                                                             |
+| 👔 [plugin-env](packages/plugin-env)                         | Set environment variable using [`process.env`](https://nodejs.org/api/all.html#process_process_env) |
+| 🔍 [plugin-find](packages/plugin-find)                       | Find files using glob patterns                                                                      |
+| 🔍 [plugin-find-git-staged](packages/plugin-find-git-staged) | Find Git staged files and filter them using glob patterns                                           |
+| 📖 [plugin-read](packages/plugin-read)                       | Read files content                                                                                  |
+| 🔠 [plugin-rename](packages/plgun-rename)                    | Rename files                                                                                        |
+| ❌ [plugin-remove](packages/plugin-remove)                   | Remove files or directories                                                                         |
+| 👯 [plugin-copy](packages/plugin-copy)                       | Copy files using streams and keeping folders structure                                              |
+| ✏️ [plugin-write](packages/plugin-write)                     | Write files to relative destination preserving folders structure                                    |
+| ✏️ [plugin-overwrite](packages/plugin-overwrite)             | Overwrite files                                                                                     |
+| 👀 [plugin-watch](packages/plugin-watch)                     | Watch for new or changed files matched by globs patterns                                            |
+| 🔌 [plugin-input-files](packages/plugin-input-files)         | Inject arguments as files into Start flow files                                                     |
+| ✅ [plugin-assert](packages/plugin-assert)                   | Node.js [`assert()`](https://nodejs.org/docs/latest-v8.x/api/all.html#assert_assert_value_message)  |
 
 ### Lib
 
@@ -293,123 +302,41 @@ $ yarn start ci
 
 | Name                                                                         | Description                                                 |
 | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| 🏭 [plugin-lib-babel](packages/plugin-lib-babel)                             | Transpiles files data using Babel                           |
+| 🏭 [plugin-lib-babel](packages/plugin-lib-babel)                             | Transform JS using [Babel](https://babeljs.io/)             |
 | 🏭 [plugin-lib-webpack](packages/plugin-lib-webpack)                         | Bundles files using Webpack                                 |
 | 🏭 [plugin-lib-webpack-serve](packages/plugin-lib-webpack-serve)             | Runs Webpack development server                             |
 | 🏭 plugin-lib-postcss                                                        | [To be migrated](https://github.com/start-runner/postcss)   |
 | 🏭 plugin-lib-less                                                           | [To be migrated](https://github.com/start-runner/less)      |
 | 🏭 plugin-lib-clean-css                                                      | [To be migrated](https://github.com/start-runner/clean-css) |
 | 🏭 plugin-lib-uglify                                                         | [To be migrated](https://github.com/start-runner/uglify)    |
-| 🏭 [plugin-lib-typescript-generate](packages/plugin-lib-typescript-generate) | Generates `.d.ts` with TypeScript                           |
-| 🏭 [plugin-lib-flow-generate](packages/plugin-lib-flow-generate)             | Generates `.js.flow` with Flow                              |
+| 🏭 [plugin-lib-typescript-generate](packages/plugin-lib-typescript-generate) | Generate `.d.ts` with TypeScript                            |
+| 🏭 [plugin-lib-flow-generate](packages/plugin-lib-flow-generate)             | Generate `.js.flow` with Flow                               |
 
 #### Tests
 
-| Name                                                    | Description                                                    |
-| ------------------------------------------------------- | -------------------------------------------------------------- |
-| ✅ [plugin-lib-jest](packages/plugin-lib-jest)          | Runs tests using Jest                                          |
-| ✅ [plugin-lib-tape](packages/plugin-lib-tape)          | Runs tests using Tape                                          |
-| ✅ plugin-lib-ava                                       | [To be migrated](https://github.com/start-runner/ava)          |
-| ✅ plugin-lib-mocha                                     | [To be migrated](https://github.com/start-runner/mocha)        |
-| ✅ plugin-lib-karma                                     | [To be migrated](https://github.com/start-runner/karma)        |
-| 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) | Instruments, collects and reports code coverage using Istanbul |
+| Name                                                    | Description                                                 |
+| ------------------------------------------------------- | ----------------------------------------------------------- |
+| ✅ [plugin-lib-jest](packages/plugin-lib-jest)          | Run tests using Jest                                        |
+| ✅ [plugin-lib-tape](packages/plugin-lib-tape)          | Run tests using Tape                                        |
+| ✅ plugin-lib-ava                                       | [To be migrated](https://github.com/start-runner/ava)       |
+| ✅ plugin-lib-mocha                                     | [To be migrated](https://github.com/start-runner/mocha)     |
+| ✅ plugin-lib-karma                                     | [To be migrated](https://github.com/start-runner/karma)     |
+| 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) | Instrument, collect and report code coverage using Istanbul |
 
 #### Lint, check and fix
 
-| Name                                                                   | Description                              |
-| ---------------------------------------------------------------------- | ---------------------------------------- |
-| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                     | Lints and/or fixes files with ESlint     |
-| 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint)   | Fixes code(style) with Prettier + ESLint |
-| 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) | Checks types with TypeScript             |
-| 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check)             | Checks types with Flow                   |
+| Name                                                                   | Description                            |
+| ---------------------------------------------------------------------- | -------------------------------------- |
+| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                     | Lint and/or fixes files with ESlint    |
+| 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint)   | Fix code(style) with Prettier + ESLint |
+| 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) | Check types with TypeScript            |
+| 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check)             | Check types with Flow                  |
 
 #### CI and publish
 
-| Name                                                         | Description                                                 |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
-| 💯 [plugin-lib-codecov](packages/plugin-lib-codecov)         | Sends coverage info to codecov.io                           |
-| 💯 plugin-lib-coveralls                                      | [To be migrated](https://github.com/start-runner/coveralls) |
-| 🔢 [plugin-lib-npm-version](packages/plugin-lib-npm-version) | Bumps package version                                       |
-| 📦 [plugin-lib-npm-publish](packages/plugin-lib-npm-publish) | Publishes package to NPM                                    |
-
-## How to
-
-### Plugin
-
-```ts
-type StartFile = {
-  path: string,
-  reporter: NodeJS.EventEmitter,
-  data: null | string,
-  map: null | {}
-}
-
-type StartFiles = StartFile[]
-
-type StartPluginArg = {
-  files: StartFiles,
-  logFile: (file: string) => void,
-  logMessage: (message: string) => void
-}
-```
-
-```js
-import plugin from '@start/plugin'
-
-export default plugin('noop', ({ files }) => files)
-```
-
-```js
-import plugin from '@start/plugin'
-
-export default plugin('foo', async ({ files, logFile }) => {
-  const { default: fooTransform } = await import('foo-lib')
-
-  return Promise.all(
-    files.map((file) =>
-      fooTransform(file.data).then(({ transformedData, sourceMap }) => {
-        logFile(file.path)
-
-        return {
-          path: file.path,
-          data: transformedData,
-          map: sourceMap
-        }
-      })
-    )
-  )
-})
-```
-
-```js
-import plugin from '@start/plugin'
-
-export default (barOptions) =>
-  plugin('bar', async ({ files, logMessage }) => {
-    const { default: barCheck } = await import('bar-lib')
-
-    const barResult = barCheck(files, barOptions)
-
-    if (barResult.issues.length === 0) {
-      logMessage('¯\\_(ツ)_/¯')
-    }
-
-    return files
-  })
-```
-
-### Reporter
-
-```ts
-export default (taskName: string) => {
-  const emitter = new EventEmitter()
-
-  emitter.on('start', (pluginName: string) => {})
-  emitter.on('message', (pluginName: string, message: string) => {})
-  emitter.on('file', (pluginName: string, file: string) => {})
-  emitter.on('done', (pluginName: string) => {})
-  emitter.on('error', (pluginName: string, error: Error | string[] | string | null) => {})
-
-  return emitter
-}
-```
+| Name                                                         | Description                                                    |
+| ------------------------------------------------------------ | -------------------------------------------------------------- |
+| 💯 [plugin-lib-codecov](packages/plugin-lib-codecov)         | Send code coverage report to [codecov.io](https://codecov.io/) |
+| 💯 plugin-lib-coveralls                                      | [To be migrated](https://github.com/start-runner/coveralls)    |
+| 🔢 [plugin-lib-npm-version](packages/plugin-lib-npm-version) | Bump package version                                           |
+| 📦 [plugin-lib-npm-publish](packages/plugin-lib-npm-publish) | Publish package to NPM                                         |
