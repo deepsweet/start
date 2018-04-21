@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 import { CLIEngine } from 'eslint'
 
-export default (userOptions?: CLIEngine.Options, format?: string) =>
+export default (userOptions?: CLIEngine.Options, formatter?: string) =>
   plugin('eslint', async ({ files, logMessage, logFile }) => {
     const { default: { CLIEngine } } = await import('eslint')
     const options: CLIEngine.Options = {
@@ -31,10 +31,10 @@ export default (userOptions?: CLIEngine.Options, format?: string) =>
       fixableWarningCount: 0
     })
 
-    const formatter = cli.getFormatter(format)
+    const format = cli.getFormatter(formatter)
 
     if (report.errorCount > 0 || report.warningCount > 0) {
-      console.log(formatter(report.results))
+      console.log(format(report.results))
     }
 
     if (report.errorCount > 0) {
