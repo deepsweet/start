@@ -1,7 +1,13 @@
 import plugin from '@start/plugin/src/'
 
+type Options = {
+  registry?: string,
+  otp?: string,
+  [key: string]: boolean | string
+}
+
 // https://docs.npmjs.com/cli/publish
-export default (packagePath: string, userOptions?: {}) =>
+export default (packagePath: string = '.', userOptions?: Options) =>
   plugin('npmPublish', async ({ files }) => {
     const { default: execa } = await import('execa')
 
@@ -9,12 +15,21 @@ export default (packagePath: string, userOptions?: {}) =>
       registry: 'https://registry.npmjs.org/',
       ...userOptions
     }
+    const cliArgs = Object.keys(options).reduce((result, key) => {
+      const value = options[key]
 
-    const cliOptions = Object.keys(options).reduce((result, key) => {
-      return [...result, `--${key}=${options[key]}`]
+      if (typeof value === 'boolean') {
+        return result.concat(`--${key}`)
+      }
+
+      if (typeof value === 'string') {
+        return result.concat(`--${key}`, `${value}`)
+      }
+
+      return result
     }, [])
 
-    return execa('npm', ['publish', ...cliOptions, packagePath], {
+    return execa('npm', ['publish', ...cliArgs, packagePath], {
       stdout: process.stdout,
       stderr: process.stderr,
       stripEof: false,
