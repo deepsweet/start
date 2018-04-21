@@ -22,7 +22,14 @@
 * shareable – presets as published packages
 * 4th line to align with logo on the right
 
-## Understand by example
+## TOC
+
+* [Example](#example)
+* [How to](#how-to)
+* [Recipes](#recipes)
+* [Packages](#packages)
+
+## Example
 
 ```
 .
@@ -260,11 +267,12 @@ $ yarn start ci
 * [Create a plugin](packages/plugin)
 * [Create a reporter](packages/reporter-verbose)
 
-## Live examples
+## Recipes
 
 * Node.js TypeScript library – [makethen](https://github.com/deepsweet/makethen)
 * Node.js TypeScript libraries monorepo – Start project builds itself from sources using sources, see [`tasks/index.ts`](tasks/index.ts)
 * React higher-order components monorepo – [hocs](https://github.com/deepsweet/hocs) (to be migrated)
+* React app – to be added
 
 ## Packages
 
