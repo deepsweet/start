@@ -291,15 +291,17 @@ $ yarn start ci
 
 #### Build and bundle
 
-| Name                                                             | Description                                                 |
-| ---------------------------------------------------------------- | ----------------------------------------------------------- |
-| 🏭 [plugin-lib-babel](packages/plugin-lib-babel)                 | Transpiles files data using Babel                           |
-| 🏭 [plugin-lib-webpack](packages/plugin-lib-webpack)             | Bundles files using Webpack                                 |
-| 🏭 [plugin-lib-webpack-serve](packages/plugin-lib-webpack-serve) | Runs Webpack development server                             |
-| 🏭 plugin-lib-postcss                                            | [To be migrated](https://github.com/start-runner/postcss)   |
-| 🏭 plugin-lib-less                                               | [To be migrated](https://github.com/start-runner/less)      |
-| 🏭 plugin-lib-clean-css                                          | [To be migrated](https://github.com/start-runner/clean-css) |
-| 🏭 plugin-lib-uglify                                             | [To be migrated](https://github.com/start-runner/uglify)    |
+| Name                                                                         | Description                                                 |
+| ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| 🏭 [plugin-lib-babel](packages/plugin-lib-babel)                             | Transpiles files data using Babel                           |
+| 🏭 [plugin-lib-webpack](packages/plugin-lib-webpack)                         | Bundles files using Webpack                                 |
+| 🏭 [plugin-lib-webpack-serve](packages/plugin-lib-webpack-serve)             | Runs Webpack development server                             |
+| 🏭 plugin-lib-postcss                                                        | [To be migrated](https://github.com/start-runner/postcss)   |
+| 🏭 plugin-lib-less                                                           | [To be migrated](https://github.com/start-runner/less)      |
+| 🏭 plugin-lib-clean-css                                                      | [To be migrated](https://github.com/start-runner/clean-css) |
+| 🏭 plugin-lib-uglify                                                         | [To be migrated](https://github.com/start-runner/uglify)    |
+| 🏭 [plugin-lib-typescript-generate](packages/plugin-lib-typescript-generate) | Generates `.d.ts` with TypeScript                           |
+| 🏭 [plugin-lib-flow-generate](packages/plugin-lib-flow-generate)             | Generates `.js.flow` with Flow                              |
 
 #### Tests
 
@@ -312,13 +314,14 @@ $ yarn start ci
 | ✅ plugin-lib-karma                                     | [To be migrated](https://github.com/start-runner/karma)        |
 | 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) | Instruments, collects and reports code coverage using Istanbul |
 
-#### Lint and codestyle
+#### Lint, check and fix
 
-| Name                                                                 | Description                              |
-| -------------------------------------------------------------------- | ---------------------------------------- |
-| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                   | Lints and/or fixes files with ESlint     |
-| 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check)           | Checks types with Flow                   |
-| 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint) | Fixes code(style) with Prettier + ESLint |
+| Name                                                                   | Description                              |
+| ---------------------------------------------------------------------- | ---------------------------------------- |
+| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                     | Lints and/or fixes files with ESlint     |
+| 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint)   | Fixes code(style) with Prettier + ESLint |
+| 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) | Checks types with TypeScript             |
+| 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check)             | Checks types with Flow                   |
 
 #### CI and publish
 
