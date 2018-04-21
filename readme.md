@@ -321,12 +321,12 @@ $ yarn start ci
 
 #### Lint, check and fix
 
-| Name                                                                   | Description                            |
-| ---------------------------------------------------------------------- | -------------------------------------- |
-| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                     | Lint and/or fixes files with ESlint    |
-| 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint)   | Fix code(style) with Prettier + ESLint |
-| 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) | Check types with TypeScript            |
-| 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check)             | Check types with Flow                  |
+| Name                                                                   | Description                                              |
+| ---------------------------------------------------------------------- | -------------------------------------------------------- |
+| 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint)                     | Lint and/or fix code using [ESLint](https://eslint.org/) |
+| 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint)   | Fix code(style) with Prettier + ESLint                   |
+| 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) | Check types with TypeScript                              |
+| 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check)             | Check types with Flow                                    |
 
 #### CI and publish
 
