@@ -19,7 +19,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "chalk": "^2.3.2",
+    "chalk": "^2.4.0",
     "stack-utils": "^1.0.1"
   },
   "devDependencies": {
