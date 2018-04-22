@@ -1,6 +1,13 @@
 import plugin from '@start/plugin/src/'
 
-export default (options: {} = {}) =>
+type Options = {
+  branches?: number,
+  functions?: number,
+  lines?: number,
+  statements?: number
+}
+
+export default (options: Options) =>
   plugin('istanbulThresholds', async ({ files, logMessage }) => {
     const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
     const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')

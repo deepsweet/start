@@ -1,6 +1,10 @@
 import plugin, { StartFile } from '@start/plugin/src/'
 
-export default (userOptions?: {}) =>
+type Options = {
+  [key: string]: any
+}
+
+export default (userOptions?: Options) =>
   plugin('babel', async ({ files, logFile }) => {
     const { default: { transform } } = await import('@babel/core')
 
@@ -8,7 +12,7 @@ export default (userOptions?: {}) =>
       files.map(
         (file) =>
           new Promise<StartFile>((resolve) => {
-            const options = {
+            const options: Options = {
               ...userOptions,
               ast: false,
               inputSourceMap: file.map != null ? file.map : false,
