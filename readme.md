@@ -262,7 +262,7 @@ $ yarn start ci
 
 * Node.js TypeScript library – [makethen](https://github.com/deepsweet/makethen)
 * Node.js TypeScript libraries monorepo – Start project builds itself from sources using sources, see [`tasks/index.ts`](tasks/index.ts)
-* React higher-order components monorepo – [hocs](https://github.com/deepsweet/hocs) (to be migrated)
+* React higher-order components monorepo – [hocs](https://github.com/deepsweet/hocs) (to be updated)
 * React app – to be added
 
 ## Packages
@@ -307,7 +307,7 @@ $ yarn start ci
 
 * ✅ [plugin-lib-jest](packages/plugin-lib-jest) – run tests using [Jest](https://facebook.github.io/jest/)
 * ✅ [plugin-lib-tape](packages/plugin-lib-tape) – run tests using [Tape](https://github.com/substack/tape)
-* 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) – instrument, collect and report code coverage using [Istanbul](https://istanbul.js.org/)
+* 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) – Collect, report and check code coverage using [Istanbul](https://istanbul.js.org/)
 * ✅ plugin-lib-ava – [to be migrated](https://github.com/start-runner/ava)
 * ✅ plugin-lib-mocha – [to be migrated](https://github.com/start-runner/mocha)
 * ✅ plugin-lib-karma – [to be migrated](https://github.com/start-runner/karma)

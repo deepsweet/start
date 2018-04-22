@@ -1,13 +1,8 @@
 import plugin from '@start/plugin/src/'
 
 type Options = {
-  rootDir?: string
-  coverageThreshold?: {}
-  globals?: {}
-  haste?: {}
-  moduleNameMapper?: {}
-  resolver?: {}
-  transform?: {}
+  rootDir?: string,
+  [key: string]: {}
 }
 
 const optionsToStringify = [
@@ -19,13 +14,13 @@ const optionsToStringify = [
   'transform'
 ]
 
-export default (userOptions: Options = { rootDir: process.cwd() }) =>
+export default (userOptions: Options) =>
   plugin('jest', async ({ files }) => {
     const { default: jestCLI } = await import('jest-cli')
 
     const options = {
+      rootDir: process.cwd(),
       ...userOptions,
-      rootDir: userOptions.rootDir,
       ...optionsToStringify.reduce((result, key) => {
         if (userOptions[key]) {
           result[key] = JSON.stringify(userOptions[key])
