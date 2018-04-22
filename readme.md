@@ -286,6 +286,7 @@ $ yarn start ci
 * 🐣 [plugin-spawn](packages/plugin-spawn) – spawn new child process
 * 👔 [plugin-env](packages/plugin-env) – set environment variable using [`process.env`](https://nodejs.org/api/all.html#process_process_env)
 * 🔌 [plugin-input-files](packages/plugin-input-files) – inject arguments as files into Start flow files
+* 🔌 plugin-output-files – to be added
 * ❓ [plugin-assert](packages/plugin-assert) – Node.js [`assert()`](https://nodejs.org/docs/latest-v8.x/api/all.html#assert_assert_value_message)
 
 ### FS

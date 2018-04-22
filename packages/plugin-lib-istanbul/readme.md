@@ -26,7 +26,7 @@ istanbulReports(formats: string[] = ['lcovonly', 'text-summary'])
 ```
 
 ```ts
-istanbulThresholds(options?: {
+istanbulThresholds(options: {
   branches?: number,
   functions?: number,
   lines?: number,

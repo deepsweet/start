@@ -20,11 +20,13 @@ eslint(options?: {}, format?: string)
 ```js
 import sequence from '@start/plugin-sequence'
 import findGitStaged from '@start/plugin-find-git-staged'
+import read from '@start/plugin-read'
 import eslint from '@start/plugin-lib-eslint'
 
 export const task = () =>
   sequence(
     findGitStaged('src/**/*.js'),
+    read,
     eslint({
       rules: {
         'no-undef': 'error'
@@ -36,12 +38,14 @@ export const task = () =>
 ```js
 import sequence from '@start/plugin-sequence'
 import find from '@start/plugin-find'
+import read from '@start/plugin-read'
 import eslint from '@start/plugin-lib-eslint'
 import overwrite from '@start/plugin-overwrite'
 
 export const task = () =>
   sequence(
     find('src/**/*.js'),
+    read,
     eslint({ fix: true }),
     overwrite
   )
