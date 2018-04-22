@@ -272,7 +272,7 @@ $ yarn start ci
 * ⬛️ [cli](packages/cli) – CLI entry point
 * ⚙️ [plugin](packages/plugin) – Start plugin "creator"
 * 📄 [reporter-verbose](packages/reporter-verbose) – verbose "example" reporter
-* ⏩ [plugin-sequence](packages/sequence) – run plugins in sequence
+* ⏩ [plugin-sequence](packages/plugin-sequence) – run plugins in sequence
 * 🔀 [plugin-parallel](packages/plugin-parallel) – run tasks in parallel with same agruments
 * 🔂 [plugin-xargs](packages/plugin-xargs) – run task in parallel for each argument
 * 🐣 [plugin-spawn](packages/plugin-spawn) – spawn new child process
