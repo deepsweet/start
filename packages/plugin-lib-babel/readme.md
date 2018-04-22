@@ -1,6 +1,6 @@
 # @start/plugin-lib-babel
 
-Transform JS using [Babel](https://babeljs.io/).
+Transform files using [Babel](https://babeljs.io/).
 
 ## Install
 
