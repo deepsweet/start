@@ -2,7 +2,7 @@ import plugin from '@start/plugin/src/'
 
 type Options = {
   rootDir?: string,
-  [key: string]: {}
+  [key: string]: any
 }
 
 const optionsToStringify = [
