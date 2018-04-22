@@ -19,6 +19,13 @@
 * [How to](#how-to)
 * [Recipes](#recipes)
 * [Packages](#packages)
+  * [Core](#core)
+  * [FS](#fs)
+  * [Lib](#lib)
+    * [Build and bundle](#build-and-bundle)
+    * [Tests](#tests)
+    * [Lint, check and fix](#lint-check-and-fix)
+    * [CI and publish](#ci-and-publish)
 * [Copyright](#copyright)
 
 ## Example
@@ -277,6 +284,12 @@ $ yarn start ci
 * 🔀 [plugin-parallel](packages/plugin-parallel) – run tasks in parallel with same agruments
 * 🔂 [plugin-xargs](packages/plugin-xargs) – run task in parallel for each argument
 * 🐣 [plugin-spawn](packages/plugin-spawn) – spawn new child process
+* 👔 [plugin-env](packages/plugin-env) – set environment variable using [`process.env`](https://nodejs.org/api/all.html#process_process_env)
+* 🔌 [plugin-input-files](packages/plugin-input-files) – inject arguments as files into Start flow files
+* ❓ [plugin-assert](packages/plugin-assert) – Node.js [`assert()`](https://nodejs.org/docs/latest-v8.x/api/all.html#assert_assert_value_message)
+
+### FS
+
 * 🔍 [plugin-find](packages/plugin-find) – find files using glob patterns
 * 🔍 [plugin-find-git-staged](packages/plugin-find-git-staged) – find Git staged files and filter them using glob patterns
 * 📖 [plugin-read](packages/plugin-read) – read files content
@@ -286,9 +299,6 @@ $ yarn start ci
 * ✏️ [plugin-write](packages/plugin-write) – write files to relative destination keeping folders structure
 * ✏️ [plugin-overwrite](packages/plugin-overwrite) – overwrite files
 * 👀 [plugin-watch](packages/plugin-watch) – watch for new or changed files matched by glob patterns
-* 👔 [plugin-env](packages/plugin-env) – set environment variable using [`process.env`](https://nodejs.org/api/all.html#process_process_env)
-* 🔌 [plugin-input-files](packages/plugin-input-files) – inject arguments as files into Start flow files
-* ❓ [plugin-assert](packages/plugin-assert) – Node.js [`assert()`](https://nodejs.org/docs/latest-v8.x/api/all.html#assert_assert_value_message)
 
 ### Lib
 
