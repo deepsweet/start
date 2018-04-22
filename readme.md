@@ -19,6 +19,7 @@
 * [How to](#how-to)
 * [Recipes](#recipes)
 * [Packages](#packages)
+* [Copyright](#copyright)
 
 ## Example
 
@@ -325,3 +326,9 @@ $ yarn start ci
 * 🔢 [plugin-lib-npm-version](packages/plugin-lib-npm-version) – bump package version
 * 📦 [plugin-lib-npm-publish](packages/plugin-lib-npm-publish) – publish package to NPM
 * 💯 plugin-lib-coveralls – [to be migrated](https://github.com/start-runner/coveralls)
+
+## Copyright
+
+All the packages in this repository are released under the terms of the [MIT License](license.md).
+
+The font used in logo is [supernova fat](http://www.ffonts.net/supernova-fat.font).
