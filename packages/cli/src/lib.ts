@@ -24,7 +24,8 @@ export default async (argv: string[], options: Options) => {
   }
 
   const taskArgs = argv.slice(3)
+  const taskRunner = await task(...taskArgs)
   const { default: reporter } = await import(options.reporter)
 
-  return task(...taskArgs)({ reporter: reporter(taskName) })
+  return taskRunner({ reporter: reporter(taskName) })
 }

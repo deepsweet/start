@@ -1,6 +1,6 @@
 {
   "name": "@start/cli",
-  "version": "0.1.0-5",
+  "version": "0.1.0-6",
   "description": "CLI for Start",
   "keywords": "tasks, runner, start, cli",
   "repository": "deepsweet/start",
