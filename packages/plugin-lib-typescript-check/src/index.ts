@@ -19,8 +19,8 @@ export default (userOptions?: Options) =>
     const options: Options = {
       allowSyntheticDefaultImports: true,
       lib: 'esnext',
-      pretty: true,
       moduleResolution: 'node',
+      pretty: true,
       ...userOptions,
       noEmit: true
     }
