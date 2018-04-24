@@ -3,7 +3,7 @@ import { Configuration, Stats } from 'webpack'
 
 type Webpack = (options: Configuration, cb: (err: any, stats: Stats) => void) => void
 
-export default (config?: Configuration, userStatsOptions?: {}) =>
+export default (config: Configuration, userStatsOptions?: {}) =>
   plugin('webpack', async ({ files }) => {
     const { default: makethen } = await import('makethen')
     const { default: webpackLib } = await import('webpack')
