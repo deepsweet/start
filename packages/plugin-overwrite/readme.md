@@ -10,6 +10,8 @@ $ yarn add --dev @start/plugin-overwrite
 
 ## Usage
 
+### Example
+
 ```js
 import sequence from '@start/plugin-sequence'
 import find from '@start/plugin-find'
