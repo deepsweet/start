@@ -75,3 +75,7 @@ export default (barOptions) =>
     return files
   })
 ```
+
+## Notes
+
+* Dynamic imports – [it's a good idea](https://github.com/gulpjs/gulp/issues/632) to "lazyload" dependencies inside of a plugin function instead of importing them at top.
