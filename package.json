@@ -35,6 +35,22 @@
       [
         "@babel/register",
         {
+          "presets": [
+            [
+              "@babel/preset-env",
+              {
+                "targets": {
+                  "node": "current"
+                },
+                "modules": false
+              }
+            ],
+            "@babel/preset-typescript"
+          ],
+          "plugins": [
+            "@babel/plugin-proposal-object-rest-spread",
+            "@babel/plugin-syntax-dynamic-import"
+          ],
           "extensions": [
             ".ts",
             ".js"
@@ -43,24 +59,6 @@
       ]
     ],
     "reporter": "@start/reporter-verbose/src/"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          },
-          "modules": false
-        }
-      ],
-      "@babel/preset-typescript"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread",
-      "@babel/plugin-syntax-dynamic-import"
-    ]
   },
   "eslintConfig": {
     "parser": "typescript-eslint-parser",
