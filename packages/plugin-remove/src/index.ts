@@ -3,7 +3,7 @@ import { Options } from 'rimraf'
 
 type RimRaf = (path: string, options: Options, cb: (error: any) => void) => void
 
-export default plugin('clean', async ({ files, logFile }) => {
+export default plugin('remove', async ({ files, logFile }) => {
   const { default: makethen } = await import('makethen')
   const { default: rimraf } = await import('rimraf')
 
