@@ -10,9 +10,13 @@ $ yarn add --dev @start/plugin-lib-tape
 
 ## Usage
 
+### Signature
+
 ```ts
 tape(reporter?: () => NodeJS.ReadWriteStream)
 ```
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'

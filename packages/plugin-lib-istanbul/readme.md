@@ -10,6 +10,8 @@ $ yarn add --dev @start/plugin-lib-istanbul
 
 ## Usage
 
+### Signature
+
 ```ts
 istanbulInstrument(options?: {
   preserveComments?: boolean,
@@ -33,6 +35,8 @@ istanbulThresholds(options: {
   statements?: number
 })
 ```
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'

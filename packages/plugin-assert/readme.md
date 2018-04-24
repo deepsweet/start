@@ -10,9 +10,13 @@ $ yarn add --dev @start/plugin-assert
 
 ## Usage
 
+### Signature
+
 ```ts
 assert(arg: any, message?: string)
 ```
+
+### Example
 
 ```js
 export const task = (arg) => assert(arg, 'arg is required')

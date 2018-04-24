@@ -10,12 +10,30 @@ $ yarn add --dev @start/plugin-lib-eslint
 
 ## Usage
 
+### Signature
+
 ```ts
-eslint(options?: {}, format?: string)
+eslint(options?: {}, formatter?: string)
 ```
 
-* `options` – [ESLint CLIEngine options](https://eslint.org/docs/developer-guide/nodejs-api#cliengine)
-* `formatter` – [ESLint formatter](https://eslint.org/docs/developer-guide/nodejs-api#clienginegetformatter)
+#### `options`
+
+[ESLint CLIEngine options](https://eslint.org/docs/developer-guide/nodejs-api#cliengine).
+
+Default:
+
+```js
+{
+  cache: true,
+  cacheLocation: 'node_modules/.cache/eslint'
+}
+```
+
+#### `formatter`
+
+[ESLint formatter](https://eslint.org/docs/developer-guide/nodejs-api#clienginegetformatter).
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'

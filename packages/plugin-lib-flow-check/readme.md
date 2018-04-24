@@ -10,9 +10,13 @@ $ yarn add --dev @start/plugin-lib-flow-check
 
 ## Usage
 
+### Signature
+
 ```ts
 flowGenerate(outDirRelative: string, ...flowArgs: string[])
 ```
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'

@@ -8,6 +8,8 @@ $ yarn add --dev @start/cli
 
 ## Usage
 
+### Example
+
 ```js
 // package.json
 

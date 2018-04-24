@@ -10,9 +10,13 @@ $ yarn add --dev @start/plugin-lib-flow-generate
 
 ## Usage
 
+### Signature
+
 ```ts
 flowCheck(...flowArgs: string[])
 ```
+
+### Example
 
 ```js
 import flowGenerate from '@start/plugin-lib-flow-generate'

@@ -10,6 +10,8 @@ $ yarn add @start/plugin
 
 ## Usage
 
+### Types
+
 ```ts
 type StartFile = {
   path: string,
@@ -30,6 +32,8 @@ type StartPluginOut = StartFiles | Promise<StartFiles>
 
 type StartPlugin = (props: StartPluginProps) => StartPluginOut
 ```
+
+### Example
 
 ```js
 import plugin from '@start/plugin'

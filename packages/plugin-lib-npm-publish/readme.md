@@ -10,15 +10,29 @@ $ yarn add --dev @start/plugin-lib-npm-publish
 
 ## Usage
 
+### Signature
+
 ```ts
-npmPublish(packagePath: string = '.', options?: {
-  registry?: string,
-  otp?: string,
-  [key: string]: boolean | string
-})
+npmPublish(packagePath: string, options?: {})
 ```
 
-* `options` – [NPM publish options](https://docs.npmjs.com/cli/publish)
+#### `packagePath`
+
+Relative path to package, `.` by default.
+
+#### `options`
+
+[NPM publish options](https://docs.npmjs.com/cli/publish)
+
+Default:
+
+```js
+{
+  registry: 'https://registry.npmjs.org/'
+}
+```
+
+### Example
 
 ```js
 import npmPublish from '@start/plugin-npm-plugin-lib-npm-publish'

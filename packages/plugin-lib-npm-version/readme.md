@@ -10,15 +10,22 @@ $ yarn add --dev @start/plugin-lib-npm-version
 
 ## Usage
 
+### Signature
+
 ```ts
-npmVersion(version: string, options?: {
-  packagePath?: string,
-  message?: string,
-  [key: string]: boolean | string
-})
+npmVersion(version: string, options?: {)
 ```
 
-* `options` – [NPM version options](https://docs.npmjs.com/cli/version)
+#### `version`
+
+`<newversion> | major | minor | patch | premajor | premin
+or | prepatch | prerelease | from-git`
+
+#### `options`
+
+[NPM version options](https://docs.npmjs.com/cli/version).
+
+### Example
 
 ```js
 import npmVersion from '@start/plugin-npm-plugin-lib-npm-version'

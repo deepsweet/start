@@ -10,11 +10,17 @@ $ yarn add --dev @start/plugin-lib-prettier-eslint
 
 ## Usage
 
+### Signature
+
 ```ts
 prettierEslint(options?: {})
 ```
 
-* `options` – [prettier-eslint options](https://github.com/prettier/prettier-eslint#options)
+#### `options`
+
+[prettier-eslint options](https://github.com/prettier/prettier-eslint#options).
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'

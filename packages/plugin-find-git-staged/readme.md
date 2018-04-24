@@ -10,11 +10,17 @@ $ yarn add --dev @start/plugin-find-git-staged
 
 ## Usage
 
+### Signature
+
 ```ts
 findGitStaged(glob: string | string[])
 ```
 
-* `glob` – [minimatch patterns](https://github.com/isaacs/minimatch#usage)
+#### `glob`
+
+[minimatch patterns](https://github.com/isaacs/minimatch#usage)
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'

@@ -10,11 +10,17 @@ $ yarn add --dev @start/plugin-lib-babel
 
 ## Usage
 
+### Signature
+
 ```ts
 babel(options?: {})
 ```
 
-* `options` – [Babel options](https://babeljs.io/docs/usage/api/#options)
+#### `options`
+
+[Babel options](https://babeljs.io/docs/usage/api/#options).
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'
@@ -29,7 +35,11 @@ export const task = () =>
   sequence(
     find('src/**/*.js'),
     read,
-    babel({ ...babelConfig, babelrc: false }),
+    babel({
+      ...babelConfig,
+      babelrc: false,
+      sourceMap: true,
+    }),
     write('build/')
   )
 ```

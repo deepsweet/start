@@ -5,12 +5,12 @@ export default (glob: string | string[], userOptions?: {}) =>
     const { default: globby } = await import('globby')
 
     const options = {
-      absolute: true,
+      ignore: ['node_modules/**'],
+      ...userOptions,
       deep: true,
       onlyFiles: false,
       expandDirectories: false,
-      ignore: ['node_modules/**'],
-      ...userOptions
+      absolute: true
     }
 
     return globby(glob, options).then((files) =>

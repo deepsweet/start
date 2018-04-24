@@ -10,9 +10,13 @@ $ yarn add --dev @start/plugin-env
 
 ## Usage
 
+### Signature
+
 ```ts
 env(key: string, value: string)
 ```
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'

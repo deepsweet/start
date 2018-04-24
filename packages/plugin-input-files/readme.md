@@ -10,9 +10,13 @@ $ yarn add --dev @start/plugin-input-files
 
 ## Usage
 
+### Signature
+
 ```ts
 inputFiles(target: StartPlugin): (...files: string[])
 ```
+
+### Example
 
 ```js
 import inputFiles from '@start/plugin-input-files'

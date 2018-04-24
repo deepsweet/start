@@ -10,9 +10,13 @@ $ yarn add --dev @start/plugin-copy
 
 ## Usage
 
+### Signature
+
 ```ts
 copy(outDirRelative: string)
 ```
+
+### Example
 
 ```js
 import sequence from '@start/plugin-sequence'
