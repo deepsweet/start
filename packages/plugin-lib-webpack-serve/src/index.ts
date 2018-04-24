@@ -6,7 +6,7 @@ type Options = {
   [key: string]: any
 }
 
-export default (options?: Options) =>
+export default (options: Options) =>
   plugin('webpackServe', async ({ files }) => {
     const { default: serve } = await import('webpack-serve')
 
