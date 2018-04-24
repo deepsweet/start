@@ -13,7 +13,6 @@ $ yarn add @start/plugin
 ```ts
 type StartFile = {
   path: string,
-  reporter: NodeJS.EventEmitter,
   data: null | string,
   map: null | {}
 }
@@ -22,6 +21,7 @@ type StartFiles = StartFile[]
 
 type StartPluginProps = {
   files: StartFiles,
+  reporter: NodeJS.EventEmitter,
   logFile: (file: string) => void,
   logMessage: (message: string) => void
 }
