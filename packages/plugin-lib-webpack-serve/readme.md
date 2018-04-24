@@ -1,5 +1,7 @@
 # @start/plugin-lib-webpack-serve
 
+Run [Webpack development server](https://github.com/webpack-contrib/webpack-serve).
+
 ## Install
 
 ```sh

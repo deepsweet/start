@@ -281,8 +281,8 @@ $ yarn start ci
 * ⚙️ [plugin](packages/plugin) – Start plugin "creator"
 * 📄 [reporter-verbose](packages/reporter-verbose) – verbose "example" reporter
 * ⏩ [plugin-sequence](packages/plugin-sequence) – run plugins in sequence
-* 🔀 [plugin-parallel](packages/plugin-parallel) – run tasks in parallel with same agruments
-* 🔂 [plugin-xargs](packages/plugin-xargs) – run task in parallel for each argument
+* 🔀 [plugin-parallel](packages/plugin-parallel) – run tasks as parallel child processes with same agruments
+* 🔂 [plugin-xargs](packages/plugin-xargs) – run task as parallel child processes for each argument
 * 🐣 [plugin-spawn](packages/plugin-spawn) – spawn new child process
 * 👔 [plugin-env](packages/plugin-env) – set environment variable using [`process.env`](https://nodejs.org/api/all.html#process_process_env)
 * 🔌 [plugin-input-files](packages/plugin-input-files) – inject arguments as files into Start flow files

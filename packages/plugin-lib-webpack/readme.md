@@ -1,5 +1,7 @@
 # @start/plugin-lib-webpack
 
+Bundle files using [Webpack](https://webpack.js.org/).
+
 ## Install
 
 ```sh
