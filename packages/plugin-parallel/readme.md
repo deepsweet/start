@@ -32,18 +32,18 @@ import find from '@start/plugin-find'
 import remove from '@start/plugin-remove'
 import parallel from '@start/plugin-parallel'
 
-export const task1 = (...args) => {
+export const buildCJS = (...args) => {
   // …
 }
 
-export const task2 = (...args) => {
+export const buildESM = (...args) => {
   // …
 }
 
-export const task3 = (...args) =>
+export const task = (...args) =>
   sequence(
     find('build/'),
     remove,
-    parallel(['task1', 'task2'])(...args)
+    parallel(['buildCJS', 'buildESM'])(...args)
   )
 ```
