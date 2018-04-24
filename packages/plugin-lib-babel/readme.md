@@ -29,17 +29,17 @@ import read from '@start/plugin-read'
 import babel from '@start/plugin-lib-babel'
 import write from '@start/plugin-write'
 
-import babelConfig from './babel-config'
+const babelConfig = {
+  // …
+  babelrc: false,
+  sourceMap: true,
+}
 
 export const task = () =>
   sequence(
     find('src/**/*.js'),
     read,
-    babel({
-      ...babelConfig,
-      babelrc: false,
-      sourceMap: true,
-    }),
+    babel(babelConfig),
     write('build/')
   )
 ```
