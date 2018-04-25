@@ -262,7 +262,7 @@ $ yarn start ci
 
 ## How to
 
-* [Use CLI and pass options](packages/cli)
+* [Use CLI and pass in options](packages/cli)
 * [Create a plugin](packages/plugin)
 * [Create a reporter](packages/reporter-verbose)
 
@@ -270,7 +270,7 @@ $ yarn start ci
 
 * Node.js TypeScript library – [makethen](https://github.com/deepsweet/makethen)
 * Node.js TypeScript libraries monorepo – Start project builds itself from sources using sources, see [`tasks/index.ts`](tasks/index.ts)
-* React (higher-order) components monorepo – [hocs](https://github.com/deepsweet/hocs)
+* React / React Native (higher-order) components monorepo – [hocs](https://github.com/deepsweet/hocs)
 * React app – to be added
 
 ## Packages
