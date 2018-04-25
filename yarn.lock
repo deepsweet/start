@@ -2168,9 +2168,9 @@ eslint-plugin-promise@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.7.0.tgz#f4bde5c2c77cdd69557a8f69a24d1ad3cfc9e67e"
 
-eslint-plugin-standard@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-standard/-/eslint-plugin-standard-3.0.1.tgz#34d0c915b45edc6f010393c7eef3823b08565cf2"
+eslint-plugin-standard@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-standard/-/eslint-plugin-standard-3.1.0.tgz#2a9e21259ba4c47c02d53b2d0c9135d4b1022d47"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -2227,8 +2227,8 @@ eslint@^4.0.0, eslint@^4.18.2:
     text-table "~0.2.0"
 
 esm@^3.0.21:
-  version "3.0.25"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.25.tgz#d374e714c07abe0b8a7e80d18819e5823e491dbd"
+  version "3.0.26"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.26.tgz#9c1bea4ea53fa8cebcf023792668be79da883e1d"
 
 espree@^3.5.4:
   version "3.5.4"
