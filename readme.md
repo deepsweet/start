@@ -1,7 +1,7 @@
 👉 This is a next iteration which is currently a *work in progress*, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
 
 * [ ] stabilize and publish 0.1.0 of everything
-* [ ] documentation
+* [x] documentation
 * [ ] tests
 
 -----
