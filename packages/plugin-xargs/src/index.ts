@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 type Options = {
-  processes?: number
+  maxProcesses?: number
 }
 
 export default (taskName: string, options: Options = {}) => (...args: string[]) =>
@@ -18,7 +18,7 @@ export default (taskName: string, options: Options = {}) => (...args: string[]) 
       }
     }
     const pAllOptions = {
-      concurrency: options.processes || Infinity
+      concurrency: options.maxProcesses || Infinity
     }
 
     return pAll(
