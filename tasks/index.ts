@@ -58,7 +58,12 @@ export const packs = xargs('pack')
 
 export const dev = (packageName: string) =>
   watch(`packages/${packageName}/src/**/*.ts`)(
-    pack(packageName)
+    sequence(
+      read,
+      babel(babelConfigBuild),
+      rename((file) => file.replace(/\.ts$/, '.js')),
+      write(`packages/${packageName}/build/`)
+    )
   )
 
 export const lint = () =>
