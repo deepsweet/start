@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-watch",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "Watch plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, watch",
   "repository": "deepsweet/start",

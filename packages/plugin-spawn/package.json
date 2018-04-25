@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-spawn",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "Spawn plugin for Start",
   "keywords": "tasks, runner, start, start-plugin, spawn",
   "repository": "deepsweet/start",
