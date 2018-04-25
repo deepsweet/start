@@ -26,7 +26,7 @@ import tapDiff from 'tap-diff'
 
 export const task = () =>
   sequence(
-    find('test/*.js'),
+    find('test/**/*.js'),
     tape(tapDiff)
   )
 ```

@@ -25,7 +25,7 @@ import flowGenerate from '@start/plugin-lib-flow-generate'
 
 export task = () =>
   sequence(
-    find('src/*.js'),
+    find('src/**/*.js'),
     flowGenerate('build/')
   )
 ```

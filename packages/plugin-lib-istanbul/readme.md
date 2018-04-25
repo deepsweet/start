@@ -50,9 +50,9 @@ import tape from '@start/plugin-lib-tape'
 
 export const task = () =>
   sequence(
-    find('src/*.js'),
+    find('src/**/*.js'),
     istanbulInstrument({ esModules: true }),
-    find('test/*.js'),
+    find('test/**/*.js'),
     tape(),
     istanbulReport(['lcovonly', 'html', 'text-summary']),
     istanbulThresholds({ functions: 100 })

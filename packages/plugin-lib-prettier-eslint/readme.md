@@ -31,7 +31,7 @@ import overwrite from '@start/plugin-overwrite'
 
 export const task = () =>
   sequence(
-    find('src/*.js'),
+    find('src/**/*.js'),
     read,
     prettierEslint(),
     overwrite

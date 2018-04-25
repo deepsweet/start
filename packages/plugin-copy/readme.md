@@ -1,6 +1,6 @@
 # @start/plugin-copy
 
-Copy files using streams and keeping folders structure.
+Copy files to relative destination using streams and keeping folders structure.
 
 ## Install
 

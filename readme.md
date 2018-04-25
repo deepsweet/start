@@ -296,8 +296,8 @@ $ yarn start ci
 * 📖 [plugin-read](packages/plugin-read) – read files content
 * 🔠 [plugin-rename](packages/plgun-rename) – rename files
 * ❌ [plugin-remove](packages/plugin-remove) – remove files or directories
-* 👯 [plugin-copy](packages/plugin-copy) – copy files using streams and keeping folders structure
-* ✏️ [plugin-write](packages/plugin-write) – write files to relative destination keeping folders structure
+* 👯 [plugin-copy](packages/plugin-copy) – copy files to relative destination using streams and keeping folders structure
+* ✏️ [plugin-write](packages/plugin-write) – write files with source maps to relative destination keeping folders structure
 * ✏️ [plugin-overwrite](packages/plugin-overwrite) – overwrite files
 * 👀 [plugin-watch](packages/plugin-watch) – watch for new or changed files matched by glob patterns
 
