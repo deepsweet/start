@@ -600,9 +600,9 @@
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@types/convert-source-map/-/convert-source-map-1.5.1.tgz#d4d180dd6adc5cb68ad99bd56e03d637881f4616"
 
-"@types/eslint@^4.16.0":
-  version "4.16.0"
-  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-4.16.0.tgz#e7ed874c0d664a18cc2165481875daba5aaa9e73"
+"@types/eslint@^4.16.1":
+  version "4.16.1"
+  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-4.16.1.tgz#19730c9fcb66b6e44742d12b27a603fabfeb2f49"
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"
@@ -727,9 +727,9 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/webpack@^4.1.3":
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.1.3.tgz#1cbb3fceb275590b63addf7cfb1534fda7e645a1"
+"@types/webpack@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.1.4.tgz#553fe3f7ac1d8b403ebb01f25b31272b234d5ef6"
   dependencies:
     "@types/node" "*"
     "@types/tapable" "*"
