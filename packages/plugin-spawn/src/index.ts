@@ -1,9 +1,10 @@
 import plugin from '@start/plugin/src/'
 
-export default (command: string, args?: string[], userOptions?: {}) =>
+export default (cli: string[], userOptions?: {}) =>
   plugin('spawn', async ({ files }) => {
     const { default: execa } = await import('execa')
 
+    const [ command, ...args ] = cli
     const options = {
       stdout: process.stdout,
       stderr: process.stderr,
