@@ -1,9 +1,7 @@
-import { RawSourceMap } from 'source-map'
-
 export type StartFile = {
   path: string,
   data: null | string,
-  map: null | RawSourceMap
+  map: null | {}
 }
 
 export type StartFiles = StartFile[]

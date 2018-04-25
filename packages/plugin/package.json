@@ -20,8 +20,5 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-0"
-  },
-  "devDependencies": {
-    "source-map": "^0.7.2"
   }
 }
