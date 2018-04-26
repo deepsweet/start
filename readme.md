@@ -280,11 +280,11 @@ $ yarn start ci
 ### Core
 
 * ⬛️ [cli](packages/cli) – CLI entry point
-* ⚙️ [plugin](packages/plugin) – Start plugin "creator"
-* 📄 [reporter-verbose](packages/reporter-verbose) – verbose "example" reporter
+* ⚙️ [plugin](packages/plugin) – plugin creator
+* 📃 [reporter-verbose](packages/reporter-verbose) – verbose reporter
 * ⏩ [plugin-sequence](packages/plugin-sequence) – run plugins in sequence
 * 🔀 [plugin-parallel](packages/plugin-parallel) – run tasks as parallel child processes with same agruments
-* 🔂 [plugin-xargs](packages/plugin-xargs) – run task as parallel child processes for each argument
+* 🔂 [plugin-xargs](packages/plugin-xargs) – run task as parallel child process for each argument
 * 🐣 [plugin-spawn](packages/plugin-spawn) – spawn new child process
 * 👔 [plugin-env](packages/plugin-env) – set environment variable using [`process.env`](https://nodejs.org/api/all.html#process_process_env)
 * 🔌 [plugin-input-files](packages/plugin-input-files) – inject arguments as files into Start flow files
@@ -310,8 +310,8 @@ $ yarn start ci
 * 🏭 [plugin-lib-babel](packages/plugin-lib-babel) – transform files using [Babel](https://babeljs.io/)
 * 🏭 [plugin-lib-webpack](packages/plugin-lib-webpack) – bundle files using [Webpack](https://webpack.js.org/)
 * 🏭 [plugin-lib-webpack-serve](packages/plugin-lib-webpack-serve) – run [Webpack development server](https://github.com/webpack-contrib/webpack-serve)
-* 🏭 [plugin-lib-typescript-generate](packages/plugin-lib-typescript-generate) – generate `.d.ts` with [TypeScript](https://www.typescriptlang.org/)
-* 🏭 [plugin-lib-flow-generate](packages/plugin-lib-flow-generate) – generate `.js.flow` with [Flow](https://flow.org/)
+* 🏭 [plugin-lib-typescript-generate](packages/plugin-lib-typescript-generate) – generate `.d.ts` files using [TypeScript](https://www.typescriptlang.org/)
+* 🏭 [plugin-lib-flow-generate](packages/plugin-lib-flow-generate) – generate `.js.flow` files using [Flow](https://flow.org/)
 * 🏭 plugin-lib-postcss – [to be migrated](https://github.com/start-runner/postcss)
 * 🏭 plugin-lib-less – [to be migrated](https://github.com/start-runner/less)
 * 🏭 plugin-lib-clean-css – [to be migrated](https://github.com/start-runner/clean-css)
@@ -321,7 +321,7 @@ $ yarn start ci
 
 * ✅ [plugin-lib-jest](packages/plugin-lib-jest) – run tests using [Jest](https://facebook.github.io/jest/)
 * ✅ [plugin-lib-tape](packages/plugin-lib-tape) – run tests using [Tape](https://github.com/substack/tape)
-* 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) – Collect, report and check code coverage using [Istanbul](https://istanbul.js.org/)
+* 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) – collect, report and check code coverage using [Istanbul](https://istanbul.js.org/)
 * ✅ plugin-lib-ava – [to be migrated](https://github.com/start-runner/ava)
 * ✅ plugin-lib-mocha – [to be migrated](https://github.com/start-runner/mocha)
 * ✅ plugin-lib-karma – [to be migrated](https://github.com/start-runner/karma)
@@ -329,9 +329,9 @@ $ yarn start ci
 #### Lint, check and fix
 
 * 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint) – lint and/or fix code using [ESLint](https://eslint.org/)
-* 💄 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint) – fix code(style) using [Prettier + ESLint](https://github.com/prettier/prettier-eslint)
-* 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) – check types with [TypeScript](https://www.typescriptlang.org/)
-* 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check) – check types with [Flow](https://flow.org/)
+* 🚷 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint) – fix code(style) using [Prettier + ESLint](https://github.com/prettier/prettier-eslint)
+* 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) – check types using [TypeScript](https://www.typescriptlang.org/)
+* 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check) – check types using [Flow](https://flow.org/)
 
 #### CI and publish
 
