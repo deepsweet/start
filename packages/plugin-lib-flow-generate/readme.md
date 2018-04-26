@@ -8,6 +8,8 @@ Generate `.js.flow` files using [Flow](https://flow.org/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-flow-generate
+# or
+$ npm install --save-dev @start/plugin-lib-flow-generate
 ```
 
 ## Usage

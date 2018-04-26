@@ -8,6 +8,8 @@ Check types using [Flow](https://flow.org/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-flow-check
+# or
+$ npm install --save-dev @start/plugin-lib-flow-check
 ```
 
 ## Usage

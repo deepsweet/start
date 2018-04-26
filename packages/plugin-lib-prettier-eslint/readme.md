@@ -8,6 +8,8 @@ Fix code(style) using [Prettier + ESLint](https://github.com/prettier/prettier-e
 
 ```sh
 $ yarn add --dev @start/plugin-lib-prettier-eslint
+# or
+$ npm install --save-dev @start/plugin-lib-prettier-eslint
 ```
 
 ## Usage

@@ -8,6 +8,8 @@ Find files using glob patterns.
 
 ```sh
 $ yarn add --dev @start/plugin-find
+# or
+$ npm install --save-dev @start/plugin-find
 ```
 
 ## Usage

@@ -8,6 +8,8 @@ Run tests using [Jest](https://facebook.github.io/jest/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-jest
+# or
+$ npm install --save-dev @start/plugin-lib-jest
 ```
 
 ## Usage

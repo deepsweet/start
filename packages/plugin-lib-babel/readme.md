@@ -8,6 +8,8 @@ Transform files using [Babel](https://babeljs.io/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-babel
+# or
+$ npm install --save-dev @start/plugin-lib-babel
 ```
 
 ## Usage

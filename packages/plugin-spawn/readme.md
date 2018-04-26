@@ -8,6 +8,8 @@ Spawn new child process.
 
 ```sh
 $ yarn add --dev @start/plugin-spawn
+# or
+$ npm install --save-dev @start/plugin-spawn
 ```
 
 ## Usage

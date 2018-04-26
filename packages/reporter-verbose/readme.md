@@ -8,6 +8,8 @@ Verbose reporter.
 
 ```sh
 $ yarn add --dev @start/reporter-verbose
+# or
+$ npm install --save-dev @start/reporter-verbose
 ```
 
 ## Usage

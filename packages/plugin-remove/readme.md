@@ -8,6 +8,8 @@ Remove files or directories.
 
 ```sh
 $ yarn add --dev @start/plugin-remove
+# or
+$ npm install --save-dev @start/plugin-remove
 ```
 
 ## Usage

@@ -8,6 +8,8 @@ Copy files to relative destination using streams and keeping folders structure.
 
 ```sh
 $ yarn add --dev @start/plugin-copy
+# or
+$ npm install --save-dev @start/plugin-copy
 ```
 
 ## Usage

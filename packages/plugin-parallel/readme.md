@@ -8,6 +8,8 @@ Run tasks as parallel child processes with same agruments.
 
 ```sh
 $ yarn add --dev @start/plugin-parallel
+# or
+$ npm install --save-dev @start/plugin-parallel
 ```
 
 ## Usage

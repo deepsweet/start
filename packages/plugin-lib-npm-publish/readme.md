@@ -8,6 +8,8 @@ Publish package to NPM.
 
 ```sh
 $ yarn add --dev @start/plugin-lib-npm-publish
+# or
+$ npm install --save-dev @start/plugin-lib-npm-publish
 ```
 
 ## Usage

@@ -8,6 +8,8 @@ Run plugins in sequence.
 
 ```sh
 $ yarn add --dev @start/plugin-sequence
+# or
+$ npm install --save-dev @start/plugin-sequence
 ```
 
 ## Usage

@@ -238,6 +238,8 @@ export const ci = () =>
 
 ```sh
 $ yarn start
+# or
+$ npx start
 
 One of the following task names is required:
 * build

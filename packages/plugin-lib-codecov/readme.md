@@ -8,6 +8,8 @@ Send code coverage report to [codecov.io](https://codecov.io/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-codecov
+# or
+$ npm install --save-dev @start/plugin-lib-codecov
 ```
 
 ## Usage

@@ -8,6 +8,8 @@ Overwrite files.
 
 ```sh
 $ yarn add --dev @start/plugin-overwrite
+# or
+$ npm install --save-dev @start/plugin-overwrite
 ```
 
 ## Usage

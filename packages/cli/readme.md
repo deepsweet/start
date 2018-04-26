@@ -8,6 +8,8 @@ CLI entry point to Start.
 
 ```sh
 $ yarn add --dev @start/cli
+# or
+$ npm install --save-dev @start/cli
 ```
 
 ## Usage

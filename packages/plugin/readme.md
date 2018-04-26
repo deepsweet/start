@@ -8,6 +8,8 @@ Plugin creator.
 
 ```sh
 $ yarn add @start/plugin
+# or
+$ npm install --save-dev @start/plugin
 ```
 
 ## Usage

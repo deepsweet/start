@@ -8,6 +8,8 @@ Check types using [TypeScript](https://www.typescriptlang.org/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-typescript-check
+# or
+$ npm install --save-dev @start/plugin-lib-typescript-check
 ```
 
 ## Usage

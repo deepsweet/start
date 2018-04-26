@@ -8,6 +8,8 @@ Read files content.
 
 ```sh
 $ yarn add --dev @start/plugin-read
+# or
+$ npm install --save-dev @start/plugin-read
 ```
 
 ## Usage

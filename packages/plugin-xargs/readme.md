@@ -8,6 +8,8 @@ Run task as parallel child process for each argument.
 
 ```sh
 $ yarn add --dev @start/plugin-xargs
+# or
+$ npm install --save-dev @start/plugin-xargs
 ```
 
 ## Usage

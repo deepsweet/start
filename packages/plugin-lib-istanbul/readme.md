@@ -8,6 +8,8 @@ Collect, report and check code coverage using [Istanbul](https://istanbul.js.org
 
 ```sh
 $ yarn add --dev @start/plugin-lib-istanbul
+# or
+$ npm install --save-dev @start/plugin-lib-istanbul
 ```
 
 ## Usage

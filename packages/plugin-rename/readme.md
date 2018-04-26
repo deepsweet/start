@@ -8,6 +8,8 @@ Rename files.
 
 ```sh
 $ yarn add --dev @start/plugin-rename
+# or
+$ npm install --save-dev @start/plugin-rename
 ```
 
 ## Usage

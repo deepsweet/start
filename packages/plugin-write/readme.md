@@ -8,6 +8,8 @@ Write files with source maps to relative destination keeping folders structure.
 
 ```sh
 $ yarn add --dev @start/plugin-write
+# or
+$ npm install --save-dev @start/plugin-write
 ```
 
 ## Usage

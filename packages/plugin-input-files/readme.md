@@ -8,6 +8,8 @@ Inject arguments as files into Start flow.
 
 ```sh
 $ yarn add --dev @start/plugin-input-files
+# or
+$ npm install --save-dev @start/plugin-input-files
 ```
 
 ## Usage

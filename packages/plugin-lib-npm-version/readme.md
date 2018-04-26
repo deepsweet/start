@@ -8,6 +8,8 @@ Bump package version.
 
 ```sh
 $ yarn add --dev @start/plugin-lib-npm-version
+# or
+$ npm install --save-dev @start/plugin-lib-npm-version
 ```
 
 ## Usage

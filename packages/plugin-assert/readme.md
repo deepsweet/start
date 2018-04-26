@@ -8,6 +8,8 @@ Node.js [`assert()`](https://nodejs.org/docs/latest-v8.x/api/all.html#assert_ass
 
 ```sh
 $ yarn add --dev @start/plugin-assert
+# or
+$ npm install --save-dev @start/plugin-assert
 ```
 
 ## Usage

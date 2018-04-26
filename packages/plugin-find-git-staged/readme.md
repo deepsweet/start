@@ -8,6 +8,8 @@ Find Git staged files and filter them using glob patterns.
 
 ```sh
 $ yarn add --dev @start/plugin-find-git-staged
+# or
+$ npm install --save-dev @start/plugin-find-git-staged
 ```
 
 ## Usage

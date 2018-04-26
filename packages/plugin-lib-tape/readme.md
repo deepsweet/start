@@ -8,6 +8,8 @@ Run tests using [Tape](https://github.com/substack/tape).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-tape
+# or
+$ npm install --save-dev @start/plugin-lib-tape
 ```
 
 ## Usage

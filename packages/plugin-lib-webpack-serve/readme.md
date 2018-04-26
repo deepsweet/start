@@ -8,6 +8,8 @@ Run [Webpack development server](https://github.com/webpack-contrib/webpack-serv
 
 ```sh
 $ yarn add --dev @start/plugin-lib-webpack-serve
+# or
+$ npm install --save-dev @start/plugin-lib-webpack-serve
 ```
 
 ## Usage

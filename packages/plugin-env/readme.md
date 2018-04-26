@@ -8,6 +8,8 @@ Set environment variable using [`process.env`](https://nodejs.org/api/all.html#p
 
 ```sh
 $ yarn add --dev @start/plugin-env
+# or
+$ npm install --save-dev @start/plugin-env
 ```
 
 ## Usage

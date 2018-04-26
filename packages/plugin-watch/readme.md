@@ -8,6 +8,8 @@ Watch for new or changed files matched by glob patterns.
 
 ```sh
 $ yarn add --dev @start/plugin-watch
+# or
+$ npm install --save-dev @start/plugin-watch
 ```
 
 ## Usage

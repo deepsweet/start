@@ -8,6 +8,8 @@ Lint and/or fix code using [ESLint](https://eslint.org/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-eslint
+# or
+$ npm install --save-dev @start/plugin-lib-eslint
 ```
 
 ## Usage

@@ -8,6 +8,8 @@ Bundle files using [Webpack](https://webpack.js.org/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-webpack
+# or
+$ npm install --save-dev @start/plugin-lib-webpack
 ```
 
 ## Usage

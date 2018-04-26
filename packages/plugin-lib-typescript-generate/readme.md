@@ -8,6 +8,8 @@ Generate `.d.ts` files using [TypeScript](https://www.typescriptlang.org/).
 
 ```sh
 $ yarn add --dev @start/plugin-lib-typescript-generate
+# or
+$ npm install --save-dev @start/plugin-lib-typescript-generate
 ```
 
 ## Usage
