@@ -23,6 +23,7 @@ import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
 import typescriptCheck from '@start/plugin-lib-typescript-check/src/'
 import npmVersion from '@start/plugin-lib-npm-version/src/'
 import npmPublish from '@start/plugin-lib-npm-publish/src/'
+import codecov from '@start/plugin-lib-codecov/src/'
 import tapDiff from 'tap-diff'
 
 import { babelConfigBuild, babelConfigDts } from './config/babel'
@@ -106,6 +107,14 @@ export const ci = () =>
   sequence(
     lintAll(),
     test()
+  )
+
+export const ciCoverage = () =>
+  sequence(
+    ci(),
+    find('coverage/lcov.info'),
+    read,
+    codecov
   )
 
 export const publish = (packageName: string, version: string) =>
