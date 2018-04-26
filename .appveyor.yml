@@ -1,0 +1,23 @@
+# https://www.appveyor.com/docs/appveyor-yml
+
+version: "{build}"
+environment:
+  matrix:
+    - nodejs_version: "6"
+    - nodejs_version: "8"
+    - nodejs_version: "10"
+branches:
+  only:
+    - master
+cache:
+  - node_modules
+  - '%LOCALAPPDATA%/Yarn'
+skip_tags: true
+matrix:
+  fast_finish: true
+build: off
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - yarn
+test_script:
+- yarn start ci
