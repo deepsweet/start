@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin",
   "version": "0.1.0-3",
-  "description": "Plugin factory for Start",
+  "description": "⚙️ Plugin creator",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin",

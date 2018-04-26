@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-lib-typescript-generate",
   "version": "0.1.0-2",
-  "description": "TypeScript declaration plugin for Start",
+  "description": "🏭 Generate `.d.ts` files using TypeScript",
   "keywords": "tasks, runner, start, start-plugin, typescript",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-typescript-generate",

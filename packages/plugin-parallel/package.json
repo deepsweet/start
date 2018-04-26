@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-parallel",
   "version": "0.1.0-5",
-  "description": "Parallel plugin for Start",
+  "description": "🔀 Run tasks as parallel child processes with same agruments",
   "keywords": "tasks, runner, start, start-plugin, parallelism, parallel",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-parallel",

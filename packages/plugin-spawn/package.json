@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-spawn",
   "version": "0.1.0-4",
-  "description": "Spawn plugin for Start",
+  "description": "🐣 Spawn new child process",
   "keywords": "tasks, runner, start, start-plugin, spawn",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-spawn",

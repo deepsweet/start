@@ -1,6 +1,6 @@
 {
   "private": true,
-  "description": "Functional tasks runner",
+  "description": "🔴 Functional tasks runner for Node.js",
   "workspaces": [
     "packages/*"
   ],

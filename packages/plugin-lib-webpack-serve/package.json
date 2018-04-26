@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-lib-webpack-serve",
   "version": "0.1.0-2",
-  "description": "Webpack Serve plugin for Start",
+  "description": "🏭 Run Webpack development server",
   "keywords": "tasks, runner, start, start-plugin, webpack",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-webpack-serve",

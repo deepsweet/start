@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-env",
   "version": "0.1.0-3",
-  "description": "process.env plugin for Start",
+  "description": "👔 Set environment variable using process.env",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-env",

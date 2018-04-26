@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-assert",
   "version": "0.1.0-2",
-  "description": "Assert plugin for Start",
+  "description": "❓ Node.js assert()",
   "keywords": "tasks, runner, start, start-plugin, assert",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-assert",

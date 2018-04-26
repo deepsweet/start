@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-lib-codecov",
   "version": "0.1.0-1",
-  "description": "Codecov plugin for Start",
+  "description": "💯 Send code coverage report to codecov.io",
   "keywords": "tasks, runner, start, start-plugin, coverage, codecov",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-codecov",

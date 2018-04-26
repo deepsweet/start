@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-lib-babel",
   "version": "0.1.0-1",
-  "description": "Babel plugin for Start",
+  "description": "🏭 Transform files using Babel",
   "keywords": "tasks, runner, start, start-plugin, babel",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-babel",

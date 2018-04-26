@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-remove",
   "version": "0.1.0-2",
-  "description": "Remove plugin for Start",
+  "description": "❌ Remove files or directories",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-remove",

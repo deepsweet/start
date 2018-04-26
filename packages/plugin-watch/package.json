@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-watch",
   "version": "0.1.0-4",
-  "description": "Watch plugin for Start",
+  "description": "👀 Watch for new or changed files matched by glob patterns",
   "keywords": "tasks, runner, start, start-plugin, watch",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-watch",

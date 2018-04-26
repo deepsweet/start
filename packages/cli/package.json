@@ -1,7 +1,7 @@
 {
   "name": "@start/cli",
   "version": "0.1.0-6",
-  "description": "CLI for Start",
+  "description": "⬛️ CLI entry point",
   "keywords": "tasks, runner, start, cli",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/cli",

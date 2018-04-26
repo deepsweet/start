@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-lib-webpack",
   "version": "0.1.0-2",
-  "description": "Webpack plugin for Start",
+  "description": "🏭 Bundle files using Webpack",
   "keywords": "tasks, runner, start, start-plugin, webpack",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-webpack",
