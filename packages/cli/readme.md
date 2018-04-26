@@ -1,4 +1,6 @@
-# @start/cli
+# ⬛️ cli [![npm](https://img.shields.io/npm/v/@start/cli.svg?style=flat-square)](https://www.npmjs.com/package/@start/cli) [![linux](https://img.shields.io/travis/deepsweet/start/master.svg?label=linux&style=flat-square)](https://travis-ci.org/deepsweet/start) [![windows](https://img.shields.io/appveyor/ci/deepsweet/start/master.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/deepsweet/start) [![coverage](https://img.shields.io/codecov/c/github/deepsweet/start/master.svg?style=flat-square)](https://codecov.io/github/deepsweet/start)
+
+CLI entry point to Start.
 
 ## Install
 
