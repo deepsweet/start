@@ -5,7 +5,7 @@ language: node_js
 node_js:
   - 6
   - 8
-  - 9
+  - 10
 env:
   global:
     - PATH=$HOME/.yarn/bin:$PATH
@@ -20,4 +20,4 @@ branches:
     - master
 matrix:
   fast_finish: true
-script: yarn start ci
+script: yarn start ciCoverage
