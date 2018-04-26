@@ -44,4 +44,15 @@ $ yarn add --dev @start/cli
 
 ```sh
 $ yarn start
+
+One of the following task names is required:
+* foo
+* bar
+* baz
+```
+
+```sh
+$ yarn start foo
+$ yarn start bar arg
+$ yarn start baz arg1 arg2
 ```
