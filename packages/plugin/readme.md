@@ -83,3 +83,7 @@ export default (barOptions) =>
 ## Notes
 
 * Dynamic imports – [it's a good idea](https://github.com/gulpjs/gulp/issues/632) to "lazyload" dependencies inside of a plugin function instead of importing them at top.
+* `files` – `StartFiles | Promise<StartFiles>` – a requirement even if this means to just pass it through.
+* `logMessage` – any random message from plugin.
+* `logFile` – current file path to indicate some kind of progress.
+* `reporter` – advanced prop which should be passed through if plugin operates other plugins, like [sequence](../plugin-sequence) or [watch](../plugin-watch).
