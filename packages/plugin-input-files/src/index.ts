@@ -4,7 +4,9 @@ export default (target: StartPlugin) => (...files: string[]) =>
   plugin('inputFiles', async ({ reporter }) => {
     const { default: path } = await import('path')
 
-    return target({
+    const targetRunner = await target
+
+    return targetRunner({
       reporter,
       files: files.map((file) => ({
         path: path.resolve(file),

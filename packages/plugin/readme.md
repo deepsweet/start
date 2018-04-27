@@ -16,26 +16,7 @@ $ npm install --save-dev @start/plugin
 
 ### Types
 
-```ts
-type StartFile = {
-  path: string,
-  data: null | string,
-  map: null | {}
-}
-
-type StartFiles = StartFile[]
-
-type StartPluginProps = {
-  files: StartFiles,
-  reporter: NodeJS.EventEmitter,
-  logFile: (file: string) => void,
-  logMessage: (message: string) => void
-}
-
-type StartPluginOut = StartFiles | Promise<StartFiles>
-
-type StartPlugin = (props: StartPluginProps) => StartPluginOut
-```
+See [`src/index.ts`](src/index.ts) for all the types. It's (usually) better than any words.
 
 ### Example
 
