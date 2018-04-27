@@ -13,7 +13,7 @@ const files = [
   }
 ]
 
-test('export', (t) => {
+test('plugin-sequence: export', (t) => {
   t.equal(
     typeof sequence,
     'function',
@@ -23,7 +23,7 @@ test('export', (t) => {
   t.end()
 })
 
-test('ok: sync output', async (t) => {
+test('plugin-sequence: ok / sync output', async (t) => {
   const props = {
     files,
     reporter: new EventEmitter()
@@ -52,7 +52,7 @@ test('ok: sync output', async (t) => {
   t.end()
 })
 
-test('ok: promise output', async (t) => {
+test('plugin-sequence: ok / promise output', async (t) => {
   const props = {
     files,
     reporter: new EventEmitter()
@@ -81,7 +81,7 @@ test('ok: promise output', async (t) => {
   t.end()
 })
 
-test('ok: plugin as promise', async (t) => {
+test('plugin-sequence: ok / plugin as promise', async (t) => {
   const props = {
     files,
     reporter: new EventEmitter()
@@ -112,7 +112,7 @@ test('ok: plugin as promise', async (t) => {
   t.end()
 })
 
-test('error: throw', async (t) => {
+test('plugin-sequence: error / throw', async (t) => {
   const props = {
     files,
     reporter: new EventEmitter()
@@ -137,7 +137,7 @@ test('error: throw', async (t) => {
   }
 })
 
-test('error: reject', async (t) => {
+test('plugin-sequence: error / reject', async (t) => {
   const props = {
     files,
     reporter: new EventEmitter()
