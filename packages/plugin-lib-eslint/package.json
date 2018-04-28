@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-eslint",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "🚷 Lint and/or fix code using ESLint",
   "keywords": "tasks, runner, start, start-plugin, eslint",
   "repository": "deepsweet/start",

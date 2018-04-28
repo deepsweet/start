@@ -1,6 +1,6 @@
 {
   "name": "@start/reporter-verbose",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "📃 Verbose reporter",
   "keywords": "tasks, runner, start, start-reporter",
   "repository": "deepsweet/start",

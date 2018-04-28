@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-overwrite",
-  "version": "0.1.0-3",
+  "version": "0.1.0-4",
   "description": "✏️ Overwrite files",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
