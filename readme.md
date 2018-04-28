@@ -195,7 +195,7 @@ export const packs = xargs('pack')
 
 export const dev = (packageName: string) =>
   watch(`packages/${packageName}/**/*.ts`)(
-    pack(packageName)
+    build(packageName)
   )
 
 export const lint = () =>
