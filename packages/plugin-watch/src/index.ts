@@ -6,6 +6,7 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
   plugin('watch', async ({ logMessage, reporter }) => {
     const { default: chokidar } = await import('chokidar')
 
+    const targetRunner = await target
     const events = ['add', 'change']
     const options = {
       cwd: process.cwd(),
@@ -34,7 +35,7 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
           events.forEach((event) => {
             watcher.once(event, async (file) => {
               try {
-                await target({
+                await targetRunner({
                   reporter,
                   files: [
                     {
@@ -52,7 +53,7 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
         }
 
         try {
-          await target({
+          await targetRunner({
             reporter,
             files: initialFiles
           })
