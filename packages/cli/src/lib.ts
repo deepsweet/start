@@ -15,7 +15,7 @@ export default async (argv: string[], options: Options) => {
 
   const tasksFile = options.file || './tasks'
   const tasksToRequire = options.preset || resolve(tasksFile)
-  const tasks = require(tasksToRequire)
+  const tasks = await import(tasksToRequire)
   const taskName = argv[2]
   const task = tasks[taskName]
 
