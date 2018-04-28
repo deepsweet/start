@@ -1,0 +1,9 @@
+coverage:
+  parsers:
+    javascript:
+      enable_partials: yes
+  coverage:
+    status:
+      project: off
+      patch: off
+comment: off
