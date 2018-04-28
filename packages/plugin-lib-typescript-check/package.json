@@ -1,7 +1,7 @@
 {
   "name": "@start/plugin-lib-typescript-check",
   "version": "0.1.0-2",
-  "description": "Check types using TypeScript",
+  "description": "🚷 Check types using TypeScript",
   "keywords": "tasks, runner, start, start-plugin, typescript",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-typescript-check",
