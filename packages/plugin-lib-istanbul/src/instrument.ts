@@ -13,7 +13,7 @@ type Options = {
 export default (options: Options = {}) =>
   plugin('istanbulInstrument', async ({ files, logFile, logMessage }) => {
     const { resolve, relative } = await import('path')
-    const { default: module } = await import('module')
+    const { default: Module } = await import('module')
     const { default: { fromSource: getSourceMapFromSource } } = await import('convert-source-map')
     const { default: { createInstrumenter } } = await import('istanbul-lib-instrument')
     const { default: { hookRequire } } = await import('istanbul-lib-hook')
@@ -31,7 +31,7 @@ export default (options: Options = {}) =>
     // clear require cache
     files.forEach((file) => {
       // @ts-ignore
-      delete module._cache[file.path]
+      delete Module._cache[file.path]
     })
 
     const hook = hookRequire(
