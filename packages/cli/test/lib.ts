@@ -1,7 +1,8 @@
 import test from 'tape'
 
-test('cli: export', (t) => {
-  const { default: cliLib } = require('../src/lib')
+test('cli: export', async (t) => {
+  const { default: cliLib } = await import('../src/lib')
+
   t.equal(
     typeof cliLib,
     'function',
@@ -11,8 +12,9 @@ test('cli: export', (t) => {
   t.end()
 })
 
-test('cli: no reporter', (t) => {
-  const { default: cliLib } = require('../src/lib')
+test('cli: no reporter', async (t) => {
+  const { default: cliLib } = await import('../src/lib')
+
   const argv = ['foo', 'bar', 'task', 'arg']
   const options = {
     file: 'test.js'
