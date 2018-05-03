@@ -6,30 +6,197 @@
   <meta charset="utf-8"/>
   <title>Start – functional tasks runner for Node.js</title>
   <style>
-    html, body {
-      height: 100%;
-    }
     body {
-      background-color: #fff;
-      margin: 0;
-    }
-    div {
+      font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      line-height: 1.5;
+      background-color: #282c34;
+      margin: 40px 0;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100%;
     }
-    img {
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .logo {
       display: block;
     }
+    .title {
+      font-size: 24px;
+      font-weight: normal;
+      color: #abb2bf;
+      margin: 40px 0 20px;
+    }
+    .links {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .links-item {
+      display: inline-block;
+    }
+    .links-item + .links-item {
+      margin-left: 20px;
+    }
+    .link {
+      font-size: 18px;
+      color: #abb2bf;
+      text-decoration: underline;
+    }
+    .space {
+      white-space: pre-wrap;
+    }
+    .p1, .p2, .p3, .p4, .p5, .p6, .p7 {
+      font-size: 16px;
+      margin: 0;
+    }
+    .p1 {color: #7f848e}
+    .p2 {color: #bbbbbb}
+    .p3 {color: #98c379}
+    .p4 {color: #c678dd}
+    .p5 {color: #e06c75}
+    .p6 {color: #bbbbbb}
+    .p7 {color: #61afef}
+    .s3 {color: #c678dd}
+    .s4 {color: #bbbbbb}
+    .s5 {color: #e06c75}
+    .s6 {color: #98c378}
+    .s7 {color: #abb2bf}
+    .s8 {color: #d19a66}
+    .s9 {color: #61afef}
+    .s10 {color: #e5c07b}
+    .s11 {color: #56b6c2}
+    .s12 {color: #57b6c2}
+    .s13 {color: #98c379}
   </style>
 </head>
 
 <body>
-  <div>
+  <div class="header">
     <a href="https://github.com/deepsweet/start">
-      <img src="logo.svg" width="200" height="200" alt="logo" />
+      <img class="logo" src="logo.svg" width="200" height="200" alt="logo" />
     </a>
+    <h1 class="title">Functional tasks runner for Node.js</h1>
+    <ul class="links">
+      <li class="links-item">
+        <a class="link" href="https://github.com/deepsweet/start">GitHub</a>
+      </li><li class="links-item">
+        <a class="link" href="https://www.npmjs.com/~start">NPM</a>
+      </li>
+    </ul>
+  </div>
+  <div class="code">
+    <p class="p1"><i>// write tasks file once, publish it and then reuse or even extend</i></p>
+    <p class="p1"><i>// in all projects using `start.preset` option in `package.json`,</i></p>
+    <p class="p1"><i>// something like `my-start-preset` package with everything included</i></p>
+    <p class="p2"><br></p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">sequence</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-sequence</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">parallel</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-parallel</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">xargs</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-xargs</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">find</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-find</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">findGitStaged</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-find-git-staged</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">remove</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-remove</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">read</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-read</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">rename</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-rename</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">write</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-write</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">babel</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-lib-babel</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">typescriptGenerate</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-lib-typescript-generate</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">eslint</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-lib-eslint</span><span class="s6">'</p>
+    <p class="p4">import</span><span class="s4"> {</p>
+    <p class="p5"><span class="s4"><span class="space">  </span></span>istanbulInstrument</span><span class="s4">,</p>
+    <p class="p5"><span class="s4"><span class="space">  </span></span>istanbulReport</span><span class="s4">,</p>
+    <p class="p5"><span class="s4"><span class="space">  </span></span>istanbulThresholds</p>
+    <p class="p3"><span class="s4">} </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-lib-istanbul</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">tape</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-lib-tape</span><span class="s6">'</p>
+    <p class="p3"><span class="s3">import</span><span class="s4"> </span><span class="s5">codecov</span><span class="s4"> </span><span class="s3">from</span><span class="s4"> </span><span class="s6">'</span>@start/plugin-lib-codecov</span><span class="s6">'</p>
+    <p class="p2"><br></p>
+    <p class="p5"><span class="s3">const</span><span class="s4"> </span>babelConfig</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> {</p>
+    <p class="p5"><span class="s4"><span class="space">  </span></span>babelrc</span><span class="s4">: </span><span class="s8">false</span><span class="s4">,</p>
+    <p class="p5"><span class="s4"><span class="space">  </span></span>presets</span><span class="s4">: [</p>
+    <p class="p6"><span class="space">    </span>[</p>
+    <p class="p3"><span class="s4"><span class="space">      </span></span><span class="s6">'</span>@babel/preset-env</span><span class="s6">'</span><span class="s4">,</p>
+    <p class="p6"><span class="space">      </span>{</p>
+    <p class="p6"><span class="space">        </span></span><span class="s5">targets</span><span class="s1">: {</p>
+    <p class="p6"><span class="space">          </span></span><span class="s5">node</span><span class="s1">: </span><span class="s8">6</p>
+    <p class="p6"><span class="space">        </span>},</p>
+    <p class="p6"><span class="space">        </span></span><span class="s5">modules</span><span class="s1">: </span><span class="s8">false</p>
+    <p class="p6"><span class="space">      </span>}</p>
+    <p class="p6"><span class="space">    </span>],</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s6">'</span>@babel/preset-typescript</span><span class="s6">'</p>
+    <p class="p6"><span class="space">  </span>]</p>
+    <p class="p6">}</p>
+    <p class="p2"><br></p>
+    <p class="p1"><i>// each named export is a "task"</i></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">build</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> (</span><span class="s5"><i>packageName</i></span><span class="s7">:</span><span class="s4"> </span><span class="s10">string</span><span class="s4">) </span><span class="s1">=&gt;</p>
+    <p class="p7"><span class="s4"><span class="space">  </span></span>sequence</span><span class="s4">(</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">(</span>`packages/</span><span class="s3">${</span><span class="s5">packageName</span><span class="s3">}</span><span class="s1">/**/*.ts`</span><span class="s4">),</p>
+    <p class="p6"><span class="space">    </span></span><span class="s5">read</span><span class="s1">,</p>
+    <p class="p5"><span class="s4"><span class="space">    </span></span><span class="s9">babel</span><span class="s4">(</span>babelConfig</span><span class="s4">),</p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">rename</span><span class="s1">((</span><span class="s5"><i>file</i></span><span class="s1">) </span><span class="s3">=&gt;</span><span class="s1"> </span><span class="s5">file</span><span class="s1">.</span><span class="s11">replace</span><span class="s1">(</span><span class="s6">/</span><span class="s12">\.ts</span><span class="s3">$</span><span class="s6">/</span><span class="s1">, </span><span class="s6">'</span><span class="s13">.js</span><span class="s6">'</span><span class="s1">)),</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">write</span><span class="s4">(</span>`packages/</span><span class="s3">${</span><span class="s5">packageName</span><span class="s3">}</span><span class="s1">/build/`</span><span class="s4">)</p>
+    <p class="p6"><span class="space">  </span>)</p>
+    <p class="p2"><br></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">dts</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> (</span><span class="s5"><i>packageName</i></span><span class="s7">:</span><span class="s4"> </span><span class="s10">string</span><span class="s4">) </span><span class="s1">=&gt;</p>
+    <p class="p7"><span class="s4"><span class="space">  </span></span>sequence</span><span class="s4">(</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">(</span>`packages/</span><span class="s3">${</span><span class="s5">packageName</span><span class="s3">}</span><span class="s1">/**/*.ts`</span><span class="s4">),</p>
+    <p class="p7"><span class="s4"><span class="space">    </span></span>typescriptGenerate</span><span class="s4">(</span><span class="s13">`packages/</span><span class="s3">${</span><span class="s5">packageName</span><span class="s3">}</span><span class="s13">/build/`</span><span class="s4">)</p>
+    <p class="p6"><span class="space">  </span>)</p>
+    <p class="p2"><br></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">pack</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> (</span><span class="s5"><i>packageName</i></span><span class="s7">:</span><span class="s4"> </span><span class="s10">string</span><span class="s4">) </span><span class="s1">=&gt;</p>
+    <p class="p7"><span class="s4"><span class="space">  </span></span>sequence</span><span class="s4">(</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">(</span>`packages/</span><span class="s3">${</span><span class="s5">packageName</span><span class="s3">}</span><span class="s1">/build/`</span><span class="s4">),</p>
+    <p class="p5"><span class="s4"><span class="space">    </span></span>remove</span><span class="s4">,</p>
+    <p class="p1"><span class="s4"><span class="space">    </span></span><i>// child-processes</i></p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">parallel</span><span class="s1">([</span><span class="s6">'</span><span class="s13">build</span><span class="s6">'</span><span class="s1">, </span><span class="s6">'</span><span class="s13">dts</span><span class="s6">'</span><span class="s1">])(</span><span class="s5">packageName</span><span class="s1">)</p>
+    <p class="p6"><span class="space">  </span>)</p>
+    <p class="p2"><br></p>
+    <p class="p1"><i>// child processes</i></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s5">packs</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> </span><span class="s9">xargs</span><span class="s4">(</span><span class="s6">'</span><span class="s13">pack</span><span class="s6">'</span><span class="s4">)</p>
+    <p class="p2"><br></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">dev</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> (</span><span class="s5"><i>packageName</i></span><span class="s7">:</span><span class="s4"> </span><span class="s10">string</span><span class="s4">) </span><span class="s1">=&gt;</p>
+    <p class="p3"><span class="s4"><span class="space">  </span></span><span class="s9">watch</span><span class="s4">(</span>`packages/</span><span class="s3">${</span><span class="s5">packageName</span><span class="s3">}</span><span class="s1">/**/*.ts`</span><span class="s4">)(</p>
+    <p class="p5"><span class="s4"><span class="space">    </span></span><span class="s9">build</span><span class="s4">(</span>packageName</span><span class="s4">)</p>
+    <p class="p6"><span class="space">  </span>)</p>
+    <p class="p2"><br></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">lint</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> () </span><span class="s1">=&gt;</p>
+    <p class="p7"><span class="s4"><span class="space">  </span></span>sequence</span><span class="s4">(</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">findGitStaged</span><span class="s4">([</span><span class="s6">'</span>packages/*/{src,test}/**/*.ts</span><span class="s6">'</span><span class="s4">]),</p>
+    <p class="p6"><span class="space">    </span></span><span class="s5">read</span><span class="s1">,</p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">eslint</span><span class="s1">()</p>
+    <p class="p6"><span class="space">  </span>)</p>
+    <p class="p2"><br></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">lintAll</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> () </span><span class="s1">=&gt;</p>
+    <p class="p7"><span class="s4"><span class="space">  </span></span>sequence</span><span class="s4">(</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">([</span><span class="s6">'</span>packages/*/{src,test}/**/*.ts</span><span class="s6">'</span><span class="s4">]),</p>
+    <p class="p6"><span class="space">    </span></span><span class="s5">read</span><span class="s1">,</p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">eslint</span><span class="s1">()</p>
+    <p class="p6"><span class="space">  </span>)</p>
+    <p class="p2"><br></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">test</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> () </span><span class="s1">=&gt;</p>
+    <p class="p7"><span class="s4"><span class="space">  </span></span>sequence</span><span class="s4">(</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">(</span>`coverage/`</span><span class="s4">),</p>
+    <p class="p5"><span class="s4"><span class="space">    </span></span>remove</span><span class="s4">,</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">(</span><span class="s6">'</span>packages/*/src/**/*.ts</span><span class="s6">'</span><span class="s4">),</p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">istanbulInstrument</span><span class="s1">({ </span><span class="s5">esModules</span><span class="s1">: </span><span class="s8">true</span><span class="s1">, </span><span class="s5">extensions</span><span class="s1">: [</span><span class="s6">'</span><span class="s13">.ts</span><span class="s6">'</span><span class="s1">] }),</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">(</span><span class="s6">'</span>packages/*/test/**/*.ts</span><span class="s6">'</span><span class="s4">),</p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">tape</span><span class="s1">(),</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">istanbulReport</span><span class="s4">([</span><span class="s6">'</span>lcovonly</span><span class="s6">'</span><span class="s4">, </span><span class="s6">'</span><span class="s1">html</span><span class="s6">'</span><span class="s4">, </span><span class="s6">'</span><span class="s1">text-summary</span><span class="s6">'</span><span class="s4">]),</p>
+    <p class="p7"><span class="s4"><span class="space">    </span></span>istanbulThresholds</span><span class="s4">({ </span><span class="s5">functions</span><span class="s4">: </span><span class="s8">100</span><span class="s4"> })</p>
+    <p class="p6"><span class="space">  </span>)</p>
+    <p class="p2"><br></p>
+    <p class="p4">export</span><span class="s4"> </span><span class="s1">const</span><span class="s4"> </span><span class="s9">ci</span><span class="s4"> </span><span class="s7">=</span><span class="s4"> () </span><span class="s1">=&gt;</p>
+    <p class="p7"><span class="s4"><span class="space">  </span></span>sequence</span><span class="s4">(</p>
+    <p class="p1"><span class="s4"><span class="space">    </span></span><i>// nested task</i></p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">lintAll</span><span class="s1">(),</p>
+    <p class="p1"><span class="s4"><span class="space">    </span></span><i>// nested task</i></p>
+    <p class="p6"><span class="space">    </span></span><span class="s9">test</span><span class="s1">(),</p>
+    <p class="p3"><span class="s4"><span class="space">    </span></span><span class="s9">find</span><span class="s4">(</span><span class="s6">'</span>coverage/lcov.info</span><span class="s6">'</span><span class="s4">),</p>
+    <p class="p6"><span class="space">    </span></span><span class="s5">read</span><span class="s1">,</p>
+    <p class="p5"><span class="s4"><span class="space">    </span></span>codecov</p>
+    <p class="p6"><span class="space">  </span>)</p>
   </div>
 </body>
 
