@@ -269,6 +269,7 @@ $ yarn start ci
 * [Use CLI and pass in options](packages/cli)
 * [Create a plugin](packages/plugin)
 * [Create a reporter](packages/reporter-verbose)
+* [Create a preset](https://github.com/deepsweet/start-preset-node-ts-lib)
 
 ## Recipes
 
