@@ -24,6 +24,7 @@
     * [Tests](#tests)
     * [Lint, check and fix](#lint-check-and-fix)
     * [CI and publish](#ci-and-publish)
+* [Roadmap](#roadmap)
 * [Copyright](#copyright)
 
 ## Example
@@ -344,6 +345,7 @@ $ yarn start ci
 * [ ] stabilize and publish 0.1.0 of everything
 * [x] documentation
 * [ ] tests
+* [ ] migrate the rest of important plugins
 
 ## Copyright
 
