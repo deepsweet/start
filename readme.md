@@ -257,6 +257,7 @@ $ yarn start pack foo
 $ yarn start packs foo bar
 $ yarn start dev bar
 $ yarn start lint
+$ yarn start lintAll
 $ yarn start test
 $ yarn start ci
 ```
