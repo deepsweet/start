@@ -1,9 +1,3 @@
-👉 This is a next iteration which is currently a *work in progress*, you might want to check old [runner implementation](https://github.com/deepsweet/start/tree/old) and its [plugins](https://github.com/start-runner).
-
-* [ ] stabilize and publish 0.1.0 of everything
-* [x] documentation
-* [ ] tests
-
 # start
 
 [![linux](https://img.shields.io/travis/deepsweet/start/master.svg?label=linux&style=flat-square)](https://travis-ci.org/deepsweet/start) [![windows](https://img.shields.io/appveyor/ci/deepsweet/start/master.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/deepsweet/start) [![coverage](https://img.shields.io/codecov/c/github/deepsweet/start/master.svg?style=flat-square)](https://codecov.io/github/deepsweet/start)
@@ -14,6 +8,8 @@
 * fast – [parallelism and concurrency](https://stackoverflow.com/questions/1050222/what-is-the-difference-between-concurrency-and-parallelism)
 * shareable – presets as published packages
 * 4th line to align with logo on the right
+
+👉 This is currently a work in progress, see [roadmap](#roadmap).
 
 ## TOC
 
@@ -342,6 +338,12 @@ $ yarn start ci
 * 🔢 [plugin-lib-npm-version](packages/plugin-lib-npm-version) – bump package version
 * 📦 [plugin-lib-npm-publish](packages/plugin-lib-npm-publish) – publish package to NPM
 * 💯 plugin-lib-coveralls – [to be migrated](https://github.com/start-runner/coveralls)
+
+## Roadmap
+
+* [ ] stabilize and publish 0.1.0 of everything
+* [x] documentation
+* [ ] tests
 
 ## Copyright
 
