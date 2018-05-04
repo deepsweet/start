@@ -27,7 +27,8 @@
     "typescript-eslint-parser": "^15.0.0"
   },
   "scripts": {
-    "start": "node packages/cli/src/index.js"
+    "start": "node packages/cli/src/index.js",
+    "debug": "node --inspect-brk packages/cli/src/index.js"
   },
   "start": {
     "require": [
