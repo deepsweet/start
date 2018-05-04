@@ -116,7 +116,8 @@
       "promise/no-nesting": "off",
       "promise/no-callback-in-promise": "off",
       "prefer-promise-reject-errors": "off",
-      "no-throw-literal": "off"
+      "no-throw-literal": "off",
+      "no-debugger": "off"
     }
   },
   "eslintIgnore": [
