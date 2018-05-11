@@ -37,7 +37,7 @@ test('plugin-assert: throw with default message', async (t) => {
     t.ok(
       onErrorSpy.calledWithMatch(
         'assert',
-        { code: 'ERR_ASSERTION', message: 'false == true' }
+        { message: 'false == true' }
       ),
       'should throw assert error'
     )
@@ -61,7 +61,7 @@ test('plugin-assert: throw with custom message', async (t) => {
     t.ok(
       onErrorSpy.calledWithMatch(
         'assert',
-        { code: 'ERR_ASSERTION', message: 'should be true!' }
+        { message: 'should be true!' }
       ),
       'should throw assert error'
     )
