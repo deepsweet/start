@@ -1,5 +1,5 @@
 import EventEmitter from 'events'
-import test from 'tape'
+import test from 'tape-promise/tape'
 import { spy, stub } from 'sinon'
 
 import plugin from '../src'
@@ -60,8 +60,6 @@ test('plugin: props', async (t) => {
     'function',
     '`logFile` should be a function'
   )
-
-  t.end()
 })
 
 test('plugin: done', async (t) => {
@@ -86,8 +84,6 @@ test('plugin: done', async (t) => {
     eventDoneSpy.calledOnceWith(name),
     'should emit `done` event'
   )
-
-  t.end()
 })
 
 test('plugin: error', async (t) => {
@@ -120,8 +116,6 @@ test('plugin: error', async (t) => {
       eventErrorSpy.calledOnceWith(name, testError),
       'should emit `error` event'
     )
-
-    t.end()
   }
 })
 
@@ -145,8 +139,6 @@ test('plugin: log message', async (t) => {
     eventMessageSpy.calledOnceWith(name, message),
     'should emit `message` event'
   )
-
-  t.end()
 })
 
 test('plugin: log file', async (t) => {
@@ -169,6 +161,4 @@ test('plugin: log file', async (t) => {
     eventFileSpy.calledOnceWith(name, filePath),
     'should emit `file` event'
   )
-
-  t.end()
 })

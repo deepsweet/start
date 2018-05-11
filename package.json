@@ -24,6 +24,7 @@
     "mocku": "^0.1.0",
     "sinon": "^5.0.1",
     "tap-diff": "^0.1.1",
+    "tape-promise": "^3.0.0",
     "typescript": "^2.8.3",
     "typescript-eslint-parser": "^15.0.0"
   },

@@ -1,6 +1,6 @@
 import { StartPlugin } from '@start/plugin/src/'
 import EventEmitter from 'events'
-import test from 'tape'
+import test from 'tape-promise/tape'
 import { stub } from 'sinon'
 
 import sequence from '../src'
@@ -49,8 +49,6 @@ test('plugin-sequence: ok / sync output', async (t) => {
     files,
     'result of sequence should be equal files'
   )
-
-  t.end()
 })
 
 test('plugin-sequence: ok / promise output', async (t) => {
@@ -79,8 +77,6 @@ test('plugin-sequence: ok / promise output', async (t) => {
     files,
     'result of sequence should be equal files'
   )
-
-  t.end()
 })
 
 test('plugin-sequence: ok / promise plugin / promise output', async (t) => {
@@ -111,8 +107,6 @@ test('plugin-sequence: ok / promise plugin / promise output', async (t) => {
     files,
     'result of sequence should be equal files'
   )
-
-  t.end()
 })
 
 test('plugin-sequence: error / throw', async (t) => {
@@ -137,8 +131,6 @@ test('plugin-sequence: error / throw', async (t) => {
       plugin2.notCalled,
       'plugin2 should not be called'
     )
-
-    t.end()
   }
 })
 
@@ -164,7 +156,5 @@ test('plugin-sequence: error / reject', async (t) => {
       plugin2.notCalled,
       'plugin2 should not be called'
     )
-
-    t.end()
   }
 })
