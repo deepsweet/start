@@ -24,6 +24,7 @@ test('plugin-input-files: simple', async (t) => {
   ]
 
   const result = await inputFiles(targetPluginSpy)(...files)({
+    files: [],
     reporter
   })
 
@@ -56,6 +57,7 @@ test('plugin-input-files: async plugin', async (t) => {
   ]
 
   const result = await inputFiles(targetPluginPromise)(...files)({
+    files: [],
     reporter
   })
 
