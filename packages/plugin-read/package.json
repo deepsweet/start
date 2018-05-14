@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-read",
-  "version": "0.1.0-4",
+  "version": "0.1.0",
   "description": "📖 Read files content",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
