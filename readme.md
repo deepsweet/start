@@ -343,7 +343,7 @@ $ yarn start ci
 
 * [x] stabilize and publish 0.1.0 of everything
 * [x] documentation
-* [ ] tests
+* [ ] more tests
 * [ ] migrate the rest of important plugins
 
 ## Copyright
