@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-sequence",
-  "version": "0.1.0-5",
+  "version": "0.1.0",
   "description": "⏩ Run plugins in sequence",
   "keywords": "tasks, runner, start, start-plugin, sequence",
   "repository": "deepsweet/start",
