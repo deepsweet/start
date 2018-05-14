@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-write",
-  "version": "0.1.0-5",
+  "version": "0.1.0",
   "description": "✏️ Write files with source maps to relative destination keeping folders structure",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
