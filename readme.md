@@ -1,5 +1,3 @@
-👉 This is currently a work in progress, see [roadmap](#roadmap).
-
 # start
 
 [![linux](https://img.shields.io/travis/deepsweet/start/master.svg?label=linux&style=flat-square)](https://travis-ci.org/deepsweet/start) [![windows](https://img.shields.io/appveyor/ci/deepsweet/start/master.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/deepsweet/start) [![coverage](https://img.shields.io/codecov/c/github/deepsweet/start/master.svg?style=flat-square)](https://codecov.io/github/deepsweet/start)
@@ -343,7 +341,7 @@ $ yarn start ci
 
 ## Roadmap
 
-* [ ] stabilize and publish 0.1.0 of everything
+* [x] stabilize and publish 0.1.0 of everything
 * [x] documentation
 * [ ] tests
 * [ ] migrate the rest of important plugins
