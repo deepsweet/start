@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-find",
-  "version": "0.1.0-5",
+  "version": "0.1.0",
   "description": "🔍 Find files using glob patterns",
   "keywords": "tasks, runner, glob, start, start-plugin",
   "repository": "deepsweet/start",
