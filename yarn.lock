@@ -4415,6 +4415,10 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
+move-path@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/move-path/-/move-path-0.1.0.tgz#f0e15f01afefaf23f464012946f1c1e0a8eff31b"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"

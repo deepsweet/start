@@ -5,37 +5,14 @@ export default (outDirRelative: string) =>
     const { default: path } = await import('path')
     const { default: makethen } = await import('makethen')
     const { default: fs } = await import('graceful-fs')
+    const { default: movePath } = await import('move-path')
     const { default: mkdirp } = await import('mkdirp')
     const makeDir = makethen(mkdirp)
 
     return Promise.all(
       files.map((file) => {
-        // file.path = /Users/foo/test/packages/beep/src/boop/index.js
-        // process.cwd() = /Users/foo/test
-        // outDirRelative = packages/beep/build
-
-        // /Users/foo/test/packages/beep/src/boop/index.js -> index.js
-        const inFile = path.basename(file.path)
-        // /Users/foo/test/packages/beep/src/boop/index.js -> /Users/foo/test/packages/beep/src/boop
-        const inDir = path.dirname(file.path)
-        // /Users/foo/test/packages/beep/src/boop -> packages/beep/src/boop
-        const inDirRelative = path.relative(process.cwd(), inDir)
-        // src/beep -> [ 'packages', 'beep', 'src', 'boop ]
-        const inDirSplit = inDirRelative.split(path.sep)
-        // [ 'packages', 'beep', 'build' ]
-        const outDirSplit = outDirRelative.split(path.sep)
-        // [ 'packages', 'beep', 'src', 'boop ] + [ 'packages', 'beep', 'build' ]
-        const inDirUnique = inDirSplit
-          // [ 'packages', 'beep', 'src', 'boop ] -> [ 'src', 'boop' ]
-          .filter((segment, index) => segment !== outDirSplit[index])
-          // [ 'src', 'boop' ] -> [ 'boop' ]
-          .slice(1)
-          // [ 'boop' ] -> 'boop'
-          .join(path.sep)
-        // packages/beep/build + boop -> /Users/foo/test/packages/beep/build/boop
-        const outDir = path.resolve(outDirRelative, inDirUnique)
-        // packages/beep/build/boop + index.js ->  /Users/foo/test/packages/beep/build/boop/index.js
-        const outFile = path.join(outDir, inFile)
+        const outFile = movePath(file.path, outDirRelative)
+        const outDir = path.dirname(outFile)
 
         return makeDir(outDir).then(() => {
           return new Promise<StartFile>((resolve, reject) => {
