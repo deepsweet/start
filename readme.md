@@ -269,7 +269,7 @@ $ yarn start ci
 
 ## Recipes
 
-* Node.js TypeScript library – [makethen](https://github.com/deepsweet/makethen)
+* Node.js TypeScript library preset – [@deepsweet/start-preset-node-ts-lib](https://github.com/deepsweet/start-preset-node-ts-lib)
 * Node.js TypeScript libraries monorepo – Start project builds itself from sources using sources, see [`tasks/index.ts`](tasks/index.ts)
 * React / React Native (higher-order) components monorepo – [hocs](https://github.com/deepsweet/hocs)
 * React app – to be added
