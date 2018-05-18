@@ -1,5 +1,8 @@
 import plugin, { StartFiles } from '@start/plugin/src/'
-import { ConfigOptions as KarmaConfig } from 'karma'
+
+type KarmaConfig = {
+  [key: string]: any
+}
 
 export default (config: KarmaConfig) =>
   plugin('karma', async ({ files }) => {
