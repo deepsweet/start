@@ -96,24 +96,8 @@
         }
       ],
       "node/shebang": "off",
-      "node/no-missing-import": [
-        "error",
-        {
-          "tryExtensions": [
-            ".ts",
-            ".js"
-          ]
-        }
-      ],
-      "node/no-missing-require": [
-        "error",
-        {
-          "tryExtensions": [
-            ".ts",
-            ".js"
-          ]
-        }
-      ],
+      "node/no-missing-import": "off",
+      "node/no-missing-require": "off",
       "promise/avoid-new": "off",
       "promise/always-return": "off",
       "promise/no-nesting": "off",
