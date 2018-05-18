@@ -320,10 +320,10 @@ $ yarn start ci
 
 * ✅ [plugin-lib-jest](packages/plugin-lib-jest) – run tests using [Jest](https://facebook.github.io/jest/)
 * ✅ [plugin-lib-tape](packages/plugin-lib-tape) – run tests using [Tape](https://github.com/substack/tape)
+* ✅ [plugin-lib-karma](packages/plugin-lib-karma) – run tests using [Karma](https://github.com/karma-runner/karma)
 * 💯 [plugin-lib-instanbul](packages/plugin-lib-istanbul) – collect, report and check code coverage using [Istanbul](https://istanbul.js.org/)
 * ✅ plugin-lib-ava – [to be migrated](https://github.com/start-runner/ava)
 * ✅ plugin-lib-mocha – [to be migrated](https://github.com/start-runner/mocha)
-* ✅ plugin-lib-karma – [to be migrated](https://github.com/start-runner/karma)
 
 #### Lint, check and fix
 
