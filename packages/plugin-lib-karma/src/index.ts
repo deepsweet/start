@@ -1,4 +1,4 @@
-import plugin, { StartFiles } from '@start/plugin'
+import plugin, { StartFiles } from '@start/plugin/src/'
 import { ConfigOptions as KarmaConfig } from 'karma'
 
 export default (config: KarmaConfig) =>
