@@ -8,8 +8,7 @@ export default (outDirRelative: string) =>
     const { default: makethen } = await import('makethen')
     const { default: gracefulFs } = await import('graceful-fs')
     const { default: movePath } = await import('move-path')
-    const { default: makeDirP } = await import('mkdirp')
-    const makeDir = makethen(makeDirP)
+    const { default: makeDir } = await import('make-dir')
     const writeFile = makethen(gracefulFs.writeFile as WriteFile)
 
     return Promise.all(
