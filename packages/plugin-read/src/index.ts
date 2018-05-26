@@ -4,7 +4,7 @@ type ReadFile = (path: string, options: string, cb: (err: any, data: string) => 
 
 export default plugin('read', async ({ files, logFile }) => {
   const { default: makethen } = await import('makethen')
-  const { default: gracefulFs } = await import('graceful-fs')
+  const gracefulFs = await import('graceful-fs')
 
   const readFile = makethen(gracefulFs.readFile as ReadFile)
 
