@@ -2,8 +2,8 @@ import plugin from '@start/plugin/src/'
 
 export default (glob: string | string[]) =>
   plugin('findGitStaged', async ({ logFile }) => {
-    const { default: path } = await import('path')
-    const { default: { EOL } } = await import('os')
+    const path = await import('path')
+    const { EOL } = await import('os')
     const { default: execa } = await import('execa')
     const { default: multimatch } = await import('multimatch')
 
