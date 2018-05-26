@@ -4,9 +4,9 @@ type WriteFile = (path: string, data: string, options: string, cb: (err: any) =>
 
 export default (outDirRelative: string) =>
   plugin('write', async ({ files, logFile }) => {
-    const { default: path } = await import('path')
+    const path = await import('path')
     const { default: makethen } = await import('makethen')
-    const { default: gracefulFs } = await import('graceful-fs')
+    const gracefulFs = await import('graceful-fs')
     const { default: movePath } = await import('move-path')
     const { default: makeDir } = await import('make-dir')
     const writeFile = makethen(gracefulFs.writeFile as WriteFile)
