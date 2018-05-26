@@ -4,7 +4,7 @@ import plugin, { StartFiles, StartPlugin } from '@start/plugin/src/'
 
 export default (glob: string | string[], userOptions?: {}) => (target: StartPlugin) =>
   plugin('watch', async ({ logMessage, reporter }) => {
-    const { default: chokidar } = await import('chokidar')
+    const chokidar = await import('chokidar')
 
     const targetRunner = await target
     const events = ['add', 'change']
