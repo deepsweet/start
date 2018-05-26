@@ -2,8 +2,8 @@ import plugin, { StartFile } from '@start/plugin/src/'
 
 export default (outDirRelative: string) =>
   plugin('copy', async ({ files, logFile }) => {
-    const { default: path } = await import('path')
-    const { default: fs } = await import('graceful-fs')
+    const path = await import('path')
+    const { createReadStream, createWriteStream } = await import('graceful-fs')
     const { default: movePath } = await import('move-path')
     const { default: makeDir } = await import('make-dir')
 
@@ -14,8 +14,8 @@ export default (outDirRelative: string) =>
 
         return makeDir(outDir).then(() => {
           return new Promise<StartFile>((resolve, reject) => {
-            const readStream = fs.createReadStream(file.path)
-            const writeStream = fs.createWriteStream(outFile)
+            const readStream = createReadStream(file.path)
+            const writeStream = createWriteStream(outFile)
 
             readStream.on('error', reject)
             writeStream.on('error', reject)
