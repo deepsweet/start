@@ -9,9 +9,9 @@ type Options = {
 
 export default (options: Options) =>
   plugin('istanbulThresholds', async ({ files, logMessage }) => {
-    const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
-    const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
-    const { default: { summarizers } } = await import('istanbul-lib-report')
+    const { createCoverageMap } = await import('istanbul-lib-coverage')
+    const { createSourceMapStore } = await import('istanbul-lib-source-maps')
+    const { summarizers } = await import('istanbul-lib-report')
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
 

@@ -12,11 +12,10 @@ type Options = {
 
 export default (options: Options = {}) =>
   plugin('istanbulInstrument', async ({ files, logFile, logMessage }) => {
-    const { resolve, relative } = await import('path')
-    const { default: Module } = await import('module')
-    const { default: { fromSource: getSourceMapFromSource } } = await import('convert-source-map')
-    const { default: { createInstrumenter } } = await import('istanbul-lib-instrument')
-    const { default: { hookRequire } } = await import('istanbul-lib-hook')
+    const Module = await import('module')
+    const { fromSource: getSourceMapFromSource } = await import('convert-source-map')
+    const { createInstrumenter } = await import('istanbul-lib-instrument')
+    const { hookRequire } = await import('istanbul-lib-hook')
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
 

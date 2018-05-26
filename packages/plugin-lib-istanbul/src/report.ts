@@ -2,9 +2,9 @@ import plugin from '@start/plugin/src/'
 
 export default (formats: string[] = ['lcovonly', 'text-summary']) =>
   plugin('istanbulReport', async ({ files, logMessage }) => {
-    const { default: { createCoverageMap } } = await import('istanbul-lib-coverage')
-    const { default: { createSourceMapStore } } = await import('istanbul-lib-source-maps')
-    const { default: { createReporter } } = await import('istanbul-api')
+    const { createCoverageMap } = await import('istanbul-lib-coverage')
+    const { createSourceMapStore } = await import('istanbul-lib-source-maps')
+    const { createReporter } = await import('istanbul-api')
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
 
