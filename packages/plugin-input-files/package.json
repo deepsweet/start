@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-input-files",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "🔌 Inject arguments as files into Start flow files",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
