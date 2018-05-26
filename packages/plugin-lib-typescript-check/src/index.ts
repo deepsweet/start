@@ -6,7 +6,7 @@ export type Options = {
 
 export default (userOptions?: Options) =>
   plugin('typescriptCheck', async ({ files }) => {
-    const { default: path } = await import('path')
+    const path = await import('path')
     const { default: execa } = await import('execa')
 
     const tscBinPath = path.resolve('node_modules/.bin/tsc')
