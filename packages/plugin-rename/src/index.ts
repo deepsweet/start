@@ -2,7 +2,7 @@ import plugin from '@start/plugin/src/'
 
 export default (callback: (file: string) => string) =>
   plugin('rename', async ({ files, logFile }) => {
-    const { default: path } = await import('path')
+    const path = await import('path')
 
     return files.map((file) => {
       const newPath = callback(file.path)
