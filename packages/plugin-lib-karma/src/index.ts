@@ -6,7 +6,7 @@ type KarmaConfig = {
 
 export default (config: KarmaConfig) =>
   plugin('karma', async ({ files }) => {
-    const { default: { Server } } = await import('karma')
+    const { Server } = await import('karma')
 
     return new Promise<StartFiles>((resolve, reject) => {
       const karmaServer = new Server(config)
