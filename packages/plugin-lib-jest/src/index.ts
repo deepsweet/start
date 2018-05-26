@@ -16,7 +16,7 @@ const optionsToStringify = [
 
 export default (userOptions: Options) =>
   plugin('jest', async ({ files }) => {
-    const { default: jestCLI } = await import('jest-cli')
+    const { runCLI } = await import('jest-cli')
 
     const options = {
       rootDir: process.cwd(),
@@ -31,7 +31,7 @@ export default (userOptions: Options) =>
     }
     const projects = [options.rootDir]
 
-    return jestCLI.runCLI(options, projects).then(({ results }) => {
+    return runCLI(options, projects).then(({ results }) => {
       if (
         results.numFailedTests > 0 ||
         results.numFailedTestSuites > 0 ||
