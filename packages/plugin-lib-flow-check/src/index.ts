@@ -2,7 +2,7 @@ import plugin from '@start/plugin/src/'
 
 export default (...flowArgs: string[]) =>
   plugin('flowCheck', async ({ files }) => {
-    const { default: path } = await import('path')
+    const path = await import('path')
     const { default: execa } = await import('execa')
 
     const flowBinPath = path.resolve('node_modules/.bin/flow')
