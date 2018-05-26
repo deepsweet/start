@@ -3,7 +3,7 @@ import { CLIEngine } from 'eslint'
 
 export default (userOptions?: CLIEngine.Options, formatter?: string) =>
   plugin('eslint', async ({ files, logMessage, logFile }) => {
-    const { default: { CLIEngine } } = await import('eslint')
+    const { CLIEngine } = await import('eslint')
     const options: CLIEngine.Options = {
       cache: true,
       cacheLocation: 'node_modules/.cache/eslint',
@@ -14,7 +14,7 @@ export default (userOptions?: CLIEngine.Options, formatter?: string) =>
     const filesToCheck = files.filter((file) => !cli.isPathIgnored(file.path))
 
     const report: CLIEngine.LintReport = filesToCheck.reduce((acc, file) => {
-      const [ result ] = cli.executeOnText(file.data, file.path).results
+      const [result] = cli.executeOnText(file.data, file.path).results
 
       acc.results.push(result)
       acc.errorCount += result.errorCount
