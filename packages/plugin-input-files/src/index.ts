@@ -2,7 +2,7 @@ import plugin, { StartPlugin } from '@start/plugin/src/'
 
 export default (target: StartPlugin) => (...files: string[]) =>
   plugin('inputFiles', async ({ reporter }) => {
-    const { default: path } = await import('path')
+    const path = await import('path')
 
     const targetRunner = await target
 
