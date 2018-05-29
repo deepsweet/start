@@ -2691,9 +2691,9 @@ eslint@^4.0.0, eslint@^4.18.2, eslint@^4.19.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-esm@^3.0.38:
-  version "3.0.38"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.38.tgz#e58f140f12eaff48a716fb7b1e700dc55963e29e"
+esm@^3.0.39:
+  version "3.0.39"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.39.tgz#076e6a2f846bb579e0b82c494091a0687b494b48"
 
 espree@^3.5.4:
   version "3.5.4"
@@ -4999,9 +4999,9 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-mocku@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/mocku/-/mocku-0.1.2.tgz#c30ef7bd9efd5fc7ebdae8fcab8cf4fd7a6e2e20"
+mocku@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/mocku/-/mocku-0.2.0.tgz#d29d141877fc9ec1b0249c78617666dccc6f0c20"
   dependencies:
     get-caller-file "^1.0.2"
 
