@@ -47,7 +47,7 @@ test('cli: throw without task name', async (t) => {
   return cliLib(argv, options).catch((error) => {
     t.equal(
       error,
-      'One of the following task names is required:\n* a\n* b\n* default',
+      'One of the following task names is required:\n* a\n* b',
       'should throw'
     )
 
@@ -74,7 +74,7 @@ test('cli: throw with unknown task name', async (t) => {
   return cliLib(argv, options).catch((error) => {
     t.equal(
       error,
-      'One of the following task names is required:\n* a\n* b\n* default',
+      'One of the following task names is required:\n* a\n* b',
       'should throw'
     )
 
@@ -90,7 +90,9 @@ test('cli: default file', async (t) => {
     [resolve('./tasks')]: {
       task: taskStub
     },
-    reporter: reporterStub
+    reporter: {
+      default: reporterStub
+    }
   })
 
   const { default: cliLib } = await import('../src/lib')
@@ -128,7 +130,9 @@ test('cli: custom file', async (t) => {
     [resolve('./my-tasks')]: {
       task: taskStub
     },
-    reporter: reporterStub
+    reporter: {
+      default: reporterStub
+    }
   })
 
   const { default: cliLib } = await import('../src/lib')
@@ -167,7 +171,9 @@ test('cli: preset', async (t) => {
     preset: {
       task: taskStub
     },
-    reporter: reporterStub
+    reporter: {
+      default: reporterStub
+    }
   })
 
   const { default: cliLib } = await import('../src/lib')
