@@ -18,11 +18,10 @@
   * [Core](#core)
   * [Plugins](#plugins)
     * [FS](#fs)
-    * [Lib](#lib)
-      * [Build and bundle](#build-and-bundle)
-      * [Tests](#tests)
-      * [Lint, check and fix](#lint-check-and-fix)
-      * [CI and publish](#ci-and-publish)
+    * [Build and bundle](#build-and-bundle)
+    * [Tests](#tests)
+    * [Lint, check and fix](#lint-check-and-fix)
+    * [CI and publish](#ci-and-publish)
   * [Tasks](#tasks)
 * [Roadmap](#roadmap)
 * [Copyright](#copyright)
@@ -308,9 +307,7 @@ $ yarn start ci
 * ✏️ [plugin-overwrite](packages/plugin-overwrite) – overwrite files
 * 👀 [plugin-watch](packages/plugin-watch) – watch for new or changed files matched by glob patterns
 
-#### Lib
-
-##### Build and bundle
+#### Build and bundle
 
 * 🏭 [plugin-lib-babel](packages/plugin-lib-babel) – transform files using [Babel](https://babeljs.io/)
 * 🏭 [plugin-lib-webpack](packages/plugin-lib-webpack) – bundle files using [Webpack](https://webpack.js.org/)
@@ -322,7 +319,7 @@ $ yarn start ci
 * 🏭 plugin-lib-clean-css – [to be migrated](https://github.com/start-runner/clean-css)
 * 🏭 plugin-lib-uglify – [to be migrated](https://github.com/start-runner/uglify)
 
-##### Tests
+#### Tests
 
 * ✅ [plugin-lib-jest](packages/plugin-lib-jest) – run tests using [Jest](https://facebook.github.io/jest/)
 * ✅ [plugin-lib-tape](packages/plugin-lib-tape) – run tests using [Tape](https://github.com/substack/tape)
@@ -332,14 +329,14 @@ $ yarn start ci
 * ✅ plugin-lib-mocha – [to be migrated](https://github.com/start-runner/mocha)
 * ❓ [plugin-assert](packages/plugin-assert) – Node.js [`assert()`](https://nodejs.org/docs/latest-v8.x/api/all.html#assert_assert_value_message)
 
-##### Lint, check and fix
+#### Lint, check and fix
 
 * 🚷 [plugin-lib-eslint](packages/plugin-lib-eslint) – lint and/or fix code using [ESLint](https://eslint.org/)
 * 🚷 [plugin-lib-prettier-eslint](packages/plugin-lib-prettier-eslint) – fix code(style) using [Prettier + ESLint](https://github.com/prettier/prettier-eslint)
 * 🚷 [plugin-lib-typescript-check](packages/plugin-lib-typescript-check) – check types using [TypeScript](https://www.typescriptlang.org/)
 * 🚷 [plugin-lib-flow-check](packages/plugin-lib-flow-check) – check types using [Flow](https://flow.org/)
 
-##### CI and publish
+#### CI and publish
 
 * 💯 [plugin-lib-codecov](packages/plugin-lib-codecov) – send code coverage report to [codecov.io](https://codecov.io/)
 * 🔢 [plugin-lib-npm-version](packages/plugin-lib-npm-version) – bump package version
