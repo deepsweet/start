@@ -279,7 +279,8 @@ $ yarn start ci
 
 ### Core
 
-* ⬛️ [cli](packages/cli) – CLI entry point
+* ⬛️ [cli](packages/cli) – CLI entry point that read config from `package.json` → `start`
+* ⬛️ [cli-lib](packages/cli-lib) – core CLI lib
 * ⚙️ [plugin](packages/plugin) – plugin creator
 * 📃 [reporter-verbose](packages/reporter-verbose) – verbose reporter
 
