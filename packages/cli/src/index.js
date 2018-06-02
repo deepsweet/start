@@ -27,9 +27,15 @@ if (Array.isArray(options.require)) {
   })
 }
 
-const { default: cliLib } = require('./lib')
+const { default: cliLib } = require('@start/cli-lib/src/')
 
-cliLib(process.argv, options).catch((error) => {
+cliLib({
+  file: options.file,
+  preset: options.preset,
+  reporter: options.reporter,
+  taskName: process.argv[2],
+  taskArgs: process.argv.slice(3)
+}).catch((error) => {
   if (error !== null) {
     console.log(error)
   }
