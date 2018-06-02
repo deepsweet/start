@@ -18,7 +18,8 @@ const babelConfigCommon = {
     }],
     ['module-resolver', {
       'alias': {
-        '@start/plugin/src/': '@start/plugin'
+        '@start/plugin/src/': '@start/plugin',
+        '@start/cli-lib/src/': '@start/cli-lib'
       }
     }]
   ]
