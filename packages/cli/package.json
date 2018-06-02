@@ -1,6 +1,6 @@
 {
   "name": "@start/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "⬛️ CLI entry point that read config from `package.json` → `start`",
   "keywords": "tasks, runner, start, cli",
   "repository": "deepsweet/start",
