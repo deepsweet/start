@@ -1,7 +1,7 @@
 {
   "name": "@start/cli",
   "version": "0.1.1",
-  "description": "⬛️ CLI entry point that read config from `package.json` → `start`",
+  "description": "⬛️ CLI entry point",
   "keywords": "tasks, runner, start, cli",
   "repository": "deepsweet/start",
   "homepage": "https://github.com/deepsweet/start/tree/master/packages/cli",
@@ -20,6 +20,6 @@
     "node": ">=6"
   },
   "dependencies": {
-    "@start/cli-lib": "^0.1.0"
+    "@babel/runtime": "^7.0.0-0"
   }
 }
