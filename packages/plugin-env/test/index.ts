@@ -32,6 +32,19 @@ test('plugin-env: process.env', (t) => {
   t.end()
 })
 
+test('plugin-env: env object', (t) => {
+  let mockEnv = { BAR: 'BAZ' }
+  env(mockEnv)
+
+  t.equal(
+    process.env.BAR,
+    'BAZ',
+    'should set process.env with a object'
+  )
+
+  t.end()
+})
+
 test('plugin-env: files', async (t) => {
   const reporter = new EventEmitter()
   const run = env('FOO', 'BAR')
@@ -58,3 +71,4 @@ test('plugin-env: message', async (t) => {
     'should log message'
   )
 })
+

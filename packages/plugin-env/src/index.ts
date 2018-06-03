@@ -1,10 +1,22 @@
 import plugin from '@start/plugin/src/'
 
-export default (key: string, value: string) => {
-  process.env[key] = value
+
+export default (envOrKey : object | string, value? : string) => {
+  
+  if (typeof envOrKey === 'object') {
+    for (let key in envOrKey) {
+      process.env[key] = envOrKey[key]
+    }
+  } else {
+    process.env[envOrKey] = value
+  }
 
   return plugin('env', ({ files, logMessage }) => {
-    logMessage(`${key} = ${value}`)
+    if (typeof envOrKey === 'object') {
+      logMessage(`${envOrKey}`)
+    } else {
+      logMessage(`${envOrKey} = ${value}`)
+    }
 
     return files
   })
