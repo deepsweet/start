@@ -1,10 +1,14 @@
 import plugin from '@start/plugin/src/'
 
-export default (key: string, value: string) => {
-  process.env[key] = value
+export default (vars: { [key: string]: any }) => {
+  Object.keys(vars).forEach((key) => {
+    process.env[key] = vars[key]
+  })
 
   return plugin('env', ({ files, logMessage }) => {
-    logMessage(`${key} = ${value}`)
+    Object.keys(vars).forEach((key) => {
+      logMessage(`${key} = ${vars[key]}`)
+    })
 
     return files
   })

@@ -17,7 +17,7 @@ $ npm install --save-dev @start/plugin-env
 ### Signature
 
 ```ts
-env(key: string, value: string)
+env(vars: { [key: string]: any })
 ```
 
 ### Example
@@ -31,7 +31,7 @@ import webpackConfig from './webpack-config'
 
 export task = () =>
   sequence(
-    env('NODE_ENV', 'production'),
+    env({ NODE_ENV: 'production' }),
     webpack(webpackConfig)
   )
 ```

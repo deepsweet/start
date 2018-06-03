@@ -21,11 +21,20 @@ test('plugin-env: export', (t) => {
 })
 
 test('plugin-env: process.env', (t) => {
-  env('FOO', 'BAR')
+  env({
+    FOO: 'BAR',
+    BEEP: 'BOOP'
+  })
 
   t.equal(
     process.env.FOO,
     'BAR',
+    'should set process.env'
+  )
+
+  t.equal(
+    process.env.BEEP,
+    'BOOP',
     'should set process.env'
   )
 
@@ -34,7 +43,7 @@ test('plugin-env: process.env', (t) => {
 
 test('plugin-env: files', async (t) => {
   const reporter = new EventEmitter()
-  const run = env('FOO', 'BAR')
+  const run = env({})
   const result = await run({ files, reporter })
 
   t.deepEqual(
@@ -50,11 +59,24 @@ test('plugin-env: message', async (t) => {
 
   reporter.on('message', onMessageSpy)
 
-  const run = env('FOO', 'BAR')
+  const run = env({
+    FOO: 'BAR',
+    BEEP: 'BOOP'
+  })
   const result = await run({ files, reporter })
 
   t.ok(
-    onMessageSpy.calledOnceWith('env', 'FOO = BAR'),
-    'should log message'
+    onMessageSpy.calledTwice,
+    'should log twice'
+  )
+
+  t.ok(
+    onMessageSpy.firstCall.calledWith('env', 'FOO = BAR'),
+    'should log first message'
+  )
+
+  t.ok(
+    onMessageSpy.secondCall.calledWith('env', 'BEEP = BOOP'),
+    'should log second message'
   )
 })
