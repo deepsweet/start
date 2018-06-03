@@ -49,7 +49,7 @@ export const dts = (packageName: string) =>
 export const pack = (packageName: string) =>
   sequence(
     assert(packageName, 'package name is required'),
-    env('NODE_ENV', 'production'),
+    env({ NODE_ENV: 'production' }),
     find(`packages/${packageName}/build/`),
     remove,
     parallel(['build', 'dts'])(packageName)
@@ -93,7 +93,7 @@ export const fix = () =>
 
 export const test = () =>
   sequence(
-    env('NODE_ENV', 'test'),
+    env({ NODE_ENV: 'test' }),
     find(`coverage/`),
     remove,
     find('packages/*/src/**/*.ts'),
