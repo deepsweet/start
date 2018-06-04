@@ -1,17 +1,16 @@
 {
-  "name": "plugin-decompress",
+  "name": "@start/plugin-decompress",
   "version": "0.1.0",
-  "description": "",
-  "main": "build/index.js",
-  "author": {
-    "email": "czarnetzki.philipp@protonmail.ch",
-    "name": "Philipp 'luii' Czarnetzki",
-    "url": "https://github.com/luii"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "🗜 Unpack archives",
+  "keywords": "tasks, runner, start, start-plugin, unpack, tar, bz2, gzip, zip",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-decompress",
+  "contributors": [
+    "Philipp 'luii' Czarnetzk <iczarnetzki.philipp@protonmail.ch> (https://github.com/luii)",
+    "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)"
+  ],
   "license": "MIT",
+  "main": "build/index.js",
   "types": "build/index.d.ts",
   "files": [
     "build/"
