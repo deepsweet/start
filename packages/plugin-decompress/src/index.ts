@@ -1,17 +1,16 @@
 import plugin from '@start/plugin/src/'
-import { DecompressOptions } from 'decompress'
 
-export default (outDirRelative: string, options?: DecompressOptions) =>
+export default (outDir: string) =>
   plugin('decompress', async ({ files, logFile }) => {
     const path = await import('path')
-    const { default: decompress } = await import('decompress')
+    const { default: unpack } = await import('decompress')
 
     return Promise.all(
       files.map(async (file) => {
-        let decompressedFiles = await decompress(file.path, outDirRelative, options)
+        let unpackedFiles = await unpack(file.path, outDir)
 
-        return decompressedFiles.map((decompressedFile) => {
-          const fullPath = path.resolve(outDirRelative, decompressedFile.path)
+        return unpackedFiles.map((unpackedFile) => {
+          const fullPath = path.resolve(outDir, unpackedFile.path)
 
           logFile(fullPath)
 
