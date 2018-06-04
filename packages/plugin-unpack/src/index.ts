@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (outDir: string) =>
-  plugin('decompress', async ({ files, logFile }) => {
+  plugin('unpack', async ({ files, logFile }) => {
     const path = await import('path')
     const { default: unpack } = await import('decompress')
 
