@@ -9,7 +9,7 @@ export default (outDirRelative: string, options?: DecompressOptions) =>
       files.map(async (file) => {
         let decompressedFiles = await decompress(file.path, outDirRelative, options)
 
-        logPath(file.path)
+        logFile(file.path)
 
         return file
       })
