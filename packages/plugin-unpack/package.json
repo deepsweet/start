@@ -1,0 +1,30 @@
+{
+  "name": "@start/plugin-unpack",
+  "version": "0.1.0",
+  "description": "🗜 Unpack .tar/.tar.bz2/.tar.gz/.zip archives",
+  "keywords": "tasks, runner, start, start-plugin, unpack, tar, tarbz2, targz, zip",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-unpack",
+  "contributors": [
+    "Philipp 'luii' Czarnetzk <iczarnetzki.philipp@protonmail.ch> (https://github.com/luii)",
+    "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)"
+  ],
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "decompress": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/decompress": "^4.2.2"
+  }
+}

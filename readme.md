@@ -306,6 +306,7 @@ $ yarn start ci
 * ✏️ [plugin-write](packages/plugin-write) – write files with source maps to relative destination keeping folders structure
 * ✏️ [plugin-overwrite](packages/plugin-overwrite) – overwrite files
 * 👀 [plugin-watch](packages/plugin-watch) – watch for new or changed files matched by glob patterns
+* 🗜 [plugin-unpack](packages/plugin-unpack) – unpack .tar/.tar.bz2/.tar.gz/.zip archives
 
 #### Build and bundle
 
