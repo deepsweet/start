@@ -10,6 +10,6 @@ export default (vars: { [key: string]: any }) => {
       logMessage(`${key} = ${vars[key]}`)
     })
 
-    return files
+    return { files }
   })
 }

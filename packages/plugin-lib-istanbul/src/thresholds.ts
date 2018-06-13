@@ -20,7 +20,7 @@ export default (options: Options) =>
     if (!global[coverageVariable]) {
       logMessage('no coverage information was collected')
 
-      return files
+      return { files }
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
@@ -57,5 +57,5 @@ export default (options: Options) =>
       throw result
     }
 
-    return files
+    return { files }
   })

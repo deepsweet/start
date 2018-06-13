@@ -13,7 +13,7 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) =>
     if (!global[coverageVariable]) {
       logMessage('no coverage information was collected')
 
-      return files
+      return { files }
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
@@ -28,5 +28,5 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) =>
       reporter.write(remappedCoverageMap)
     })
 
-    return files
+    return { files }
   })

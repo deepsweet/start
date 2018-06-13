@@ -6,5 +6,5 @@ export default (value: any, message?: string) =>
 
     assertLib(value, message)
 
-    return files
+    return { files }
   })

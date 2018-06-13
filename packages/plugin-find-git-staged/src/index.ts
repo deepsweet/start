@@ -8,12 +8,12 @@ export default (glob: string | string[]) =>
     const { default: multimatch } = await import('multimatch')
 
     const gitArgs = ['diff', '--cached', '--name-only', '--diff-filter=ACM']
+    const { stdout } = await execa('git', gitArgs)
+    const gitFiles = stdout.split(EOL)
+    const matchedFiles = multimatch(gitFiles, glob)
 
-    return execa('git', gitArgs).then(({ stdout }) => {
-      const gitFiles = stdout.split(EOL)
-      const matchedFiles = multimatch(gitFiles, glob)
-
-      return matchedFiles
+    return {
+      files: matchedFiles
         .map((file) => path.resolve(file))
         .map((file) => {
           logFile(file)
@@ -24,5 +24,5 @@ export default (glob: string | string[]) =>
             map: null
           }
         })
-    })
+    }
   })

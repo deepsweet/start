@@ -1,4 +1,5 @@
 import plugin from '@start/plugin/src/'
+import { EMFILE_MAX } from 'rimraf'
 
 type ReadFile = (path: string, options: string, cb: (err: any, data: string) => void) => void
 
@@ -8,16 +9,19 @@ export default plugin('read', async ({ files, logFile }) => {
 
   const readFile = makethen(gracefulFs.readFile as ReadFile)
 
-  return Promise.all(
-    files.map((file) =>
-      readFile(file.path, 'utf8').then((data) => {
+  return {
+    files: await Promise.all(
+      files.map(async (file) => {
+        const data = await readFile(file.path, 'utf8')
+
         logFile(file.path)
 
         return {
-          ...file,
-          data
+          path: file.path,
+          data,
+          map: null
         }
       })
     )
-  )
+  }
 })
