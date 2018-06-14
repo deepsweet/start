@@ -43,16 +43,22 @@ export default (outDir: string, userOptions?: Options) =>
       return result
     }, [])
 
-    return Promise.all(
-      files.map((file) =>
-        execa(
-          tscBinPath,
-          [
-            ...tscArgs,
-            file.path
-          ],
-          spawnOptions
-        ).then(() => {
+    return {
+      files: await Promise.all(
+        files.map(async (file) => {
+          try {
+            await execa(
+              tscBinPath,
+              [
+                ...tscArgs,
+                file.path
+              ],
+              spawnOptions
+            )
+          } catch (e) {
+            throw null
+          }
+
           const dtsFile = `${path.basename(file.path, '.ts')}.d.ts`
           const dtsPath = path.resolve(outDir, dtsFile)
 
@@ -65,5 +71,5 @@ export default (outDir: string, userOptions?: Options) =>
           }
         })
       )
-    )
+    }
   })

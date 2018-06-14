@@ -4,8 +4,10 @@ export type StartFile = {
   map: null | {}
 }
 
+export type StartFiles = StartFile[]
+
 export type StartPluginFnProps = {
-  files: StartFile[],
+  files: StartFiles,
   reporter: NodeJS.EventEmitter,
   logFile: (file: string) => void,
   logMessage: (message: string) => void,
@@ -13,7 +15,7 @@ export type StartPluginFnProps = {
 }
 
 export type StartPluginProps = {
-  files: StartFile[],
+  files: StartFiles,
   reporter?: NodeJS.EventEmitter,
   [key: string]: any
 }

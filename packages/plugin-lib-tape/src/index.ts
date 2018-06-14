@@ -6,7 +6,7 @@ export default (reporter?: () => NodeJS.ReadWriteStream) =>
     const { default: test } = await import('tape')
     const { default: through } = await import('through')
 
-    return new Promise<StartFiles>((resolve, reject) => {
+    return new Promise<{ files: StartFiles }>((resolve, reject) => {
       const stream = test.createStream()
       // FIXME submit `tape.getHarness` to DefinitelyTypes
       // https://github.com/substack/tape/blob/9d501ff25b20f9318cda741c88cf50d469175da5/index.js#L47
@@ -42,7 +42,7 @@ export default (reporter?: () => NodeJS.ReadWriteStream) =>
           if (hasFailed) {
             reject(null)
           } else {
-            resolve(files)
+            resolve({ files })
           }
         })
         this._stream.queue(null)

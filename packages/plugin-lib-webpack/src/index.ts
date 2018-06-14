@@ -13,14 +13,13 @@ export default (config: Configuration, userStatsOptions?: {}) =>
       colors: true,
       ...userStatsOptions
     }
+    const stats = await compiler(config)
 
-    return compiler(config).then((stats) => {
-      console.log(stats.toString(statsOptions))
+    console.log(stats.toString(statsOptions))
 
-      if (stats.hasErrors()) {
-        throw null
-      }
+    if (stats.hasErrors()) {
+      throw null
+    }
 
-      return files
-    })
+    return { files }
   })

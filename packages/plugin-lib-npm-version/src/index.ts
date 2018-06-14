@@ -29,15 +29,19 @@ export default (version: string, userOptions?: Options) =>
       return result
     }, [])
 
-    return execa('npm', ['version', ...cliArgs, version], {
-      cwd: packagePath,
-      stdout: process.stdout,
-      stderr: process.stderr,
-      stripEof: false,
-      env: {
-        FORCE_COLOR: '1'
-      }
-    })
-      .then(() => files)
-      .catch(() => Promise.reject(null))
+    try {
+      await execa('npm', ['version', ...cliArgs, version], {
+        cwd: packagePath,
+        stdout: process.stdout,
+        stderr: process.stderr,
+        stripEof: false,
+        env: {
+          FORCE_COLOR: '1'
+        }
+      })
+    } catch (e) {
+      throw null
+    }
+
+    return { files }
   })

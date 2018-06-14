@@ -10,5 +10,7 @@ export default (options: Options) =>
   plugin('webpackServe', async ({ files }) => {
     const { default: serve } = await import('webpack-serve')
 
-    return serve(options).then(() => files)
+    await serve(options)
+
+    return { files }
   })
