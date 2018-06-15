@@ -15,13 +15,15 @@ export default (cli: string[], userOptions?: {}) =>
       ...userOptions
     }
 
-    return execa(command, args, options)
-      .then(() => files)
-      .catch((error) => {
-        if (options.stderr) {
-          throw null
-        }
+    try {
+      await execa(command, args, options)
+    } catch (error) {
+      if (options.stderr) {
+        throw null
+      }
 
-        throw error
-      })
+      throw error
+    }
+
+    return { files }
   })

@@ -21,13 +21,21 @@ export default (taskName: string, options: Options = {}) => (...args: string[]) 
       concurrency: options.maxProcesses || Infinity
     }
 
-    return pAll(
+    await pAll(
       args.map((arg) => {
         const spawnCommand = process.argv[0]
         const spawnArgs = [process.argv[1], taskName, arg]
 
-        return () => execa(spawnCommand, spawnArgs, spawnOptions).catch(() => Promise.reject(null))
+        return async () => {
+          try {
+            execa(spawnCommand, spawnArgs, spawnOptions)
+          } catch (e) {
+            throw null
+          }
+        }
       }),
       pAllOptions
-    ).then(() => files)
+    )
+
+    return { files }
   })

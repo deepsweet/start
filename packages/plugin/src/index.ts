@@ -20,7 +20,7 @@ export type StartPluginProps = {
   [key: string]: any
 }
 
-export type StartPluginFn = (props: StartPluginFnProps) => StartPluginProps | Promise<StartPluginProps>
+export type StartPluginFn = (props: StartPluginProps) => StartPluginProps | Promise<StartPluginProps>
 
 export type StartPlugin = StartPluginFn | Promise<StartPluginFn>
 

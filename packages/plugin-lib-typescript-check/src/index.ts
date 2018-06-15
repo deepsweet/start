@@ -42,11 +42,7 @@ export default (userOptions?: Options) =>
       return result
     }, [])
 
-    try {
-      await execa(tscBinPath, tscArgs, spawnOptions)
-    } catch (e) {
-      throw null
-    }
+    await execa(tscBinPath, tscArgs, spawnOptions)
 
     return { files }
   })

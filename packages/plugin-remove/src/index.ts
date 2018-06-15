@@ -13,13 +13,15 @@ export default plugin('remove', async ({ files, logFile }) => {
     glob: false
   }
 
-  return Promise.all(
-    files.map((file) => {
-      return rimrafP(file.path, options).then(() => {
-        logFile(file.path)
+  return {
+    files: await Promise.all(
+      files.map((file) => {
+        return rimrafP(file.path, options).then(() => {
+          logFile(file.path)
 
-        return file
+          return file
+        })
       })
-    })
-  )
+    )
+  }
 })
