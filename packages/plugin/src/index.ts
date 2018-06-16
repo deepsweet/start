@@ -22,9 +22,10 @@ export type StartPluginPropsOut = {
 }
 
 export type StartPluginFn = (props: StartPluginPropsAfter) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void | Promise<void>
-export type StartPlugin = (props: StartPluginPropsBefore) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void | Promise<void>
+export type StartPluginSync = (props: StartPluginPropsBefore) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void | Promise<void>
+export type StartPlugin = StartPluginSync | Promise<StartPluginSync>
 
-export default (name: string, pluginFn: StartPluginFn): StartPlugin => async ({ reporter, ...rest }) => {
+export default (name: string, pluginFn: StartPluginFn): StartPluginSync => async ({ reporter, ...rest }) => {
   try {
     reporter.emit('start', name)
 
