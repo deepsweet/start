@@ -17,7 +17,7 @@ test('plugin-input-files: export', (t) => {
 
 test('plugin-input-files: simple', async (t) => {
   const reporter = new EventEmitter()
-  const targetPluginSpy = stub().returns('test')
+  const targetPluginSpy = stub().returns({ foo: true })
   const files = [
     '../src/index.ts',
     '../test/index.ts'
@@ -40,16 +40,15 @@ test('plugin-input-files: simple', async (t) => {
     'should call plugin with files and props'
   )
 
-  t.equal(
-    result,
-    'test',
+  t.ok(
+    result && result.foo,
     'should return called plugin result'
   )
 })
 
 test('plugin-input-files: async plugin', async (t) => {
   const reporter = new EventEmitter()
-  const targetPluginSpy = stub().returns('test')
+  const targetPluginSpy = stub().returns({ foo: true })
   const targetPluginPromise = Promise.resolve(targetPluginSpy)
   const files = [
     '../src/index.ts',
@@ -73,9 +72,8 @@ test('plugin-input-files: async plugin', async (t) => {
     'should call plugin with files and props'
   )
 
-  t.equal(
-    result,
-    'test',
+  t.ok(
+    result && result.foo,
     'should return called plugin result'
   )
 })
