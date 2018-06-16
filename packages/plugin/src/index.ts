@@ -6,32 +6,27 @@ export type StartFile = {
 
 export type StartFiles = StartFile[]
 
-export type StartPluginFnProps = {
-  files: StartFiles,
+export type StartPluginPropsIn = {
+  files?: StartFiles,
+  logFile?: (file: string) => void,
+  logMessage?: (message: string) => void,
   reporter: NodeJS.EventEmitter,
-  logFile: (file: string) => void,
-  logMessage: (message: string) => void,
   [key: string]: any
 }
 
-export type StartPluginProps = {
-  files: StartFiles,
-  reporter?: NodeJS.EventEmitter,
+export type StartPluginPropsOut = {
   [key: string]: any
 }
 
-export type StartPluginFn = (props: StartPluginProps) => StartPluginProps | Promise<StartPluginProps>
+export type StartPlugin = (props: StartPluginPropsIn) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void
 
-export type StartPlugin = StartPluginFn | Promise<StartPluginFn>
-
-export default (name: string, pluginFn: StartPluginFn): StartPluginFn => async ({ files, reporter, ...rest }) => {
+export default (name: string, pluginFn: StartPlugin): StartPlugin => async ({ reporter, ...rest }) => {
   try {
     reporter.emit('start', name)
 
     const result = await pluginFn({
-      files,
-      reporter,
       ...rest,
+      reporter,
       logFile: (file) => reporter.emit('file', name, file),
       logMessage: (message) => reporter.emit('message', name, message)
     })
