@@ -8,7 +8,7 @@ type Options = {
 
 // https://docs.npmjs.com/cli/publish
 export default (packagePath: string = '.', userOptions?: Options) =>
-  plugin('npmPublish', async ({ files }) => {
+  plugin('npmPublish', async () => {
     const { default: execa } = await import('execa')
 
     const options = {
@@ -41,6 +41,4 @@ export default (packagePath: string = '.', userOptions?: Options) =>
     } catch (e) {
       throw null
     }
-
-    return { files }
   })

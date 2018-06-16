@@ -5,7 +5,7 @@ type Options = {
 }
 
 export default (taskNames: string[], options: Options = {}) => (...args: string[]) =>
-  plugin('parallel', async ({ files }) => {
+  plugin('parallel', async () => {
     const { default: execa } = await import('execa')
     const { default: pAll } = await import('p-all')
 
@@ -36,6 +36,4 @@ export default (taskNames: string[], options: Options = {}) => (...args: string[
       }),
       pAllOptions
     )
-
-    return { files }
   })

@@ -5,7 +5,7 @@ type KarmaConfig = {
 }
 
 export default (config: KarmaConfig) =>
-  plugin('karma', async ({ files }) => {
+  plugin('karma', async () => {
     const { Server } = await import('karma')
 
     return new Promise<{ files: StartFiles }>((resolve, reject) => {
@@ -15,7 +15,7 @@ export default (config: KarmaConfig) =>
         if (results.exitCode !== 0) {
           reject(null)
         } else {
-          resolve({ files })
+          resolve()
         }
       })
 

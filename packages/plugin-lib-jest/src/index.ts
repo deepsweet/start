@@ -15,7 +15,7 @@ const optionsToStringify = [
 ]
 
 export default (userOptions: Options) =>
-  plugin('jest', async ({ files }) => {
+  plugin('jest', async () => {
     const { runCLI } = await import('jest-cli')
 
     const options = {
@@ -39,6 +39,4 @@ export default (userOptions: Options) =>
     ) {
       throw null
     }
-
-    return { files }
   })

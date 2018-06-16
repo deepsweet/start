@@ -57,7 +57,7 @@ export default (userOptions?: CLIEngine.Options, formatter?: string) =>
       if (fixedFiles.length === 0) {
         logMessage('¯\\_(ツ)_/¯')
 
-        return { files }
+        return
       }
 
       return {
@@ -68,6 +68,4 @@ export default (userOptions?: CLIEngine.Options, formatter?: string) =>
     if (report.errorCount === 0 && report.warningCount === 0) {
       logMessage('¯\\_(ツ)_/¯')
     }
-
-    return { files }
   })

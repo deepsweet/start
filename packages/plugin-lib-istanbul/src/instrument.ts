@@ -59,6 +59,4 @@ export default (options: Options = {}) =>
     hooks.add(hook)
 
     logMessage('require() has been hooked')
-
-    return { files }
   })

@@ -42,7 +42,7 @@ export default (reporter?: () => NodeJS.ReadWriteStream) =>
           if (hasFailed) {
             reject(null)
           } else {
-            resolve({ files })
+            resolve()
           }
         })
         this._stream.queue(null)
