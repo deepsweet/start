@@ -21,8 +21,8 @@ export type StartPluginPropsOut = {
   [key: string]: any
 }
 
-export type StartPluginFn = (props: StartPluginPropsAfter) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void | Promise<void>
-export type StartPluginSync = (props: StartPluginPropsBefore) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void | Promise<void>
+export type StartPluginFn = (props: StartPluginPropsAfter) => StartPluginPropsOut | Promise<StartPluginPropsOut>
+export type StartPluginSync = (props: StartPluginPropsBefore) => StartPluginPropsOut | Promise<StartPluginPropsOut>
 export type StartPlugin = StartPluginSync | Promise<StartPluginSync>
 
 export default (name: string, pluginFn: StartPluginFn): StartPluginSync => async ({ reporter, ...rest }) => {
@@ -38,7 +38,11 @@ export default (name: string, pluginFn: StartPluginFn): StartPluginSync => async
 
     reporter.emit('done', name)
 
-    return result
+    return {
+      reporter,
+      ...rest,
+      ...result
+    }
   } catch (error) {
     reporter.emit('error', name, error)
 
