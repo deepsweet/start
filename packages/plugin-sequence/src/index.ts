@@ -4,13 +4,10 @@ export default (...plugins: StartPlugin[]) =>
   plugin('sequence', (props) =>
     plugins.reduce(
       async (prev, next) => {
-        const nextRunner = await next
+        const nextPlugin = await next
         const prevResult = await prev
 
-        return nextRunner({
-          ...props,
-          ...prevResult
-        })
+        return nextPlugin(prevResult)
       },
       Promise.resolve(props)
     )
