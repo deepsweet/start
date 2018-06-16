@@ -67,14 +67,3 @@ test('plugin-assert: throw with custom message', async (t) => {
     )
   }
 })
-
-test('plugin-assert: files', async (t) => {
-  const reporter = new EventEmitter()
-  const result = await assert(true)({ files, reporter })
-
-  t.deepEqual(
-    result,
-    files,
-    'should pass `files` through'
-  )
-})
