@@ -21,8 +21,8 @@ export type StartPluginPropsOut = {
   [key: string]: any
 }
 
-export type StartPluginFn = (props: StartPluginPropsAfter) => StartPluginPropsOut | Promise<StartPluginPropsOut>
-export type StartPluginSync = (props: StartPluginPropsBefore) => StartPluginPropsOut | Promise<StartPluginPropsOut>
+export type StartPluginFn = (props: StartPluginPropsAfter) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void
+export type StartPluginSync = (props: StartPluginPropsBefore) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void
 export type StartPlugin = StartPluginSync | Promise<StartPluginSync>
 
 export default (name: string, pluginFn: StartPluginFn): StartPluginSync => async ({ reporter, ...rest }) => {

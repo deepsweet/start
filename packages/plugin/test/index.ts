@@ -71,6 +71,24 @@ test('plugin: props', async (t) => {
   )
 })
 
+test('plugin: no return', async (t) => {
+  const name = 'testName'
+  const pluginFn = stub().returns()
+  const reporter = new EventEmitter()
+  const beforeProps = { foo: true, reporter }
+
+  const result = await plugin(name, pluginFn)(beforeProps)
+
+  t.deepEqual(
+    result,
+    {
+      foo: true,
+      reporter
+    },
+    'should return the same'
+  )
+})
+
 test('plugin: done', async (t) => {
   const name = 'testName'
   const pluginFn = stub().returns(files)
