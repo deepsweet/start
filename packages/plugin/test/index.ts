@@ -81,10 +81,7 @@ test('plugin: no return', async (t) => {
 
   t.deepEqual(
     result,
-    {
-      foo: true,
-      reporter
-    },
+    beforeProps,
     'should return the same'
   )
 })
