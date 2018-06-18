@@ -8,7 +8,7 @@ type Options = {
 
 // https://docs.npmjs.com/cli/publish
 export default (packagePath: string = '.', userOptions?: Options) =>
-  plugin('npmPublish', async ({ files }) => {
+  plugin('npmPublish', async () => {
     const { default: execa } = await import('execa')
 
     const options = {
@@ -29,14 +29,16 @@ export default (packagePath: string = '.', userOptions?: Options) =>
       return result
     }, [])
 
-    return execa('npm', ['publish', ...cliArgs, packagePath], {
-      stdout: process.stdout,
-      stderr: process.stderr,
-      stripEof: false,
-      env: {
-        FORCE_COLOR: '1'
-      }
-    })
-      .then(() => files)
-      .catch(() => Promise.reject(null))
+    try {
+      await execa('npm', ['publish', ...cliArgs, packagePath], {
+        stdout: process.stdout,
+        stderr: process.stderr,
+        stripEof: false,
+        env: {
+          FORCE_COLOR: '1'
+        }
+      })
+    } catch (e) {
+      throw null
+    }
   })

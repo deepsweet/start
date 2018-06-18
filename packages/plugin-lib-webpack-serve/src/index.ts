@@ -7,8 +7,8 @@ type Options = {
 }
 
 export default (options: Options) =>
-  plugin('webpackServe', async ({ files }) => {
+  plugin('webpackServe', async () => {
     const { default: serve } = await import('webpack-serve')
 
-    return serve(options).then(() => files)
+    await serve(options)
   })

@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (glob: string | string[], userOptions?: {}) =>
-  plugin('find', async ({ files, logFile }) => {
+  plugin('find', async ({ logFile }) => {
     const { default: globby } = await import('globby')
 
     const options = {
@@ -12,16 +12,15 @@ export default (glob: string | string[], userOptions?: {}) =>
       expandDirectories: false,
       absolute: true
     }
+    const result = await globby(glob, options)
 
-    return globby(glob, options).then((files) =>
-      files.map((file) => {
-        logFile(file)
+    result.forEach(logFile)
 
-        return {
-          path: file,
-          data: null,
-          map: null
-        }
-      })
-    )
+    return {
+      files: result.map((file) => ({
+        path: file,
+        data: null,
+        map: null
+      }))
+    }
   })

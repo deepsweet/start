@@ -15,17 +15,29 @@ export default (outDirRelative: string, ...flowArgs: string[]) =>
       }
     }
 
-    return Promise.all(
-      files.map((file) =>
-        execa(
-          'node',
-          [flowBinPath, 'gen-flow-files', file.path, '--out-dir', outDir, ...flowArgs],
-          spawnOptions
-        ).then(() => {
-          logFile(path.join(outDir, `${path.basename(file.path)}.flow`))
+    return {
+      files: await Promise.all(
+        files.map(async (file) => {
+          try {
+            await execa(
+              'node',
+              [flowBinPath, 'gen-flow-files', file.path, '--out-dir', outDir, ...flowArgs],
+              spawnOptions
+            )
+          } catch (e) {
+            throw null
+          }
 
-          return file
+          const flowFilePath = path.join(outDir, `${path.basename(file.path)}.flow`)
+
+          logFile(flowFilePath)
+
+          return {
+            path: flowFilePath,
+            data: null,
+            map: null
+          }
         })
       )
-    )
+    }
   })

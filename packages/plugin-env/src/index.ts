@@ -5,11 +5,9 @@ export default (vars: { [key: string]: any }) => {
     process.env[key] = vars[key]
   })
 
-  return plugin('env', ({ files, logMessage }) => {
+  return plugin('env', ({ logMessage }) => {
     Object.keys(vars).forEach((key) => {
       logMessage(`${key} = ${vars[key]}`)
     })
-
-    return files
   })
 }

@@ -41,18 +41,6 @@ test('plugin-env: process.env', (t) => {
   t.end()
 })
 
-test('plugin-env: files', async (t) => {
-  const reporter = new EventEmitter()
-  const run = env({})
-  const result = await run({ files, reporter })
-
-  t.deepEqual(
-    result,
-    files,
-    'should pass `files` through'
-  )
-})
-
 test('plugin-env: message', async (t) => {
   const reporter = new EventEmitter()
   const onMessageSpy = spy()

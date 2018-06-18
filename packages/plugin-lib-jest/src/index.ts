@@ -15,7 +15,7 @@ const optionsToStringify = [
 ]
 
 export default (userOptions: Options) =>
-  plugin('jest', async ({ files }) => {
+  plugin('jest', async () => {
     const { runCLI } = await import('jest-cli')
 
     const options = {
@@ -30,16 +30,13 @@ export default (userOptions: Options) =>
       }, {})
     }
     const projects = [options.rootDir]
+    const results = await runCLI(options, projects)
 
-    return runCLI(options, projects).then(({ results }) => {
-      if (
-        results.numFailedTests > 0 ||
-        results.numFailedTestSuites > 0 ||
-        results.numTotalTests === 0
-      ) {
-        throw null
-      }
-
-      return files
-    })
+    if (
+      results.numFailedTests > 0 ||
+      results.numFailedTestSuites > 0 ||
+      results.numTotalTests === 0
+    ) {
+      throw null
+    }
   })

@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (...flowArgs: string[]) =>
-  plugin('flowCheck', async ({ files }) => {
+  plugin('flowCheck', async (props) => {
     const path = await import('path')
     const { default: execa } = await import('execa')
 
@@ -16,7 +16,11 @@ export default (...flowArgs: string[]) =>
       }
     }
 
-    return execa('node', [flowBinPath, 'check', ...flowArgs], spawnOptions)
-      .then(() => files)
-      .catch(() => Promise.reject(null))
+    try {
+      await execa('node', [flowBinPath, 'check', ...flowArgs], spawnOptions)
+    } catch (e) {
+      throw null
+    }
+
+    return props
   })

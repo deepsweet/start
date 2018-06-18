@@ -1,16 +1,14 @@
 import plugin, { StartPlugin } from '@start/plugin/src/'
 
 export default (...plugins: StartPlugin[]) =>
-  plugin('sequence', ({ files, reporter }) =>
+  plugin('sequence', (props) =>
     plugins.reduce(
       async (prev, next) => {
-        const nextRunner = await next
+        const nextPlugin = await next
+        const prevResult = await prev
 
-        return nextRunner({
-          reporter,
-          files: await prev
-        })
+        return nextPlugin(prevResult)
       },
-      Promise.resolve(files)
+      Promise.resolve(props)
     )
   )

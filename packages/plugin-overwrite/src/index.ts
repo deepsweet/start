@@ -7,13 +7,15 @@ export default plugin('overwrite', async ({ files, logFile }) => {
   const gracefulFs = await import('graceful-fs')
   const writeFile = makethen(gracefulFs.writeFile as WriteFile)
 
-  return Promise.all(
-    files.map((file) =>
-      writeFile(file.path, file.data, 'utf8').then(() => {
+  return {
+    files: await Promise.all(
+      files.map(async (file) => {
+        await writeFile(file.path, file.data, 'utf8')
+
         logFile(file.path)
 
         return file
       })
     )
-  )
+  }
 })

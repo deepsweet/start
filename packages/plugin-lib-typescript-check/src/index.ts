@@ -5,7 +5,7 @@ export type Options = {
 }
 
 export default (userOptions?: Options) =>
-  plugin('typescriptCheck', async ({ files }) => {
+  plugin('typescriptCheck', async () => {
     const path = await import('path')
     const { default: execa } = await import('execa')
 
@@ -42,5 +42,5 @@ export default (userOptions?: Options) =>
       return result
     }, [])
 
-    return execa(tscBinPath, tscArgs, spawnOptions).then(() => files)
+    await execa(tscBinPath, tscArgs, spawnOptions)
   })

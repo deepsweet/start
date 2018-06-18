@@ -8,9 +8,9 @@ export default (userOptions?: Options) =>
   plugin('babel', async ({ files, logFile }) => {
     const { transformAsync } = await import('@babel/core')
 
-    return Promise.all(
-      files.map(
-        async (file) => {
+    return {
+      files: await Promise.all(
+        files.map(async (file) => {
           const options: Options = {
             ...userOptions,
             ast: false,
@@ -19,12 +19,15 @@ export default (userOptions?: Options) =>
           }
           const result = await transformAsync(file.data, options)
 
+          logFile(file.path)
+
           return {
-            ...file,
+            path: file.path,
             data: result.code,
             map: result.map
           }
         }
+        )
       )
-    )
+    }
   })

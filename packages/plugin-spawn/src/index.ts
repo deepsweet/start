@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (cli: string[], userOptions?: {}) =>
-  plugin('spawn', async ({ files }) => {
+  plugin('spawn', async () => {
     const { default: execa } = await import('execa')
 
     const [ command, ...args ] = cli
@@ -15,13 +15,13 @@ export default (cli: string[], userOptions?: {}) =>
       ...userOptions
     }
 
-    return execa(command, args, options)
-      .then(() => files)
-      .catch((error) => {
-        if (options.stderr) {
-          throw null
-        }
+    try {
+      await execa(command, args, options)
+    } catch (error) {
+      if (options.stderr) {
+        throw null
+      }
 
-        throw error
-      })
+      throw error
+    }
   })

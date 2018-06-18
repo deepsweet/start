@@ -14,7 +14,7 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
       ...userOptions
     }
 
-    return new Promise<StartFiles>((resolve, reject) => {
+    await new Promise<StartFiles>((resolve, reject) => {
       const initialFiles = []
       const initialListener = (file) => {
         initialFiles.push({

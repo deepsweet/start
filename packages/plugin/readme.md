@@ -23,7 +23,7 @@ See [`src/index.ts`](src/index.ts) for all the types. It's (usually) better than
 ```js
 import plugin from '@start/plugin'
 
-export default plugin('noop', ({ files }) => files)
+export default plugin('noop', () => {})
 ```
 
 ```js
@@ -32,19 +32,21 @@ import plugin from '@start/plugin'
 export default plugin('foo', async ({ files, logFile }) => {
   const { default: fooTransform } = await import('foo-lib')
 
-  return Promise.all(
-    files.map((file) =>
-      fooTransform(file.data).then(({ transformedData, sourceMap }) => {
+  return {
+    files: await Promise.all(
+      files.map(async (file) =>
+        const { transformedData, sourceMap } = fooTransform(file.path)
+
         logFile(file.path)
 
         return {
-          path: file.path,
-          data: transformedData,
-          map: sourceMap
+            path: file.path,
+            data: transformedData,
+            map: sourceMap
         }
-      })
+      )
     )
-  )
+  }
 })
 ```
 
@@ -52,7 +54,7 @@ export default plugin('foo', async ({ files, logFile }) => {
 import plugin from '@start/plugin'
 
 export default (barOptions) =>
-  plugin('bar', async ({ files, logMessage }) => {
+  plugin('bar', async ({ logMessage }) => {
     const { default: barCheck } = await import('bar-lib')
 
     const barResult = barCheck(files, barOptions)
@@ -60,15 +62,17 @@ export default (barOptions) =>
     if (barResult.issues.length === 0) {
       logMessage('¯\\_(ツ)_/¯')
     }
-
-    return files
   })
 ```
 
 ## Notes
 
-* Dynamic imports – [it's a good idea](https://github.com/gulpjs/gulp/issues/632) to "lazyload" dependencies inside of a plugin function instead of importing them at top.
-* `files` – `StartFiles | Promise<StartFiles>` – a requirement even if this means to just pass it through.
-* `logMessage` – any random message from plugin.
-* `logFile` – current file path to indicate some kind of progress.
-* `reporter` – advanced prop which should be passed through if plugin operates other plugins, like [sequence](../plugin-sequence) or [watch](../plugin-watch).
+* Dynamic imports – [it's a good idea](https://github.com/gulpjs/gulp/issues/632) to "lazyload" dependencies inside of a plugin function instead of importing it on top of a file
+* Plugin can return whatever "props" object or just nothing, and that output will extend an input props as an overall plugin result
+* `files` – many plugins works with `files` structure: it's an array of `{ path, data, map }` objects, where:
+  * `path` – absolute file path
+  * `data` – file data as utf8 string, if any
+  * `map` – [Source Map object](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-anatomy), if any
+* `logMessage` – any random message from plugin
+* `logFile` – current file path to indicate some kind of progress
+* `reporter` – advanced prop which should be passed through if plugin operates other plugins, like [sequence](../plugin-sequence) or [watch](../plugin-watch)

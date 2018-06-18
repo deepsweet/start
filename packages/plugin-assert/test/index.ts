@@ -37,7 +37,7 @@ test('plugin-assert: throw with default message', async (t) => {
     t.ok(
       onErrorSpy.calledWithMatch(
         'assert',
-        { message: 'false == true' }
+        { actual: false, expected: true }
       ),
       'should throw assert error'
     )
@@ -66,15 +66,4 @@ test('plugin-assert: throw with custom message', async (t) => {
       'should throw assert error'
     )
   }
-})
-
-test('plugin-assert: files', async (t) => {
-  const reporter = new EventEmitter()
-  const result = await assert(true)({ files, reporter })
-
-  t.deepEqual(
-    result,
-    files,
-    'should pass `files` through'
-  )
 })

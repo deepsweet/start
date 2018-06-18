@@ -8,7 +8,7 @@ type Options = {
 }
 
 export default (options: Options) =>
-  plugin('istanbulThresholds', async ({ files, logMessage }) => {
+  plugin('istanbulThresholds', async ({ logMessage }) => {
     const { createCoverageMap } = await import('istanbul-lib-coverage')
     const { createSourceMapStore } = await import('istanbul-lib-source-maps')
     const { summarizers } = await import('istanbul-lib-report')
@@ -20,7 +20,7 @@ export default (options: Options) =>
     if (!global[coverageVariable]) {
       logMessage('no coverage information was collected')
 
-      return files
+      return
     }
 
     const coverageMap = createCoverageMap(global[coverageVariable])
@@ -56,6 +56,4 @@ export default (options: Options) =>
     if (result.length > 0) {
       throw result
     }
-
-    return files
   })

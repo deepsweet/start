@@ -24,11 +24,11 @@ test('plugin: export', (t) => {
 
 test('plugin: props', async (t) => {
   const name = 'testName'
-  const pluginFn = stub().returns(files)
+  const pluginFn = stub().returns({ bar: true })
   const reporter = new EventEmitter()
-  const beforeProps = { files, reporter }
+  const beforeProps = { foo: true, reporter }
 
-  await plugin(name, pluginFn)(beforeProps)
+  const result = await plugin(name, pluginFn)(beforeProps)
 
   t.ok(
     pluginFn.calledOnce,
@@ -37,10 +37,9 @@ test('plugin: props', async (t) => {
 
   const afterProps = pluginFn.firstCall.args[0]
 
-  t.deepEqual(
-    afterProps.files,
-    files,
-    '`files` should be passed through'
+  t.ok(
+    afterProps.foo,
+    'props should be passed through'
   )
 
   t.deepEqual(
@@ -59,6 +58,31 @@ test('plugin: props', async (t) => {
     typeof afterProps.logFile,
     'function',
     '`logFile` should be a function'
+  )
+
+  t.deepEqual(
+    result,
+    {
+      foo: true,
+      bar: true,
+      reporter
+    },
+    'should extend result with returned props'
+  )
+})
+
+test('plugin: no return', async (t) => {
+  const name = 'testName'
+  const pluginFn = stub().returns()
+  const reporter = new EventEmitter()
+  const beforeProps = { foo: true, reporter }
+
+  const result = await plugin(name, pluginFn)(beforeProps)
+
+  t.deepEqual(
+    result,
+    beforeProps,
+    'should return the same'
   )
 })
 

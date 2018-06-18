@@ -8,20 +8,22 @@ export default (options?: Options) =>
   plugin('prettierEslint', async ({ files, logFile }) => {
     const { default: format } = await import('prettier-eslint')
 
-    return Promise.all(
-      files.map((file) =>
-        new Promise<StartFile>((resolve, reject) => {
-          const formatted: string = format({ ...options, filePath: file.path, text: file.data })
+    return {
+      files: await Promise.all(
+        files.map((file) =>
+          new Promise<StartFile>((resolve, reject) => {
+            const formatted: string = format({ ...options, filePath: file.path, text: file.data })
 
-          if (file.data !== formatted) {
-            logFile(file.path)
-          }
+            if (file.data !== formatted) {
+              logFile(file.path)
+            }
 
-          resolve({
-            ...file,
-            data: formatted
+            resolve({
+              ...file,
+              data: formatted
+            })
           })
-        })
+        )
       )
-    )
+    }
   })
