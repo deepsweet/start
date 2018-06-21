@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-jest",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "✅ Run tests using Jest",
   "keywords": "tasks, runner, start, start-plugin, jest",
   "repository": "deepsweet/start",
