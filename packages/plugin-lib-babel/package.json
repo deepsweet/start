@@ -21,6 +21,6 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.49",
     "@babel/runtime": "^7.0.0-0",
-    "@start/plugin": "^0.1.0-0"
+    "@start/plugin": "^0.2.0"
   }
 }

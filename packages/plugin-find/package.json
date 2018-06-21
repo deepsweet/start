@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-0",
-    "@start/plugin": "^0.1.0-0",
+    "@start/plugin": "^0.2.0",
     "globby": "^8.0.1"
   },
   "devDependencies": {

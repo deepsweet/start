@@ -19,6 +19,6 @@
     "node": ">=6"
   },
   "dependencies": {
-    "@start/plugin": "^0.1.0-0"
+    "@start/plugin": "^0.2.0"
   }
 }
