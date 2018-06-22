@@ -36,7 +36,7 @@ import write from '@start/plugin-write'
 const babelConfig = {
   // …
   babelrc: false,
-  sourceMap: true,
+  sourceMaps: true,
 }
 
 export const task = () =>
