@@ -315,7 +315,7 @@ $ yarn start ci
 * 🏭 [plugin-lib-webpack-serve](packages/plugin-lib-webpack-serve) – run [Webpack development server](https://github.com/webpack-contrib/webpack-serve)
 * 🏭 [plugin-lib-typescript-generate](packages/plugin-lib-typescript-generate) – generate `.d.ts` files using [TypeScript](https://www.typescriptlang.org/)
 * 🏭 [plugin-lib-flow-generate](packages/plugin-lib-flow-generate) – generate `.js.flow` files using [Flow](https://flow.org/)
-* 🏭 plugin-lib-postcss – [to be migrated](https://github.com/start-runner/postcss)
+* 🏭 [plugin-lib-postcss](packages/plugin-lib-postcss) – transform files using [PostCSS](https://postcss.org/)
 * 🏭 plugin-lib-less – [to be migrated](https://github.com/start-runner/less)
 * 🏭 plugin-lib-clean-css – [to be migrated](https://github.com/start-runner/clean-css)
 * 🏭 plugin-lib-uglify – [to be migrated](https://github.com/start-runner/uglify)

@@ -1,0 +1,26 @@
+{
+  "name": "@start/plugin-lib-postcss",
+  "version": "0.1.0",
+  "description": "🏭 Transform files using PostCSS",
+  "keywords": "tasks, runner, start, start-plugin, postcss",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-postcss",
+  "author": "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-0",
+    "@start/plugin": "^0.2.0",
+    "postcss": "^6.0.23"
+  }
+}
