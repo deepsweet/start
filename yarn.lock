@@ -716,13 +716,6 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/p-all/-/p-all-1.0.0.tgz#0549a0cc8f7bcd2cb6b2c282442669d0412925ce"
 
-"@types/rimraf@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-2.0.2.tgz#7f0fc3cf0ff0ad2a99bb723ae1764f30acaf8b6e"
-  dependencies:
-    "@types/glob" "*"
-    "@types/node" "*"
-
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
@@ -2395,6 +2388,10 @@ del@^2.0.2:
     pinkie-promise "^2.0.0"
     rimraf "^2.2.8"
 
+delay@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/delay/-/delay-3.0.0.tgz#97fc5c21028e20616e822ab11838c648808534eb"
+
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
@@ -2458,6 +2455,14 @@ dir-glob@^2.0.0:
   dependencies:
     arrify "^1.0.1"
     path-type "^3.0.0"
+
+dleet@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/dleet/-/dleet-0.1.1.tgz#56d21e142b594a56e36dfc3e7ac9c596e9d6ec29"
+  dependencies:
+    "@babel/runtime" "^7.0.0-0"
+    delay "^3.0.0"
+    makethen "^0.2.2"
 
 dlv@^1.1.0:
   version "1.1.2"

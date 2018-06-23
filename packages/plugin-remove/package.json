@@ -21,10 +21,6 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-0",
     "@start/plugin": "^0.2.0",
-    "makethen": "^0.2.2",
-    "rimraf": "^2.6.2"
-  },
-  "devDependencies": {
-    "@types/rimraf": "^2.0.2"
+    "dleet": "^0.1.1"
   }
 }
