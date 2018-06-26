@@ -2080,6 +2080,12 @@ cookies@~0.7.0:
     depd "~1.1.1"
     keygrip "~1.0.2"
 
+copie@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/copie/-/copie-0.1.0.tgz#5e5a265483df1b7855e0af44b06f0c2aafb5a2ac"
+  dependencies:
+    "@babel/runtime" "^7.0.0-0"
+
 copy-concurrently@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/copy-concurrently/-/copy-concurrently-1.0.5.tgz#92297398cae34937fcafd6ec8139c18051f0b5e0"
