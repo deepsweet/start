@@ -1,15 +1,12 @@
 import plugin from '@start/plugin/src/'
+import { ConfigOptions } from 'karma'
 
-type KarmaConfig = {
-  [key: string]: any
-}
-
-export default (config: KarmaConfig) =>
+export default (options: ConfigOptions) =>
   plugin('karma', async () => {
     const { Server } = await import('karma')
 
     await new Promise<void>((resolve, reject) => {
-      const karmaServer = new Server(config)
+      const karmaServer = new Server(options)
 
       karmaServer.on('run_complete', (browsers, results) => {
         if (results.exitCode !== 0) {

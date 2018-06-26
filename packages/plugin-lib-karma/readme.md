@@ -17,12 +17,12 @@ $ npm install --save-dev @start/plugin-lib-karma
 ### Signature
 
 ```ts
-karma(config: {})
+karma(options: {})
 ```
 
-#### `config`
+#### `options`
 
-[Karma config](https://karma-runner.github.io/2.0/config/configuration-file.html).
+[Karma config options](https://karma-runner.github.io/2.0/config/configuration-file.html).
 
 ### Example
 
