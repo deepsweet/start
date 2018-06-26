@@ -47,13 +47,11 @@ export default (options: Options = {}) =>
           sourceMapObject = sourceMapRaw.toObject()
         }
 
-        const result = instrumenter.instrumentSync(source, file, sourceMapObject)
-
-        logFile(file)
-
-        return result
+        return instrumenter.instrumentSync(source, file, sourceMapObject)
       },
-      { extensions: options.extensions }
+      {
+        extensions: options.extensions
+      }
     )
 
     hooks.add(hook)
