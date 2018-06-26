@@ -13,56 +13,56 @@ export default (outDirRelative: string) =>
 
     return {
       files: await Promise.all(
-        files.map((file) => {
+        files.map(async (file) => {
           const outFile = movePath(file.path, outDirRelative)
           const outDir = path.dirname(outFile)
 
-          return makeDir(outDir)
-            .then(() => {
-              const writeFiles = []
-              let fileData = file.data || ''
+          await makeDir(outDir)
 
-              // sourcemap
-              if (file.map != null) {
-                const inFile = path.basename(file.path)
-                // /beep/boop/src/beep/index.js -> .js
-                const inExtname = path.extname(file.path)
-                // index.js -> index.js.map
-                const sourcemapFile = inFile + '.map'
-                // /beep/boop/build/beep/index.js -> /beep/boop/build/beep/index.js.map
-                const sourcemapPath = path.join(outDir, sourcemapFile)
-                const sourcemapData = JSON.stringify(file.map)
+          const writeFiles = []
+          let fileData = file.data || ''
 
-                // /*# sourceMappingURL=index.css.map */
-                if (inExtname === '.css') {
-                  fileData += '\n/*# sourceMappingURL='
-                  fileData += sourcemapFile
-                  fileData += ' */'
-                // //# sourceMappingURL=index.js.map
-                } else {
-                  fileData += '\n//# sourceMappingURL='
-                  fileData += sourcemapFile
-                }
+          // sourcemap
+          if (file.map != null) {
+            const inFile = path.basename(file.path)
+            // /beep/boop/src/beep/index.js -> .js
+            const inExtname = path.extname(file.path)
+            // index.js -> index.js.map
+            const sourcemapFile = inFile + '.map'
+            // /beep/boop/build/beep/index.js -> /beep/boop/build/beep/index.js.map
+            const sourcemapPath = path.join(outDir, sourcemapFile)
+            const sourcemapData = JSON.stringify(file.map)
 
-                writeFiles.push(
-                  writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-                    logFile(sourcemapPath)
-                  })
-                )
-              }
+            // /*# sourceMappingURL=index.css.map */
+            if (inExtname === '.css') {
+              fileData += '\n/*# sourceMappingURL='
+              fileData += sourcemapFile
+              fileData += ' */'
+              // //# sourceMappingURL=index.js.map
+            } else {
+              fileData += '\n//# sourceMappingURL='
+              fileData += sourcemapFile
+            }
 
-              writeFiles.push(
-                writeFile(outFile, fileData, 'utf8').then(() => {
-                  logFile(outFile)
-                })
-              )
+            writeFiles.push(
+              writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
+                logFile(sourcemapPath)
+              })
+            )
+          }
 
-              return Promise.all(writeFiles)
+          writeFiles.push(
+            writeFile(outFile, fileData, 'utf8').then(() => {
+              logFile(outFile)
             })
-            .then(() => ({
-              ...file,
-              path: outFile
-            }))
+          )
+
+          await Promise.all(writeFiles)
+
+          return {
+            ...file,
+            path: outFile
+          }
         })
       )
     }
