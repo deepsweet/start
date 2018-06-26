@@ -1,5 +1,4 @@
 import plugin from '@start/plugin/src/'
-import { EMFILE_MAX } from 'rimraf'
 
 type ReadFile = (path: string, options: string, cb: (err: any, data: string) => void) => void
 
