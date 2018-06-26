@@ -56,5 +56,5 @@ export default (options: Options = {}) =>
 
     hooks.add(hook)
 
-    logMessage('require() has been hooked')
+    logMessage('imports has been hooked')
   })
