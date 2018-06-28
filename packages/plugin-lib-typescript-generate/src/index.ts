@@ -1,13 +1,15 @@
 import plugin from '@start/plugin/src/'
+import optionsToArgs from './optionsToArgs'
 
 export type Options = {
   [key: string]: boolean | string | string[]
 }
 
-export default (outDir: string, userOptions?: Options) =>
+export default (outDirRelative: string, userOptions?: Options) =>
   plugin('typescriptGenerate', async ({ files, logFile }) => {
     const path = await import('path')
     const { default: execa } = await import('execa')
+    const { default: movePath } = await import('move-path')
 
     const tscBinPath = path.resolve('node_modules/.bin/tsc')
     const spawnOptions = {
@@ -16,36 +18,22 @@ export default (outDir: string, userOptions?: Options) =>
         FORCE_COLOR: '1'
       }
     }
-    const options: Options = {
-      allowSyntheticDefaultImports: true,
-      lib: 'esnext',
-      moduleResolution: 'node',
-      ...userOptions,
-      declarationDir: outDir,
-      emitDeclarationOnly: true,
-      declaration: true
-    }
-    const tscArgs = Object.keys(options).reduce((result, key) => {
-      const value = options[key]
-
-      if (typeof value === 'boolean') {
-        return result.concat(`--${key}`)
-      }
-
-      if (typeof value === 'string') {
-        return result.concat(`--${key}`, `${value}`)
-      }
-
-      if (Array.isArray(value)) {
-        return result.concat(`--${key}`, `${value.join(',')}`)
-      }
-
-      return result
-    }, [])
 
     return {
       files: await Promise.all(
         files.map(async (file) => {
+          const outDir = path.dirname(movePath(file.path, outDirRelative))
+          const options: Options = {
+            allowSyntheticDefaultImports: true,
+            lib: 'esnext',
+            moduleResolution: 'node',
+            ...userOptions,
+            declarationDir: outDir,
+            emitDeclarationOnly: true,
+            declaration: true
+          }
+          const tscArgs = optionsToArgs(options)
+
           try {
             await execa(
               tscBinPath,
@@ -59,8 +47,8 @@ export default (outDir: string, userOptions?: Options) =>
             throw null
           }
 
-          const dtsFile = `${path.basename(file.path, '.ts')}.d.ts`
-          const dtsPath = path.resolve(outDir, dtsFile)
+          const dtsFilename = `${path.basename(file.path, '.ts')}.d.ts`
+          const dtsPath = path.resolve(outDir, dtsFilename)
 
           logFile(dtsPath)
 
