@@ -313,6 +313,7 @@ $ yarn start ci
 * 🏭 [plugin-lib-babel](packages/plugin-lib-babel) – transform files using [Babel](https://babeljs.io/)
 * 🏭 [plugin-lib-webpack](packages/plugin-lib-webpack) – bundle files using [Webpack](https://webpack.js.org/)
 * 🏭 [plugin-lib-webpack-serve](packages/plugin-lib-webpack-serve) – run [Webpack development server](https://github.com/webpack-contrib/webpack-serve)
+* 🏭 [plugin-lib-rollup](packages/plugin-lib-rollup) – bundle files using [Rollup](https://rollupjs.org/)
 * 🏭 [plugin-lib-typescript-generate](packages/plugin-lib-typescript-generate) – generate `.d.ts` files using [TypeScript](https://www.typescriptlang.org/)
 * 🏭 [plugin-lib-flow-generate](packages/plugin-lib-flow-generate) – generate `.js.flow` files using [Flow](https://flow.org/)
 * 🏭 [plugin-lib-postcss](packages/plugin-lib-postcss) – transform files using [PostCSS](https://postcss.org/)
