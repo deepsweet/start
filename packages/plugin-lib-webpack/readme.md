@@ -43,12 +43,12 @@ import sequence from '@start/plugin-sequence'
 import env from '@start/plugin-env'
 import webpack from '@start/plugin-lib-webpack'
 
-export const task = () => {
+export const task = async () => {
   const { default: webpackConfig } = await import('./webpack.config')
 
   return sequence(
     env('NODE_ENV', 'production'),
-    webpack(webpackConfig('prod'))
+    webpack(webpackConfig)
   )
 }
 ```
