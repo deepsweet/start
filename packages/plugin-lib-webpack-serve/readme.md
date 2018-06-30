@@ -31,12 +31,12 @@ import sequence from '@start/plugin-sequence'
 import env from '@start/plugin-env'
 import webpackServe from '@start/plugin-lib-webpack-serve'
 
-export const task = () => {
+export const task = async () => {
   const { default: webpackConfig } = await import('./webpack.config')
 
   return sequence(
     env('NODE_ENV', 'development'),
-    webpackServe({ config: webpackConfig('dev') })
+    webpackServe({ config: webpackConfig })
   )
 }
 ```
