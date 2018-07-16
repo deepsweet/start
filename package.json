@@ -34,7 +34,6 @@
   },
   "start": {
     "require": [
-      "esm",
       [
         "@babel/register",
         {

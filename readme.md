@@ -49,7 +49,6 @@
 
 ```sh
 $ yarn add --dev --ignore-workspace-root-check \
-  esm \
   @babel/core \
   @babel/register \
   @babel/preset-env \
@@ -83,11 +82,9 @@ $ yarn add --dev --ignore-workspace-root-check \
   ],
   "devDependencies": {},
   "start": {
-    // default, `./tasks.ts` or `./tasks/index.ts`
-    "file": "tasks"
+    // tasks file, default to `./tasks`
+    "file": "./tasks"
     "require": [
-      // https://github.com/standard-things/esm
-      "esm",
       [
         "@babel/register",
         {
@@ -109,6 +106,7 @@ $ yarn add --dev --ignore-workspace-root-check \
             "node": "current"
           },
           // "Tomorrow's ECMAScript modules today"
+          // @start/cli includes https://github.com/standard-things/esm by default
           "modules": false
         }
       ],
