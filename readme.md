@@ -52,6 +52,7 @@ $ yarn add --dev --ignore-workspace-root-check \
   @babel/core \
   @babel/register \
   @babel/preset-env \
+  @babel/preset-typescript \
   @start/cli \
   @start/reporter-verbose \
   @start/plugin-sequence \
