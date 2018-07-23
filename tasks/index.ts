@@ -91,14 +91,14 @@ export const fix = () =>
     overwrite
   )
 
-export const test = () =>
+export const test = (packageName: string = '*') =>
   sequence(
     env({ NODE_ENV: 'test' }),
     find(`coverage/`),
     remove,
-    find('packages/*/src/**/*.ts'),
+    find(`packages/${packageName}/src/**/*.ts`),
     istanbulInstrument({ esModules: true, extensions: ['.ts'] }),
-    find('packages/*/test/**/*.ts'),
+    find(`packages/${packageName}/test/**/*.ts`),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary'])
   )
