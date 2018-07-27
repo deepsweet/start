@@ -24,6 +24,6 @@
     "globby": "^8.0.1"
   },
   "devDependencies": {
-    "@types/globby": "^6.1.0"
+    "@types/globby": "^8.0.0"
   }
 }
