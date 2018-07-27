@@ -82,14 +82,13 @@
       "no-unused-vars": "off",
       "import/no-unresolved": "off",
       "import/named": "off",
-      "node/no-unsupported-features": [
+      "node/no-unsupported-features/es-syntax": [
         "error",
         {
           "ignores": [
-            "asyncAwait",
+            "asyncFunctions",
             "modules",
-            "restProperties",
-            "spreadProperties"
+            "restSpreadProperties"
           ]
         }
       ],
