@@ -21,10 +21,10 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-0",
     "@start/plugin": "^0.2.0",
-    "webpack-serve": "^1.0.2"
+    "webpack-serve": "^2.0.2"
   },
   "devDependencies": {
-    "@types/webpack": "^4.1.4",
+    "@types/webpack-serve": "^2.0.0",
     "webpack": "^4.6.0"
   }
 }

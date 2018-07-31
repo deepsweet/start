@@ -17,12 +17,16 @@ $ npm install --save-dev @start/plugin-lib-webpack-serve
 ### Signature
 
 ```ts
-webpackServe(options: {})
+webpackServe(options: {}, argv?: {}, )
 ```
 
 #### `options`
 
 [webpack-serve options](https://github.com/webpack-contrib/webpack-serve#serveoptions).
+
+#### `argv`
+
+[webpack-serve argv](https://github.com/webpack-contrib/webpack-serve#argv).
 
 ### Example
 
@@ -35,7 +39,7 @@ export const task = async () => {
   const { default: webpackConfig } = await import('./webpack.config')
 
   return sequence(
-    env('NODE_ENV', 'development'),
+    env({ NODE_ENV: 'development' }),
     webpackServe({ config: webpackConfig })
   )
 }
