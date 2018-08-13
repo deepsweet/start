@@ -29,7 +29,7 @@ copyEsmLoader(outDir: string, filename: string = 'esm-loader.js')
   "main": "build/esm-loader.js",
   "module": "build/index.js",
   "dependencies": {
-    "esm": "<X.Y.Z>"
+    "esm": "^3.0.75"
   }
 }
 ```
