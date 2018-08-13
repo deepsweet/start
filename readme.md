@@ -209,7 +209,7 @@ export const lintAll = () =>
 
 export const test = () =>
   sequence(
-    find(`coverage/`),
+    find('coverage/'),
     remove,
     find('packages/*/src/**/*.ts'),
     istanbulInstrument({ esModules: true, extensions: ['.ts'] }),
