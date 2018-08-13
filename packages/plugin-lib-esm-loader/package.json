@@ -22,5 +22,8 @@
     "@babel/runtime": "^7.0.0-0",
     "@start/plugin": "^0.2.0",
     "copie": "^0.1.0"
+  },
+  "peerDependencies": {
+    "esm": "^3.0.75"
   }
 }
