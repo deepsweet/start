@@ -48,7 +48,7 @@ const babelConfig = {
   sourceMaps: true,
   presets: [
     ['@babel/preset-env', {
-      targets: { node: 'current' },
+      targets: { node: 6 },
       modules: false
     }]
   ]
