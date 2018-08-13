@@ -310,6 +310,7 @@ $ yarn start ci
 #### Build and bundle
 
 * 🏭 [plugin-lib-babel](packages/plugin-lib-babel) – transform files using [Babel](https://babeljs.io/)
+* 🏭 [plugin-lib-esm-loader](packages/plugin-lib-esm-loader) – copy a predefined [ESM loader](https://github.com/standard-things/esm) file to a directory
 * 🏭 [plugin-lib-webpack](packages/plugin-lib-webpack) – bundle files using [Webpack](https://webpack.js.org/)
 * 🏭 [plugin-lib-webpack-serve](packages/plugin-lib-webpack-serve) – run [Webpack development server](https://github.com/webpack-contrib/webpack-serve)
 * 🏭 [plugin-lib-rollup](packages/plugin-lib-rollup) – bundle files using [Rollup](https://rollupjs.org/)

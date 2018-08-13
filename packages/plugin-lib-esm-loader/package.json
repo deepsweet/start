@@ -1,0 +1,26 @@
+{
+  "name": "@start/plugin-lib-esm-loader",
+  "version": "0.1.1",
+  "description": "🏭 Copy a predefined ESM loader file to a directory",
+  "keywords": "tasks, runner, start, start-plugin, esm",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-esm-loader",
+  "author": "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-0",
+    "@start/plugin": "^0.2.0",
+    "copie": "^0.1.0"
+  }
+}
