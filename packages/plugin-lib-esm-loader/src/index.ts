@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (outDirRelative: string) =>
-  plugin('esm', async ({ logFile }) => {
+  plugin('esm-loader', async ({ logFile }) => {
     const path = await import('path')
     const { default: copie } = await import('copie')
 
