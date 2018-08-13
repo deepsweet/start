@@ -17,7 +17,7 @@ $ npm install --save-dev @start/plugin-lib-esm-loader
 ### Signature
 
 ```ts
-esm(outDir: string, filename: string = 'esm-loader.js')
+copyEsmLoader(outDir: string, filename: string = 'esm-loader.js')
 ```
 
 ### Example
