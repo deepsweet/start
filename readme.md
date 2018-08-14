@@ -265,11 +265,11 @@ $ yarn start ci
 * [Use CLI and pass in options](packages/cli)
 * [Create a plugin](packages/plugin)
 * [Create a reporter](packages/reporter-verbose)
-* [Create a preset](https://github.com/deepsweet/start-preset-node-ts-lib)
+* [Create a preset](https://github.com/deepsweet/_/tree/master/packages/start-preset-node-ts-lib)
 
 ## Recipes
 
-* Node.js TypeScript library preset – [@deepsweet/start-preset-node-ts-lib](https://github.com/deepsweet/start-preset-node-ts-lib)
+* Node.js TypeScript library preset – [@deepsweet/start-preset-node-ts-lib](https://github.com/deepsweet/_/tree/master/packages/start-preset-node-ts-lib)
 * Node.js TypeScript libraries monorepo – Start project builds itself from sources using sources, see [`tasks/index.ts`](tasks/index.ts)
 * React / React Native (higher-order) components monorepo – [hocs](https://github.com/deepsweet/hocs)
 * React app – to be added
