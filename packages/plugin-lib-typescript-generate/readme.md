@@ -43,7 +43,7 @@ import typescriptGenerate from '@start/plugin-lib-typescript-generate'
 
 export const task = () =>
   sequence(
-    find('src/*.ts'),
+    find('src/index.ts'),
     typescriptGenerate('build/')
   )
 ```

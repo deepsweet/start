@@ -164,7 +164,7 @@ const babelConfig = {
 // each named export is a "task"
 export const build = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}/**/*.ts`),
+    find(`packages/${packageName}/src/**/*.ts`),
     read,
     babel(babelConfig),
     rename((file) => file.replace(/\.ts$/, '.js')),
@@ -173,7 +173,7 @@ export const build = (packageName: string) =>
 
 export const dts = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}/**/*.ts`),
+    find(`packages/${packageName}/src/index.ts`),
     typescriptGenerate(`packages/${packageName}/build/`)
   )
 
