@@ -34,18 +34,7 @@ export default (outDirRelative: string, userOptions?: Options) =>
           }
           const tscArgs = optionsToArgs(options)
 
-          try {
-            await execa(
-              tscBinPath,
-              [
-                ...tscArgs,
-                file.path
-              ],
-              spawnOptions
-            )
-          } catch (e) {
-            throw null
-          }
+          await execa(tscBinPath, [...tscArgs, file.path], spawnOptions)
 
           const dtsFilename = `${path.basename(file.path, '.ts')}.d.ts`
           const dtsPath = path.resolve(outDir, dtsFilename)
