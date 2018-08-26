@@ -23,6 +23,9 @@
     "@start/plugin": "^0.2.0",
     "copie": "^0.1.0"
   },
+  "devDependencies": {
+    "esm": "^3.0.75"
+  },
   "peerDependencies": {
     "esm": "^3.0.75"
   }
