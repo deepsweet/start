@@ -39,7 +39,7 @@ export default (options: Options = {}) =>
         return files.findIndex(({ path }) => file === path) !== -1
       },
       // and instrument that sources
-      (source, file) => {
+      (source, options) => {
         const sourceMapRaw = getSourceMapFromSource(source)
         let sourceMapObject = null
 
@@ -47,7 +47,9 @@ export default (options: Options = {}) =>
           sourceMapObject = sourceMapRaw.toObject()
         }
 
-        return instrumenter.instrumentSync(source, file, sourceMapObject)
+        // @ts-ignore
+        // TODO: update @types/istanbul-lib-hook
+        return instrumenter.instrumentSync(source, options.file, sourceMapObject)
       },
       {
         extensions: options.extensions
