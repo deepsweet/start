@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-const { resolve } = require('path')
-const { start: options } = require(resolve('./package.json'))
 
 // eslint-disable-next-line no-global-assign
 require = require('esm')(module, {
-  mainFields: ['module', 'main']
+  mainFields: ['module', 'main'],
+  cache: false
 })
+
+const { resolve } = require('path')
+const { start: options } = require(resolve('./package.json'))
 
 if (Array.isArray(options.require)) {
   options.require.forEach((pkg) => {
