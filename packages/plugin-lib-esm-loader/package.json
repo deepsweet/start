@@ -24,9 +24,9 @@
     "copie": "^0.1.0"
   },
   "devDependencies": {
-    "esm": "^3.0.75"
+    "esm": "^3.0.81"
   },
   "peerDependencies": {
-    "esm": "^3.0.75"
+    "esm": "^3.0.81"
   }
 }
