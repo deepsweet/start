@@ -21,6 +21,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-0",
-    "esm": "^3.0.71"
+    "esm": "^3.0.81"
   }
 }
