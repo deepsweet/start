@@ -4,8 +4,11 @@
     "noEmit": true,
     "pretty": true,
     "lib": ["esnext"],
-    "moduleResolution": "node",
-    "typeRoots": [ "types/", "node_modules/@types/" ]
+    "moduleResolution": "node"
   },
-  "exclude": ["node_modules/", "coverage/", "packages/*/build/"]
+  "include": [
+    "packages/*/src/",
+    "packages/*/test/",
+    "tasks/"
+  ]
 }
