@@ -1,16 +1,19 @@
 import plugin from '@start/plugin/src/'
-import optionsToArgs from './optionsToArgs'
 
 export type Options = {
-  [key: string]: boolean | string | string[]
+  [key: string]: any
 }
+type WriteFile = (path: string, data: string, options: string, cb: (err: any) => void) => void
 
 export default (outDirRelative: string, userOptions?: Options) =>
   plugin('typescriptGenerate', async ({ files, logFile }) => {
     const path = await import('path')
+    const gracefulFs = await import('graceful-fs')
+    const { default: makethen } = await import('makethen')
     const { default: execa } = await import('execa')
-    const { default: movePath } = await import('move-path')
+    const { default: dleet } = await import('dleet')
 
+    const pWriteFile = makethen(gracefulFs.writeFile as WriteFile)
     const tscBinPath = path.resolve('node_modules/.bin/tsc')
     const spawnOptions = {
       stripEof: false,
@@ -18,23 +21,35 @@ export default (outDirRelative: string, userOptions?: Options) =>
         FORCE_COLOR: '1'
       }
     }
+    const rootConfigPath = path.resolve('tsconfig.json')
 
     return {
       files: await Promise.all(
         files.map(async (file) => {
-          const outDir = path.dirname(movePath(file.path, outDirRelative))
-          const options: Options = {
-            allowSyntheticDefaultImports: true,
-            lib: 'esnext',
-            moduleResolution: 'node',
-            ...userOptions,
-            declarationDir: outDir,
-            emitDeclarationOnly: true,
-            declaration: true
+          const outDir = path.resolve(outDirRelative)
+          const tempConfig = {
+            extends: rootConfigPath,
+            compilerOptions: {
+              ...userOptions,
+              noEmit: false,
+              emitDeclarationOnly: true,
+              declaration: true,
+              declarationDir: outDir
+            },
+            // overwrite possible ones from the root config
+            include: [file.path],
+            files: [file.path]
           }
-          const tscArgs = optionsToArgs(options)
 
-          await execa(tscBinPath, [...tscArgs, file.path], spawnOptions)
+          // 🙈 https://github.com/Microsoft/TypeScript/issues/12958
+          const tempConfigPath = path.join(
+            path.dirname(file.path),
+            `.${path.basename(file.path)}.tsconfig.json`
+          )
+
+          await pWriteFile(tempConfigPath, JSON.stringify(tempConfig), 'utf8')
+          await execa(tscBinPath, ['--project', tempConfigPath], spawnOptions)
+          await dleet(tempConfigPath)
 
           const dtsFilename = `${path.basename(file.path, '.ts')}.d.ts`
           const dtsPath = path.resolve(outDir, dtsFilename)
