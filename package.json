@@ -24,8 +24,8 @@
     "sinon": "^6.0.0",
     "tap-diff": "^0.1.1",
     "tape-promise": "^3.0.0",
-    "typescript": "2.8.4",
-    "typescript-eslint-parser": "^17.0.1"
+    "typescript": "^3.0.0",
+    "typescript-eslint-parser": "^18.0.0"
   },
   "scripts": {
     "start": "node packages/cli/src/index.js",
