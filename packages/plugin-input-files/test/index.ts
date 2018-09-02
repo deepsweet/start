@@ -22,8 +22,9 @@ test('plugin-input-files: simple', async (t) => {
     '../src/index.ts',
     '../test/index.ts'
   ]
+  const inputFilesRunner = await inputFiles(targetPluginSpy)(...files)
 
-  const result = await inputFiles(targetPluginSpy)(...files)({
+  const result = await inputFilesRunner({
     files: [],
     reporter
   })
@@ -54,8 +55,9 @@ test('plugin-input-files: async plugin', async (t) => {
     '../src/index.ts',
     '../test/index.ts'
   ]
+  const inputFilesRunner = await inputFiles(targetPluginPromise)(...files)
 
-  const result = await inputFiles(targetPluginPromise)(...files)({
+  const result = await inputFilesRunner({
     files: [],
     reporter
   })

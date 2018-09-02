@@ -27,8 +27,9 @@ test('plugin: props', async (t) => {
   const pluginFn = stub().returns({ bar: true })
   const reporter = new EventEmitter()
   const beforeProps = { foo: true, reporter }
+  const pluginRunner = await plugin(name, pluginFn)
 
-  const result = await plugin(name, pluginFn)(beforeProps)
+  const result = await pluginRunner(beforeProps)
 
   t.ok(
     pluginFn.calledOnce,
@@ -76,8 +77,9 @@ test('plugin: no return', async (t) => {
   const pluginFn = stub().returns()
   const reporter = new EventEmitter()
   const beforeProps = { foo: true, reporter }
+  const pluginRunner = await plugin(name, pluginFn)
 
-  const result = await plugin(name, pluginFn)(beforeProps)
+  const result = await pluginRunner(beforeProps)
 
   t.deepEqual(
     result,
@@ -93,11 +95,12 @@ test('plugin: done', async (t) => {
   const eventDoneSpy = spy()
   const reporter = new EventEmitter()
   const props = { files, reporter }
+  const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('start', eventStartSpy)
   reporter.on('done', eventDoneSpy)
 
-  await plugin(name, pluginFn)(props)
+  await pluginRunner(props)
 
   t.ok(
     eventStartSpy.calledOnceWith(name),
@@ -118,12 +121,13 @@ test('plugin: error', async (t) => {
   const eventErrorSpy = spy()
   const reporter = new EventEmitter()
   const props = { files, reporter }
+  const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('start', eventStartSpy)
   reporter.on('error', eventErrorSpy)
 
   try {
-    await plugin(name, pluginFn)(props)
+    await pluginRunner(props)
   } catch (error) {
     t.equal(
       error,
@@ -154,10 +158,11 @@ test('plugin: log message', async (t) => {
   const eventMessageSpy = spy()
   const reporter = new EventEmitter()
   const props = { files, reporter }
+  const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('message', eventMessageSpy)
 
-  await plugin(name, pluginFn)(props)
+  await pluginRunner(props)
 
   t.ok(
     eventMessageSpy.calledOnceWith(name, message),
@@ -176,10 +181,11 @@ test('plugin: log file', async (t) => {
   const eventFileSpy = spy()
   const reporter = new EventEmitter()
   const props = { files, reporter }
+  const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('file', eventFileSpy)
 
-  await plugin(name, pluginFn)(props)
+  await pluginRunner(props)
 
   t.ok(
     eventFileSpy.calledOnceWith(name, filePath),

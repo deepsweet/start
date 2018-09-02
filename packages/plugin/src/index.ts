@@ -21,15 +21,15 @@ export type StartPluginPropsOut = {
   [key: string]: any
 }
 
-export type StartPluginFn = (props: StartPluginPropsAfter) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void
-export type StartPluginAsync = (props: StartPluginPropsBefore) => StartPluginPropsOut | Promise<StartPluginPropsOut> | void
-export type StartPlugin = StartPluginAsync | Promise<StartPluginAsync>
+export type StartPluginCallback = (props: StartPluginPropsAfter) => StartPluginPropsOut | void | Promise<StartPluginPropsOut | void>
+export type StartPluginRunner = (props: StartPluginPropsBefore) => StartPluginPropsOut | void | Promise<StartPluginPropsOut | void>
+export type StartPlugin = StartPluginRunner | Promise<StartPluginRunner>
 
-export default (name: string, pluginFn: StartPluginFn): StartPluginAsync => async ({ reporter, ...rest }) => {
+export default (name: string, pluginCallback: StartPluginCallback): StartPlugin => async ({ reporter, ...rest }) => {
   try {
     reporter.emit('start', name)
 
-    const result = await pluginFn({
+    const result = await pluginCallback({
       ...rest,
       reporter,
       logFile: (file) => reporter.emit('file', name, file),

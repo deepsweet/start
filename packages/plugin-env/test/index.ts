@@ -20,8 +20,8 @@ test('plugin-env: export', (t) => {
   t.end()
 })
 
-test('plugin-env: process.env', (t) => {
-  env({
+test('plugin-env: process.env', async (t) => {
+  await env({
     FOO: 'BAR',
     BEEP: 'BOOP'
   })
@@ -47,11 +47,12 @@ test('plugin-env: message', async (t) => {
 
   reporter.on('message', onMessageSpy)
 
-  const run = env({
+  const envRunner = await env({
     FOO: 'BAR',
     BEEP: 'BOOP'
   })
-  const result = await run({ files, reporter })
+
+  await envRunner({ files, reporter })
 
   t.ok(
     onMessageSpy.calledTwice,

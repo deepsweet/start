@@ -23,11 +23,12 @@ test('plugin-assert: export', (t) => {
 test('plugin-assert: throw with default message', async (t) => {
   const reporter = new EventEmitter()
   const onErrorSpy = spy()
+  const assertRunner = await assert(false)
 
   reporter.on('error', onErrorSpy)
 
   try {
-    await assert(false)({ files, reporter })
+    await assertRunner({ files, reporter })
   } catch (error) {
     t.ok(
       onErrorSpy.calledOnce,
@@ -47,11 +48,12 @@ test('plugin-assert: throw with default message', async (t) => {
 test('plugin-assert: throw with custom message', async (t) => {
   const reporter = new EventEmitter()
   const onErrorSpy = spy()
+  const assertRunner = await assert(false, 'should be true!')
 
   reporter.on('error', onErrorSpy)
 
   try {
-    await assert(false, 'should be true!')({ files, reporter })
+    await assertRunner({ files, reporter })
   } catch (error) {
     t.ok(
       onErrorSpy.calledOnce,
