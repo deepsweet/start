@@ -1,3 +1,4 @@
+import plugin from '@start/plugin/src'
 import sequence from '@start/plugin-sequence/src/'
 import parallel from '@start/plugin-parallel/src/'
 import xargs from '@start/plugin-xargs/src/'
@@ -42,7 +43,14 @@ export const dts = (packageName: string) =>
     find(`packages/${packageName}/src/**/*.ts`),
     typescriptGenerate(`packages/${packageName}/build/`),
     read,
-    babel(babelConfigDts),
+    // https://github.com/babel/babel/issues/7749
+    // babel(babelConfigDts)
+    plugin('modifyImports', ({ files }) => ({
+      files: files.map((file) => ({
+        ...file,
+        data: file.data.replace('"@start/plugin/src"', '"@start/plugin"')
+      }))
+    })),
     write(`packages/${packageName}/build/`)
   )
 
