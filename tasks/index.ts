@@ -40,7 +40,7 @@ export const build = (packageName: string) =>
 
 export const dts = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}/src/**/*.ts`),
+    find(`packages/${packageName}/src/index.ts`),
     typescriptGenerate(`packages/${packageName}/build/`),
     read,
     // https://github.com/babel/babel/issues/7749
