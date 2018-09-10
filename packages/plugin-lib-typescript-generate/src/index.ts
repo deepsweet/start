@@ -48,8 +48,12 @@ export default (outDirRelative: string, userOptions?: Options) =>
           )
 
           await pWriteFile(tempConfigPath, JSON.stringify(tempConfig), 'utf8')
-          await execa(tscBinPath, ['--project', tempConfigPath], spawnOptions)
-          await dleet(tempConfigPath)
+
+          try {
+            await execa(tscBinPath, ['--project', tempConfigPath], spawnOptions)
+          } finally {
+            await dleet(tempConfigPath)
+          }
 
           const dtsFilename = `${path.basename(file.path, '.ts')}.d.ts`
           const dtsPath = path.resolve(outDir, dtsFilename)
