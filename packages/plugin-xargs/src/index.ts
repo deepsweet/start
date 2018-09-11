@@ -28,7 +28,7 @@ export default (taskName: string, options: Options = {}) => (...args: string[]) 
 
         return async () => {
           try {
-            execa(spawnCommand, spawnArgs, spawnOptions)
+            await execa(spawnCommand, spawnArgs, spawnOptions)
           } catch (e) {
             throw null
           }
