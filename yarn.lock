@@ -2,6 +2,73 @@
 # yarn lockfile v1
 
 
+"@auto/bump@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@auto/bump/-/bump-0.0.16.tgz#f00446712c915fadeece6cbef99ce4335f193503"
+  dependencies:
+    "@auto/utils" "^0.0.10"
+    "@auto/workspaces" "^0.0.14"
+    esm "^3.0.82"
+    semver "^5.5.1"
+
+"@auto/fs@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.7.tgz#4175ea645dfd1f78133936d230efeab3db82e789"
+  dependencies:
+    "@auto/utils" "^0.0.10"
+    esm "^3.0.82"
+    fast-glob "^2.2.2"
+
+"@auto/git@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.18.tgz#6d22c95be34854700ee4ca989dd84468ae013dba"
+  dependencies:
+    "@auto/utils" "^0.0.10"
+    escape-string-regexp "^1.0.5"
+    esm "^3.0.82"
+    execa "^1.0.0"
+    prompts "^1.1.0"
+
+"@auto/log@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.6.tgz#2bab46f0af2a679875649ac88ead5b2575ca7e8b"
+  dependencies:
+    "@auto/utils" "^0.0.10"
+    esm "^3.0.82"
+
+"@auto/npm@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.15.tgz#109a8433712c59ca61a80718479b521fd579006e"
+  dependencies:
+    "@auto/fs" "^0.0.7"
+    esm "^3.0.82"
+    execa "^1.0.0"
+
+"@auto/start@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@auto/start/-/start-0.0.4.tgz#c7866f928ee8a2c4733882fd5f0b66c8fd9bf16f"
+  dependencies:
+    "@auto/bump" "^0.0.16"
+    "@auto/fs" "^0.0.7"
+    "@auto/git" "^0.0.18"
+    "@auto/log" "^0.0.6"
+    "@auto/npm" "^0.0.15"
+    "@start/plugin" "^0.2.0"
+    prompts "^1.1.0"
+
+"@auto/utils@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@auto/utils/-/utils-0.0.10.tgz#d460b5eb20d90af9d94aebca281a82ce7e9bce3a"
+  dependencies:
+    esm "^3.0.82"
+
+"@auto/workspaces@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@auto/workspaces/-/workspaces-0.0.14.tgz#e19f037b2324c1c27797a8d68a169b55fabcb47d"
+  dependencies:
+    "@auto/utils" "^0.0.10"
+    esm "^3.0.82"
+
 "@babel/code-frame@7.0.0-beta.51":
   version "7.0.0-beta.51"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-beta.51.tgz#bd71d9b192af978df915829d39d4094456439a0c"
@@ -3168,6 +3235,10 @@ esm@^3.0.81:
   version "3.0.81"
   resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.81.tgz#3d78df013960b6d30bb5a5adfafe5d9da654b9d2"
 
+esm@^3.0.82:
+  version "3.0.82"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.0.82.tgz#e8c4363a14e30936bedf49a44bf962e2c91866ff"
+
 espree@^3.5.2, espree@^3.5.4:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
@@ -3385,7 +3456,7 @@ fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
 
-fast-glob@^2.0.2:
+fast-glob@^2.0.2, fast-glob@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-2.2.2.tgz#71723338ac9b4e0e2fff1d6748a2a13d5ed352bf"
   dependencies:
@@ -6483,6 +6554,13 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
+prompts@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/prompts/-/prompts-1.1.0.tgz#8a8b33030943e8355e06f81bebc436f7aa669d42"
+  dependencies:
+    kleur "^2.0.1"
+    sisteransi "^1.0.0"
+
 proxy-agent@~3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/proxy-agent/-/proxy-agent-3.0.1.tgz#4fb7b61b1476d0fe8e3a3384d90e2460bbded3f9"
@@ -7101,7 +7179,7 @@ semver-diff@^2.0.0:
   dependencies:
     semver "^5.0.3"
 
-"semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
+"semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1:
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.1.tgz#7dfdd8814bdb7cabc7be0fb1d734cfb66c940477"
 
@@ -7189,6 +7267,10 @@ sinon@^6.0.0:
 sisteransi@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-0.1.1.tgz#5431447d5f7d1675aac667ccd0b865a4994cb3ce"
+
+sisteransi@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.0.tgz#77d9622ff909080f1c19e5f4a1df0c1b0a27b88c"
 
 slack-node@~0.2.0:
   version "0.2.0"

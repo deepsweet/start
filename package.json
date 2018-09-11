@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@auto/start": "^0.0.4",
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-typescript": "^7.0.0",

@@ -14,20 +14,23 @@ import write from '@start/plugin-write/src/'
 import overwrite from '@start/plugin-overwrite/src/'
 import watch from '@start/plugin-watch/src/'
 import eslint from '@start/plugin-lib-eslint/src/'
-import {
-  istanbulInstrument,
-  istanbulReport,
-  istanbulThresholds
-} from '@start/plugin-lib-istanbul/src/'
+import { istanbulInstrument, istanbulReport } from '@start/plugin-lib-istanbul/src/'
 import tape from '@start/plugin-lib-tape/src/'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate/src/'
 import typescriptCheck from '@start/plugin-lib-typescript-check/src/'
-import npmVersion from '@start/plugin-lib-npm-version/src/'
-import npmPublish from '@start/plugin-lib-npm-publish/src/'
 import codecov from '@start/plugin-lib-codecov/src/'
+import {
+  makeWorkspacesCommit,
+  buildBumpedPackages,
+  getWorkspacesPackagesBumps,
+  publishWorkspacesPackagesBumps,
+  publishWorkspacesPrompt,
+  writeWorkspacesPackagesBumps
+} from '@auto/start'
 import tapDiff from 'tap-diff'
 
-import { babelConfigBuild, babelConfigDts } from './config/babel'
+import { babelConfigBuild } from './config/babel'
+import autoConfig from './config/auto'
 
 export const build = (packageName: string) =>
   sequence(
@@ -125,14 +128,12 @@ export const ciCoverage = () =>
     codecov
   )
 
-export const publish = (packageName: string, version: string) =>
+export const publish = () =>
   sequence(
-    assert(packageName, 'package name is required'),
-    assert(version, 'package version is required'),
-    pack(packageName),
-    npmVersion(version, {
-      packagePath: `packages/${packageName}`,
-      message: `📦 ${packageName}: v%s`
-    }),
-    npmPublish(`packages/${packageName}`)
+    getWorkspacesPackagesBumps(autoConfig),
+    publishWorkspacesPrompt(autoConfig),
+    buildBumpedPackages(build)
+    // writePackagesBumps(publishOptions),
+    // publishPackagesBumps,
+    // sendSlackMessage(process.env.SLACK_WEBHOOK_URL, publishOptions),
   )
