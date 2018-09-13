@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "@start/plugin": "^0.2.0",
+    "@start/plugin": "^0.2.1",
     "chokidar": "^2.0.2"
   },
   "devDependencies": {
