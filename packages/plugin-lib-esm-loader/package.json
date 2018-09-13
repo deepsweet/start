@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-esm-loader",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "🏭 Copy a predefined ESM loader file to a directory",
   "keywords": "tasks, runner, start, start-plugin, esm",
   "repository": "deepsweet/start",
