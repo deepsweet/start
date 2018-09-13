@@ -132,8 +132,7 @@ export const publish = () =>
   sequence(
     getWorkspacesPackagesBumps(autoConfig),
     publishWorkspacesPrompt(autoConfig),
-    buildBumpedPackages(build)
-    // writePackagesBumps(publishOptions),
-    // publishPackagesBumps,
-    // sendSlackMessage(process.env.SLACK_WEBHOOK_URL, publishOptions),
+    buildBumpedPackages(build),
+    writeWorkspacesPackagesBumps(autoConfig),
+    publishWorkspacesPackagesBumps
   )
