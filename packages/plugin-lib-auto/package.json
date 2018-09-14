@@ -1,0 +1,31 @@
+{
+  "name": "@start/plugin-lib-auto",
+  "version": "0.0.0",
+  "description": "🤖 Auto Tools",
+  "keywords": "tasks, runner, start, start-plugin, auto",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-auto",
+  "author": "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "@auto/bump": "^0.0.16",
+    "@auto/fs": "^0.0.7",
+    "@auto/git": "^0.0.18",
+    "@auto/log": "^0.0.6",
+    "@auto/npm": "^0.0.15",
+    "@babel/runtime": "^7.0.0",
+    "@start/plugin": "^0.2.1",
+    "prompts": "^1.1.0"
+  }
+}
