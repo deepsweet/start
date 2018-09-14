@@ -19,11 +19,11 @@
     "node": ">=6"
   },
   "dependencies": {
-    "@auto/bump": "^0.0.16",
-    "@auto/fs": "^0.0.7",
-    "@auto/git": "^0.0.18",
-    "@auto/log": "^0.0.6",
-    "@auto/npm": "^0.0.15",
+    "@auto/bump": "^0.0.18",
+    "@auto/fs": "^0.0.10",
+    "@auto/git": "^0.0.20",
+    "@auto/log": "^0.0.8",
+    "@auto/npm": "^0.0.19",
     "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
     "prompts": "^1.1.0"

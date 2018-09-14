@@ -2,71 +2,59 @@
 # yarn lockfile v1
 
 
-"@auto/bump@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@auto/bump/-/bump-0.0.16.tgz#f00446712c915fadeece6cbef99ce4335f193503"
+"@auto/bump@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@auto/bump/-/bump-0.0.18.tgz#3228f3c1cc2ae3d5834d6392b0169a22e018a191"
   dependencies:
-    "@auto/utils" "^0.0.10"
-    "@auto/workspaces" "^0.0.14"
+    "@auto/utils" "^0.0.12"
+    "@auto/workspaces" "^0.0.16"
     esm "^3.0.82"
     semver "^5.5.1"
 
-"@auto/fs@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.7.tgz#4175ea645dfd1f78133936d230efeab3db82e789"
+"@auto/fs@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.10.tgz#c00b8e7a739f94393d4ed343bc60bc239569acb7"
   dependencies:
-    "@auto/utils" "^0.0.10"
+    "@auto/utils" "^0.0.12"
     esm "^3.0.82"
     fast-glob "^2.2.2"
 
-"@auto/git@^0.0.18":
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.18.tgz#6d22c95be34854700ee4ca989dd84468ae013dba"
+"@auto/git@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.20.tgz#fc5f2eb70251914a889a8f5888585e1280242965"
   dependencies:
-    "@auto/utils" "^0.0.10"
+    "@auto/utils" "^0.0.12"
     escape-string-regexp "^1.0.5"
     esm "^3.0.82"
     execa "^1.0.0"
     prompts "^1.1.0"
 
-"@auto/log@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.6.tgz#2bab46f0af2a679875649ac88ead5b2575ca7e8b"
+"@auto/log@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.8.tgz#904e75ed56402bcd0575e7009e2e0c1213102bf1"
   dependencies:
-    "@auto/utils" "^0.0.10"
+    "@auto/utils" "^0.0.12"
     esm "^3.0.82"
 
-"@auto/npm@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.15.tgz#109a8433712c59ca61a80718479b521fd579006e"
+"@auto/npm@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.19.tgz#a0fe26d061481fe965f1b2e1d3745f78a79d7815"
   dependencies:
-    "@auto/fs" "^0.0.7"
+    "@auto/fs" "^0.0.10"
     esm "^3.0.82"
     execa "^1.0.0"
 
-"@auto/start@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@auto/start/-/start-0.0.4.tgz#c7866f928ee8a2c4733882fd5f0b66c8fd9bf16f"
-  dependencies:
-    "@auto/bump" "^0.0.16"
-    "@auto/fs" "^0.0.7"
-    "@auto/git" "^0.0.18"
-    "@auto/log" "^0.0.6"
-    "@auto/npm" "^0.0.15"
-    "@start/plugin" "^0.2.0"
-    prompts "^1.1.0"
-
-"@auto/utils@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@auto/utils/-/utils-0.0.10.tgz#d460b5eb20d90af9d94aebca281a82ce7e9bce3a"
+"@auto/utils@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@auto/utils/-/utils-0.0.12.tgz#f8de5267726c25253baa480f009fe7e475fbd616"
   dependencies:
     esm "^3.0.82"
 
-"@auto/workspaces@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@auto/workspaces/-/workspaces-0.0.14.tgz#e19f037b2324c1c27797a8d68a169b55fabcb47d"
+"@auto/workspaces@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@auto/workspaces/-/workspaces-0.0.16.tgz#d60c5ab4df0b9ce643b69aa74a097737ff54e44a"
   dependencies:
-    "@auto/utils" "^0.0.10"
+    "@auto/utils" "^0.0.12"
     esm "^3.0.82"
 
 "@babel/code-frame@7.0.0-beta.51":
@@ -7966,6 +7954,10 @@ type-is@^1.6.16, type-is@~1.6.16:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typeon@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/typeon/-/typeon-0.1.1.tgz#6fb1c1bbeba85fa5237a1a736b902489eda1b3c4"
 
 typescript-eslint-parser@^16.0.0:
   version "16.0.1"

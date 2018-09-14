@@ -1,6 +1,6 @@
 /* eslint-disable no-throw-literal */
-import plugin, { StartPluginPropsAfter } from '@start/plugin'
-import { TRepoGitBump, TOptions, TRepoPackageBump } from '@auto/utils/src/'
+import plugin, { StartPluginPropsAfter } from '@start/plugin/src/'
+import { TRepoGitBump, TOptions, TRepoPackageBump } from '@auto/utils'
 
 export type TRepoPluginData = {
   packageBump: TRepoPackageBump,
@@ -9,16 +9,16 @@ export type TRepoPluginData = {
 
 export const makeRepoCommit = (options: TOptions) =>
   plugin('makeRepoCommit', async () => {
-    const { makeRepoCommit } = await import('@auto/git/src/')
+    const { makeRepoCommit } = await import('@auto/git')
 
     await makeRepoCommit(options)
   })
 
 export const getRepoPackageBumps = (options: TOptions) =>
   plugin('getRepoPackageBumps', async (): Promise<TRepoPluginData> => {
-    const { getRepoPackage } = await import('@auto/fs/src/')
-    const { getRepoBump } = await import('@auto/git/src/')
-    const { getRepoPackageBump } = await import('@auto/bump/src/')
+    const { getRepoPackage } = await import('@auto/fs')
+    const { getRepoBump } = await import('@auto/git')
+    const { getRepoPackageBump } = await import('@auto/bump')
 
     const pkg = await getRepoPackage()
     const gitBump = await getRepoBump(options)
@@ -37,7 +37,7 @@ export const getRepoPackageBumps = (options: TOptions) =>
 
 export const publishRepoPrompt = (options: TOptions) =>
   plugin('publishRepoPrompt', async (props) => {
-    const { getRepoLog } = await import('@auto/log/src/')
+    const { getRepoLog } = await import('@auto/log')
     const { default: prompts } = await import('prompts')
     const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
 
@@ -69,11 +69,11 @@ export const publishRepoPrompt = (options: TOptions) =>
 
 export const writeRepoPackageBump = (options: TOptions) =>
   plugin('writeRepoPackageBump', async (props) => {
-    const { writeRepoPackageVersion } = await import('@auto/fs/src/')
+    const { writeRepoPackageVersion } = await import('@auto/fs')
     const {
       writeRepoPublishCommit,
       writeRepoPublishTag
-    } = await import('@auto/git/src/')
+    } = await import('@auto/git')
     const { packageBump, logMessage } = props as TRepoPluginData & StartPluginPropsAfter
 
     await writeRepoPackageVersion(packageBump)
@@ -87,7 +87,7 @@ export const writeRepoPackageBump = (options: TOptions) =>
   })
 
 export const publishRepoPackageBump = plugin('publishRepoPackageBump', async () => {
-  const { publishRepoPackage } = await import('@auto/npm/src/')
+  const { publishRepoPackage } = await import('@auto/npm')
 
   await publishRepoPackage()
 })

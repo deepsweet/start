@@ -26,7 +26,7 @@ import {
   publishWorkspacesPackagesBumps,
   publishWorkspacesPrompt,
   writeWorkspacesPackagesBumps
-} from '@auto/start'
+} from '@start/plugin-lib-auto/src/'
 import tapDiff from 'tap-diff'
 
 import { babelConfigBuild } from './config/babel'

@@ -1,10 +1,10 @@
 /* eslint-disable no-throw-literal */
-import plugin, { StartPlugin, StartPluginPropsAfter } from '@start/plugin'
+import plugin, { StartPlugin, StartPluginPropsAfter } from '@start/plugin/src/'
 import {
   TWorkspacesGitBump,
   TOptions,
   TWorkspacesPackageBump
-} from '@auto/utils/src/'
+} from '@auto/utils'
 
 export type TWorkspacesPluginData = {
   packagesBumps: TWorkspacesPackageBump[],
@@ -13,8 +13,8 @@ export type TWorkspacesPluginData = {
 
 export const makeWorkspacesCommit = (options: TOptions) =>
   plugin('makeWorkspacesCommit', async () => {
-    const { getWorkspacesPackages } = await import('@auto/fs/src/')
-    const { makeWorkspacesCommit } = await import('@auto/git/src/')
+    const { getWorkspacesPackages } = await import('@auto/fs')
+    const { makeWorkspacesCommit } = await import('@auto/git')
 
     const packages = await getWorkspacesPackages()
 
@@ -23,9 +23,9 @@ export const makeWorkspacesCommit = (options: TOptions) =>
 
 export const getWorkspacesPackagesBumps = (options: TOptions) =>
   plugin('getWorkspacesPackagesBumps', async () => {
-    const { getWorkspacesPackages } = await import('@auto/fs/src/')
-    const { getWorkspacesBumps } = await import('@auto/git/src/')
-    const { getWorkspacesPackagesBumps } = await import('@auto/bump/src/')
+    const { getWorkspacesPackages } = await import('@auto/fs')
+    const { getWorkspacesBumps } = await import('@auto/git')
+    const { getWorkspacesPackagesBumps } = await import('@auto/bump')
 
     const packages = await getWorkspacesPackages()
     const gitBumps = await getWorkspacesBumps(packages, options)
@@ -44,7 +44,7 @@ export const getWorkspacesPackagesBumps = (options: TOptions) =>
 
 export const publishWorkspacesPrompt = (options: TOptions) =>
   plugin('publishWorkspacesPrompt', async (props) => {
-    const { getWorkspacesLog } = await import('@auto/log/src/')
+    const { getWorkspacesLog } = await import('@auto/log')
     const { default: prompts } = await import('prompts')
     const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
 
@@ -91,12 +91,12 @@ export const buildBumpedPackages = (task: (...args: any[]) => StartPlugin) =>
 
 export const writeWorkspacesPackagesBumps = (options: TOptions) =>
   plugin('writeWorkspacesPackagesBumps', async (props) => {
-    const { writePackageDependencies, writeWorkspacesPackageVersion } = await import('@auto/fs/src/')
+    const { writePackageDependencies, writeWorkspacesPackageVersion } = await import('@auto/fs')
     const {
       writeWorkspacesDependenciesCommit,
       writeWorkspacesPublishCommit,
       writeWorkspacesPublishTag
-    } = await import('@auto/git/src/')
+    } = await import('@auto/git')
     const { packagesBumps, logMessage } = props as TWorkspacesPluginData & StartPluginPropsAfter
 
     for (const bump of packagesBumps) {
@@ -120,7 +120,7 @@ export const writeWorkspacesPackagesBumps = (options: TOptions) =>
   })
 
 export const publishWorkspacesPackagesBumps = plugin('publishWorkspacesPackagesBumps', async (props) => {
-  const { publishWorkspacesPackage } = await import('@auto/npm/src/')
+  const { publishWorkspacesPackage } = await import('@auto/npm')
   const { packagesBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
 
   for (const bump of packagesBumps) {
