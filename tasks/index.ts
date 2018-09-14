@@ -45,13 +45,14 @@ export const dts = (packageName: string) =>
   sequence(
     find(`packages/${packageName}/src/index.ts`),
     typescriptGenerate(`packages/${packageName}/build/`),
+    find(`packages/${packageName}/build/**/*.d.ts`),
     read,
     // https://github.com/babel/babel/issues/7749
     // babel(babelConfigDts)
     plugin('modifyImports', ({ files }) => ({
       files: files.map((file) => ({
         ...file,
-        data: file.data.replace('"@start/plugin/src"', '"@start/plugin"')
+        data: file.data.replace(/(@.+?)\/src\/?/, '$1')
       }))
     })),
     write(`packages/${packageName}/build/`)
