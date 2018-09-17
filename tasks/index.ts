@@ -135,5 +135,5 @@ export const publish = () =>
     publishWorkspacesPrompt(autoConfig),
     buildBumpedPackages(build),
     writeWorkspacesPackagesBumps(autoConfig),
-    publishWorkspacesPackagesBumps
+    publishWorkspacesPackagesBumps()
   )
