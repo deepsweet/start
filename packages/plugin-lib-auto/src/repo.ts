@@ -1,6 +1,7 @@
 /* eslint-disable no-throw-literal */
 import plugin, { StartPluginPropsAfter } from '@start/plugin/src/'
 import { TRepoGitBump, TOptions, TRepoPackageBump } from '@auto/utils'
+import { TPublishOptions } from '@auto/npm'
 
 export type TRepoPluginData = {
   packageBump: TRepoPackageBump,
@@ -86,8 +87,9 @@ export const writeRepoPackageBump = (options: TOptions) =>
     await writeRepoPublishTag(packageBump)
   })
 
-export const publishRepoPackageBump = plugin('publishRepoPackageBump', async () => {
-  const { publishRepoPackage } = await import('@auto/npm')
+export const publishRepoPackageBump = (options?: TPublishOptions) =>
+  plugin('publishRepoPackageBump', async () => {
+    const { publishRepoPackage } = await import('@auto/npm')
 
-  await publishRepoPackage()
-})
+    await publishRepoPackage(options)
+  })

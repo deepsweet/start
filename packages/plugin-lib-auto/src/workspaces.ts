@@ -5,6 +5,7 @@ import {
   TOptions,
   TWorkspacesPackageBump
 } from '@auto/utils'
+import { TPublishOptions } from '@auto/npm'
 
 export type TWorkspacesPluginData = {
   packagesBumps: TWorkspacesPackageBump[],
@@ -119,11 +120,12 @@ export const writeWorkspacesPackagesBumps = (options: TOptions) =>
     }
   })
 
-export const publishWorkspacesPackagesBumps = plugin('publishWorkspacesPackagesBumps', async (props) => {
-  const { publishWorkspacesPackage } = await import('@auto/npm')
-  const { packagesBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
+export const publishWorkspacesPackagesBumps = (options?: TPublishOptions) =>
+  plugin('publishWorkspacesPackagesBumps', async (props) => {
+    const { publishWorkspacesPackage } = await import('@auto/npm')
+    const { packagesBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
 
-  for (const bump of packagesBumps) {
-    await publishWorkspacesPackage(bump)
-  }
-})
+    for (const bump of packagesBumps) {
+      await publishWorkspacesPackage(bump, options)
+    }
+  })
