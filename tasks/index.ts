@@ -25,7 +25,9 @@ import {
   getWorkspacesPackagesBumps,
   publishWorkspacesPackagesBumps,
   publishWorkspacesPrompt,
-  writeWorkspacesPackagesBumps
+  writeWorkspacesPackagesBumps,
+  makeWorkspacesGithubReleases,
+  pushCommitsAndTags
 } from '@start/plugin-lib-auto/src/'
 import tapDiff from 'tap-diff'
 
@@ -135,5 +137,14 @@ export const publish = () =>
     publishWorkspacesPrompt(autoConfig),
     buildBumpedPackages(build),
     writeWorkspacesPackagesBumps(autoConfig),
-    publishWorkspacesPackagesBumps()
+    publishWorkspacesPackagesBumps(),
+    pushCommitsAndTags,
+    makeWorkspacesGithubReleases(
+      {
+        token: process.env.GITHUB_RELEASE_TOKEN,
+        username: 'deepsweet',
+        repo: 'start'
+      },
+      autoConfig
+    )
   )
