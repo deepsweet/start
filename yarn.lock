@@ -11,17 +11,17 @@
     esm "^3.0.82"
     semver "^5.5.1"
 
-"@auto/fs@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.10.tgz#c00b8e7a739f94393d4ed343bc60bc239569acb7"
+"@auto/fs@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.11.tgz#500ce56505f41577a36a448faa69aeea9531ce07"
   dependencies:
     "@auto/utils" "^0.0.12"
     esm "^3.0.82"
     fast-glob "^2.2.2"
 
-"@auto/git@^0.0.20":
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.20.tgz#fc5f2eb70251914a889a8f5888585e1280242965"
+"@auto/git@^0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.21.tgz#57ddc7d95c20494d8c8deaad5eeb0ae4644af644"
   dependencies:
     "@auto/utils" "^0.0.12"
     escape-string-regexp "^1.0.5"
@@ -29,18 +29,20 @@
     execa "^1.0.0"
     prompts "^1.1.0"
 
-"@auto/log@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.8.tgz#904e75ed56402bcd0575e7009e2e0c1213102bf1"
+"@auto/log@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.10.tgz#15718f24d791b29058811a1d2fc20fcade58c4dc"
   dependencies:
     "@auto/utils" "^0.0.12"
     esm "^3.0.82"
+    request "^2.88.0"
+    request-promise-native "^1.0.5"
 
-"@auto/npm@^0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.19.tgz#a0fe26d061481fe965f1b2e1d3745f78a79d7815"
+"@auto/npm@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.20.tgz#cdf06fd38b8a7b3b13018ecf101ac4bce044c988"
   dependencies:
-    "@auto/fs" "^0.0.10"
+    "@auto/fs" "^0.0.11"
     esm "^3.0.82"
     execa "^1.0.0"
 
@@ -6930,7 +6932,7 @@ request@2.75.x:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@^2.0.0, request@^2.74.0, request@^2.79.0, request@^2.87.0:
+request@^2.0.0, request@^2.74.0, request@^2.79.0, request@^2.87.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   dependencies:
