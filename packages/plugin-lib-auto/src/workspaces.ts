@@ -1,11 +1,8 @@
 /* eslint-disable no-throw-literal */
 import plugin, { StartPlugin, StartPluginPropsAfter } from '@start/plugin/src/'
-import {
-  TWorkspacesGitBump,
-  TOptions,
-  TWorkspacesPackageBump
-} from '@auto/utils'
+import { TWorkspacesGitBump, TOptions, TWorkspacesPackageBump } from '@auto/utils'
 import { TPublishOptions } from '@auto/npm'
+import { TSlackOptions, TGithubOptions } from '@auto/log'
 
 export type TWorkspacesPluginData = {
   packagesBumps: TWorkspacesPackageBump[],
@@ -128,4 +125,24 @@ export const publishWorkspacesPackagesBumps = (options?: TPublishOptions) =>
     for (const bump of packagesBumps) {
       await publishWorkspacesPackage(bump, options)
     }
+  })
+
+export const sendWorkspacesSlackMessage = (slackOptions: TSlackOptions, autoOptions: TOptions) =>
+  plugin('sendWorkspacesSlackMessage', async (props) => {
+    const { getWorkspacesLog, sendWorkspacesSlackMessage: send } = await import('@auto/log')
+
+    const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
+    const logs = getWorkspacesLog(packagesBumps, gitBumps, autoOptions)
+
+    await send(logs, slackOptions, autoOptions)
+  })
+
+export const makeWorkspacesGithubReleases = (githubOptions: TGithubOptions, autoOptions: TOptions) =>
+  plugin('makeWorkspacesGithubReleases', async (props) => {
+    const { getWorkspacesLog, makeWorkspacesGithubReleases: make } = await import('@auto/log')
+
+    const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
+    const logs = getWorkspacesLog(packagesBumps, gitBumps, autoOptions)
+
+    await make(logs, githubOptions, autoOptions)
   })
