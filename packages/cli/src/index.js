@@ -2,8 +2,7 @@
 
 // eslint-disable-next-line no-global-assign
 require = require('esm')(module, {
-  mainFields: ['module', 'main'],
-  cache: false
+  mainFields: ['module', 'main']
 })
 
 const { resolve } = require('path')
