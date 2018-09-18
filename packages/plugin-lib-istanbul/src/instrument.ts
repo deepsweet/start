@@ -25,6 +25,8 @@ export default (options: Options = {}) =>
       coverageVariable
     })
 
+    process.env.ESM_DISABLE_CACHE = '1'
+
     hooks.clearAll()
 
     // clear require cache
