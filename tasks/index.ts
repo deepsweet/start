@@ -135,7 +135,7 @@ export const publish = () =>
   sequence(
     getWorkspacesPackagesBumps(autoConfig),
     publishWorkspacesPrompt(autoConfig),
-    buildBumpedPackages(build),
+    buildBumpedPackages(pack),
     writeWorkspacesPackagesBumps(autoConfig),
     publishWorkspacesPackagesBumps(),
     pushCommitsAndTags,
