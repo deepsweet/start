@@ -25,7 +25,7 @@
     "tap-diff": "^0.1.1",
     "tape-promise": "^3.0.0",
     "typeon": "^0.1.1",
-    "typescript": "^3.0.0",
+    "typescript": "^3.1.0-0",
     "typescript-eslint-parser": "^18.0.0"
   },
   "scripts": {
