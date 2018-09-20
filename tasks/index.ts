@@ -141,5 +141,5 @@ export const publish = () =>
     writeWorkspacesPackagesBumps(autoOptions),
     publishWorkspacesPackagesBumps(autoOptions),
     pushCommitsAndTags,
-    makeWorkspacesGithubReleases(autoOptions)
+    makeWorkspacesGithubReleases(process.env.GITHUB_RELEASE_TOKEN, autoOptions)
   )
