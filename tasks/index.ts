@@ -131,7 +131,7 @@ export const ciCoverage = () =>
     codecov
   )
 
-export const commit = async () => makeWorkspacesCommit(autoOptions)
+export const commit = () => makeWorkspacesCommit(autoOptions)
 
 export const publish = () =>
   sequence(
