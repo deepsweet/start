@@ -6461,6 +6461,13 @@ prompts@^1.1.0:
     kleur "^2.0.1"
     sisteransi "^1.0.0"
 
+prompts@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/prompts/-/prompts-1.1.1.tgz#c687590e472c08cd84cfa4b8694b1cab5de45144"
+  dependencies:
+    kleur "^2.0.1"
+    sisteransi "^1.0.0"
+
 proxy-agent@~3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/proxy-agent/-/proxy-agent-3.0.3.tgz#1c1a33db60ef5f2e9e35b876fd63c2bc681c611d"
