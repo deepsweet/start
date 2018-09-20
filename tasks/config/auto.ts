@@ -63,5 +63,9 @@ export default {
   ],
   autoNamePrefix: '@start/',
   zeroBreakingChangeType: 'minor',
-  initialType: 'minor'
+  initialType: 'minor',
+  github: {
+    username: 'deepsweet',
+    repo: 'start'
+  }
 } as TOptions
