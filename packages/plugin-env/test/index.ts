@@ -21,10 +21,15 @@ test('plugin-env: export', (t) => {
 })
 
 test('plugin-env: process.env', async (t) => {
-  await env({
+  const props = {
+    reporter: new EventEmitter()
+  }
+  const envRunner = await env({
     FOO: 'BAR',
     BEEP: 'BOOP'
   })
+
+  await envRunner(props)
 
   t.equal(
     process.env.FOO,
