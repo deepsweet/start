@@ -93,22 +93,22 @@ export const publishRepoPackageBump = (options: TOptions) =>
     await publishRepoPackage(options)
   })
 
-export const sendRepoSlackMessage = (options: TOptions) =>
+export const sendRepoSlackMessage = (token: string, options: TOptions) =>
   plugin('sendRepoSlackMessage', async (props) => {
     const { getRepoLog, sendRepoSlackMessage: send } = await import('@auto/log')
 
     const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
     const log = getRepoLog(packageBump, gitBump)
 
-    await send(log, process.env.SLACK_WEBHOOK_TOKEN, options)
+    await send(log, token, options)
   })
 
-export const makeRepoGithubRelease = (options: TOptions) =>
+export const makeRepoGithubRelease = (token: string, options: TOptions) =>
   plugin('makeRepoGithubRelease', async (props) => {
     const { getRepoLog, makeRepoGithubRelease: make } = await import('@auto/log')
 
     const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
     const log = getRepoLog(packageBump, gitBump)
 
-    await make(log, process.env.GITHUB_RELEASE_TOKEN, options)
+    await make(log, token, options)
   })

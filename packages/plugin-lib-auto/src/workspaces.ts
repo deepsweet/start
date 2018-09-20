@@ -125,22 +125,22 @@ export const publishWorkspacesPackagesBumps = (options: TOptions) =>
     }
   })
 
-export const sendWorkspacesSlackMessage = (options: TOptions) =>
+export const sendWorkspacesSlackMessage = (token: string, options: TOptions) =>
   plugin('sendWorkspacesSlackMessage', async (props) => {
     const { getWorkspacesLog, sendWorkspacesSlackMessage: send } = await import('@auto/log')
 
     const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
     const logs = getWorkspacesLog(packagesBumps, gitBumps, options)
 
-    await send(logs, process.env.SLACK_WEBHOOK_TOKEN, options)
+    await send(logs, token, options)
   })
 
-export const makeWorkspacesGithubReleases = (options: TOptions) =>
+export const makeWorkspacesGithubReleases = (token: string, options: TOptions) =>
   plugin('makeWorkspacesGithubReleases', async (props) => {
     const { getWorkspacesLog, makeWorkspacesGithubReleases: make } = await import('@auto/log')
 
     const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
     const logs = getWorkspacesLog(packagesBumps, gitBumps, options)
 
-    await make(logs, process.env.GITHUB_RELEASE_TOKEN, options)
+    await make(logs, token, options)
   })
