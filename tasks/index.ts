@@ -54,7 +54,7 @@ export const dts = (packageName: string) =>
     plugin('modifyImports', ({ files }) => ({
       files: files.map((file) => ({
         ...file,
-        data: file.data.replace(/(@.+?)\/src\/?/, '$1')
+        data: file.data.replace(/(@.+?)\/src\/?/g, '$1')
       }))
     })),
     write(`packages/${packageName}/build/`)
