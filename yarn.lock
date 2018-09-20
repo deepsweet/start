@@ -29,9 +29,9 @@
     execa "^1.0.0"
     prompts "^1.1.0"
 
-"@auto/log@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.12.tgz#db8f060f167cb4195e4d0f712b8e93edac35bc02"
+"@auto/log@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.13.tgz#562d6d3087ef1e60636e7c8cc9d1f9173ebf5a5a"
   dependencies:
     "@auto/utils" "^0.0.13"
     esm "^3.0.82"

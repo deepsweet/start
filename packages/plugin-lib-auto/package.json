@@ -22,7 +22,7 @@
     "@auto/bump": "^0.0.19",
     "@auto/fs": "^0.0.12",
     "@auto/git": "^0.0.22",
-    "@auto/log": "^0.0.12",
+    "@auto/log": "^0.0.13",
     "@auto/npm": "^0.0.21",
     "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
