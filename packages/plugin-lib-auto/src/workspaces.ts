@@ -1,8 +1,6 @@
 /* eslint-disable no-throw-literal */
 import plugin, { StartPlugin, StartPluginPropsAfter } from '@start/plugin/src/'
 import { TWorkspacesGitBump, TOptions, TWorkspacesPackageBump } from '@auto/utils'
-import { TPublishOptions } from '@auto/npm'
-import { TSlackOptions, TGithubOptions } from '@auto/log'
 
 export type TWorkspacesPluginData = {
   packagesBumps: TWorkspacesPackageBump[],
@@ -37,7 +35,7 @@ export const getWorkspacesPackagesBumps = (options: TOptions) =>
     return {
       packagesBumps,
       gitBumps
-    } as TWorkspacesPluginData
+    }
   })
 
 export const publishWorkspacesPrompt = (options: TOptions) =>
@@ -117,7 +115,7 @@ export const writeWorkspacesPackagesBumps = (options: TOptions) =>
     }
   })
 
-export const publishWorkspacesPackagesBumps = (options?: TPublishOptions) =>
+export const publishWorkspacesPackagesBumps = (options: TOptions) =>
   plugin('publishWorkspacesPackagesBumps', async (props) => {
     const { publishWorkspacesPackage } = await import('@auto/npm')
     const { packagesBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
@@ -127,22 +125,22 @@ export const publishWorkspacesPackagesBumps = (options?: TPublishOptions) =>
     }
   })
 
-export const sendWorkspacesSlackMessage = (slackOptions: TSlackOptions, autoOptions: TOptions) =>
+export const sendWorkspacesSlackMessage = (options: TOptions) =>
   plugin('sendWorkspacesSlackMessage', async (props) => {
     const { getWorkspacesLog, sendWorkspacesSlackMessage: send } = await import('@auto/log')
 
     const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
-    const logs = getWorkspacesLog(packagesBumps, gitBumps, autoOptions)
+    const logs = getWorkspacesLog(packagesBumps, gitBumps, options)
 
-    await send(logs, slackOptions, autoOptions)
+    await send(logs, process.env.SLACK_WEBHOOK_TOKEN, options)
   })
 
-export const makeWorkspacesGithubReleases = (githubOptions: TGithubOptions, autoOptions: TOptions) =>
+export const makeWorkspacesGithubReleases = (options: TOptions) =>
   plugin('makeWorkspacesGithubReleases', async (props) => {
     const { getWorkspacesLog, makeWorkspacesGithubReleases: make } = await import('@auto/log')
 
     const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
-    const logs = getWorkspacesLog(packagesBumps, gitBumps, autoOptions)
+    const logs = getWorkspacesLog(packagesBumps, gitBumps, options)
 
-    await make(logs, githubOptions, autoOptions)
+    await make(logs, process.env.GITHUB_RELEASE_TOKEN, options)
   })

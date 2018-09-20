@@ -1,8 +1,6 @@
 /* eslint-disable no-throw-literal */
 import plugin, { StartPluginPropsAfter } from '@start/plugin/src/'
 import { TRepoGitBump, TOptions, TRepoPackageBump } from '@auto/utils'
-import { TPublishOptions } from '@auto/npm'
-import { TSlackOptions, TGithubOptions } from '@auto/log'
 
 export type TRepoPluginData = {
   packageBump: TRepoPackageBump,
@@ -88,29 +86,29 @@ export const writeRepoPackageBump = (options: TOptions) =>
     await writeRepoPublishTag(packageBump)
   })
 
-export const publishRepoPackageBump = (options?: TPublishOptions) =>
+export const publishRepoPackageBump = (options: TOptions) =>
   plugin('publishRepoPackageBump', async () => {
     const { publishRepoPackage } = await import('@auto/npm')
 
     await publishRepoPackage(options)
   })
 
-export const sendRepoSlackMessage = (slackOptions: TSlackOptions, autoOptions: TOptions) =>
+export const sendRepoSlackMessage = (options: TOptions) =>
   plugin('sendRepoSlackMessage', async (props) => {
     const { getRepoLog, sendRepoSlackMessage: send } = await import('@auto/log')
 
     const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
     const log = getRepoLog(packageBump, gitBump)
 
-    await send(log, slackOptions, autoOptions)
+    await send(log, process.env.SLACK_WEBHOOK_TOKEN, options)
   })
 
-export const makeRepoGithubRelease = (githubOptions: TGithubOptions, autoOptions: TOptions) =>
+export const makeRepoGithubRelease = (options: TOptions) =>
   plugin('makeRepoGithubRelease', async (props) => {
     const { getRepoLog, makeRepoGithubRelease: make } = await import('@auto/log')
 
     const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
     const log = getRepoLog(packageBump, gitBump)
 
-    await make(log, githubOptions, autoOptions)
+    await make(log, process.env.GITHUB_RELEASE_TOKEN, options)
   })

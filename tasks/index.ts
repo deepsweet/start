@@ -32,7 +32,7 @@ import {
 import tapDiff from 'tap-diff'
 
 import { babelConfigBuild } from './config/babel'
-import autoConfig from './config/auto'
+import autoOptions from './config/auto'
 
 export const build = (packageName: string) =>
   sequence(
@@ -131,20 +131,15 @@ export const ciCoverage = () =>
     codecov
   )
 
+export const commit = async () => makeWorkspacesCommit(autoOptions)
+
 export const publish = () =>
   sequence(
-    getWorkspacesPackagesBumps(autoConfig),
-    publishWorkspacesPrompt(autoConfig),
+    getWorkspacesPackagesBumps(autoOptions),
+    publishWorkspacesPrompt(autoOptions),
     buildBumpedPackages(pack),
-    writeWorkspacesPackagesBumps(autoConfig),
-    publishWorkspacesPackagesBumps(),
+    writeWorkspacesPackagesBumps(autoOptions),
+    publishWorkspacesPackagesBumps(autoOptions),
     pushCommitsAndTags,
-    makeWorkspacesGithubReleases(
-      {
-        token: process.env.GITHUB_RELEASE_TOKEN,
-        username: 'deepsweet',
-        repo: 'start'
-      },
-      autoConfig
-    )
+    makeWorkspacesGithubReleases(autoOptions)
   )

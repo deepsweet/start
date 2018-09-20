@@ -1,3 +1,5 @@
+import { TOptions } from '@auto/utils'
+
 export default {
   requiredPrefixes: {
     major: {
@@ -19,6 +21,10 @@ export default {
     dependencies: {
       title: 'Dependencies',
       value: '♻️'
+    },
+    initial: {
+      title: 'Initial',
+      value: '🐣'
     }
   },
   customPrefixes: [
@@ -56,5 +62,6 @@ export default {
     }
   ],
   autoNamePrefix: '@start/',
-  zeroMajorBump: 'minor' as 'minor'
-}
+  zeroBreakingChangeType: 'minor',
+  initialType: 'minor'
+} as TOptions
