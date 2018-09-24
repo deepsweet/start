@@ -11,17 +11,17 @@
     esm "^3.0.82"
     semver "^5.5.1"
 
-"@auto/fs@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.14.tgz#7704c0ea055e9760ff116129c851a3754b704f1c"
+"@auto/fs@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.15.tgz#fde87c4b3210e2c090d7249be8fb85def2d5e4c2"
   dependencies:
     "@auto/utils" "^0.0.15"
     esm "^3.0.82"
     fast-glob "^2.2.2"
 
-"@auto/git@^0.0.24":
-  version "0.0.24"
-  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.24.tgz#2d449fe41cb5ef11c63ae9b22f16dcb5b4928963"
+"@auto/git@^0.0.25":
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.25.tgz#f37b3908b295de1dbf6315154215586f2d6a62c8"
   dependencies:
     "@auto/utils" "^0.0.15"
     escape-string-regexp "^1.0.5"
@@ -38,11 +38,11 @@
     request "^2.88.0"
     request-promise-native "^1.0.5"
 
-"@auto/npm@^0.0.23":
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.23.tgz#2a5510361fa4a033d094977186fdf5977dbd4c04"
+"@auto/npm@^0.0.24":
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.24.tgz#e74c94ef852cbe8209f9a33acdf7af9d52d2151a"
   dependencies:
-    "@auto/fs" "^0.0.14"
+    "@auto/fs" "^0.0.15"
     esm "^3.0.82"
     execa "^1.0.0"
 
