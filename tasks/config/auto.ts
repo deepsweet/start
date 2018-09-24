@@ -1,8 +1,7 @@
 import { TGitOptions } from '@auto/git'
-import { TFsOptions } from '@auto/fs'
 import { TBumpOptions } from '@auto/bump'
 import { TGithubOptions } from '@auto/log'
-import { TPrefixes } from '@auto/utils'
+import { TPrefixes, TWorkspacesOptions } from '@auto/utils'
 
 export const prefixes: TPrefixes = {
   required: {
@@ -67,8 +66,6 @@ export const prefixes: TPrefixes = {
   ]
 }
 
-export const fsOptions: TFsOptions = { autoNamePrefix: '@start/' }
-
 export const gitOptions: TGitOptions = { initialType: 'minor' }
 
 export const bumpOptions: TBumpOptions = { zeroBreakingChangeType: 'minor' }
@@ -78,3 +75,5 @@ export const githubOptions: TGithubOptions = {
   repo: 'start',
   token: process.env.GITHUB_RELEASE_TOKEN
 }
+
+export const workspacesOptions: TWorkspacesOptions = { autoNamePrefix: '@start/' }

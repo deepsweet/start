@@ -32,7 +32,7 @@ import {
 import tapDiff from 'tap-diff'
 
 import { babelConfigBuild } from './config/babel'
-import { prefixes, fsOptions, gitOptions, bumpOptions, githubOptions } from './config/auto'
+import { prefixes, gitOptions, bumpOptions, githubOptions, workspacesOptions } from './config/auto'
 
 export const build = (packageName: string) =>
   sequence(
@@ -131,14 +131,14 @@ export const ciCoverage = () =>
     codecov
   )
 
-export const commit = () => makeWorkspacesCommit(prefixes, fsOptions)
+export const commit = () => makeWorkspacesCommit(prefixes, workspacesOptions)
 
 export const publish = () =>
   sequence(
-    getWorkspacesPackagesBumps(prefixes, fsOptions, gitOptions, bumpOptions),
+    getWorkspacesPackagesBumps(prefixes, gitOptions, bumpOptions, workspacesOptions),
     publishWorkspacesPrompt(prefixes),
     buildBumpedPackages(pack),
-    writeWorkspacesPackagesBumps(prefixes, fsOptions),
+    writeWorkspacesPackagesBumps(prefixes, workspacesOptions),
     publishWorkspacesPackagesBumps(),
     pushCommitsAndTags,
     makeWorkspacesGithubReleases(prefixes, githubOptions)
