@@ -1,7 +1,11 @@
-import { TOptions } from '@auto/utils'
+import { TGitOptions } from '@auto/git'
+import { TFsOptions } from '@auto/fs'
+import { TBumpOptions } from '@auto/bump'
+import { TGithubOptions } from '@auto/log'
+import { TPrefixes } from '@auto/utils'
 
-export default {
-  requiredPrefixes: {
+export const prefixes: TPrefixes = {
+  required: {
     major: {
       title: 'Breaking change',
       value: '💥'
@@ -27,7 +31,7 @@ export default {
       value: '🐣'
     }
   },
-  customPrefixes: [
+  custom: [
     {
       title: 'Dependencies',
       value: '♻️'
@@ -60,12 +64,17 @@ export default {
       title: 'Other',
       value: '🛠'
     }
-  ],
-  autoNamePrefix: '@start/',
-  zeroBreakingChangeType: 'minor',
-  initialType: 'minor',
-  github: {
-    username: 'deepsweet',
-    repo: 'start'
-  }
-} as TOptions
+  ]
+}
+
+export const fsOptions: TFsOptions = { autoNamePrefix: '@start/' }
+
+export const gitOptions: TGitOptions = { initialType: 'minor' }
+
+export const bumpOptions: TBumpOptions = { zeroBreakingChangeType: 'minor' }
+
+export const githubOptions: TGithubOptions = {
+  username: 'deepsweet',
+  repo: 'start',
+  token: process.env.GITHUB_RELEASE_TOKEN
+}
