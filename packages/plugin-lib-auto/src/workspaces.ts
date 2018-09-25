@@ -114,8 +114,8 @@ export const writeWorkspacesPackagesBumps = (prefixes: TPrefixes, workspacesOpti
       await writeWorkspacesPublishCommit(bump, prefixes)
       logMessage('write publish commit')
 
-      logMessage('write publish tag')
       await writeWorkspacesPublishTag(bump)
+      logMessage('write publish tag')
     }
   })
 
