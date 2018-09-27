@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-auto",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "🤖 Auto Tools",
   "keywords": "tasks, runner, start, start-plugin, auto",
   "repository": "deepsweet/start",
@@ -22,7 +22,7 @@
     "@auto/bump": "^0.0.21",
     "@auto/fs": "^0.0.15",
     "@auto/git": "^0.0.25",
-    "@auto/log": "^0.0.15",
+    "@auto/log": "^0.0.16",
     "@auto/npm": "^0.0.24",
     "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
