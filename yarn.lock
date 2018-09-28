@@ -21,10 +21,10 @@
     esm "^3.0.82"
     fast-glob "^2.2.2"
 
-"@auto/git@^0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.25.tgz#f37b3908b295de1dbf6315154215586f2d6a62c8"
-  integrity sha512-UJLtRl+qHUfHFWdWkJH7FAnPcMLJpmtmPst1tSM+kqmVmhPxz6GBx/G1DMpxiOcN9+7ZPjx8IPADCBWB1mozuQ==
+"@auto/git@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.26.tgz#10cacc909b246c9fac864fad5528f59c82ba8438"
+  integrity sha512-7ziFX/yv2/ANMytgTYMoB/KWLTN/S+iNnVc2lLrrMKftHkj6xg0k2fbkOjBU/32waDpHuM0m427IDU6mENH/DA==
   dependencies:
     "@auto/utils" "^0.0.15"
     escape-string-regexp "^1.0.5"
