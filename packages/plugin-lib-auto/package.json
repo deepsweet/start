@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-auto",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "🤖 Auto Tools",
   "keywords": "tasks, runner, start, start-plugin, auto",
   "repository": "deepsweet/start",
