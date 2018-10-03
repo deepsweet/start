@@ -21,7 +21,7 @@
   "dependencies": {
     "@auto/bump": "^0.0.21",
     "@auto/fs": "^0.0.15",
-    "@auto/git": "^0.0.27",
+    "@auto/git": "^0.0.28",
     "@auto/log": "^0.0.16",
     "@auto/npm": "^0.0.24",
     "@babel/runtime": "^7.0.0",
