@@ -61,7 +61,7 @@ export const publishRepoPrompt = (prefixes: TPrefixes) =>
       type: 'toggle',
       name: 'isOk',
       message: 'Looks good?',
-      initial: true,
+      initial: false,
       active: 'yes',
       inactive: 'no'
     })
