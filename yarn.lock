@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@auto/bump@^0.0.21":
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/@auto/bump/-/bump-0.0.21.tgz#404ad900552a94d761f83c58b4c4c1aa8f85cb1a"
-  integrity sha512-zV/w/xGkSW+ua0RtsJMQDDvjstCl/d07+PgMHOKtWsDiBBHbj9a0y+LiRkgL3VYZ1mai37A1X73JhWZXW0WZsw==
+"@auto/bump@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@auto/bump/-/bump-0.0.22.tgz#332bf1b80430220d3e6dec6f1f7c0e51f4ba7c2c"
+  integrity sha512-LjYIt2u/CTI/1dXaJvwQp4v3C5KMWsI10IRtVt9GAX6Kovsbi1tvTto7oBwPZLLE0tgAaBrI2cBR8ZGf+vGEGg==
   dependencies:
     "@auto/utils" "^0.0.15"
-    "@auto/workspaces" "^0.0.19"
+    "@auto/workspaces" "^0.0.20"
     esm "^3.0.82"
     semver "^5.5.1"
 
@@ -20,6 +20,17 @@
     "@auto/utils" "^0.0.15"
     esm "^3.0.82"
     fast-glob "^2.2.2"
+
+"@auto/fs@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.16.tgz#bf367be4edd73426c67959c3b74296692f3db7dc"
+  integrity sha512-MT/MdgyX+MXhMxBjttbbmjIqE0C6FcKbUvzl15TLNE+RXAVHe/WtZQ0dqe3hdg/fV81vMXRd4xhmBNS8KCsA6Q==
+  dependencies:
+    "@auto/utils" "^0.0.15"
+    esm "^3.0.82"
+    fast-glob "^2.2.2"
+    graceful-fs "^4.1.11"
+    p-all "^1.0.0"
 
 "@auto/git@^0.0.28":
   version "0.0.28"
@@ -42,10 +53,10 @@
     request "^2.88.0"
     request-promise-native "^1.0.5"
 
-"@auto/npm@^0.0.24":
-  version "0.0.24"
-  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.24.tgz#e74c94ef852cbe8209f9a33acdf7af9d52d2151a"
-  integrity sha512-t7W8CJeGdjBhowOg2uLdZSeVc/2cEdKe9s7t15K0iWWAzXCBJZyEkQCekp+qWNVFf2uIca8hbMa9yZGOL0147Q==
+"@auto/npm@^0.0.25":
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.25.tgz#8ec7a848120ecc95f1cc3fb6509467e2ccc4a301"
+  integrity sha512-Y136UpnPZ2zBhqPQAuhjQL0IMLexuBOJ2bE0S9y3Ssaq63TifwcwcP6+0VMH6W389KNkPsPoVuToerC3ljqWWQ==
   dependencies:
     "@auto/fs" "^0.0.15"
     esm "^3.0.82"
@@ -58,10 +69,10 @@
   dependencies:
     esm "^3.0.82"
 
-"@auto/workspaces@^0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@auto/workspaces/-/workspaces-0.0.19.tgz#7d4d47ecae77bc71cc2abe1d4dcb9bc0d4d14207"
-  integrity sha512-zfBqQYTN1UT7GbijXTtzKdbNags3bdK0klemUHHMu4b1xtEGMLGK8llZHIyeAIvDXh0jMG1lrDd79I5mki4U5w==
+"@auto/workspaces@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@auto/workspaces/-/workspaces-0.0.20.tgz#c7fdc7de7df9ad66c48d7c2bbd15bb368e032882"
+  integrity sha512-r0DIEqaEJkbWSBt/LdnKQwKfBl9T+T4pj8ioo7czP7J6LZ0QnwmyQK2qtKrVmWZtwogofiaguCfpqeN20ExRIg==
   dependencies:
     "@auto/utils" "^0.0.15"
     esm "^3.0.82"
