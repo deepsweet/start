@@ -12,15 +12,6 @@
     esm "^3.0.82"
     semver "^5.5.1"
 
-"@auto/fs@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.15.tgz#fde87c4b3210e2c090d7249be8fb85def2d5e4c2"
-  integrity sha512-Y8VwIN13vBGPETstUtBQxTdeC49HKvy/nknPZu23Byj+fEUGjZzkbKlHSty7rjqBXQODJoW0v7Z1l/vAsIi0qw==
-  dependencies:
-    "@auto/utils" "^0.0.15"
-    esm "^3.0.82"
-    fast-glob "^2.2.2"
-
 "@auto/fs@^0.0.16":
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.16.tgz#bf367be4edd73426c67959c3b74296692f3db7dc"
@@ -53,12 +44,12 @@
     request "^2.88.0"
     request-promise-native "^1.0.5"
 
-"@auto/npm@^0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.25.tgz#8ec7a848120ecc95f1cc3fb6509467e2ccc4a301"
-  integrity sha512-Y136UpnPZ2zBhqPQAuhjQL0IMLexuBOJ2bE0S9y3Ssaq63TifwcwcP6+0VMH6W389KNkPsPoVuToerC3ljqWWQ==
+"@auto/npm@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.26.tgz#2f18168654d2e291afd264ca64491ecc76e630a4"
+  integrity sha512-xipYPJAZqQI/oJxXM1hO00hnNi2eFW5ePebTr8DPTxDI7/c9CCXpNDo4QZTeuU+pxwjBHlO1o5uYAgz6q9RrUQ==
   dependencies:
-    "@auto/fs" "^0.0.15"
+    "@auto/fs" "^0.0.16"
     esm "^3.0.82"
     execa "^1.0.0"
 
