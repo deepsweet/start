@@ -1,71 +1,47 @@
+import {
+  ScriptTarget,
+  ModuleResolutionKind,
+  getPreEmitDiagnostics,
+  flattenDiagnosticMessageText,
+  CompilerOptions,
+  ModuleKind
+} from 'typescript'
 import plugin from '@start/plugin/src/'
 
-export type Options = {
-  [key: string]: any
-}
-type WriteFile = (path: string, data: string, options: string, cb: (err: any) => void) => void
-
-export default (outDirRelative: string, userOptions?: Options) =>
+// https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
+export default (outDirRelative: string, userOptions?: CompilerOptions) =>
   plugin('typescriptGenerate', async ({ files, logFile }) => {
+    const { createProgram } = await import('typescript')
     const path = await import('path')
-    const gracefulFs = await import('graceful-fs')
-    const { default: makethen } = await import('makethen')
-    const { default: execa } = await import('execa')
-    const { default: dleet } = await import('dleet')
+    const options = {
+      allowSyntheticDefaultImports: true,
+      esModuleInterop: true,
+      moduleResolution: ModuleResolutionKind.NodeJs,
+      target: ScriptTarget.ESNext,
+      module: ModuleKind.ESNext,
+      ...userOptions,
+      declarationDir: path.resolve(outDirRelative),
+      declaration: true,
+      emitDeclarationOnly: true
+    }
+    const filePaths = files.map((file) => file.path)
 
-    const pWriteFile = makethen(gracefulFs.writeFile as WriteFile)
-    const tscBinPath = path.resolve('node_modules/.bin/tsc')
-    const spawnOptions = {
-      stripEof: false,
-      env: {
-        FORCE_COLOR: '1'
+    filePaths.forEach(logFile)
+
+    const program = createProgram(filePaths, options)
+    const emitResult = program.emit()
+    const allDiagnostics = getPreEmitDiagnostics(program).concat(emitResult.diagnostics)
+
+    allDiagnostics.forEach((diagnostic) => {
+      if (diagnostic.file) {
+        const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start)
+        const message = flattenDiagnosticMessageText(diagnostic.messageText, '\n')
+
+        console.log(`${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`)
+      } else {
+        console.log(`${flattenDiagnosticMessageText(diagnostic.messageText, '\n')}`)
       }
-    }
-    const rootConfigPath = path.resolve('tsconfig.json')
+    })
 
-    return {
-      files: await Promise.all(
-        files.map(async (file) => {
-          const outDir = path.resolve(outDirRelative)
-          const tempConfig = {
-            extends: rootConfigPath,
-            compilerOptions: {
-              ...userOptions,
-              noEmit: false,
-              emitDeclarationOnly: true,
-              declaration: true,
-              declarationDir: outDir
-            },
-            // overwrite possible ones from the root config
-            include: [file.path],
-            files: [file.path]
-          }
-
-          // 🙈 https://github.com/Microsoft/TypeScript/issues/12958
-          const tempConfigPath = path.join(
-            path.dirname(file.path),
-            `.${path.basename(file.path)}.tsconfig.json`
-          )
-
-          await pWriteFile(tempConfigPath, JSON.stringify(tempConfig), 'utf8')
-
-          try {
-            await execa(tscBinPath, ['--project', tempConfigPath], spawnOptions)
-          } finally {
-            await dleet(tempConfigPath)
-          }
-
-          const dtsFilename = `${path.basename(file.path, '.ts')}.d.ts`
-          const dtsPath = path.resolve(outDir, dtsFilename)
-
-          logFile(dtsPath)
-
-          return {
-            path: dtsPath,
-            data: null,
-            map: null
-          }
-        })
-      )
-    }
+    return { files }
   })

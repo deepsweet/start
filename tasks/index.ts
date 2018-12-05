@@ -45,7 +45,7 @@ export const build = (packageName: string) =>
 
 export const dts = (packageName: string) =>
   sequence(
-    find(`packages/${packageName}/src/index.ts`),
+    find(`packages/${packageName}/src/*.ts`),
     typescriptGenerate(`packages/${packageName}/build/`),
     find(`packages/${packageName}/build/**/*.d.ts`),
     read,

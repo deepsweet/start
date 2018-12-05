@@ -17,7 +17,7 @@ $ npm install --save-dev @start/plugin-lib-typescript-generate
 ### Signature
 
 ```ts
-typescriptGenerate(outDir: string, options?: {})
+typescriptGenerate(outDir: string, options?: CompilerOptions)
 ```
 
 #### `options`
