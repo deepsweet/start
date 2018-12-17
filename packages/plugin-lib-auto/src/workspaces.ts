@@ -4,7 +4,7 @@ import { TWorkspacesGitBump, TWorkspacesPackageBump, TPrefixes, TWorkspacesOptio
 import { TGitOptions } from '@auto/git'
 import { TBumpOptions } from '@auto/bump'
 import { TNpmOptions } from '@auto/npm'
-import { TSlackOptions, TGithubOptions } from '@auto/log'
+import { TSlackOptions, TGithubOptions, TWorkspacesLog } from '@auto/log'
 
 export type TWorkspacesPluginData = {
   packagesBumps: TWorkspacesPackageBump[],
@@ -129,12 +129,16 @@ export const publishWorkspacesPackagesBumps = (npmOptions?: TNpmOptions) =>
     }
   })
 
-export const sendWorkspacesSlackMessage = (prefixes: TPrefixes, slackOptions: TSlackOptions) =>
+export const sendWorkspacesSlackMessage = (prefixes: TPrefixes, slackOptions: TSlackOptions, transformFn?: (logs: TWorkspacesLog[]) => TWorkspacesLog[]) =>
   plugin('sendWorkspacesSlackMessage', async (props) => {
     const { getWorkspacesLog, sendWorkspacesSlackMessage: send } = await import('@auto/log')
 
     const { packagesBumps, gitBumps } = props as TWorkspacesPluginData & StartPluginPropsAfter
-    const logs = getWorkspacesLog(packagesBumps, gitBumps)
+    let logs = getWorkspacesLog(packagesBumps, gitBumps)
+
+    if (typeof transformFn === 'function') {
+      logs = transformFn(logs)
+    }
 
     await send(logs, prefixes, slackOptions)
   })

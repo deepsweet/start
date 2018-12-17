@@ -4,7 +4,7 @@ import { TRepoGitBump, TRepoPackageBump, TPrefixes } from '@auto/utils'
 import { TGitOptions } from '@auto/git'
 import { TBumpOptions } from '@auto/bump'
 import { TNpmOptions } from '@auto/npm'
-import { TSlackOptions, TGithubOptions } from '@auto/log'
+import { TSlackOptions, TGithubOptions, TRepoLog } from '@auto/log'
 
 export type TRepoPluginData = {
   packageBump: TRepoPackageBump,
@@ -97,12 +97,16 @@ export const publishRepoPackageBump = (npmOptions?: TNpmOptions) =>
     await publishRepoPackage(npmOptions)
   })
 
-export const sendRepoSlackMessage = (prefixes: TPrefixes, slackOptions: TSlackOptions) =>
+export const sendRepoSlackMessage = (prefixes: TPrefixes, slackOptions: TSlackOptions, transformFn?: (log: TRepoLog) => TRepoLog) =>
   plugin('sendRepoSlackMessage', async (props) => {
     const { getRepoLog, sendRepoSlackMessage: send } = await import('@auto/log')
 
     const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
-    const log = getRepoLog(packageBump, gitBump)
+    let log = getRepoLog(packageBump, gitBump)
+
+    if (typeof transformFn === 'function') {
+      log = transformFn(log)
+    }
 
     await send(log, prefixes, slackOptions)
   })
