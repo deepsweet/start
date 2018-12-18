@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src'
+import plugin, { StartDataFilesProps, StartFile, StartDataFile, StartPluginUtils } from '@start/plugin/src'
 import sequence from '@start/plugin-sequence/src/'
 import parallel from '@start/plugin-parallel/src/'
 import xargs from '@start/plugin-xargs/src/'
@@ -29,6 +29,7 @@ import {
   makeWorkspacesGithubReleases,
   pushCommitsAndTags
 } from '@start/plugin-lib-auto/src/'
+// @ts-ignore
 import tapDiff from 'tap-diff'
 
 import { babelConfigBuild } from './config/babel'
@@ -43,16 +44,19 @@ export const build = (packageName: string) =>
     write(`packages/${packageName}/build/`)
   )
 
+export const startWithType = <T extends {}>() => () => async (props?: T) => {}
+
 export const dts = (packageName: string) =>
   sequence(
+    startWithType<{}>(),
     find(`packages/${packageName}/src/*.ts`),
     typescriptGenerate(`packages/${packageName}/build/`),
     find(`packages/${packageName}/build/**/*.d.ts`),
     read,
     // https://github.com/babel/babel/issues/7749
     // babel(babelConfigDts)
-    plugin('modifyImports', ({ files }) => ({
-      files: files.map((file) => ({
+    plugin('modifyImports', () => ({ files }: StartDataFilesProps) => ({
+      files: files.map((file): StartDataFile => ({
         ...file,
         data: file.data.replace(/(@.+?)\/src\/?/g, '$1')
       }))

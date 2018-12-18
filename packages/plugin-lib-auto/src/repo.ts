@@ -1,5 +1,5 @@
 /* eslint-disable no-throw-literal */
-import plugin, { StartPluginPropsAfter } from '@start/plugin/src/'
+import plugin from '@start/plugin/src/'
 import { TRepoGitBump, TRepoPackageBump, TPrefixes } from '@auto/utils'
 import { TGitOptions } from '@auto/git'
 import { TBumpOptions } from '@auto/bump'
@@ -12,14 +12,14 @@ export type TRepoPluginData = {
 }
 
 export const makeRepoCommit = (prefixes: TPrefixes) =>
-  plugin('makeRepoCommit', async () => {
+  plugin('makeRepoCommit', () => async () => {
     const { makeRepoCommit } = await import('@auto/git')
 
     await makeRepoCommit(prefixes)
   })
 
 export const getRepoPackageBumps = (prefixes: TPrefixes, gitOptions: TGitOptions, bumpOptions: TBumpOptions) =>
-  plugin('getRepoPackageBumps', async (): Promise<TRepoPluginData> => {
+  plugin('getRepoPackageBumps', () => async (): Promise<TRepoPluginData> => {
     const { getRepoPackage } = await import('@auto/fs')
     const { getRepoBump } = await import('@auto/git')
     const { getRepoPackageBump } = await import('@auto/bump')
@@ -40,10 +40,10 @@ export const getRepoPackageBumps = (prefixes: TPrefixes, gitOptions: TGitOptions
   })
 
 export const publishRepoPrompt = (prefixes: TPrefixes) =>
-  plugin('publishRepoPrompt', async (props) => {
+  plugin('publishRepoPrompt', () => async (props) => {
     const { getRepoLog } = await import('@auto/log')
     const { default: prompts } = await import('prompts')
-    const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
+    const { packageBump, gitBump } = props as TRepoPluginData
 
     const log = getRepoLog(packageBump, gitBump)
 
@@ -72,13 +72,13 @@ export const publishRepoPrompt = (prefixes: TPrefixes) =>
   })
 
 export const writeRepoPackageBump = (prefixes: TPrefixes) =>
-  plugin('writeRepoPackageBump', async (props) => {
+  plugin('writeRepoPackageBump', ({ logMessage }) => async (props) => {
     const { writeRepoPackageVersion } = await import('@auto/fs')
     const {
       writeRepoPublishCommit,
       writeRepoPublishTag
     } = await import('@auto/git')
-    const { packageBump, logMessage } = props as TRepoPluginData & StartPluginPropsAfter
+    const { packageBump } = props as TRepoPluginData
 
     await writeRepoPackageVersion(packageBump)
     logMessage('write package version')
@@ -91,17 +91,17 @@ export const writeRepoPackageBump = (prefixes: TPrefixes) =>
   })
 
 export const publishRepoPackageBump = (npmOptions?: TNpmOptions) =>
-  plugin('publishRepoPackageBump', async () => {
+  plugin('publishRepoPackageBump', () => async () => {
     const { publishRepoPackage } = await import('@auto/npm')
 
     await publishRepoPackage(npmOptions)
   })
 
 export const sendRepoSlackMessage = (prefixes: TPrefixes, slackOptions: TSlackOptions, transformFn?: (log: TRepoLog) => TRepoLog) =>
-  plugin('sendRepoSlackMessage', async (props) => {
+  plugin('sendRepoSlackMessage', () => async (props) => {
     const { getRepoLog, sendRepoSlackMessage: send } = await import('@auto/log')
 
-    const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
+    const { packageBump, gitBump } = props as TRepoPluginData
     let log = getRepoLog(packageBump, gitBump)
 
     if (typeof transformFn === 'function') {
@@ -112,10 +112,10 @@ export const sendRepoSlackMessage = (prefixes: TPrefixes, slackOptions: TSlackOp
   })
 
 export const makeRepoGithubRelease = (prefixes: TPrefixes, githubOptions: TGithubOptions) =>
-  plugin('makeRepoGithubRelease', async (props) => {
+  plugin('makeRepoGithubRelease', () => async (props) => {
     const { getRepoLog, makeRepoGithubRelease: make } = await import('@auto/log')
 
-    const { packageBump, gitBump } = props as TRepoPluginData & StartPluginPropsAfter
+    const { packageBump, gitBump } = props as TRepoPluginData
     const log = getRepoLog(packageBump, gitBump)
 
     await make(log, prefixes, githubOptions)

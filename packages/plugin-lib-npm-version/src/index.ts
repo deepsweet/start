@@ -2,19 +2,18 @@ import plugin from '@start/plugin/src/'
 
 type Options = {
   packagePath?: string,
-  message?: string,
-  [key: string]: boolean | string
+  [key: string]: boolean | string | undefined
 }
 
 // https://docs.npmjs.com/cli/version
 export default (version: string, userOptions?: Options) =>
-  plugin('npmVersion', async () => {
+  plugin('npmVersion', () => async () => {
     const { default: execa } = await import('execa')
 
     const { packagePath, ...options } = {
       packagePath: '.',
       ...userOptions
-    }
+    } as Options
     const cliArgs = Object.keys(options).reduce((result, key) => {
       const value = options[key]
 
@@ -27,7 +26,7 @@ export default (version: string, userOptions?: Options) =>
       }
 
       return result
-    }, [])
+    }, [] as string[])
 
     try {
       await execa('npm', ['version', ...cliArgs, version], {

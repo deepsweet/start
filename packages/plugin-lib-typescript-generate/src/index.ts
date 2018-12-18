@@ -6,11 +6,11 @@ import {
   CompilerOptions,
   ModuleKind
 } from 'typescript'
-import plugin from '@start/plugin/src/'
+import plugin, { StartFile, StartFilesProps } from '@start/plugin/src/'
 
 // https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
 export default (outDirRelative: string, userOptions?: CompilerOptions) =>
-  plugin('typescriptGenerate', async ({ files, logFile }) => {
+  plugin('typescriptGenerate', ({ logPath }) => async ({ files }: StartFilesProps) => {
     const { createProgram } = await import('typescript')
     const path = await import('path')
     const options = {
@@ -24,9 +24,9 @@ export default (outDirRelative: string, userOptions?: CompilerOptions) =>
       declaration: true,
       emitDeclarationOnly: true
     }
-    const filePaths = files.map((file) => file.path)
+    const filePaths = files.map((file: StartFile) => file.path)
 
-    filePaths.forEach(logFile)
+    filePaths.forEach(logPath)
 
     const program = createProgram(filePaths, options)
     const emitResult = program.emit()
@@ -34,7 +34,7 @@ export default (outDirRelative: string, userOptions?: CompilerOptions) =>
 
     allDiagnostics.forEach((diagnostic) => {
       if (diagnostic.file) {
-        const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start)
+        const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start!)
         const message = flattenDiagnosticMessageText(diagnostic.messageText, '\n')
 
         console.log(`${diagnostic.file.fileName} (${line + 1},${character + 1}): ${message}`)

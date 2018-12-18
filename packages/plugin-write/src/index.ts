@@ -1,9 +1,9 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartDataFilesProps, StartDataFile } from '@start/plugin/src/'
 
 type WriteFile = (path: string, data: string, options: string, cb: (err: any) => void) => void
 
 export default (outDirRelative: string) =>
-  plugin('write', async ({ files, logFile }) => {
+  plugin('write', ({ logPath }) => async ({ files }: StartDataFilesProps) => {
     const path = await import('path')
     const { default: makethen } = await import('makethen')
     const gracefulFs = await import('graceful-fs')
@@ -13,14 +13,14 @@ export default (outDirRelative: string) =>
 
     return {
       files: await Promise.all(
-        files.map(async (file) => {
+        files.map(async (file): Promise<StartDataFile> => {
           const outFile = movePath(file.path, outDirRelative)
           const outDir = path.dirname(outFile)
 
           await makeDir(outDir)
 
           const writeFiles = []
-          let fileData = file.data || ''
+          let fileData = file.data
 
           // sourcemap
           if (file.map != null) {
@@ -46,14 +46,14 @@ export default (outDirRelative: string) =>
 
             writeFiles.push(
               writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
-                logFile(sourcemapPath)
+                logPath(sourcemapPath)
               })
             )
           }
 
           writeFiles.push(
             writeFile(outFile, fileData, 'utf8').then(() => {
-              logFile(outFile)
+              logPath(outFile)
             })
           )
 

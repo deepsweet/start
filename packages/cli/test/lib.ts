@@ -1,12 +1,12 @@
 import { resolve } from 'path'
-import test from 'tape-promise/tape'
+import test from 'blue-tape'
 import { mock, unmock } from 'mocku'
 import { spy, stub } from 'sinon'
 
 test('cli: export', async (t) => {
   const { default: cliLib } = await import('../src/lib')
 
-  t.equal(
+  t.equals(
     typeof cliLib,
     'function',
     'must be a function'
@@ -16,11 +16,11 @@ test('cli: export', async (t) => {
 test('cli: throw without reporter', async (t) => {
   const { default: cliLib } = await import('../src/lib')
 
-  const argv = []
+  const argv = [] as string[]
   const options = {}
 
   return cliLib(argv, options).catch((error) => {
-    t.equal(
+    t.equals(
       error,
       '`reporter` option is missing in your `package.json` → `start`',
       'should throw'
@@ -45,7 +45,7 @@ test('cli: throw without task name', async (t) => {
   }
 
   return cliLib(argv, options).catch((error) => {
-    t.equal(
+    t.equals(
       error,
       'One of the following task names is required:\n* a\n* b',
       'should throw'
@@ -72,7 +72,7 @@ test('cli: throw with unknown task name', async (t) => {
   }
 
   return cliLib(argv, options).catch((error) => {
-    t.equal(
+    t.equals(
       error,
       'One of the following task names is required:\n* a\n* b',
       'should throw'

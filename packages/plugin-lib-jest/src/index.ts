@@ -15,10 +15,11 @@ const optionsToStringify = [
 ]
 
 export default (userOptions: Options) =>
-  plugin('jest', async () => {
+  plugin('jest', () => async () => {
+    // @ts-ignore
     const { runCLI } = await import('jest-cli')
 
-    const options = {
+    const options: Options = {
       rootDir: process.cwd(),
       ...userOptions,
       ...optionsToStringify.reduce((result, key) => {
@@ -27,7 +28,7 @@ export default (userOptions: Options) =>
         }
 
         return result
-      }, {})
+      }, {} as Options)
     }
     const projects = [options.rootDir]
     const results = await runCLI(options, projects)

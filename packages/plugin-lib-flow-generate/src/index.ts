@@ -1,7 +1,7 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartFile, StartFilesProps } from '@start/plugin/src/'
 
 export default (outDirRelative: string, ...flowArgs: string[]) =>
-  plugin('flowGenerate', async ({ files, logFile }) => {
+  plugin('flowGenerate', ({ logPath }) => async ({ files }: StartFilesProps) => {
     const path = await import('path')
     const { default: execa } = await import('execa')
 
@@ -17,7 +17,7 @@ export default (outDirRelative: string, ...flowArgs: string[]) =>
 
     return {
       files: await Promise.all(
-        files.map(async (file) => {
+        files.map(async (file): Promise<StartFile> => {
           try {
             await execa(
               'node',
@@ -30,12 +30,10 @@ export default (outDirRelative: string, ...flowArgs: string[]) =>
 
           const flowFilePath = path.join(outDir, `${path.basename(file.path)}.flow`)
 
-          logFile(flowFilePath)
+          logPath(flowFilePath)
 
           return {
-            path: flowFilePath,
-            data: null,
-            map: null
+            path: flowFilePath
           }
         })
       )

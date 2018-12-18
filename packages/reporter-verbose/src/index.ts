@@ -16,8 +16,8 @@ export default (taskName: string) => {
     console.log(`${chalk.cyan(`${taskName}.${pluginName}`)}: ${message}`)
   })
 
-  emitter.on('file', (pluginName: string, file: string) => {
-    const relativeFile = path.relative(process.cwd(), file)
+  emitter.on('path', (pluginName: string, pathToLog: string) => {
+    const relativeFile = path.relative(process.cwd(), pathToLog)
 
     console.log(`${chalk.blue(`${taskName}.${pluginName}`)}: ${relativeFile}`)
   })
@@ -33,7 +33,7 @@ export default (taskName: string) => {
         cwd: process.cwd(),
         internals: StackUtils.nodeInternals()
       })
-      const stack = stackUtils.clean(error.stack)
+      const stack = stackUtils.clean(error.stack!)
 
       console.error(`${chalk.red(`${taskName}.${pluginName}`)}: ${error.message}`)
       console.error(`\n${chalk.red(stack)}`)

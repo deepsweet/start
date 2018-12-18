@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (outDir: string, filename: string = 'esm-loader.js') =>
-  plugin('esm-loader', async ({ logFile }) => {
+  plugin('esm-loader', ({ logPath }) => async () => {
     const path = await import('path')
     const { default: copie } = await import('copie')
 
@@ -10,5 +10,5 @@ export default (outDir: string, filename: string = 'esm-loader.js') =>
 
     await copie(loaderFilePath, outFile)
 
-    logFile(outFile)
+    logPath(outFile)
   })

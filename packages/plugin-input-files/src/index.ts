@@ -1,17 +1,14 @@
-import plugin, { StartPlugin } from '@start/plugin/src/'
+import plugin, { StartFile, StartFilesProps, StartPlugin, MaybeObject } from '@start/plugin/src/'
 
-export default (target: StartPlugin) => (...files: string[]) =>
-  plugin('inputFiles', async ({ reporter }) => {
+export default <R extends MaybeObject> (target: StartPlugin<StartFilesProps, R>) => (...files: string[]) =>
+  plugin('inputFiles', (utils) => async () => {
     const path = await import('path')
 
     const targetRunner = await target
 
-    return targetRunner({
-      reporter,
-      files: files.map((file) => ({
-        path: path.resolve(file),
-        data: null,
-        map: null
+    return targetRunner(utils)({
+      files: files.map((file): StartFile => ({
+        path: path.resolve(file)
       }))
     })
   })

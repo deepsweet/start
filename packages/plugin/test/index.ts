@@ -1,8 +1,8 @@
 import EventEmitter from 'events'
-import test from 'tape-promise/tape'
+import test from 'blue-tape'
 import { spy, stub } from 'sinon'
 
-import plugin from '../src'
+import plugin, { StartPluginUtils } from '../src'
 
 const files = [
   {
@@ -12,24 +12,23 @@ const files = [
   }
 ]
 
-test('plugin: export', (t) => {
-  t.equal(
+test('plugin: export', async (t) => {
+  t.equals(
     typeof plugin,
     'function',
     'must be a function'
   )
-
-  t.end()
 })
 
 test('plugin: props', async (t) => {
   const name = 'testName'
   const pluginFn = stub().returns({ bar: true })
   const reporter = new EventEmitter()
-  const beforeProps = { foo: true, reporter }
+  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
+  const beforeProps = { foo: true }
   const pluginRunner = await plugin(name, pluginFn)
 
-  const result = await pluginRunner(beforeProps)
+  const result = await pluginRunner(utils)(beforeProps)
 
   t.ok(
     pluginFn.calledOnce,
@@ -49,13 +48,13 @@ test('plugin: props', async (t) => {
     '`reporter` should be passed through'
   )
 
-  t.equal(
+  t.equals(
     typeof afterProps.logMessage,
     'function',
     '`logMessage` should be a function'
   )
 
-  t.equal(
+  t.equals(
     typeof afterProps.logFile,
     'function',
     '`logFile` should be a function'
@@ -74,12 +73,13 @@ test('plugin: props', async (t) => {
 
 test('plugin: no return', async (t) => {
   const name = 'testName'
-  const pluginFn = stub().returns()
+  const pluginFn = stub().returns(null)
   const reporter = new EventEmitter()
-  const beforeProps = { foo: true, reporter }
+  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
+  const beforeProps = { foo: true }
   const pluginRunner = await plugin(name, pluginFn)
 
-  const result = await pluginRunner(beforeProps)
+  const result = await pluginRunner(utils)(beforeProps)
 
   t.deepEqual(
     result,
@@ -94,13 +94,14 @@ test('plugin: done', async (t) => {
   const eventStartSpy = spy()
   const eventDoneSpy = spy()
   const reporter = new EventEmitter()
-  const props = { files, reporter }
+  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
+  const props = { files }
   const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('start', eventStartSpy)
   reporter.on('done', eventDoneSpy)
 
-  await pluginRunner(props)
+  await pluginRunner(utils)(props)
 
   t.ok(
     eventStartSpy.calledOnceWith(name),
@@ -120,16 +121,17 @@ test('plugin: error', async (t) => {
   const eventStartSpy = spy()
   const eventErrorSpy = spy()
   const reporter = new EventEmitter()
-  const props = { files, reporter }
+  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
+  const props = { files }
   const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('start', eventStartSpy)
   reporter.on('error', eventErrorSpy)
 
   try {
-    await pluginRunner(props)
+    await pluginRunner(utils)(props)
   } catch (error) {
-    t.equal(
+    t.equals(
       error,
       null,
       'should swallow original error'
@@ -157,12 +159,13 @@ test('plugin: log message', async (t) => {
   })
   const eventMessageSpy = spy()
   const reporter = new EventEmitter()
-  const props = { files, reporter }
+  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
+  const props = { files }
   const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('message', eventMessageSpy)
 
-  await pluginRunner(props)
+  await pluginRunner(utils)(props)
 
   t.ok(
     eventMessageSpy.calledOnceWith(name, message),
@@ -180,12 +183,13 @@ test('plugin: log file', async (t) => {
   })
   const eventFileSpy = spy()
   const reporter = new EventEmitter()
-  const props = { files, reporter }
+  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
+  const props = { files }
   const pluginRunner = await plugin(name, pluginFn)
 
   reporter.on('file', eventFileSpy)
 
-  await pluginRunner(props)
+  await pluginRunner(utils)(props)
 
   t.ok(
     eventFileSpy.calledOnceWith(name, filePath),

@@ -1,5 +1,5 @@
 import EventEmitter from 'events'
-import test from 'tape-promise/tape'
+import test from 'blue-tape'
 import { spy } from 'sinon'
 
 import assert from '../src'
@@ -10,25 +10,24 @@ const files = [{
   map: null
 }]
 
-test('plugin-assert: export', (t) => {
-  t.equal(
+test('plugin-assert: export', async (t) => {
+  t.equals(
     typeof assert,
     'function',
     'must be a function'
   )
-
-  t.end()
 })
 
 test('plugin-assert: throw with default message', async (t) => {
   const reporter = new EventEmitter()
+  const utils = { reporter, logPath: () => {}, logMessage: () => {} }
   const onErrorSpy = spy()
   const assertRunner = await assert(false)
 
   reporter.on('error', onErrorSpy)
 
   try {
-    await assertRunner({ files, reporter })
+    await assertRunner(utils)({ files })
   } catch (error) {
     t.ok(
       onErrorSpy.calledOnce,
@@ -47,13 +46,14 @@ test('plugin-assert: throw with default message', async (t) => {
 
 test('plugin-assert: throw with custom message', async (t) => {
   const reporter = new EventEmitter()
+  const utils = { reporter, logPath: () => {}, logMessage: () => {} }
   const onErrorSpy = spy()
   const assertRunner = await assert(false, 'should be true!')
 
   reporter.on('error', onErrorSpy)
 
   try {
-    await assertRunner({ files, reporter })
+    await assertRunner(utils)({ files })
   } catch (error) {
     t.ok(
       onErrorSpy.calledOnce,

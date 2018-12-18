@@ -1,7 +1,7 @@
 import plugin from '@start/plugin/src/'
 
 export default (...flowArgs: string[]) =>
-  plugin('flowCheck', async (props) => {
+  plugin('flowCheck', () => async (props) => {
     const path = await import('path')
     const { default: execa } = await import('execa')
 

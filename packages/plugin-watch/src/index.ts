@@ -1,9 +1,9 @@
 /* eslint-disable standard/no-callback-literal */
 /* eslint-disable promise/catch-or-return */
-import plugin, { StartFiles, StartPlugin } from '@start/plugin/src/'
+import plugin, { StartFile, StartFilesProps, StartPlugin } from '@start/plugin/src/'
 
-export default (glob: string | string[], userOptions?: {}) => (target: StartPlugin) =>
-  plugin('watch', async ({ logMessage, reporter }) => {
+export default (glob: string | string[], userOptions?: {}) => (target: StartPlugin<StartFilesProps, any>) =>
+  plugin('watch', (utils) => async () => {
     const chokidar = await import('chokidar')
 
     const targetRunner = await target
@@ -14,13 +14,11 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
       ...userOptions
     }
 
-    await new Promise<StartFiles>((resolve, reject) => {
-      const initialFiles = []
-      const initialListener = (file) => {
+    await new Promise<StartFile[]>((resolve, reject) => {
+      const initialFiles: StartFile[] = []
+      const initialListener = (file: string) => {
         initialFiles.push({
-          path: file,
-          data: null,
-          map: null
+          path: file
         })
       }
 
@@ -35,15 +33,10 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
           events.forEach((event) => {
             watcher.once(event, async (file) => {
               try {
-                await targetRunner({
-                  reporter,
-                  files: [
-                    {
-                      path: file,
-                      data: null,
-                      map: null
-                    }
-                  ]
+                await targetRunner(utils)({
+                  files: [{
+                    path: file
+                  }]
                 })
               } finally {
                 watchForChanges()
@@ -53,13 +46,12 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
         }
 
         try {
-          await targetRunner({
-            reporter,
+          await targetRunner(utils)({
             files: initialFiles
           })
         } finally {
           watchForChanges()
-          logMessage('watching for changes, press ctrl-c to exit')
+          utils.logMessage('watching for changes, press ctrl-c to exit')
         }
       })
     })

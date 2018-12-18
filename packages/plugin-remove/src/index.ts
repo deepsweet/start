@@ -1,6 +1,6 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartFilesProps } from '@start/plugin/src/'
 
-export default plugin('remove', async ({ files, logFile }) => {
+export default plugin('remove', ({ logPath }) => async ({ files }: StartFilesProps) => {
   const { default: dleet } = await import('dleet')
 
   return {
@@ -8,7 +8,7 @@ export default plugin('remove', async ({ files, logFile }) => {
       files.map(async (file) => {
         await dleet(file.path)
 
-        logFile(file.path)
+        logPath(file.path)
       })
     )
   }
