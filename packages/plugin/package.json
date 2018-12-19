@@ -17,8 +17,5 @@
   },
   "engines": {
     "node": ">=8.6.0"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.0.0"
   }
 }

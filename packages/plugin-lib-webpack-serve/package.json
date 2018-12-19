@@ -19,12 +19,11 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
-    "webpack-serve": "^2.0.2"
+    "webpack-serve": "^2.0.3"
   },
   "devDependencies": {
     "@types/webpack-serve": "^2.0.0",
-    "webpack": "^4.6.0"
+    "webpack": "^4.28.0"
   }
 }

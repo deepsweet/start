@@ -17,8 +17,5 @@
   },
   "engines": {
     "node": ">=8.6.0"
-  },
-  "dependencies": {
-    "@start/plugin": "^0.2.1"
   }
 }

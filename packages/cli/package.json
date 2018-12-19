@@ -20,7 +20,6 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
     "esm": "^3.0.84"
   }
 }
