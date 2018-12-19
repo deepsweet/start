@@ -1,12 +1,9 @@
 import plugin, { StartDataFile, StartFilesProps } from '@start/plugin/src/'
 
-type ReadFile = (path: string, options: string, cb: (err: any, data: string) => void) => void
-
 export default plugin('read', ({ logPath }) => async ({ files }: StartFilesProps) => {
-  const { default: makethen } = await import('makethen')
+  const { promisify } = await import('util')
   const gracefulFs = await import('graceful-fs')
-
-  const readFile = makethen(gracefulFs.readFile as ReadFile)
+  const readFile = promisify(gracefulFs.readFile)
 
   return {
     files: await Promise.all(

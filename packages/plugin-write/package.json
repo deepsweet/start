@@ -16,14 +16,13 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
     "graceful-fs": "^4.1.11",
     "make-dir": "^1.3.0",
-    "makethen": "^0.2.2",
     "move-path": "^0.1.0"
   },
   "devDependencies": {

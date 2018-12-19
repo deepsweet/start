@@ -16,7 +16,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "@auto/bump": "^0.0.22",

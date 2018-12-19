@@ -16,13 +16,13 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
-    "makethen": "^0.2.2",
-    "webpack": "^4.6.0"
+    "webpack": "^4.6.0",
+    "makethen":"^0.2.3"
   },
   "devDependencies": {
     "@types/webpack": "^4.1.4"

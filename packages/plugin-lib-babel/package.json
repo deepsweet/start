@@ -16,7 +16,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

@@ -1,15 +1,13 @@
 import plugin, { StartDataFilesProps, StartDataFile } from '@start/plugin/src/'
 
-type WriteFile = (path: string, data: string, options: string, cb: (err: any) => void) => void
-
 export default (outDirRelative: string) =>
   plugin('write', ({ logPath }) => async ({ files }: StartDataFilesProps) => {
     const path = await import('path')
-    const { default: makethen } = await import('makethen')
+    const { promisify } = await import('util')
     const gracefulFs = await import('graceful-fs')
     const { default: movePath } = await import('move-path')
     const { default: makeDir } = await import('make-dir')
-    const writeFile = makethen(gracefulFs.writeFile as WriteFile)
+    const writeFile = promisify(gracefulFs.writeFile)
 
     return {
       files: await Promise.all(
