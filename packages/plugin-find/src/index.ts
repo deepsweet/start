@@ -6,11 +6,11 @@ export default (glob: string | string[], userOptions?: {}) =>
 
     const options = {
       ignore: ['node_modules/**'],
-      ...userOptions,
       deep: true,
       onlyFiles: false,
       expandDirectories: false,
-      absolute: true
+      absolute: true,
+      ...userOptions
     }
     const result = await globby(glob, options)
 
