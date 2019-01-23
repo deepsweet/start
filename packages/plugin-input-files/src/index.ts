@@ -6,7 +6,7 @@ export default <R extends MaybeObject> (target: StartPlugin<StartFilesProps, R>)
 
     const targetRunner = await target
 
-    return targetRunner(utils)({
+    return targetRunner(utils.reporter)({
       files: files.map((file): StartFile => ({
         path: path.resolve(file)
       }))

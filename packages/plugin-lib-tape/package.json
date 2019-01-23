@@ -20,11 +20,11 @@
   },
   "dependencies": {
     "@start/plugin": "^0.2.1",
-    "tape": "^4.9.0",
+    "tape": "^4.9.2",
     "through": "^2.3.8"
   },
   "devDependencies": {
-    "@types/tape": "^4.2.32",
+    "@types/tape": "^4.2.33",
     "@types/through": "^0.0.29"
   }
 }

@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import test from 'blue-tape'
 import { mock, unmock } from 'mocku'
-import { spy, stub } from 'sinon'
+import { createSpy, getSpyCalls } from 'spyfn'
 
 test('cli: export', async (t) => {
   const { default: cliLib } = await import('../src/lib')
@@ -83,15 +83,15 @@ test('cli: throw with unknown task name', async (t) => {
 })
 
 test('cli: default file', async (t) => {
-  const taskRunnerSpy = spy()
-  const taskStub = stub().callsFake(() => taskRunnerSpy)
-  const reporterStub = stub().returns('reporter')
+  const taskRunnerSpy = createSpy(() => () => {})
+  const taskSpy = createSpy(() => taskRunnerSpy)
+  const reporterSpy = createSpy(() => 'reporter')
   mock('../src/lib', {
     [resolve('./tasks')]: {
-      task: taskStub
+      task: taskSpy
     },
     reporter: {
-      default: reporterStub
+      default: reporterSpy
     }
   })
 
@@ -102,36 +102,39 @@ test('cli: default file', async (t) => {
     reporter: 'reporter'
   }
 
-  return cliLib(argv, options).then(() => {
-    t.ok(
-      taskStub.calledOnceWith('arg1', 'arg2'),
-      'should call task with args'
-    )
+  await cliLib(argv, options)
 
-    t.ok(
-      taskRunnerSpy.calledOnceWith({ reporter: 'reporter' }),
-      'should call taskRunner with props'
-    )
+  t.deepEquals(
+    getSpyCalls(taskSpy),
+    [['arg1', 'arg2']],
+    'should call task with args'
+  )
 
-    t.ok(
-      reporterStub.calledOnceWith('task'),
-      'should call reporter with task name'
-    )
+  t.deepEquals(
+    getSpyCalls(taskRunnerSpy),
+    [['reporter']],
+    'should call taskRunner with props'
+  )
 
-    unmock('../src/lib')
-  })
+  t.deepEquals(
+    getSpyCalls(reporterSpy),
+    [['task']],
+    'should call reporter with task name'
+  )
+
+  unmock('../src/lib')
 })
 
 test('cli: custom file', async (t) => {
-  const taskRunnerSpy = spy()
-  const taskStub = stub().callsFake(() => taskRunnerSpy)
-  const reporterStub = stub().returns('reporter')
+  const taskRunnerSpy = createSpy(() => () => {})
+  const taskSpy = createSpy(() => taskRunnerSpy)
+  const reporterSpy = createSpy(() => 'reporter')
   mock('../src/lib', {
     [resolve('./my-tasks')]: {
-      task: taskStub
+      task: taskSpy
     },
     reporter: {
-      default: reporterStub
+      default: reporterSpy
     }
   })
 
@@ -143,36 +146,39 @@ test('cli: custom file', async (t) => {
     reporter: 'reporter'
   }
 
-  return cliLib(argv, options).then(() => {
-    t.ok(
-      taskStub.calledOnceWith('arg1', 'arg2'),
-      'should call task with args'
-    )
+  await cliLib(argv, options)
 
-    t.ok(
-      taskRunnerSpy.calledOnceWith({ reporter: 'reporter' }),
-      'should call taskRunner with props'
-    )
+  t.deepEquals(
+    getSpyCalls(taskSpy),
+    [['arg1', 'arg2']],
+    'should call task with args'
+  )
 
-    t.ok(
-      reporterStub.calledOnceWith('task'),
-      'should call reporter with task name'
-    )
+  t.deepEquals(
+    getSpyCalls(taskRunnerSpy),
+    [['reporter']],
+    'should call taskRunner with props'
+  )
 
-    unmock('../src/lib')
-  })
+  t.deepEquals(
+    getSpyCalls(reporterSpy),
+    [['task']],
+    'should call reporter with task name'
+  )
+
+  unmock('../src/lib')
 })
 
 test('cli: preset', async (t) => {
-  const taskRunnerSpy = spy()
-  const taskStub = stub().callsFake(() => taskRunnerSpy)
-  const reporterStub = stub().returns('reporter')
+  const taskRunnerSpy = createSpy(() => () => {})
+  const taskSpy = createSpy(() => taskRunnerSpy)
+  const reporterSpy = createSpy(() => 'reporter')
   mock('../src/lib', {
     preset: {
-      task: taskStub
+      task: taskSpy
     },
     reporter: {
-      default: reporterStub
+      default: reporterSpy
     }
   })
 
@@ -184,22 +190,25 @@ test('cli: preset', async (t) => {
     reporter: 'reporter'
   }
 
-  return cliLib(argv, options).then(() => {
-    t.ok(
-      taskStub.calledOnceWith('arg1', 'arg2'),
-      'should call task with args'
-    )
+  await cliLib(argv, options)
 
-    t.ok(
-      taskRunnerSpy.calledOnceWith({ reporter: 'reporter' }),
-      'should call taskRunner with props'
-    )
+  t.deepEquals(
+    getSpyCalls(taskSpy),
+    [['arg1', 'arg2']],
+    'should call task with args'
+  )
 
-    t.ok(
-      reporterStub.calledOnceWith('task'),
-      'should call reporter with task name'
-    )
+  t.deepEquals(
+    getSpyCalls(taskRunnerSpy),
+    [['reporter']],
+    'should call taskRunner with props'
+  )
 
-    unmock('../src/lib')
-  })
+  t.deepEquals(
+    getSpyCalls(reporterSpy),
+    [['task']],
+    'should call reporter with task name'
+  )
+
+  unmock('../src/lib')
 })

@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import EventEmitter from 'events'
 import test from 'blue-tape'
-import { stub } from 'sinon'
+import { createSpy, getSpyCalls } from 'spyfn'
 import { StartFile } from '@start/plugin/src'
 
 import inputFiles from '../src'
@@ -16,23 +16,30 @@ test('plugin-input-files: export', async (t) => {
 
 test('plugin-input-files: simple', async (t) => {
   const reporter = new EventEmitter()
-  const targetPluginSpy = stub().returns({ foo: true })
+  const pluginSpy = createSpy(() => ({ foo: true }))
+  const targetPluginSpy = createSpy(() => pluginSpy)
   const files = [
     '../src/index.ts',
     '../test/index.ts'
   ]
+
   const inputFilesRunner = await inputFiles<{ foo: boolean }>(targetPluginSpy)(...files)
-  const utils = { reporter, logPath: () => {}, logMessage: () => {} }
 
-  const result = await inputFilesRunner(utils)({ files: [] })
+  const result = await inputFilesRunner(reporter)({ files: [] })
 
-  t.ok(
-    targetPluginSpy.calledOnceWith({
-      reporter,
+  t.deepEquals(
+    getSpyCalls(targetPluginSpy),
+    [[reporter]],
+    'shoudl be called with reporter'
+  )
+
+  t.deepEquals(
+    getSpyCalls(pluginSpy),
+    [[{
       files: files.map((file): StartFile => ({
         path: resolve(file)
       }))
-    }),
+    }]],
     'should call plugin with files and props'
   )
 
@@ -44,24 +51,30 @@ test('plugin-input-files: simple', async (t) => {
 
 test('plugin-input-files: async plugin', async (t) => {
   const reporter = new EventEmitter()
-  const targetPluginSpy = stub().returns({ foo: true })
+  const targetSpy = createSpy(() => ({ foo: true }))
+  const targetPluginSpy = createSpy(() => targetSpy)
   const targetPluginPromise = Promise.resolve(targetPluginSpy)
   const files = [
     '../src/index.ts',
     '../test/index.ts'
   ]
   const inputFilesRunner = await inputFiles<{ foo: boolean }>(targetPluginPromise)(...files)
-  const utils = { reporter, logPath: () => {}, logMessage: () => {} }
 
-  const result = await inputFilesRunner(utils)({ files: [] })
+  const result = await inputFilesRunner(reporter)({ files: [] })
 
-  t.ok(
-    targetPluginSpy.calledOnceWith({
-      reporter,
+  t.deepEquals(
+    getSpyCalls(targetPluginSpy),
+    [[reporter]],
+    'shoudl be called with reporter'
+  )
+
+  t.deepEquals(
+    getSpyCalls(targetSpy),
+    [[{
       files: files.map((file): StartFile => ({
         path: resolve(file)
       }))
-    }),
+    }]],
     'should call plugin with files and props'
   )
 

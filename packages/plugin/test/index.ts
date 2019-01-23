@@ -1,16 +1,8 @@
 import EventEmitter from 'events'
 import test from 'blue-tape'
-import { spy, stub } from 'sinon'
+import { createSpy, getSpyCalls } from 'spyfn'
 
-import plugin, { StartPluginUtils } from '../src'
-
-const files = [
-  {
-    path: 'foo',
-    data: 'bar',
-    map: null
-  }
-]
+import plugin from '../src'
 
 test('plugin: export', async (t) => {
   t.equals(
@@ -20,179 +12,152 @@ test('plugin: export', async (t) => {
   )
 })
 
-test('plugin: props', async (t) => {
-  const name = 'testName'
-  const pluginFn = stub().returns({ bar: true })
+test('plugin: utils and props', async (t) => {
   const reporter = new EventEmitter()
-  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
-  const beforeProps = { foo: true }
-  const pluginRunner = await plugin(name, pluginFn)
-
-  const result = await pluginRunner(utils)(beforeProps)
-
-  t.ok(
-    pluginFn.calledOnce,
-    'plugin function should be called once'
-  )
-
-  const afterProps = pluginFn.firstCall.args[0]
-
-  t.ok(
-    afterProps.foo,
-    'props should be passed through'
-  )
+  const pluginCallbackSpy = createSpy(() => ({ bar: true }))
+  const pluginSpy = createSpy(() => pluginCallbackSpy)
+  const pluginRunner = await plugin('plugin', pluginSpy)
+  const result = await pluginRunner(reporter)({ foo: true })
 
   t.deepEqual(
-    afterProps.reporter,
+    getSpyCalls(pluginSpy)[0][0].reporter,
     reporter,
-    '`reporter` should be passed through'
+    'should pass reporter to plugin utils'
   )
 
-  t.equals(
-    typeof afterProps.logMessage,
-    'function',
-    '`logMessage` should be a function'
-  )
-
-  t.equals(
-    typeof afterProps.logFile,
-    'function',
-    '`logFile` should be a function'
+  t.deepEqual(
+    getSpyCalls(pluginCallbackSpy),
+    [[{ foo: true }]],
+    'should pass props to plugin'
   )
 
   t.deepEqual(
     result,
-    {
-      foo: true,
-      bar: true,
-      reporter
-    },
-    'should extend result with returned props'
-  )
-})
-
-test('plugin: no return', async (t) => {
-  const name = 'testName'
-  const pluginFn = stub().returns(null)
-  const reporter = new EventEmitter()
-  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
-  const beforeProps = { foo: true }
-  const pluginRunner = await plugin(name, pluginFn)
-
-  const result = await pluginRunner(utils)(beforeProps)
-
-  t.deepEqual(
-    result,
-    beforeProps,
-    'should return the same'
+    { bar: true },
+    'should return output props'
   )
 })
 
 test('plugin: done', async (t) => {
-  const name = 'testName'
-  const pluginFn = stub().returns(files)
-  const eventStartSpy = spy()
-  const eventDoneSpy = spy()
   const reporter = new EventEmitter()
-  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
-  const props = { files }
-  const pluginRunner = await plugin(name, pluginFn)
+  const pluginRunner = await plugin('plugin', () => () => {})
+  const eventStartSpy = createSpy(() => {})
+  const eventDoneSpy = createSpy(() => {})
+
+  await pluginRunner(reporter)()
 
   reporter.on('start', eventStartSpy)
   reporter.on('done', eventDoneSpy)
 
-  await pluginRunner(utils)(props)
+  await pluginRunner(reporter)()
 
-  t.ok(
-    eventStartSpy.calledOnceWith(name),
+  t.deepEqual(
+    getSpyCalls(eventStartSpy),
+    [[ 'plugin' ]],
     'should emit `start` event'
   )
 
-  t.ok(
-    eventDoneSpy.calledOnceWith(name),
+  t.deepEqual(
+    getSpyCalls(eventDoneSpy),
+    [[ 'plugin' ]],
     'should emit `done` event'
   )
 })
 
-test('plugin: error', async (t) => {
-  const name = 'testName'
-  const testError = new Error('oops')
-  const pluginFn = stub().throws(testError)
-  const eventStartSpy = spy()
-  const eventErrorSpy = spy()
+test('plugin: hard error', async (t) => {
   const reporter = new EventEmitter()
-  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
-  const props = { files }
-  const pluginRunner = await plugin(name, pluginFn)
+  const pluginRunner = await plugin('plugin', () => () => {
+    throw 'oops'
+  })
+  const eventStartSpy = createSpy(() => {})
+  const eventErrorSpy = createSpy(() => {})
 
   reporter.on('start', eventStartSpy)
   reporter.on('error', eventErrorSpy)
 
   try {
-    await pluginRunner(utils)(props)
-  } catch (error) {
-    t.equals(
-      error,
-      null,
-      'should swallow original error'
-    )
+    await pluginRunner(reporter)()
 
-    t.ok(
-      eventStartSpy.calledOnceWith(name),
+    t.fail('should not get here')
+  } catch (e) {
+    t.deepEqual(
+      getSpyCalls(eventStartSpy),
+      [[ 'plugin' ]],
       'should emit `start` event'
     )
 
-    t.ok(
-      eventErrorSpy.calledOnceWith(name, testError),
-      'should emit `error` event'
+    t.deepEqual(
+      getSpyCalls(eventErrorSpy),
+      [[ 'plugin', 'oops' ]],
+      'should emit `done` event'
+    )
+  }
+})
+
+test('plugin: reject', async (t) => {
+  const reporter = new EventEmitter()
+  const pluginRunner = await plugin('plugin', () => () => Promise.reject('oops'))
+  const eventStartSpy = createSpy(() => {})
+  const eventErrorSpy = createSpy(() => {})
+
+  reporter.on('start', eventStartSpy)
+  reporter.on('error', eventErrorSpy)
+
+  try {
+    await pluginRunner(reporter)()
+
+    t.fail('should not get here')
+  } catch (e) {
+    t.deepEqual(
+      getSpyCalls(eventStartSpy),
+      [[ 'plugin' ]],
+      'should emit `start` event'
+    )
+
+    t.deepEqual(
+      getSpyCalls(eventErrorSpy),
+      [[ 'plugin', 'oops' ]],
+      'should emit `done` event'
     )
   }
 })
 
 test('plugin: log message', async (t) => {
-  const name = 'testName'
-  const message = 'hello'
-  const pluginFn = stub().callsFake(({ logMessage }) => {
-    logMessage(message)
-
-    return files
-  })
-  const eventMessageSpy = spy()
   const reporter = new EventEmitter()
-  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
-  const props = { files }
-  const pluginRunner = await plugin(name, pluginFn)
+  const pluginRunner = await plugin('plugin', ({ logMessage }) => () => {
+    logMessage('hi')
+  })
+  const eventMessageSpy = createSpy(() => {})
+
+  await pluginRunner(reporter)()
 
   reporter.on('message', eventMessageSpy)
 
-  await pluginRunner(utils)(props)
+  await pluginRunner(reporter)()
 
-  t.ok(
-    eventMessageSpy.calledOnceWith(name, message),
+  t.deepEqual(
+    getSpyCalls(eventMessageSpy),
+    [[ 'plugin', 'hi' ]],
     'should emit `message` event'
   )
 })
 
-test('plugin: log file', async (t) => {
-  const name = 'testName'
-  const filePath = 'file/path'
-  const pluginFn = stub().callsFake(({ logFile }) => {
-    logFile(filePath)
-
-    return files
-  })
-  const eventFileSpy = spy()
+test('plugin: log path', async (t) => {
   const reporter = new EventEmitter()
-  const utils: StartPluginUtils = { reporter, logPath: () => {}, logMessage: () => {} }
-  const props = { files }
-  const pluginRunner = await plugin(name, pluginFn)
+  const pluginRunner = await plugin('plugin', ({ logPath }) => () => {
+    logPath('path/to/file')
+  })
+  const eventPathSpy = createSpy(() => {})
 
-  reporter.on('file', eventFileSpy)
+  await pluginRunner(reporter)()
 
-  await pluginRunner(utils)(props)
+  reporter.on('path', eventPathSpy)
 
-  t.ok(
-    eventFileSpy.calledOnceWith(name, filePath),
-    'should emit `file` event'
+  await pluginRunner(reporter)()
+
+  t.deepEqual(
+    getSpyCalls(eventPathSpy),
+    [[ 'plugin', 'path/to/file' ]],
+    'should emit `path` event'
   )
 })

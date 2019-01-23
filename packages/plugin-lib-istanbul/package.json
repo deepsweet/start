@@ -21,12 +21,12 @@
   "dependencies": {
     "@start/plugin": "^0.2.1",
     "convert-source-map": "^1.6.0",
-    "istanbul-api": "^2.0.6",
-    "istanbul-lib-coverage": "^2.0.1",
-    "istanbul-lib-hook": "^2.0.1",
-    "istanbul-lib-instrument": "^3.0.0",
-    "istanbul-lib-report": "^2.0.2",
-    "istanbul-lib-source-maps": "^2.0.1"
+    "istanbul-api": "^2.1.0",
+    "istanbul-lib-coverage": "^2.0.3",
+    "istanbul-lib-hook": "^2.0.3",
+    "istanbul-lib-instrument": "^3.1.0",
+    "istanbul-lib-report": "^2.0.4",
+    "istanbul-lib-source-maps": "^3.0.2"
   },
   "devDependencies": {
     "@types/convert-source-map": "^1.5.1",

@@ -20,9 +20,9 @@
   },
   "dependencies": {
     "@start/plugin": "^0.2.1",
-    "eslint": "^5.10.0"
+    "eslint": "^5.13.0"
   },
   "devDependencies": {
-    "@types/eslint": "^4.16.5"
+    "@types/eslint": "^4.16.6"
   }
 }

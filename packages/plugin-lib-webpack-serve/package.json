@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "@types/webpack-serve": "^2.0.0",
-    "webpack": "^4.28.0"
+    "webpack": "^4.29.1"
   }
 }

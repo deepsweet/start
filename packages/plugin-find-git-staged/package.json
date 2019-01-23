@@ -21,7 +21,7 @@
   "dependencies": {
     "@start/plugin": "^0.2.1",
     "execa": "^1.0.0",
-    "multimatch": "^2.1.0"
+    "multimatch": "^3.0.0"
   },
   "devDependencies": {
     "@types/execa": "^0.9.0",
