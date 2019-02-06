@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-typescript-check",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "🚷 Check types using TypeScript",
   "keywords": "tasks, runner, start, start-plugin, typescript",
   "repository": "deepsweet/start",
