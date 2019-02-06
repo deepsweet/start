@@ -19,7 +19,7 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
-    "@start/plugin": "^0.2.1",
+    "@start/plugin": "^0.3.0",
     "convert-source-map": "^1.6.0",
     "istanbul-api": "^2.1.0",
     "istanbul-lib-coverage": "^2.0.3",
