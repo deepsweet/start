@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-postcss",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "🏭 Transform files using PostCSS",
   "keywords": "tasks, runner, start, start-plugin, postcss",
   "repository": "deepsweet/start",
