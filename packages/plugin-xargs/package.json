@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-xargs",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "🔂 Run task as parallel child process for each argument",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
