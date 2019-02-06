@@ -19,7 +19,7 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
-    "@start/plugin": "^0.2.1",
+    "@start/plugin": "^0.3.0",
     "tape": "^4.9.2",
     "through": "^2.3.8"
   },
