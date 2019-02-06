@@ -85,7 +85,7 @@ export const buildBumpedPackages = (task: (packageDir: string) => StartPlugin<an
       const packageDir = path.relative(path.resolve('packages/'), bump.dir)
       const taskRunner = await task(packageDir)
 
-      await taskRunner(utils)()
+      await taskRunner(utils.reporter)()
     }
   })
 

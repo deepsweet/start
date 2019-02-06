@@ -33,7 +33,7 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
           events.forEach((event) => {
             watcher.once(event, async (file) => {
               try {
-                await targetRunner(utils)({
+                await targetRunner(utils.reporter)({
                   files: [{
                     path: file
                   }]
@@ -46,7 +46,7 @@ export default (glob: string | string[], userOptions?: {}) => (target: StartPlug
         }
 
         try {
-          await targetRunner(utils)({
+          await targetRunner(utils.reporter)({
             files: initialFiles
           })
         } finally {
