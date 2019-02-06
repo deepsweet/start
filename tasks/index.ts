@@ -1,4 +1,4 @@
-import plugin, { StartDataFilesProps, StartFile, StartDataFile, StartPluginUtils } from '@start/plugin/src'
+import plugin, { StartDataFilesProps, StartDataFile } from '@start/plugin/src'
 import sequence from '@start/plugin-sequence/src/'
 import parallel from '@start/plugin-parallel/src/'
 import xargs from '@start/plugin-xargs/src/'
@@ -44,11 +44,8 @@ export const build = (packageName: string) =>
     write(`packages/${packageName}/build/`)
   )
 
-export const startWithType = <T extends {}>() => () => async (props?: T) => {}
-
 export const dts = (packageName: string) =>
   sequence(
-    startWithType<{}>(),
     find(`packages/${packageName}/src/*.ts`),
     typescriptGenerate(`packages/${packageName}/build/`),
     find(`packages/${packageName}/build/**/*.d.ts`),
