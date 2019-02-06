@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.2.2",
-    "@start/plugin": "^0.2.1"
+    "@start/plugin": "^0.3.0"
   }
 }
