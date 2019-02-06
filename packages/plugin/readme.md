@@ -40,9 +40,9 @@ export default plugin('foo', ({ logPath }) => async ({ files }) => {
         logPath(file.path)
 
         return {
-            path: file.path,
-            data: transformedData,
-            map: sourceMap
+          path: file.path,
+          data: transformedData,
+          map: sourceMap
         }
       )
     )
