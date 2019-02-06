@@ -1,8 +1,8 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartDataFilesProps, StartDataFile } from '@start/plugin/src/'
 import { CLIEngine } from 'eslint'
 
-export default (userOptions?: CLIEngine.Options, formatter?: string) =>
-  plugin('eslint', async ({ files, logMessage, logFile }) => {
+export default (userOptions?: CLIEngine.Options, formatter = '') =>
+  plugin('eslint', ({ logMessage, logPath }) => async ({ files }: StartDataFilesProps) => {
     const { CLIEngine } = await import('eslint')
     const options: CLIEngine.Options = {
       cache: true,
@@ -24,7 +24,7 @@ export default (userOptions?: CLIEngine.Options, formatter?: string) =>
 
       return acc
     }, {
-      results: [],
+      results: [] as CLIEngine.LintResult[],
       errorCount: 0,
       warningCount: 0,
       fixableErrorCount: 0,
@@ -44,13 +44,12 @@ export default (userOptions?: CLIEngine.Options, formatter?: string) =>
     if (options.fix && report.results.length > 0) {
       const fixedFiles = report.results
         .filter(({ output }) => typeof output === 'string')
-        .map((result) => {
-          logFile(result.filePath)
+        .map((result): StartDataFile => {
+          logPath(result.filePath)
 
           return ({
             path: result.filePath,
-            data: result.output,
-            map: null
+            data: result.output!
           })
         })
 

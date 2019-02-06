@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartDataFilesProps } from '@start/plugin/src/'
 import { AcceptedPlugin, ProcessOptions } from 'postcss'
 
 export type Options = {
@@ -10,7 +10,7 @@ export type Options = {
 }
 
 export default (options?: Options) =>
-  plugin('postcss', async ({ files, logMessage, logPath }) => {
+  plugin('postcss', ({ logMessage, logPath }) => async ({ files }: StartDataFilesProps) => {
     const { default: postcss } = await import('postcss')
 
     return {
@@ -21,7 +21,7 @@ export default (options?: Options) =>
             to: file.path
           }
 
-          if (options.sourceMaps) {
+          if (options && options.sourceMaps) {
             realOptions.map = {
               inline: false,
               annotation: false
@@ -35,7 +35,7 @@ export default (options?: Options) =>
             }
           }
 
-          const plugins = options ? options.plugins : null
+          const plugins = options && options.plugins
           const result = postcss(plugins).process(file.data, realOptions)
 
           logPath(file.path)

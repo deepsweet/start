@@ -19,7 +19,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "decompress": "^4.2.0"

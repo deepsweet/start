@@ -1,17 +1,15 @@
 import plugin from '@start/plugin/src/'
 
 type Options = {
-  registry?: string,
-  otp?: string,
   [key: string]: boolean | string
 }
 
 // https://docs.npmjs.com/cli/publish
 export default (packagePath: string = '.', userOptions?: Options) =>
-  plugin('npmPublish', async () => {
+  plugin('npmPublish', () => async () => {
     const { default: execa } = await import('execa')
 
-    const options = {
+    const options: Options = {
       registry: 'https://registry.npmjs.org/',
       ...userOptions
     }
@@ -27,7 +25,7 @@ export default (packagePath: string = '.', userOptions?: Options) =>
       }
 
       return result
-    }, [])
+    }, [] as string[])
 
     try {
       await execa('npm', ['publish', ...cliArgs, packagePath], {

@@ -1,18 +1,18 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartDataFile, StartDataFilesProps } from '@start/plugin/src/'
 
 export default (callback: (file: string) => string) =>
-  plugin('rename', async ({ files, logFile }) => {
+  plugin('rename', ({ logPath }) => async ({ files }: StartDataFilesProps) => {
     const path = await import('path')
 
     return {
-      files: files.map((file) => {
+      files: files.map((file): StartDataFile => {
         const newPath = callback(file.path)
 
         if (file.path === newPath) {
           return file
         }
 
-        logFile(newPath)
+        logPath(newPath)
 
         if (file.map !== null) {
           return {
@@ -27,8 +27,7 @@ export default (callback: (file: string) => string) =>
 
         return {
           path: newPath,
-          data: file.data,
-          map: null
+          data: file.data
         }
       })
     }

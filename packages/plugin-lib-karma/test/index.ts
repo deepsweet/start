@@ -1,13 +1,11 @@
-import test from 'tape'
+import test from 'blue-tape'
 
 import karma from '../src'
 
-test('plugin-lib-karma: export', (t) => {
-  t.equal(
+test('plugin-lib-karma: export', async (t) => {
+  t.equals(
     typeof karma,
     'function',
     'must be a function'
   )
-
-  t.end()
 })

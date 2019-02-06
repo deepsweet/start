@@ -5,7 +5,7 @@ const babelConfigCommon = {
       '@babel/preset-env',
       {
         targets: {
-          node: 6
+          node: '8.6.0'
         },
         modules: false
       }
@@ -13,7 +13,6 @@ const babelConfigCommon = {
   ],
   plugins: [
     '@babel/plugin-syntax-dynamic-import',
-    '@babel/plugin-transform-runtime',
     ['module-resolver', {
       'alias': {
         '@start/plugin/src/': '@start/plugin'

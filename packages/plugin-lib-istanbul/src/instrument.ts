@@ -1,4 +1,4 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartFilesProps } from '@start/plugin/src/'
 
 type Options = {
   coverageVariable?: string,
@@ -11,7 +11,7 @@ type Options = {
 }
 
 export default (options: Options = {}) =>
-  plugin('istanbulInstrument', async ({ files, logFile, logMessage }) => {
+  plugin('istanbulInstrument', ({ logPath, logMessage }) => async ({ files }: StartFilesProps) => {
     const Module = await import('module')
     const { fromSource: getSourceMapFromSource } = await import('convert-source-map')
     const { createInstrumenter } = await import('istanbul-lib-instrument')

@@ -1,4 +1,4 @@
-import test from 'tape'
+import test from 'blue-tape'
 
 import {
   istanbulInstrument,
@@ -6,24 +6,22 @@ import {
   istanbulThresholds
 } from '../src'
 
-test('plugin-lib-istanbul: export', (t) => {
-  t.equal(
+test('plugin-lib-istanbul: export', async (t) => {
+  t.equals(
     typeof istanbulInstrument,
     'function',
     'must be a function'
   )
 
-  t.equal(
+  t.equals(
     typeof istanbulReport,
     'function',
     'must be a function'
   )
 
-  t.equal(
+  t.equals(
     typeof istanbulThresholds,
     'function',
     'must be a function'
   )
-
-  t.end()
 })

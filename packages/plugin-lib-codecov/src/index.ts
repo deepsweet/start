@@ -1,12 +1,13 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartDataFile, StartDataFilesProps } from '@start/plugin/src/'
 
-export default plugin('codecov', async ({ files, logMessage }) => {
+export default plugin('codecov', ({ logMessage }) => async ({ files }: StartDataFilesProps) => {
+  // @ts-ignore
   const { default: codecovLite } = await import('codecov-lite')
 
   return {
     files: await Promise.all(
-      files.map((file) =>
-        codecovLite(file.data).then((result) => {
+      files.map((file): StartDataFile =>
+        codecovLite(file.data).then((result: any) => {
           logMessage(result.reportURL)
 
           return file

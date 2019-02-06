@@ -16,14 +16,13 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
     "dleet": "^0.1.1",
     "execa": "^1.0.0",
-    "graceful-fs": "^4.1.11"
+    "graceful-fs": "^4.1.15"
   },
   "devDependencies": {
     "@types/execa": "^0.9.0",

@@ -1,18 +1,16 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartDataFilesProps } from '@start/plugin/src/'
 
-type WriteFile = (path: string, data: string, options: string, cb: (err: any) => void) => void
-
-export default plugin('overwrite', async ({ files, logFile }) => {
-  const { default: makethen } = await import('makethen')
+export default plugin('overwrite', ({ logPath }) => async ({ files }: StartDataFilesProps) => {
+  const { promisify } = await import('util')
   const gracefulFs = await import('graceful-fs')
-  const writeFile = makethen(gracefulFs.writeFile as WriteFile)
+  const writeFile = promisify(gracefulFs.writeFile)
 
   return {
     files: await Promise.all(
       files.map(async (file) => {
         await writeFile(file.path, file.data, 'utf8')
 
-        logFile(file.path)
+        logPath(file.path)
 
         return file
       })

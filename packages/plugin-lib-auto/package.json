@@ -16,7 +16,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
     "@auto/bump": "^0.0.22",
@@ -24,7 +24,6 @@
     "@auto/git": "^0.0.28",
     "@auto/log": "^0.0.16",
     "@auto/npm": "^0.0.26",
-    "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
     "prompts": "^1.1.1"
   }

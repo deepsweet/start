@@ -16,10 +16,9 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8.6.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
     "@start/plugin": "^0.2.1",
     "chokidar": "^2.0.2"
   },

@@ -1,6 +1,6 @@
 import EventEmitter from 'events'
-import test from 'tape-promise/tape'
-import { spy } from 'sinon'
+import test from 'blue-tape'
+import { createSpy, getSpyCalls } from 'spyfn'
 
 import env from '../src'
 
@@ -10,45 +10,39 @@ const files = [{
   map: null
 }]
 
-test('plugin-env: export', (t) => {
-  t.equal(
+test('plugin-env: export', async (t) => {
+  t.equals(
     typeof env,
     'function',
     'must be a function'
   )
-
-  t.end()
 })
 
 test('plugin-env: process.env', async (t) => {
-  const props = {
-    reporter: new EventEmitter()
-  }
+  const reporter = new EventEmitter()
   const envRunner = await env({
     FOO: 'BAR',
     BEEP: 'BOOP'
   })
 
-  await envRunner(props)
+  await envRunner(reporter)()
 
-  t.equal(
+  t.equals(
     process.env.FOO,
     'BAR',
     'should set process.env'
   )
 
-  t.equal(
+  t.equals(
     process.env.BEEP,
     'BOOP',
     'should set process.env'
   )
-
-  t.end()
 })
 
 test('plugin-env: message', async (t) => {
   const reporter = new EventEmitter()
-  const onMessageSpy = spy()
+  const onMessageSpy = createSpy(() => {})
 
   reporter.on('message', onMessageSpy)
 
@@ -57,20 +51,20 @@ test('plugin-env: message', async (t) => {
     BEEP: 'BOOP'
   })
 
-  await envRunner({ files, reporter })
+  await envRunner(reporter)({ files })
 
-  t.ok(
-    onMessageSpy.calledTwice,
+  t.equals(
+    getSpyCalls(onMessageSpy).length,
+    2,
     'should log twice'
   )
 
-  t.ok(
-    onMessageSpy.firstCall.calledWith('env', 'FOO = BAR'),
+  t.deepEquals(
+    getSpyCalls(onMessageSpy),
+    [
+      ['env', 'FOO = BAR'],
+      ['env', 'BEEP = BOOP']
+    ],
     'should log first message'
-  )
-
-  t.ok(
-    onMessageSpy.secondCall.calledWith('env', 'BEEP = BOOP'),
-    'should log second message'
   )
 })

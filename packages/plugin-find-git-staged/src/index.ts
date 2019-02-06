@@ -1,7 +1,7 @@
-import plugin from '@start/plugin/src/'
+import plugin, { StartFile } from '@start/plugin/src/'
 
 export default (glob: string | string[]) =>
-  plugin('findGitStaged', async ({ logFile }) => {
+  plugin('findGitStaged', ({ logPath }) => async () => {
     const path = await import('path')
     const { EOL } = await import('os')
     const { default: execa } = await import('execa')
@@ -15,13 +15,11 @@ export default (glob: string | string[]) =>
     return {
       files: matchedFiles
         .map((file) => path.resolve(file))
-        .map((file) => {
-          logFile(file)
+        .map((file): StartFile => {
+          logPath(file)
 
           return {
-            path: file,
-            data: null,
-            map: null
+            path: file
           }
         })
     }

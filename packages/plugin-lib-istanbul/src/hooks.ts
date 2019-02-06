@@ -1,4 +1,4 @@
-let hooks = []
+let hooks: (() => void)[] = []
 
 export const add = (hook: () => void) => {
   hooks.push(hook)

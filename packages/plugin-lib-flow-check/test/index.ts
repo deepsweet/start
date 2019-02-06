@@ -1,13 +1,11 @@
-import test from 'tape'
+import test from 'blue-tape'
 
 import flowCheck from '../src'
 
-test('plugin-lib-flow-check: export', (t) => {
-  t.equal(
+test('plugin-lib-flow-check: export', async (t) => {
+  t.equals(
     typeof flowCheck,
     'function',
     'must be a function'
   )
-
-  t.end()
 })

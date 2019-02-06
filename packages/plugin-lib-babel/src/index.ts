@@ -1,16 +1,17 @@
-import plugin, { StartFile } from '@start/plugin/src/'
+import plugin, { StartDataFile, StartDataFilesProps } from '@start/plugin/src/'
 
 type Options = {
   [key: string]: any
 }
 
 export default (userOptions?: Options) =>
-  plugin('babel', async ({ files, logFile }) => {
+  plugin('babel', ({ logPath }) => async ({ files }: StartDataFilesProps) => {
+    // @ts-ignore
     const { transformAsync } = await import('@babel/core')
 
     return {
       files: await Promise.all(
-        files.map(async (file) => {
+        files.map(async (file): Promise<StartDataFile> => {
           const options: Options = {
             ...userOptions,
             ast: false,
@@ -19,7 +20,7 @@ export default (userOptions?: Options) =>
           }
           const result = await transformAsync(file.data, options)
 
-          logFile(file.path)
+          logPath(file.path)
 
           return {
             path: file.path,

@@ -1,29 +1,34 @@
 import plugin from '@start/plugin/src/'
+import { CoverageMapData } from 'istanbul-lib-coverage'
 
 type Options = {
   branches?: number,
   functions?: number,
   lines?: number,
-  statements?: number
+  statements?: number,
+  [key: string]: any
 }
 
 export default (options: Options) =>
-  plugin('istanbulThresholds', async ({ logMessage }) => {
+  plugin('istanbulThresholds', ({ logMessage }) => async () => {
     const { createCoverageMap } = await import('istanbul-lib-coverage')
     const { createSourceMapStore } = await import('istanbul-lib-source-maps')
+    // @ts-ignore
     const { summarizers } = await import('istanbul-lib-report')
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
 
     hooks.clearAll()
 
-    if (!global[coverageVariable]) {
+    const coverageMapData = (global as any)[coverageVariable] as CoverageMapData
+
+    if (!coverageMapData) {
       logMessage('no coverage information was collected')
 
       return
     }
 
-    const coverageMap = createCoverageMap(global[coverageVariable])
+    const coverageMap = createCoverageMap(coverageMapData)
     const sourceMapStore = createSourceMapStore()
     const remappedCoverageMap = sourceMapStore.transformCoverage(coverageMap).map
 
@@ -51,7 +56,7 @@ export default (options: Options) =>
       }
 
       return errors
-    }, [])
+    }, [] as string[])
 
     if (result.length > 0) {
       throw result

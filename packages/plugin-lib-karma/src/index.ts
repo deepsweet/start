@@ -2,7 +2,7 @@ import plugin from '@start/plugin/src/'
 import { ConfigOptions } from 'karma'
 
 export default (options: ConfigOptions) =>
-  plugin('karma', async () => {
+  plugin('karma', () => async () => {
     const { Server } = await import('karma')
 
     await new Promise<void>((resolve, reject) => {

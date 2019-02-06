@@ -5,3 +5,4 @@ tmp/
 .npmrc
 .DS_Store
 *.log
+.idea/

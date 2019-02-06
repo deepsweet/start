@@ -1,149 +1,174 @@
-import { StartPlugin } from '@start/plugin/src/'
+import plugin from '@start/plugin/src/'
 import EventEmitter from 'events'
-import test from 'tape-promise/tape'
-import { stub } from 'sinon'
+import test from 'blue-tape'
+import { createSpy, getSpyCalls } from 'spyfn'
 
 import sequence from '../src'
 
-test('plugin-sequence: export', (t) => {
-  t.equal(
+test('plugin-sequence: export', async (t) => {
+  t.equals(
     typeof sequence,
     'function',
     'must be a function'
   )
-
-  t.end()
 })
 
-test('plugin-sequence: ok / sync output', async (t) => {
-  const props = {
-    reporter: new EventEmitter()
-  }
-  const plugin1 = stub().returns({ foo: true })
-  const plugin2 = stub().returns({ bar: true })
-  const plugin3 = stub().returns()
+test('plugin-sequence: ok / sync plugin / sync return', async (t) => {
+  const reporter = new EventEmitter()
+  const plugin1CallbackSpy = createSpy(() => ({ bar: true }))
+  const plugin1Spy = createSpy(() => plugin1CallbackSpy)
+  const plugin1 = plugin('plugin1', plugin1Spy)
+  const plugin2CallbackSpy = createSpy(() => {})
+  const plugin2Spy = createSpy(() => plugin2CallbackSpy)
+  const plugin2 = plugin('plugin2', plugin2Spy)
+  const plugin3CallbackSpy = createSpy(() => {})
+  const plugin3Spy = createSpy(() => plugin3CallbackSpy)
+  const plugin3 = plugin('plugin3', plugin3Spy)
 
   const run = await sequence(plugin1, plugin2, plugin3)
 
-  await run(props)
+  await run(reporter)({ foo: true })
 
-  t.ok(
-    plugin1.calledWithMatch(props),
-    'plugin1 should be called with initial props'
+  t.equal(
+    getSpyCalls(plugin1Spy)[0][0].reporter,
+    reporter,
+    'should pass reporter through sequence to plugin 1'
   )
 
-  t.ok(
-    plugin2.calledWithMatch({ foo: true }),
-    'plugin2 should be called with plugin 1 result'
+  t.deepEqual(
+    getSpyCalls(plugin1CallbackSpy),
+    [[{ foo: true }]],
+    'should pass initial props to plugin 1'
   )
 
-  t.ok(
-    plugin3.calledWithMatch({ bar: true }),
-    'plugin3 should be called with plugin 2 result'
+  t.equal(
+    getSpyCalls(plugin2Spy)[0][0].reporter,
+    reporter,
+    'should pass reporter through sequence to plugin 2'
+  )
+
+  t.deepEqual(
+    getSpyCalls(plugin2CallbackSpy),
+    [[{ foo: true, bar: true }]],
+    'should extend initial props with plugin 1 output and pass it to plugin 2'
+  )
+
+  t.equal(
+    getSpyCalls(plugin3Spy)[0][0].reporter,
+    reporter,
+    'should pass reporter through sequence to plugin 3'
+  )
+
+  t.deepEqual(
+    getSpyCalls(plugin3CallbackSpy),
+    [[{ foo: true, bar: true }]],
+    'should allow plugins to return nothing'
   )
 })
 
-test('plugin-sequence: ok / promise output', async (t) => {
-  const props = {
-    reporter: new EventEmitter()
-  }
-  const plugin1 = stub().resolves({ foo: true })
-  const plugin2 = stub().resolves({ bar: true })
-  const plugin3 = stub().resolves()
+test('plugin-sequence: ok / async plugin / async return', async (t) => {
+  const reporter = new EventEmitter()
+  const plugin1CallbackSpy = createSpy(() => Promise.resolve({ bar: true }))
+  const plugin1Spy = createSpy(() => plugin1CallbackSpy)
+  const plugin1 = Promise.resolve(plugin('plugin1', plugin1Spy))
+  const plugin2CallbackSpy = createSpy(() => Promise.resolve())
+  const plugin2Spy = createSpy(() => plugin2CallbackSpy)
+  const plugin2 = Promise.resolve(plugin('plugin2', plugin2Spy))
+  const plugin3CallbackSpy = createSpy(() => Promise.resolve())
+  const plugin3Spy = createSpy(() => plugin3CallbackSpy)
+  const plugin3 = Promise.resolve(plugin('plugin3', plugin3Spy))
 
   const run = await sequence(plugin1, plugin2, plugin3)
-  const result = await run(props)
 
-  t.ok(
-    plugin1.calledWithMatch(props),
-    'plugin1 should be called with initial props'
+  await run(reporter)({ foo: true })
+
+  t.equal(
+    getSpyCalls(plugin1Spy)[0][0].reporter,
+    reporter,
+    'should pass reporter through sequence to plugin 1'
   )
 
-  t.ok(
-    plugin2.calledWithMatch({ foo: true }),
-    'plugin2 should be called with plugin 1 result'
+  t.deepEqual(
+    getSpyCalls(plugin1CallbackSpy),
+    [[{ foo: true }]],
+    'should pass initial props to plugin 1'
   )
 
-  t.ok(
-    plugin3.calledWithMatch({ bar: true }),
-    'plugin3 should be called with plugin 2 result'
-  )
-})
-
-test('plugin-sequence: ok / promise plugin / promise output', async (t) => {
-  const props = {
-    reporter: new EventEmitter()
-  }
-  const plugin1 = stub().resolves({ foo: true })
-  const plugin1Promise = Promise.resolve(plugin1)
-  const plugin2 = stub().resolves({ bar: true })
-  const plugin2Promise = Promise.resolve(plugin2)
-  const plugin3 = stub().resolves()
-  const plugin3Promise = Promise.resolve(plugin3)
-
-  const run = await sequence(plugin1Promise, plugin2Promise, plugin3Promise)
-  const result = await run(props)
-
-  t.ok(
-    plugin1.calledWithMatch(props),
-    'plugin1 should be called with initial props'
+  t.equal(
+    getSpyCalls(plugin2Spy)[0][0].reporter,
+    reporter,
+    'should pass reporter through sequence to plugin 2'
   )
 
-  t.ok(
-    plugin2.calledWithMatch({ foo: true }),
-    'plugin2 should be called with plugin 1 result'
+  t.deepEqual(
+    getSpyCalls(plugin2CallbackSpy),
+    [[{ foo: true, bar: true }]],
+    'should extend initial props with plugin 1 output and pass it to plugin 2'
   )
 
-  t.ok(
-    plugin3.calledWithMatch({ bar: true }),
-    'plugin3 should be called with plugin 2 result'
+  t.equal(
+    getSpyCalls(plugin3Spy)[0][0].reporter,
+    reporter,
+    'should pass reporter through sequence to plugin 3'
+  )
+
+  t.deepEqual(
+    getSpyCalls(plugin3CallbackSpy),
+    [[{ foo: true, bar: true }]],
+    'should allow plugins to return nothing'
   )
 })
 
 test('plugin-sequence: error / throw', async (t) => {
-  const props = {
-    reporter: new EventEmitter()
-  }
-  const plugin1 = stub().throws(new Error('oops'))
-  const plugin2 = stub().returns()
+  const reporter = new EventEmitter()
+  const plugin1CallbackSpy = createSpy(() => {
+    throw 'oops'
+  })
+  const plugin1Spy = createSpy(() => plugin1CallbackSpy)
+  const plugin1 = plugin('plugin1', plugin1Spy)
+  const plugin2CallbackSpy = createSpy(() => {})
+  const plugin2Spy = createSpy(() => plugin2CallbackSpy)
+  const plugin2 = plugin('plugin2', plugin2Spy)
+
+  const run = await sequence(plugin1, plugin2)
+
+  reporter.on('error', () => {})
 
   try {
-    const run = await sequence(plugin1, plugin2)
+    await run(reporter)()
 
-    await run(props)
-  } catch (error) {
-    t.ok(
-      plugin1.calledWithMatch(props),
-      'plugin1 should be called with props'
-    )
-
-    t.ok(
-      plugin2.notCalled,
-      'plugin2 should not be called'
+    t.fail('should not get here')
+  } catch (e) {
+    t.deepEqual(
+      getSpyCalls(plugin2Spy),
+      [],
+      'should stop running sequence after error'
     )
   }
 })
 
 test('plugin-sequence: error / reject', async (t) => {
-  const props = {
-    reporter: new EventEmitter()
-  }
-  const plugin1 = stub().rejects(new Error('oops'))
-  const plugin2 = stub().returns()
+  const reporter = new EventEmitter()
+  const plugin1CallbackSpy = createSpy(() => Promise.reject())
+  const plugin1Spy = createSpy(() => plugin1CallbackSpy)
+  const plugin1 = plugin('plugin1', plugin1Spy)
+  const plugin2CallbackSpy = createSpy(() => {})
+  const plugin2Spy = createSpy(() => plugin2CallbackSpy)
+  const plugin2 = plugin('plugin2', plugin2Spy)
+
+  const run = await sequence(plugin1, plugin2)
+
+  reporter.on('error', () => {})
 
   try {
-    const run = await sequence(plugin1, plugin2)
+    await run(reporter)()
 
-    await run(props)
-  } catch (error) {
-    t.ok(
-      plugin1.calledWithMatch(props),
-      'plugin1 should be called with props'
-    )
-
-    t.ok(
-      plugin2.notCalled,
-      'plugin2 should not be called'
+    t.fail('should not get here')
+  } catch (e) {
+    t.deepEqual(
+      getSpyCalls(plugin2Spy),
+      [],
+      'should stop running sequence after error'
     )
   }
 })

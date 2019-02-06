@@ -73,7 +73,7 @@ export const bumpOptions: TBumpOptions = { zeroBreakingChangeType: 'minor' }
 export const githubOptions: TGithubOptions = {
   username: 'deepsweet',
   repo: 'start',
-  token: process.env.GITHUB_RELEASE_TOKEN
+  token: process.env.GITHUB_RELEASE_TOKEN || ''
 }
 
 export const workspacesOptions: TWorkspacesOptions = { autoNamePrefix: '@start/' }

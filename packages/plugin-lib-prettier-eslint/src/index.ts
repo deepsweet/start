@@ -1,11 +1,12 @@
-import plugin, { StartFile } from '@start/plugin/src/'
+import plugin, { StartFile, StartFilesProps } from '@start/plugin/src/'
 
 type Options = {
   [key: string]: any
 }
 
 export default (options?: Options) =>
-  plugin('prettierEslint', async ({ files, logFile }) => {
+  plugin('prettierEslint', ({ logPath }) => async ({ files }: StartFilesProps) => {
+    // @ts-ignore
     const { default: format } = await import('prettier-eslint')
 
     return {
@@ -15,7 +16,7 @@ export default (options?: Options) =>
             const formatted: string = format({ ...options, filePath: file.path, text: file.data })
 
             if (file.data !== formatted) {
-              logFile(file.path)
+              logPath(file.path)
             }
 
             resolve({
