@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@start/plugin": "^0.3.0",
-    "tape": "^4.9.2",
+    "tape": "^4.10.1",
     "through": "^2.3.8"
   },
   "devDependencies": {

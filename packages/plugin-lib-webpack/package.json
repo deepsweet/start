@@ -21,9 +21,9 @@
   "dependencies": {
     "@start/plugin": "^0.3.0",
     "makethen": "^0.2.3",
-    "webpack": "^4.29.1"
+    "webpack": "^4.29.6"
   },
   "devDependencies": {
-    "@types/webpack": "^4.4.24"
+    "@types/webpack": "^4.4.25"
   }
 }

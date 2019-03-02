@@ -21,7 +21,7 @@
   "dependencies": {
     "@start/plugin": "^0.3.0",
     "convert-source-map": "^1.6.0",
-    "istanbul-api": "^2.1.0",
+    "istanbul-api": "^2.1.1",
     "istanbul-lib-coverage": "^2.0.3",
     "istanbul-lib-hook": "^2.0.3",
     "istanbul-lib-instrument": "^3.1.0",

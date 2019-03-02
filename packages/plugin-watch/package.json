@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@start/plugin": "^0.3.0",
-    "chokidar": "^2.0.2"
+    "chokidar": "^2.1.2"
   },
   "devDependencies": {
     "@types/chokidar": "^1.7.5"
