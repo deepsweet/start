@@ -28,7 +28,7 @@ import {
   writeWorkspacesPackagesBumps,
   makeWorkspacesGithubReleases,
   pushCommitsAndTags
-} from '@start/plugin-lib-auto/src/'
+} from '@auto/start-plugin'
 // @ts-ignore
 import tapDiff from 'tap-diff'
 

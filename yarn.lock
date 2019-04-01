@@ -12,10 +12,10 @@
     esm "^3.0.82"
     semver "^5.5.1"
 
-"@auto/fs@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.16.tgz#bf367be4edd73426c67959c3b74296692f3db7dc"
-  integrity sha512-MT/MdgyX+MXhMxBjttbbmjIqE0C6FcKbUvzl15TLNE+RXAVHe/WtZQ0dqe3hdg/fV81vMXRd4xhmBNS8KCsA6Q==
+"@auto/fs@^0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@auto/fs/-/fs-0.0.17.tgz#d44d8dfbcdb2040ccc5aa4a3810f24321d9aade1"
+  integrity sha512-k5jcetjL4GsGCGo+vHRqji5zfOaWDYPvIYFzI5Mkxw31EuTv0Dyo9eRjg6dU0oeSJTHeJmi7rUf0bIDC9cJkxg==
   dependencies:
     "@auto/utils" "^0.0.15"
     esm "^3.0.82"
@@ -23,10 +23,10 @@
     graceful-fs "^4.1.11"
     p-all "^1.0.0"
 
-"@auto/git@^0.0.28":
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.28.tgz#e87fe2e8342d9a9f060a51e1fbb0487ec2623bb9"
-  integrity sha512-YmR85ufCk4pm1qmkkDN2at7pMvzv72QevZStKTb7LTOUBUJuydeIMlPk2lrqMXyhTrirvnL1z/XwSPPOgsUyng==
+"@auto/git@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@auto/git/-/git-0.0.29.tgz#ded229a5fa1f1b14a7c64e5449a3b25fc80c397e"
+  integrity sha512-YCjKfUXV+d7j6meN3WfxzaCi0RcZskkeCh4/VshSOdBYRBrhfrYaY2IrhMrejkczfGgwxcXWCmsauGYzxyA3hw==
   dependencies:
     "@auto/utils" "^0.0.15"
     escape-string-regexp "^1.0.5"
@@ -34,24 +34,37 @@
     execa "^1.0.0"
     prompts "^1.1.0"
 
-"@auto/log@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.16.tgz#734369bb5f09b33f666d52dc01811e1b600f3f97"
-  integrity sha512-xK7Fna4e9GzFUOAq9f1s8+KiC7ih3Ck0QRxdfN9k/hfBdHK/ACi8fnBP20vyJbT+I8/Cg8ov72HsD2A0Hch0NQ==
+"@auto/log@^0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.0.17.tgz#d056b9e562c4cd646b2e580bb4b835206728ac19"
+  integrity sha512-Cyglo7HU11TNPu5B6NpyNbqdfXozxNBRjPxqmvBRfm666PneN7i0a/YE0xGCxXo1SquhvcvB6j7MKXROoswr/g==
   dependencies:
     "@auto/utils" "^0.0.15"
     esm "^3.0.82"
     request "^2.88.0"
     request-promise-native "^1.0.5"
 
-"@auto/npm@^0.0.26":
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.26.tgz#2f18168654d2e291afd264ca64491ecc76e630a4"
-  integrity sha512-xipYPJAZqQI/oJxXM1hO00hnNi2eFW5ePebTr8DPTxDI7/c9CCXpNDo4QZTeuU+pxwjBHlO1o5uYAgz6q9RrUQ==
+"@auto/npm@^0.0.27":
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/@auto/npm/-/npm-0.0.27.tgz#1db93450efcd6297fe0713372c0ca42215dafd9b"
+  integrity sha512-0KKcVMl7LwqEEg0oB0namUzYISk5WdDiRJQJpNVhg1G9l4mzTb8n/4FrhqWHWXgbwcypt5Jzoc7yLGF7sEIaWg==
   dependencies:
-    "@auto/fs" "^0.0.16"
+    "@auto/fs" "^0.0.17"
     esm "^3.0.82"
     execa "^1.0.0"
+
+"@auto/start-plugin@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@auto/start-plugin/-/start-plugin-0.0.7.tgz#fea16980d0f649283a84a69394111cdab688798a"
+  integrity sha512-pQm7QV3g1HpXTsUM/0FuS/Oc4/FcSD7t5dP6ON6K/i5l57RjyLwEKfabZZhbUg1p3uqgSABKeizCFJOoYEchdg==
+  dependencies:
+    "@auto/bump" "^0.0.22"
+    "@auto/fs" "^0.0.17"
+    "@auto/git" "^0.0.29"
+    "@auto/log" "^0.0.17"
+    "@auto/npm" "^0.0.27"
+    "@start/plugin" "^0.3.0"
+    prompts "^1.1.1"
 
 "@auto/utils@^0.0.15":
   version "0.0.15"
