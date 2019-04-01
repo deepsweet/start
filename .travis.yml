@@ -10,6 +10,8 @@ env:
     - PATH=$HOME/.yarn/bin:$PATH
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
+after_install:
+  - yarn install --cwd node_modules/@auto/start-plugin --pure-lockfile
 cache:
   yarn: true
   directories:
