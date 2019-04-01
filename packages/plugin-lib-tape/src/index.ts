@@ -3,13 +3,11 @@ import plugin, { StartFilesProps } from '@start/plugin/src/'
 export default (reporter?: () => NodeJS.ReadWriteStream) =>
   plugin('tape', () => async ({ files }: StartFilesProps) => {
     const path = await import('path')
-    const { default: test } = await import('blue-tape')
+    const { default: test } = await import('tape')
     const { default: through } = await import('through')
 
     return new Promise<StartFilesProps>((resolve, reject) => {
       const stream = test.createStream()
-      // FIXME submit `tape.getHarness` to DefinitelyTypes
-      // https://github.com/substack/tape/blob/9d501ff25b20f9318cda741c88cf50d469175da5/index.js#L47
       // @ts-ignore
       const results = test.getHarness()._results
 
@@ -48,7 +46,6 @@ export default (reporter?: () => NodeJS.ReadWriteStream) =>
         this._stream.queue(null)
       })
 
-      // TODO: get rid of `require`
       files.forEach((file) => require(path.resolve(file.path)))
     })
   })
