@@ -6,18 +6,26 @@ const babelConfigCommon = {
       {
         targets: {
           node: '8.6.0'
-        },
-        modules: false
+        }
       }
     ]
   ],
   plugins: [
-    '@babel/plugin-syntax-dynamic-import',
-    ['module-resolver', {
-      'alias': {
-        '@start/plugin/src/': '@start/plugin'
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        regenerator: false
       }
-    }]
+    ],
+    '@babel/plugin-syntax-dynamic-import',
+    'babel-plugin-dynamic-import-node',
+    [
+      'module-resolver', {
+        'alias': {
+          '@start/plugin/src/': '@start/plugin'
+        }
+      }
+    ]
   ]
 }
 

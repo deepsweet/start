@@ -25,6 +25,7 @@
     "decompress": "^4.2.0"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.4.2",
     "@types/decompress": "^4.2.2"
   }
 }
