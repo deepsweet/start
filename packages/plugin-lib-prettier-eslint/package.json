@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.2",
-    "@start/plugin": "^0.3.0",
+    "@start/plugin": "^0.3.1",
     "prettier-eslint": "^8.8.1"
   }
 }

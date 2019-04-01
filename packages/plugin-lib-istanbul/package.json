@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.2",
-    "@start/plugin": "^0.3.0",
+    "@start/plugin": "^0.3.1",
     "convert-source-map": "^1.6.0",
     "istanbul-api": "^2.1.1",
     "istanbul-lib-coverage": "^2.0.3",

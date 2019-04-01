@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.2",
-    "@start/plugin": "^0.3.0",
+    "@start/plugin": "^0.3.1",
     "makethen": "^0.3.0",
     "webpack": "^4.29.6"
   },
