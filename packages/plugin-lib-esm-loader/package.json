@@ -22,7 +22,7 @@
     "@start/plugin": "^0.3.0",
     "copie": "^0.1.0"
   },
-  "peerDependencies": {
-    "esm": "^3.0.82"
+  "devDependencies": {
+    "esm": "^3.2.22"
   }
 }
