@@ -19,12 +19,13 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.2",
     "@start/plugin": "^0.3.0",
-    "copie": "^0.1.0",
+    "copie": "^0.3.0",
     "make-dir": "^2.0.0",
-    "move-path": "^0.1.0"
+    "move-path": "^0.2.0"
   },
   "devDependencies": {
-    "@types/make-dir": "^1.0.3"
+    "@types/make-dir": "^2.1.0"
   }
 }

@@ -19,8 +19,9 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.2",
     "@start/plugin": "^0.3.0",
-    "eslint": "^5.13.0"
+    "eslint": "^5.16.0"
   },
   "devDependencies": {
     "@types/eslint": "^4.16.6"

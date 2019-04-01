@@ -105,10 +105,7 @@ $ yarn add --dev --ignore-workspace-root-check \
         {
           "targets": {
             "node": "current"
-          },
-          // "Tomorrow's ECMAScript modules today"
-          // @start/cli includes https://github.com/standard-things/esm by default
-          "modules": false
+          }
         }
       ],
       // Babel 7

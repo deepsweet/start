@@ -19,10 +19,11 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.2",
     "@start/plugin": "^0.3.0",
-    "chokidar": "^2.1.2"
+    "chokidar": "^2.1.5"
   },
   "devDependencies": {
-    "@types/chokidar": "^1.7.5"
+    "@types/chokidar": "^2.1.3"
   }
 }

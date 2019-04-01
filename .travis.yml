@@ -19,4 +19,6 @@ branches:
     - master
 matrix:
   fast_finish: true
+before_script:
+  - yarn install --cwd node_modules/@auto/start-plugin --pure-lockfile
 script: yarn start ciCoverage

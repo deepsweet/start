@@ -1,19 +1,27 @@
 #!/usr/bin/env node
 
-// eslint-disable-next-line no-global-assign
-require = require('esm')(module, {
-  mainFields: ['module', 'main']
-})
-
+/* eslint-disable no-global-assign */
 const { resolve } = require('path')
 const { start: options } = require(resolve('./package.json'))
+
+const isEsmLoader = (required) => required[Symbol.for('esm:package')] || required[Symbol.for('esm\u200D:package')]
 
 if (Array.isArray(options.require)) {
   options.require.forEach((pkg) => {
     if (typeof pkg === 'string') {
-      require(pkg)
+      const required = require(pkg)
+
+      if (isEsmLoader(required)) {
+        require = required(module)
+      }
     } else if (Array.isArray(pkg)) {
-      require(pkg[0])(pkg[1])
+      const required = require(pkg[0])
+
+      if (isEsmLoader(required)) {
+        require = required(module, pkg[1])
+      } else {
+        required(pkg[1])
+      }
     }
   })
 }

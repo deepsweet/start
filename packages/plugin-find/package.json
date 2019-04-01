@@ -19,10 +19,11 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.2",
     "@start/plugin": "^0.3.0",
-    "globby": "^8.0.1"
+    "globby": "^9.1.0"
   },
   "devDependencies": {
-    "@types/globby": "^8.0.0"
+    "@types/globby": "^9.1.0"
   }
 }

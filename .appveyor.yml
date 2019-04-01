@@ -18,5 +18,6 @@ build: off
 install:
   - ps: Install-Product node $env:nodejs_version
   - yarn
+  - yarn install --cwd node_modules/@auto/start-plugin --pure-lockfile
 test_script:
 - yarn start ci

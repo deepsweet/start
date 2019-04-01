@@ -19,10 +19,11 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.2",
     "@start/plugin": "^0.3.0",
     "karma": "^2.0.2"
   },
   "devDependencies": {
-    "@types/karma": "^1.7.3"
+    "@types/karma": "^3.0.2"
   }
 }

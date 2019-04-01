@@ -1,9 +1,9 @@
 /* eslint-disable space-infix-ops */
 import plugin, { StartPlugin, StartReporter, MaybeObject } from '@start/plugin/src/'
 
-export type TExtend <T1 extends MaybeObject, T2 extends MaybeObject> = (T1 extends void ? {} : {
+export type TExtend <T1 extends MaybeObject, T2 extends MaybeObject> = {
   [K in Exclude<keyof T1, keyof T2>]: T1[K];
-}) & (T2 extends void ? {} : T2)
+} & T2
 
 export type TExtend3 <T1 extends MaybeObject, T2 extends MaybeObject, T3 extends MaybeObject> = TExtend<TExtend<T1, T2>, T3>
 export type TExtend4 <T1 extends MaybeObject, T2 extends MaybeObject, T3 extends MaybeObject, T4 extends MaybeObject> = TExtend<TExtend3<T1, T2, T3>, T4>

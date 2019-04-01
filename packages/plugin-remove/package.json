@@ -19,7 +19,8 @@
     "node": ">=8.6.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.2",
     "@start/plugin": "^0.3.0",
-    "dleet": "^0.1.1"
+    "dleet": "^0.3.0"
   }
 }
