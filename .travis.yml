@@ -10,8 +10,6 @@ env:
     - PATH=$HOME/.yarn/bin:$PATH
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
-after_install:
-  - yarn install --cwd node_modules/@auto/start-plugin --pure-lockfile
 cache:
   yarn: true
   directories:
@@ -21,4 +19,6 @@ branches:
     - master
 matrix:
   fast_finish: true
+before_script:
+  - yarn install --cwd node_modules/@auto/start-plugin --pure-lockfile
 script: yarn start ciCoverage
