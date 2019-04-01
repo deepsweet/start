@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-istanbul",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "💯 Collect, report and check code coverage using Istanbul",
   "keywords": "tasks, runner, start, start-plugin, coverage, istanbul",
   "repository": "deepsweet/start",

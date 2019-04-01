@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-karma",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "✅ Run tests using Karma",
   "keywords": "tasks, runner, start, start-plugin, karma",
   "repository": "deepsweet/start",

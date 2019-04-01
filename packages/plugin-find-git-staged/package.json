@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-find-git-staged",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "🔍 Find Git staged files and filter them using glob patterns",
   "keywords": "tasks, runner, glob, git, start, start-plugin",
   "repository": "deepsweet/start",

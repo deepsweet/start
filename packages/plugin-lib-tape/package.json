@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-tape",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "✅ Run tests using Tape",
   "keywords": "tasks, runner, start, start-plugin, tap",
   "repository": "deepsweet/start",

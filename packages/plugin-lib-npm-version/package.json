@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-lib-npm-version",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "🔢 Bump package version",
   "keywords": "tasks, runner, start, start-plugin, npm",
   "repository": "deepsweet/start",
