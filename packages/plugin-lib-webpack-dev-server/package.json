@@ -1,0 +1,34 @@
+{
+  "name": "@start/plugin-lib-webpack-dev-server",
+  "version": "0.0.0",
+  "description": "🏭 Run Webpack development server",
+  "keywords": "tasks, runner, start, start-plugin, webpack",
+  "repository": "deepsweet/start",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-webpack-serve",
+  "author": "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8.6.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.2",
+    "@start/plugin": "^0.3.1",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/webpack": "^4.4.27",
+    "@types/webpack-dev-server": "^3.1.5",
+    "webpack": "^4.29.6"
+  },
+  "peerDependencies": {
+    "webpack": "^4.29.6"
+  }
+}

@@ -4,6 +4,8 @@
 
 Run [Webpack development server](https://github.com/webpack-contrib/webpack-serve).
 
+**⚠️ Deprecated in favor of [plugin-webpack-dev-server](https://github.com/deepsweet/start/tree/master/packages/plugin-lib-webpack-dev-server)**
+
 ## Install
 
 ```sh
