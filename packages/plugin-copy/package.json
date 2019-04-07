@@ -24,8 +24,5 @@
     "copie": "^0.3.0",
     "make-dir": "^2.0.0",
     "move-path": "^0.2.0"
-  },
-  "devDependencies": {
-    "@types/make-dir": "^2.1.0"
   }
 }
