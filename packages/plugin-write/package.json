@@ -22,7 +22,7 @@
     "@babel/runtime": "^7.4.2",
     "@start/plugin": "^0.3.1",
     "graceful-fs": "^4.1.15",
-    "make-dir": "^2.0.0",
+    "make-dir": "^3.0.0",
     "move-path": "^0.2.0"
   },
   "devDependencies": {
