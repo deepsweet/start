@@ -37,7 +37,7 @@ export default (userOptions?: CLIEngine.Options, formatter = '') =>
       console.log(format(report.results))
     }
 
-    if (report.errorCount > 0) {
+    if (!options.fix && report.errorCount > 0) {
       throw null
     }
 
