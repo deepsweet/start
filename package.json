@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@auto/start-plugin": "^0.0.8",
+    "@auto/start-plugin": "^0.2.0",
     "@babel/core": "^7.4.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-typescript": "^7.3.3",
@@ -14,7 +14,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.4.0",
     "@types/blue-tape": "^0.1.32",
-    "@types/node": "^11.12.2",
+    "@types/node": "^11.13.4",
     "@types/prompts": "^1.2.0",
     "@typescript-eslint/parser": "^1.6.0",
     "babel-plugin-dynamic-import-node": "^2.2.0",
@@ -30,7 +30,7 @@
     "mocku": "^0.5.0",
     "spyfn": "^0.2.0",
     "tap-diff": "^0.1.1",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.3"
   },
   "scripts": {
     "start": "node packages/cli/src/index.js",
