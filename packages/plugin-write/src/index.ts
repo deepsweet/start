@@ -4,10 +4,11 @@ export default (outDirRelative: string) =>
   plugin('write', ({ logPath }) => async ({ files }: StartDataFilesProps) => {
     const path = await import('path')
     const { promisify } = await import('util')
-    const gracefulFs = await import('graceful-fs')
+    const { writeFile } = await import('graceful-fs')
     const { default: movePath } = await import('move-path')
     const { default: makeDir } = await import('make-dir')
-    const writeFile = promisify(gracefulFs.writeFile)
+
+    const pWriteFile = promisify(writeFile)
 
     return {
       files: await Promise.all(
@@ -43,14 +44,14 @@ export default (outDirRelative: string) =>
             }
 
             writeFiles.push(
-              writeFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
+              pWriteFile(sourcemapPath, sourcemapData, 'utf8').then(() => {
                 logPath(sourcemapPath)
               })
             )
           }
 
           writeFiles.push(
-            writeFile(outFile, fileData, 'utf8').then(() => {
+            pWriteFile(outFile, fileData, 'utf8').then(() => {
               logPath(outFile)
             })
           )
