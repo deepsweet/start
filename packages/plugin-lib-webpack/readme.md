@@ -17,7 +17,7 @@ $ npm install --save-dev @start/plugin-lib-webpack
 ### Signature
 
 ```ts
-webpack(config: Configuration, statsOptions?: {})
+webpack(config: Configuration, statsOptions?: StatsOptions)
 ```
 
 #### `config`
