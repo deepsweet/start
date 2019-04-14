@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 /* eslint-disable no-global-assign */
+/* eslint-disable no-process-exit */
 const { resolve } = require('path')
 const { start: options } = require(resolve('./package.json'))
 
@@ -33,6 +34,5 @@ cliLib(process.argv, options).catch((error) => {
     console.log(error)
   }
 
-  // eslint-disable-next-line no-process-exit
   process.exit(1)
 })
