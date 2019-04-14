@@ -1,6 +1,6 @@
 import plugin from '@start/plugin/src/'
 
-export default (vars: { [key: string]: any }) =>
+export default (vars: NodeJS.ProcessEnv) =>
   plugin('env', ({ logMessage }) => () => {
     Object.keys(vars).forEach((key) => {
       process.env[key] = vars[key]
