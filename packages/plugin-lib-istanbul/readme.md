@@ -17,15 +17,16 @@ $ npm install --save-dev @start/plugin-lib-istanbul
 ### Signature
 
 ```ts
-istanbulInstrument(options?: {
-  preserveComments?: boolean,
-  compact?: boolean,
-  esModules?: boolean,
-  autoWrap?: boolean,
-  produceSourceMap?: boolean,
-  extensions?: string[],
-})
+istanbulInstrument(options?: InstrumenterOptions, extensions?: string[])
 ```
+
+#### `options`
+
+[Istanbul instrumenter options](https://github.com/istanbuljs/istanbuljs/blob/9f8aebf1f08159df20358d77fe98c809d2027c5f/packages/istanbul-lib-instrument/src/instrumenter.js#L11-L42)
+
+#### `extensions`
+
+File extensions to instrument, for example `['.ts']`
 
 ```ts
 istanbulReports(formats: string[] = ['lcovonly', 'text-summary'])

@@ -5,7 +5,6 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) =>
   plugin('istanbulReport', ({ logMessage }) => async () => {
     const { createCoverageMap } = await import('istanbul-lib-coverage')
     const { createSourceMapStore } = await import('istanbul-lib-source-maps')
-    // @ts-ignore
     const { createReporter } = await import('istanbul-api')
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
@@ -29,6 +28,6 @@ export default (formats: string[] = ['lcovonly', 'text-summary']) =>
 
     formats.forEach((format) => {
       reporter.add(format)
-      reporter.write(remappedCoverageMap)
+      reporter.write(remappedCoverageMap, {})
     })
   })

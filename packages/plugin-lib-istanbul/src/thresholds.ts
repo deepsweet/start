@@ -1,20 +1,19 @@
 import plugin from '@start/plugin/src/'
 import { CoverageMapData } from 'istanbul-lib-coverage'
 
-type Options = {
+export type TOptions = {
   branches?: number,
   functions?: number,
   lines?: number,
   statements?: number,
-  [key: string]: any
 }
 
-export default (options: Options) =>
+export default (options: TOptions) =>
   plugin('istanbulThresholds', ({ logMessage }) => async () => {
     const { createCoverageMap } = await import('istanbul-lib-coverage')
     const { createSourceMapStore } = await import('istanbul-lib-source-maps')
-    // @ts-ignore
     const { summarizers } = await import('istanbul-lib-report')
+    const { getObjectKeys } = await import('tsfn')
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
 
@@ -37,8 +36,8 @@ export default (options: Options) =>
       .getRoot()
       .getCoverageSummary(true)
 
-    const result = Object.keys(options).reduce((errors, key) => {
-      const threshold = options[key]
+    const result = getObjectKeys(options).reduce((errors, key) => {
+      const threshold = options[key] as number
       const summary = coverageSummary[key]
 
       // check percentage threshold

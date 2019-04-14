@@ -1,17 +1,8 @@
 import plugin, { StartFilesProps } from '@start/plugin/src/'
+import { InstrumenterOptions } from 'istanbul-lib-instrument'
 
-type Options = {
-  coverageVariable?: string,
-  preserveComments?: boolean,
-  compact?: boolean,
-  esModules?: boolean,
-  autoWrap?: boolean,
-  produceSourceMap?: boolean,
-  extensions?: string[],
-}
-
-export default (options: Options = {}) =>
-  plugin('istanbulInstrument', ({ logPath, logMessage }) => async ({ files }: StartFilesProps) => {
+export default (options?: Partial<InstrumenterOptions>, extensions?: string[]) =>
+  plugin('istanbulInstrument', ({ logMessage }) => async ({ files }: StartFilesProps) => {
     const Module = await import('module')
     const { fromSource: getSourceMapFromSource } = await import('convert-source-map')
     const { createInstrumenter } = await import('istanbul-lib-instrument')
@@ -19,9 +10,8 @@ export default (options: Options = {}) =>
     const hooks = await import('./hooks')
     const { default: coverageVariable } = await import('./variable')
 
-    const { extensions, ...instrumenterOptions } = options
     const instrumenter = createInstrumenter({
-      ...instrumenterOptions,
+      ...options,
       coverageVariable
     })
 
@@ -35,9 +25,7 @@ export default (options: Options = {}) =>
 
     const hook = hookRequire(
       // hook requires matches files files
-      (file) => {
-        return files.findIndex(({ path }) => file === path) !== -1
-      },
+      (file) => files.findIndex(({ path }) => file === path) !== -1,
       // and instrument that sources
       (source, options) => {
         const sourceMapRaw = getSourceMapFromSource(source)
@@ -51,9 +39,7 @@ export default (options: Options = {}) =>
         // TODO: update @types/istanbul-lib-hook
         return instrumenter.instrumentSync(source, options.file, sourceMapObject)
       },
-      {
-        extensions: options.extensions
-      }
+      { extensions }
     )
 
     hooks.add(hook)
