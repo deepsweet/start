@@ -17,7 +17,7 @@ $ npm install --save-dev @start/plugin-lib-babel
 ### Signature
 
 ```ts
-babel(options?: {})
+babel(options?: TransformOptions)
 ```
 
 #### `options`

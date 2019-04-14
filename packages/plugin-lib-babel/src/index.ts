@@ -1,34 +1,42 @@
 import plugin, { StartDataFile, StartDataFilesProps } from '@start/plugin/src/'
+import { TransformOptions } from '@babel/core'
 
-type Options = {
-  [key: string]: any
-}
-
-export default (userOptions?: Options) =>
+export default (userOptions?: TransformOptions) =>
   plugin('babel', ({ logPath }) => async ({ files }: StartDataFilesProps) => {
-    // @ts-ignore
-    const { transformAsync } = await import('@babel/core')
+    const { transform } = await import('@babel/core')
 
     return {
       files: await Promise.all(
-        files.map(async (file): Promise<StartDataFile> => {
-          const options: Options = {
+        files.reduce((result, file): StartDataFile[] => {
+          const options: TransformOptions = {
             ...userOptions,
             ast: false,
             inputSourceMap: file.map != null ? file.map : false,
             filename: file.path
           }
-          const result = await transformAsync(file.data, options)
+          const transformed = transform(file.data, options)
 
-          logPath(file.path)
+          if (transformed !== null) {
+            if (typeof transformed.code !== 'string') {
+              return result
+            }
 
-          return {
-            path: file.path,
-            data: result.code,
-            map: result.map
+            const dataFile: StartDataFile = {
+              path: file.path,
+              data: transformed.code
+            }
+
+            if (options.sourceMaps && typeof transformed.map === 'string') {
+              dataFile.map = transformed.map
+            }
+
+            logPath(file.path)
+
+            result.push(dataFile)
           }
-        }
-        )
+
+          return result
+        }, [] as StartDataFile[])
       )
     }
   })
