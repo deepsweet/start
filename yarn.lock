@@ -30,10 +30,10 @@
     execa "^1.0.0"
     prompts "^1.1.0"
 
-"@auto/log@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.1.0.tgz#4e3083b252531e974a4f4606d9dcfe54cc163f13"
-  integrity sha512-Df5VgHAp0zyLGRmMeDXGAeeYsTW3f9LC535jnQrgUtbJeLn6SLa72ufDu6X7w7XU73eUSZHYCUb1k43i+WO8QA==
+"@auto/log@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@auto/log/-/log-0.2.0.tgz#a43023c6d49580ef09085926f3da3bd95bc45033"
+  integrity sha512-3SWL7F+pc0mcN9lgIZfbajjztidOD2ex0RUqDMX2zLuzd1855QhhX3TMHtphufAY/Gct6Kxj2HZFQ2cB14hVog==
   dependencies:
     "@auto/utils" "^0.1.0"
     request "^2.88.0"
@@ -48,15 +48,15 @@
     "@auto/utils" "^0.1.0"
     execa "^1.0.0"
 
-"@auto/start-plugin@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@auto/start-plugin/-/start-plugin-0.2.0.tgz#92f70312a436d8b9494a9f22a52eaa3e4efac727"
-  integrity sha512-eGwRK56nJhuc3YWJ4hO7m3AOeSjuCLAVGkmj3XIXN+eiDmTicpGZH0lVmRCYh3tUPJ+Se89oxaWT6RGx1MtVtg==
+"@auto/start-plugin@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@auto/start-plugin/-/start-plugin-0.3.0.tgz#d02a846a94c394359fa1453e95d3a26f850788ed"
+  integrity sha512-eLOGyTURkpMBZ0NG7aSaeUW3AClEiPt6L0etQBnsxgZ9wPi8Gz+2Zzz3hsH+5H7YODLZajYSrpvu1CiguOqTTQ==
   dependencies:
     "@auto/bump" "^0.2.0"
     "@auto/fs" "^0.1.0"
     "@auto/git" "^0.1.0"
-    "@auto/log" "^0.1.0"
+    "@auto/log" "^0.2.0"
     "@auto/npm" "^0.1.0"
     "@auto/utils" "^0.1.0"
     "@start/plugin" "^0.3.0"

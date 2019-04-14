@@ -159,6 +159,6 @@ export const publish = async () => {
     writeWorkspacesPublishTags(workspacesOptions),
     publishWorkspacesPackagesBumps(),
     pushCommitsAndTags,
-    makeWorkspacesGithubReleases(prefixes, githubOptions)
+    makeWorkspacesGithubReleases(prefixes, workspacesOptions, githubOptions)
   )
 }
