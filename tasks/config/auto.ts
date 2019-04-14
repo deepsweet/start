@@ -68,7 +68,10 @@ export const prefixes: TPrefixes = {
 
 export const gitOptions: TGitOptions = { initialType: 'minor' }
 
-export const bumpOptions: TBumpOptions = { zeroBreakingChangeType: 'minor' }
+export const bumpOptions: TBumpOptions = {
+  zeroBreakingChangeType: 'minor',
+  shouldAlwaysBumpDependents: true
+}
 
 export const githubOptions: TGithubOptions = {
   username: 'deepsweet',

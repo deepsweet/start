@@ -23,26 +23,30 @@ import {
   makeWorkspacesCommit,
   buildBumpedPackages,
   getWorkspacesPackagesBumps,
-  publishWorkspacesPackagesBumps,
   publishWorkspacesPrompt,
-  writeWorkspacesPackagesBumps,
-  makeWorkspacesGithubReleases,
-  pushCommitsAndTags
+  writeWorkspacesPackagesDependencies,
+  writeWorkspacesDependenciesCommit,
+  writeWorkspacesPackageVersions,
+  writeWorkspacesPublishCommit,
+  publishWorkspacesPackagesBumps,
+  pushCommitsAndTags,
+  writeWorkspacesPublishTags,
+  makeWorkspacesGithubReleases
 } from '@auto/start-plugin'
 // @ts-ignore
 import tapDiff from 'tap-diff'
 
-import { babelConfigBuild } from './config/babel'
-import { prefixes, gitOptions, bumpOptions, githubOptions, workspacesOptions } from './config/auto'
+export const build = async (packageName: string) => {
+  const { babelConfigBuild } = await import('./config/babel')
 
-export const build = (packageName: string) =>
-  sequence(
+  return sequence(
     find(`packages/${packageName}/src/**/*.+(js|ts)`),
     read,
     babel(babelConfigBuild),
     rename((file) => file.replace(/\.ts$/, '.js')),
     write(`packages/${packageName}/build/`)
   )
+}
 
 export const dts = (packageName: string) =>
   sequence(
@@ -72,8 +76,10 @@ export const pack = (packageName: string) =>
 
 export const packs = xargs('pack')
 
-export const dev = (packageName: string) =>
-  watch(`packages/${packageName}/src/**/*.ts`)(
+export const dev = async (packageName: string) => {
+  const { babelConfigBuild } = await import('./config/babel')
+
+  return watch(`packages/${packageName}/src/**/*.ts`)(
     sequence(
       read,
       babel(babelConfigBuild),
@@ -81,6 +87,7 @@ export const dev = (packageName: string) =>
       write(`packages/${packageName}/build/`)
     )
   )
+}
 
 export const lint = () =>
   sequence(
@@ -112,7 +119,7 @@ export const test = (packageName: string = '*') =>
     find(`coverage/`),
     remove,
     find(`packages/${packageName}/src/**/*.ts`),
-    istanbulInstrument({ esModules: true, extensions: ['.ts'] }),
+    istanbulInstrument({ esModules: true }, ['.ts']),
     find(`packages/${packageName}/test/**/*.ts`),
     tape(tapDiff),
     istanbulReport(['lcovonly', 'html', 'text-summary'])
@@ -132,15 +139,26 @@ export const ciCoverage = () =>
     codecov
   )
 
-export const commit = () => makeWorkspacesCommit(prefixes, workspacesOptions)
+export const commit = async () => {
+  const { prefixes, workspacesOptions } = await import('./config/auto')
 
-export const publish = () =>
-  sequence(
+  return makeWorkspacesCommit(prefixes, workspacesOptions)
+}
+
+export const publish = async () => {
+  const { prefixes, workspacesOptions, gitOptions, bumpOptions, githubOptions } = await import('./config/auto')
+
+  return sequence(
     getWorkspacesPackagesBumps(prefixes, gitOptions, bumpOptions, workspacesOptions),
     publishWorkspacesPrompt(prefixes),
     buildBumpedPackages(pack),
-    writeWorkspacesPackagesBumps(prefixes, workspacesOptions),
+    writeWorkspacesPackagesDependencies,
+    writeWorkspacesDependenciesCommit(prefixes),
+    writeWorkspacesPackageVersions,
+    writeWorkspacesPublishCommit(prefixes, workspacesOptions),
+    writeWorkspacesPublishTags(workspacesOptions),
     publishWorkspacesPackagesBumps(),
     pushCommitsAndTags,
     makeWorkspacesGithubReleases(prefixes, githubOptions)
   )
+}
