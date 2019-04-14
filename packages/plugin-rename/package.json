@@ -1,6 +1,6 @@
 {
   "name": "@start/plugin-rename",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "🔠 Rename files",
   "keywords": "tasks, runner, start, start-plugin",
   "repository": "deepsweet/start",
