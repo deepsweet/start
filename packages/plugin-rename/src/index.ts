@@ -14,7 +14,7 @@ export default (callback: (file: string) => string) =>
 
         logPath(newPath)
 
-        if (file.map !== null) {
+        if (file.map) {
           return {
             path: newPath,
             data: file.data,
