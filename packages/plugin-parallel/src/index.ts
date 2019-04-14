@@ -1,6 +1,7 @@
 import plugin from '@start/plugin/src/'
+import { Options as TExecaOptions } from 'execa'
 
-type Options = {
+export type Options = {
   maxProcesses?: number
 }
 
@@ -9,7 +10,7 @@ export default (taskNames: string[], options: Options = {}) => (...args: string[
     const { default: execa } = await import('execa')
     const { default: pAll } = await import('p-all')
 
-    const spawnOptions = {
+    const spawnOptions: TExecaOptions = {
       stdout: process.stdout,
       stderr: process.stderr,
       stripEof: false,
