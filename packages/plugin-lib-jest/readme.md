@@ -17,20 +17,12 @@ $ npm install --save-dev @start/plugin-lib-jest
 ### Signature
 
 ```ts
-jest(options?: {})
+jest(argv?: ArgvOptions)
 ```
 
 #### `options`
 
-[Jest CLI options](https://facebook.github.io/jest/docs/en/cli.html).
-
-Default:
-
-```js
-{
-  rootDir: process.cwd()
-}
-```
+[Jest "argv" options](https://github.com/facebook/jest/blob/ac8c345f5318016d0789974fbc815d857fd70d99/packages/jest-types/src/Config.ts#L417-L504).
 
 ### Example
 
@@ -38,8 +30,6 @@ Default:
 import jest from '@start/plugin-lib-jest'
 
 export task () => jest({
-  moduleNameMapper: {
-  '^~/(.*)$': '<rootDir>/src/$1'
-  }
+  browser: true
 })
 ```

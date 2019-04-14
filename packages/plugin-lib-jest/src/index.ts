@@ -1,42 +1,21 @@
 import plugin from '@start/plugin/src/'
+import { Config } from '@jest/types'
 
-type Options = {
-  rootDir?: string,
-  [key: string]: any
-}
-
-const optionsToStringify = [
-  'coverageThreshold',
-  'globals',
-  'haste',
-  'moduleNameMapper',
-  'resolver',
-  'transform'
-]
-
-export default (userOptions: Options) =>
+export default (userArgv?: Config.Argv) =>
   plugin('jest', () => async () => {
-    // @ts-ignore
     const { runCLI } = await import('jest-cli')
-
-    const options: Options = {
-      rootDir: process.cwd(),
-      ...userOptions,
-      ...optionsToStringify.reduce((result, key) => {
-        if (userOptions[key]) {
-          result[key] = JSON.stringify(userOptions[key])
-        }
-
-        return result
-      }, {} as Options)
+    const { buildArgv } = await import('jest-cli/build/cli')
+    const argv: Config.Argv = {
+      ...buildArgv(),
+      ...userArgv
     }
-    const projects = [options.rootDir]
-    const results = await runCLI(options, projects)
+    const projects = argv.projects || [argv.rootDir || process.cwd()]
+    const result = await runCLI(argv, projects)
 
     if (
-      results.numFailedTests > 0 ||
-      results.numFailedTestSuites > 0 ||
-      results.numTotalTests === 0
+      result.results.numFailedTests > 0 ||
+      result.results.numFailedTestSuites > 0 ||
+      result.results.numTotalTests === 0
     ) {
       throw null
     }
