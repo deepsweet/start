@@ -55,8 +55,6 @@ export default (userOptions?: CLIEngine.Options, formatter = '') =>
 
       if (fixedFiles.length === 0) {
         logMessage('¯\\_(ツ)_/¯')
-
-        return
       }
 
       return {
