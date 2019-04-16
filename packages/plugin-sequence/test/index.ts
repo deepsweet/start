@@ -172,3 +172,21 @@ test('plugin-sequence: error / reject', async (t) => {
     )
   }
 })
+
+test('plugin-sequence: `false` as a plugin', async (t) => {
+  const reporter = new EventEmitter()
+  const plugin1 = false
+  const plugin2CallbackSpy = createSpy(() => {})
+  const plugin2Spy = createSpy(() => plugin2CallbackSpy)
+  const plugin2 = plugin('plugin2', plugin2Spy)
+
+  const run = await sequence(plugin1, plugin2)
+
+  await run(reporter)({ foo: true })
+
+  t.deepEqual(
+    getSpyCalls(plugin2CallbackSpy),
+    [[{ foo: true }]],
+    'should allow plugins to return nothing'
+  )
+})
