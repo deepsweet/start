@@ -26,7 +26,7 @@ export default (userOptions?: TransformOptions) =>
               data: transformed.code
             }
 
-            if (options.sourceMaps && typeof transformed.map === 'string') {
+            if (options.sourceMaps && transformed.map) {
               dataFile.map = transformed.map
             }
 
