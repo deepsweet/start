@@ -3,7 +3,7 @@ import { Configuration as WebpackConfig } from 'webpack'
 import { Configuration as TWebpackDevServerConfig } from 'webpack-dev-server'
 
 export type TWebpackConfig = WebpackConfig & {
-  devServer: TWebpackDevServerConfig
+  devServer?: TWebpackDevServerConfig
 }
 
 export default (config: TWebpackConfig, devServerConfig?: TWebpackDevServerConfig) =>
