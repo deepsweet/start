@@ -4,7 +4,7 @@
   "description": "🏭 Run Webpack development server",
   "keywords": "tasks, runner, start, start-plugin, webpack",
   "repository": "deepsweet/start",
-  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-webpack-serve",
+  "homepage": "https://github.com/deepsweet/start/tree/master/packages/plugin-lib-webpack-dev-server",
   "author": "Kir Belevich <kir@belevi.ch> (https://twitter.com/deepsweet)",
   "license": "MIT",
   "main": "build/index.js",
