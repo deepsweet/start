@@ -1,5 +1,7 @@
 # start
 
+**:warning: Project has been transferred to [Bubble Dev metarepo](https://github.com/bubble-dev/_/tree/master/packages/start)**
+
 [![linux](https://img.shields.io/travis/deepsweet/start/master.svg?label=linux&style=flat-square)](https://travis-ci.org/deepsweet/start) [![windows](https://img.shields.io/appveyor/ci/deepsweet/start/master.svg?label=windows&style=flat-square)](https://ci.appveyor.com/project/deepsweet/start) [![coverage](https://img.shields.io/codecov/c/github/deepsweet/start/master.svg?style=flat-square)](https://codecov.io/github/deepsweet/start)
 
 <img src="logo.svg" width="110" height="110" align="right" alt="logo"/>
